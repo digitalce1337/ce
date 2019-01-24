@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <ion-avatar>
+          <img [src] = "uimg">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-2></ion-col>
+      <ion-col col-7> 
+        <h3> {{ welcome }}, {{Uname}} </h3>
+          <b style="font-size:1.2em">{{Ucompany}},</b>
+          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>
+      </ion-col>          
+    </ion-row>
+
+    <ion-row>
+      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>
+    </ion-row>
+      
+    <ion-item>
+      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>
+        <ion-option value="en">English</ion-option>
+        <ion-option value="kr">한국어</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-grid>
+  <h2> {{ forecast }}</h2>
+  <u>{{ fleet }} {{ displaydate }}</u>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let vehicle of vehicles">
+        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">
+        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">
+          {{vehicle.vehicle_count}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- <ion-buttons end>
+    <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+    <button ion-button (click)="changeMode('month')">M</button>
+    <button ion-button (click)="changeMode('week')">W</button>
+    <button ion-button (click)="changeMode('day')">D</button>
+    <button ion-button (click)="loadEvents()">Load Events</button>
+  </ion-buttons> -->
+  <div padding>
+  <h3 align="center">{{viewTitle}}</h3>
+    <calendar [eventSource] = "eventSource"
+              [calendarMode] = "calendar.mode"
+              [currentDate] = "calendar.currentDate"
+              (onCurrentDateChanged) = "onCurrentDateChanged($event)"
+              (onEventSelected) = "onEventSelected($event)"
+              (onTitleChanged) = "onViewTitleChanged($event)"
+              (onTimeSelected) = "onTimeSelected($event)"
+              step="30">
+    </calendar>
+  </div> 
+  
+  <ion-card>
+    <ion-card-header>
+      {{ jobstats }}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

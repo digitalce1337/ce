@@ -1,0 +1,212 @@
+{
+    "tabs":{
+        "home": "홈",
+        "fleets": "장비",
+        "operators": "운전자",
+        "jobs": "작업"
+    },
+
+    "login":{
+        "title": "로그인",
+        "operator" : "운전자(기사)",
+        "owner": "장비주 운전자",
+        "rolemsgtitle": "역할을 선택해 주세요",
+        "rolemsg": "장비주 운전자 또는 운전자(기사) 여부를 선택해 주세요.",
+        "kakaomsgtitle": "이메일을 검색할 수 없습니다",
+        "kakaomsg": "카카오에서 이메일 승인을 받은 후 다시 시도해 주세요.",
+        "kakaomsgtitle2": "카카오님께 이메일이 없습니다.",
+        "kakaomsg2": "kakao에 이메일을 보내거나 다른 방법을 사용하십시오."
+
+    },
+    
+    "createcompany":{
+        "title": "사용자 정보",
+        "company_name" : "업체명",
+        "company_address": "업체 주소",
+        "phone_no" : "전화번호를 입력해 주세요.",
+        "working_days" : "회사의 월간 총 작업일수를 입력해 주세요.",
+        "continue": "다음"
+    },
+
+    "home": {
+        "title" : "홈",
+        "welcome": "환영합니다",
+        "forecast" : "예정 행사",
+        "fleet": "장비 현황",
+        "calendar": "Calendar",
+        "jobstats": "작업 통계"
+        },
+
+    "fleets":{
+        "title": "운영장비",
+        "add" : "장비 추가"
+    },
+
+    "addvehicle":{
+        "title": "장비 추가",
+        "vehicle_type": "장비 타입",
+        "manufacturer": "메이커",
+        "vehicle_details": "장비 세부내역",
+        "model_no": "모델명",
+        "serial_no": "차대 번호",
+        "purchase_date" : "구매 일자",
+        "description": "특기 사항",
+        "add" : "추가",
+        "addmsgtitle" : "성공!",
+        "addmsg" : "장비가 성공적으로 추가되었습니다"
+    },
+
+    "fleet-info":{
+        "title": "장비 정보",
+        "serial_no": "차대 번호",
+        "assigned": "할당  장비",
+        "purchase_date": "구매 일자",
+        "remove_vehicle": "삭제 장비",
+        "machine_hour": "가동 시간",
+        "maintenance" : "정비 기록",
+        "completed" : "완료",
+        "last_service" : "최종 서비스 일자",
+        "upcomming": "예정",
+        "employment" : "투입 일정",
+        "utilization" : "활용도",
+        "month": "월간",
+        "year": "연간",
+        "deletemsgtitle": "장비 삭제",
+        "deletemsg": "이 장비를 삭제하시겠습니까?",
+        "total_job_count": "총 작업량",
+        "total_no_job": "총 작업 수"
+    },
+
+    "operators":{
+        "title": "운전자",
+        "available" : "가용",
+        "busy": "투입 중",
+        "add_operator" : "운전자 추가",
+        "downloadappmsgtitle": "DigitalCE를 다운로드 후 저와 연결해 주세요",
+        "downloadappmsg1" : "연결을 위해 이 초대 코드를",
+        "downloadappmsg2" : "사용하세요!"
+    },
+
+    "viewoperator":{ 
+        "txtoday": "금일",
+        "delete_contact": "연락처 삭제", 
+        "assigned": "할당 작업",
+        "job_count": "총 작업량",
+        "week": "주간",
+        "month": "월간",
+        "year": "연간",
+        "deletemsgtitle": "연락처 삭제 확인",
+        "deletemsg": "이 연락처를 삭제 하시겠습니까?",
+        "confirm" : "확인하다"
+    },
+
+    "addoperator":{
+        "title" : "운전자 추가",
+        "email" : "이메일",
+        "skills" : "스킬 세트",
+        "add": "추가",
+        "errormsgtitle": "이메일이 존재하지 않습니다",
+        "errormsg": "이메일을 재 확인하시거나, 카카오톡을 통해 초대해 주세요.",
+        "addmsg" : "운전자가 성공적으로 추가되었습니다."
+    },
+
+    "jobstx":{
+        "title": "작업",
+        "history" : "완료 작업",
+        "ongoing" : "진행 작업",
+        "upcomming" : "예정 작업",
+        "add_job": "작업 추가"
+    },
+
+    "jobinfo":{
+        "txtitle": "작업",
+        "complete_job" : "작업 완료",
+        "reports": "보고서",
+        "past" : "최근",
+        "days": "일",
+        "all": "전체",
+        "cancel": "취소",
+        "Ok": "OK",
+        "completemsgtitle": "확인",
+        "completemsg": "이 작업이 확실히 완료되었습니까?"
+    },
+
+    "addjob":{
+        "title" : "추가 작업",
+        "client": "고객(업체)명",
+        "project_earning" : "프로젝트 매출액",
+        "location": "장소",
+        "date_from" : "시작 일자(부터)",
+        "date_to": "종료 일자(까지)",
+        "description": "세부 내역",
+        "operator_vehicle":"장비 운전자",
+        "operator_name" : "운전자 명",
+        "vehicle": "장비",
+        "submit": "제출",
+        "add" : "추가",
+        "back": "뒤로",
+        "update" : "최신 정보",
+        "addjobmsgtitle" : "성공!",
+        "addjobmsg" : "작업이 성공적으로 생성되었습니다."
+    },
+
+    "add-maintenance":{
+        "title" : "추가 정비",
+        "start_date": "시작 일자",
+        "end_date": "종료 일자",
+        "location" : "장소",
+        "description" : "세부 내역",
+        "add" : "추가",
+        "cancel" : "취소"
+    },
+
+    "edit-maintenance":{
+        "title": "정비 기록",
+        "delete": "삭제"
+    },
+
+    "otp-operator":{
+        "title": "사용자 정보",
+        "invitation_code" : "초대 코드 - 초대코드 6자리를 입력해 주세요!",
+        "invited_by" : "로 부터 초대됨.",
+        "phone_no" : "전화번호를 입력해 주세요.",
+        "continue" : "다음",
+        "skill_sets": "스킬 세트",
+        "errormsgtitle": "오류!",
+        "errormsg": "전화번호를 입력해 주세요!",
+        "invite_error": "잘못된 초대 코드"
+    },
+
+    "operatorhome":{
+        "title": "홈",
+        "welcome": "환영합니다",
+        "forecast": "예정 행사",
+        "jobstats": "작업 통계",
+        "fleet": "장비 현황",
+        "skill_sets": "스킬 세트"
+    },
+
+    "operatorjob": {
+        "title": "작업",
+        "history": "완료 작업",
+        "txongoing": "진행 작업",
+        "upcomming": "예정 작업"
+    },
+
+    "opjobdetails": {
+        "take_photo": "사진 촬영하기",
+        "selectgallery": "갤러리에서 이미지를 선택해 주세요.",
+        "txcamera": "카메라",
+        "txfaults": "오류",
+        "txfilter": "교환된 필터",
+        "txoil": "오일 교환",
+        "txdiscs": "브레이크 디스크/패드를 교환해 주세요.",
+        "description": "세부",
+        "submit": "제출",
+        "selectsource": "이미지 저장소를 선택해 주세요.",
+        "errormsgtitle": "오류!",
+        "errormsg": "보고서를 작성하고 이미지를 첨부해 주세요.",
+        "reportmsgtitle": "성공!",
+        "reportmsg": "보고서가 성공적으로 추가되었습니다."
+    }
+}

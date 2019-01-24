@@ -1,0 +1,101 @@
+<!--
+  Generated template for the AddvehiclePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title padding-top>
+      {{ title }}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="outer-content">
+  <form (ngsubmit)="AddVehicle()">
+    <ion-card>
+      <ion-card-header>
+        {{ vehicle_type }}: {{ SelVeh }}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-segment [(ngModel)]="SelVeh" name="VehicleType" (ionChange)="showOthrVType()">
+          <ion-segment-button value="Excavator">
+            <ion-icon name="custom-excavator2" color="dark"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="Compactor">
+            <ion-icon name="custom-dozer" color="dark"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="Loader">
+            <ion-icon name="custom-shovel" color="dark"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="Truck">
+              <ion-icon name="custom-truck" color="dark"></ion-icon>
+          </ion-segment-button>
+          <!-- <ion-segment-button value="Others">
+              Othrs
+          </ion-segment-button> -->
+        </ion-segment>
+        <ion-input type="text" placeholder="Vehicle Type" *ngIf="VehTypeTb" [(ngModel)]="OthrVehType" name="OthrVehTypeVal"></ion-input>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+          {{ manufacturer }} : {{ SelManu }}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">
+            <ion-segment-button value="Volvo">
+                <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>
+            </ion-segment-button>
+            <ion-segment-button value="Hyundai">
+                <ion-img src="assets/imgs/hyundai.png" class="center_hyundai_logo"></ion-img>
+            </ion-segment-button>
+            <ion-segment-button value="Doosan">
+                <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>
+            </ion-segment-button>
+            <ion-segment-button value="Komatsu">
+                <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>
+            </ion-segment-button>
+            <ion-segment-button value="Others">
+                Othrs
+            </ion-segment-button>
+          </ion-segment>
+          <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>{{ vehicle_details }}</ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label color="primary" stacked>{{ model_no }}. </ion-label>
+          <ion-input type="text" placeholder="E.g. EC250" [(ngModel)]="ModelNo" name="ModelNoVal"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked>{{ serial_no }}. </ion-label>
+          <ion-input type="text" placeholder="E.g. 987123" [(ngModel)]="SerialNo" name="SerialNoVal"></ion-input>
+        </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>{{ purchase_date }}. </ion-label>
+            <ion-datetime displayFormat="YYYY/MM/DD" placeholder="YYYY-MM-DD" [(ngModel)]="PurchaseDate" name="PDateVal"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>{{ description }}. </ion-label>
+            <ion-input type="text" placeholder="Please enter vehicle description here" [(ngModel)]="Description" name="DescriptionVal"></ion-input>
+          </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  </form>
+
+  </ion-content>
+
+  <ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+  <button ion-button full (click) = "AddVehicle()">{{ add }}</button>
+  </ion-toolbar>
+  </ion-footer>

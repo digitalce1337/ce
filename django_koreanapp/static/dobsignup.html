@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>DOB Sign up page</title>
+	<script type="text/javascript">
+		function getAccessToken(){
+			var url_string = window.location.href;
+			var url = new URL(url_string);
+			var access_token = url.searchParams.get("access_token");
+			document.getElementById("access_token").value = access_token;
+			console.log(access_token);
+			var profile_image_url = url.searchParams.get("profileurl");
+			document.getElementById("profile_image_url").value = profile_image_url;
+			var email = url.searchParams.get("email");
+			document.getElementById("email").value = email;
+			var nickname = url.searchParams.get("nickname");
+			document.getElementById("nickname").value= nickname;
+		}
+		window.onload = getAccessToken;
+</script>
+</head>
+<body>
+	<form action="http://127.0.0.1:8000/signupdone">
+	  Date of Birth:<br>
+	  <input type="text" id="dob" name="dob" placeholder="yyyy-mm-dd"><br>
+	  <input type="text" id="companyname" name="companyname" placeholder="abc pte ltd"><br>
+	  <input type="text" id="companyaddress" name="companyaddress" placeholder="123 orchard road"><br><br>
+	  <input type="hidden" id="access_token" name="access_token" value="a"/>
+	  <input type="hidden" id="profile_image_url" name="profile_image_url" value="b"/>
+	  <input type="hidden" id="email" name="email" value="e" />
+	  <input type="hidden" id="nickname" name="nickname" value ="c" />
+	  <!-- <input type="radio" name="role" value="Owner" checked>Owner<br>
+	  <input type="radio" name="role" value="Operator">Operator<br> -->
+	  <input type="submit" value="Sign up">
+	</form>
+</body>
+</html>
