@@ -50,7 +50,7 @@ export class LoginPage {
   access_token:string;
 
   kakao: any; 
-
+  /*note: console command is to see using java console when using web to test*/
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController, 
     public navParams: NavParams,
@@ -97,12 +97,13 @@ export class LoginPage {
 
         }
         this.loading.dismiss();
-      });  
-    }); 
-    //storage.clear();
-  }
-
-
+      });//storage.get('access_token').then((val)
+    });//storage.ready().then(()
+    
+  }//constructor
+  
+  //app starts from here.
+  
   ionViewDidEnter() {
     console.log('ionViewDidLoad LoginPage');
     this._initializeTranslation();
@@ -132,7 +133,7 @@ export class LoginPage {
       content: 'Loading...'
     });
     this.loading.present();
-  }
+  }//showLoader()
 
   errorFunc(message){
     let alert = this.alertCtrl.create({
@@ -141,7 +142,7 @@ export class LoginPage {
       buttons:['OK'],
     });
     alert.present();
-  }
+  }//errorFunc(message)
 
   myLogIn(){
     if(this.username.trim() !== ''){
@@ -162,14 +163,15 @@ export class LoginPage {
           console.log(err);
           this.errorFunc('Wrong Credentials, Please try Again');
           this.loading.dismiss();
-        });
-      }
-    }
+        }//(err)
+        );//this.authService.login(credentials).then((result)
+      }//else
+    }//if(this.username.trim() !== '')
     else{
       this.errorFunc('Please input a valid password');
     }
 
-  }
+  }//myLogIn()
 
   // myLogout(){
   //   this.authService.logout();
@@ -180,7 +182,7 @@ export class LoginPage {
   }
 
   login(){
-    if (this.Role==null || this.Role ==undefined){
+    if (this.Role == null || this.Role == undefined){
       let alert = this.alertCtrl.create({
       title: this.rolemsgtitle,
       subTitle: this.rolemsg,
@@ -188,7 +190,7 @@ export class LoginPage {
       });
       alert.present();
       return;
-    }
+    }//if role
 
     // if (this.Role=='Owner'){
     //   this.storage.clear();
@@ -202,7 +204,8 @@ export class LoginPage {
     //   this.navCtrl.setRoot(OperatorstabsPage);
     //   return;
     // }
-
+    
+    //the page where user key in user's kakao credentials info
     console.log("Logging into kakao");
     this.showLoader();
     let loginOptions = {};
@@ -211,7 +214,8 @@ export class LoginPage {
         AuthTypes.AuthTypeStory,
         AuthTypes.AuthTypeAccount
       ];
-
+      
+      /*this connects kakaoTalk SDK manager account to user's KakaoTalk account*/
       this._kakaoCordovaSDK.login(loginOptions).then((res) => {
         console.log(JSON.stringify(res));
         let data = JSON.stringify(res);
@@ -224,6 +228,8 @@ export class LoginPage {
         }
         let has_email = data['kakao_account']['has_email'].toString();
         let email = data['kakao_account']['email'];
+        
+        /*has email but does not allow link to account*/
         if (has_email == 'true' && (email==null)){
           this.loading.dismiss();
           console.log("please allow email");
@@ -239,6 +245,8 @@ export class LoginPage {
           console.log("User did not check email in permission");
           return;
         }
+        
+        /*account email allow to link*/ 
         else if (has_email== 'true' && (email!=null)){
           this.loading.dismiss();
           console.log("User is logged in either by new access_token or revisit user");
@@ -269,7 +277,7 @@ export class LoginPage {
         //   this.navCtrl.push(OtpOperatorPage, this.storage);
         // }
               }, err => {console.log(err);});
-            }
+            }//if checkUser
             else{
               this.loading.dismiss();
               this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
@@ -277,10 +285,11 @@ export class LoginPage {
                 adduser = JSON.parse(adduser);
                 console.log(adduser['result']);
               }, err => {console.log(err);});
-            }
+            }//else
         }, err=>{
           console.log(err);
-        });
+        }
+        );//this.appprov.checkExistingUser(email).then((res)
         this.storage.set('access_token', this.access_token);
         if (this.Role == 'Owner'){
           this.navCtrl.push(CreatecompanyPage, this.storage);
@@ -289,7 +298,9 @@ export class LoginPage {
           this.navCtrl.push(OtpOperatorPage, this.storage);
         }
         return;
-      }
+      }// else if has_email
+
+      /*if kakao account does not exist/not created, create kakaoTalk acc*/
       else{
         let alert = this.alertCtrl.create({
           title: this.kakaomsgtitle2,
@@ -306,5 +317,5 @@ export class LoginPage {
       }
       );
       this.loading.dismiss();
-  }
-}
+  }//login()
+}//class LoginPage

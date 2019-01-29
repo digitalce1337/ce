@@ -89,12 +89,15 @@ export class HomePage {
             this.getOwnerJoblist();
             this._initializeTranslation();     
           }
-        });
-      });
+        });//storage.get('access_token').then((val)
+      });//storage.ready().then(()
+
       //storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q');
       //storage.clear();
-  }
 
+  }// constructor
+  
+  /*app starts here. meaning all the id, translation, user info, job info, vehicle info, and all the info etc*/
   ionViewDidEnter(){
     this.getUserInfo();
     this.getVehicleStatus('');
@@ -191,7 +194,9 @@ getVehicle(email, datetime){
     this.vehicle_status = this.fleets.vehicle_type;
     console.log(JSON.stringify(res));
     console.log(this.vehicle_type.length);
-    for(let i = 0; i < this.vehicle_type.length; i++) {
+    
+    //To list the number of vehicle types and vehicles in the fleet
+    for(let i = 0; i < this.vehicle_type.length; i++) {  
       if (this.vehicle_count[i] == "0"){
         this.vehicle_status[i] = "assets/imgs/redcircle.png";
       }
@@ -204,22 +209,38 @@ getVehicle(email, datetime){
         vehicle_status: this.vehicle_status[i],
         vehicle_count: this.vehicle_count[i],
       });
-    }
+    }// end of for loop
   },(err) =>{
     console.log('error');
   })
-}
+}//end of getVehicle
 
+/*To create the job statistics on home page (owner)*/
 getJobStats(jobs){
   //add label x-axis
   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var today = new Date();
   var month = today.getUTCMonth();
   var labels_month = [];
+  var month_range = 3;
+
+  for(let i=0; i<month_range; i++)
+  {
+    labels_month.push(months[(month+12 - i)%12]);
+  }
+  labels_month.reverse();
+  for(let i=1; i<month_range; i++)
+  {
+    labels_month.push(months[(month+12 + i)%12]);
+  }
+  
+  /*
+  Old codes
   var labels_end = month-6;
   for (let i = 0; i<6; i++){
     labels_month.push(months[month-5+i]);
-  }
+  } */
+
   // add data y-axis
   var date_from = jobs.date_from;
   var data_y = [0, 0, 0, 0, 0, 0];
@@ -233,6 +254,7 @@ getJobStats(jobs){
       }
     }
   }
+  //creating of the bar graph
   console.log(data_y);
   this.barChart = new Chart(this.barCanvas.nativeElement, {
     type: 'bar',
@@ -247,11 +269,12 @@ getJobStats(jobs){
       }]
     }
   })
-}
+}// end of getJobStats
 
 loadEvents(job){
   this.eventSource = this.plotSchedule(job);
 }
+/*title of job*/
 onViewTitleChanged(title){
   this.viewTitle = title;
 }
@@ -275,7 +298,7 @@ onCurrentDateChanged(event:Date) {
   event.setHours(0, 0, 0, 0);
   this.isToday = today.getTime() === event.getTime();
 }
-
+/*creating of new job. add job button*/
 plotSchedule(jobs){
   var job = [];
   var dates_from = jobs.job_datefrom;
@@ -297,7 +320,7 @@ plotSchedule(jobs){
     })
   }
   return job;
-}
+}// end of plotSchedule
 
 SwithProfile(){
   console.log('Clicked');
@@ -315,4 +338,4 @@ markDisabled = (date:Date) => {
   return date < current;
 };
 
-}
+}//class HomePage

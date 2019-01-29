@@ -15,7 +15,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any ;
+  rootPage:any ; //rootPage will link to app.html file. this means everything of no specific page.
 
   constructor(platform: Platform, 
     statusBar: StatusBar, 
@@ -41,9 +41,11 @@ export class MyApp {
       }
     });
   }
-
+  
+  /* EDIT HERE TO DO TRANSLATION */
   private _initTranslate(){
-    this._translate.setDefaultLang('kr');
+    //this._translate.setDefaultLang('kr');
+    this._translate.setDefaultLang('en');
     // if (this._translate.getBrowserLang() !== undefined){
     //   this._translate.use(this._translate.getBrowserLang());
     // }

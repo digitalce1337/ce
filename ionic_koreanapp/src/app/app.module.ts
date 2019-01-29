@@ -50,7 +50,7 @@ import { KakaoCordovaSDK } from 'kakao-sdk';
 export function HttpLoaderFactory(http: HttpClient) { 
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
-
+/*actual main module file of Angular that will be presented in browser*/
 @NgModule({
   declarations: [
     MyApp,
@@ -75,6 +75,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     OtpOperatorPage,
     UpdatecapopPage
   ],
+  /*
+     importing browser module for making use of browser APs
+     forRoot: ionic module used to customize ionic app if want to customize and not check inside ()
+  */
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
@@ -90,6 +94,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
+  
+  /*below contains pages as in NgModule to tell angular keep comp. ready in use to make use anytime angular takes time to load*/
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -114,6 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OtpOperatorPage,
     UpdatecapopPage
   ],
+  
+  /*user service to be provided in the ionic*/
   providers: [
     StatusBar,
     SplashScreen, 

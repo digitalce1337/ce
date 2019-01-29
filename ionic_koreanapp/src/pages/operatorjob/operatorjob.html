@@ -15,7 +15,7 @@
         <ion-segment-button value="Ongoing">
           {{ txongoing }}
         </ion-segment-button>
-        <ion-segment-button value="Upcomming">
+        <ion-segment-button value="Upcoming">
           {{ upcomming }}
         </ion-segment-button>
       </ion-segment>
@@ -78,7 +78,7 @@
       </ion-card>
       </ion-list>
 
-      <ion-list *ngSwitchCase="'Upcomming'">
+      <ion-list *ngSwitchCase="'Upcoming'">
         <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid,upcomingJob.title);">
         <ion-grid>
         <ion-item >

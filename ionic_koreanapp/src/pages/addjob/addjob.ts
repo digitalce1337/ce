@@ -183,7 +183,7 @@ export class AddjobPage {
     },err => {
       console.log(err);
     })
-  }
+  }// end of manage
 
   getEmail(){
     this.appprov.getemail().then((res) => {
