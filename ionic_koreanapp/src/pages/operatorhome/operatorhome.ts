@@ -261,4 +261,4 @@ export class OperatorhomePage {
     })
   }
 
-}
+}//class OperatorhomePage
