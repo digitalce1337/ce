@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi\\ic_action_previous_item.png",
+        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
+    },
+    {
+        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi\\ic_action_next_item.png",
+        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi\\ic_action_remove.png",
+        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_remove.png"
+    }
+]

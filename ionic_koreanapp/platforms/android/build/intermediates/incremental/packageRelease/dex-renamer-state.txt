@@ -1,0 +1,4 @@
+#Mon Dec 17 10:44:40 SGT 2018
+base.0=C\:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\release\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\release\\folders\\1000\\1f\\main\\classes.dex

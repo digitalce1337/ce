@@ -1,0 +1,61 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-android-play-services-gradle-release": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-kakao-sdk": {
+      "KAKAO_APP_KEY": "50b41b005e41e57d2fb3423bb8a9019d",
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.digitalce.digitalce"
+    }
+  },
+  "dependent_plugins": {}
+}

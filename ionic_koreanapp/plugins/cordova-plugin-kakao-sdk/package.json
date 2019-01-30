@@ -1,0 +1,62 @@
+{
+  "_from": "cordova-plugin-kakao-sdk@2.1.4",
+  "_id": "cordova-plugin-kakao-sdk@2.1.4",
+  "_inBundle": false,
+  "_integrity": "sha512-CiWRviOd6bO5iPQqTNEdph/7IC4MZI5ag9QLDeQoFlD4ndIueas+Il8RPY6B1wfumMK39zr+cz+gvPbU/YI4zw==",
+  "_location": "/cordova-plugin-kakao-sdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-kakao-sdk@2.1.4",
+    "name": "cordova-plugin-kakao-sdk",
+    "escapedName": "cordova-plugin-kakao-sdk",
+    "rawSpec": "2.1.4",
+    "saveSpec": null,
+    "fetchSpec": "2.1.4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-kakao-sdk/-/cordova-plugin-kakao-sdk-2.1.4.tgz",
+  "_shasum": "43b753fcad0be4db5956f128481e3e1b8a48aa8a",
+  "_spec": "cordova-plugin-kakao-sdk@2.1.4",
+  "_where": "/Users/steffanosoh/Desktop/ionic_koreanapp",
+  "author": {
+    "name": "raccoondev85"
+  },
+  "bugs": {
+    "url": "https://github.com/raccoondev85/cordova-plugin-kakao-sdk/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-kakao-sdk",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Kakao Cordova SDK Plugin",
+  "homepage": "https://github.com/raccoondev85/cordova-plugin-kakao-sdk#readme",
+  "id": "cordova-plugin-kakao-sdk",
+  "keywords": [
+    "cordova",
+    "kakao",
+    "kakaotalk",
+    "login",
+    "kakao-sdk",
+    "kakaoaccount",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-kakao-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raccoondev85/cordova-plugin-kakao-sdk.git"
+  },
+  "version": "2.1.4"
+}
