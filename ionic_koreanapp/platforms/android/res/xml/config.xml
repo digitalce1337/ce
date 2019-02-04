@@ -54,7 +54,7 @@
     <name>ConstructEQ</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.137.1:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="*" />
     <allow-navigation href="*" />
@@ -66,7 +66,6 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="http://192.168.43.20:8100" sessionid="4cd45dfb" />
     <allow-navigation href="http://10.178.26.156:8100" sessionid="3beca792" />
-    <allow-navigation href="http://192.168.137.1:8100" sessionid="a4c0e639" />
     <config-file parent="/manifest" target="AndroidManifest.xml">
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

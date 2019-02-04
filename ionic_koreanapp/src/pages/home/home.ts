@@ -97,7 +97,9 @@ export class HomePage {
 
   }// constructor
   
-  /*app starts here. meaning all the id, translation, user info, job info, vehicle info, and all the info etc*/
+  /*app starts here. meaning all the id, translation, user info, job info, vehicle info, and all the info etc
+    All are functions
+  */
   ionViewDidEnter(){
     this.getUserInfo();
     this.getVehicleStatus('');
@@ -195,7 +197,7 @@ getVehicle(email, datetime){
     console.log(JSON.stringify(res));
     console.log(this.vehicle_type.length);
     
-    //To list the number of vehicle types and vehicles in the fleet
+    //To list the number of vehicle types and vehicles in the fleet added by owner
     for(let i = 0; i < this.vehicle_type.length; i++) {  
       if (this.vehicle_count[i] == "0"){
         this.vehicle_status[i] = "assets/imgs/redcircle.png";
@@ -222,7 +224,7 @@ getJobStats(jobs){
   var today = new Date();
   var month = today.getUTCMonth();
   var labels_month = [];
-  var month_range = 3;
+  var month_range = 4;
 
   for(let i=0; i<month_range; i++)
   {

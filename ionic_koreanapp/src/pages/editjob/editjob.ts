@@ -161,6 +161,7 @@ export class EditjobPage {
     });
   }
 
+  /*Operator & vehicle pay*/
   initOpVehPay(): FormGroup{
     this.counter ++;
     this.getOperators(this.access_token);

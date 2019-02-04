@@ -4,23 +4,11 @@
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaotalk_icon.png"
     },
     {
-        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-small-v4\\kakaoaccount_icon.png",
-        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaoaccount_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-small-v4\\kakaostory_icon.png",
-        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaostory_icon.png"
-    },
-    {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-small-v4\\kakaoaccount_icon.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaoaccount_icon.png"
     },
     {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-small-v4\\kakaostory_icon.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaostory_icon.png"
-    },
-    {
-        "merged": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-small-v4\\kakaotalk_icon.png",
-        "source": "C:\\Users\\qingt\\Documents\\Korean App\\ionic\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-small-v4\\kakaotalk_icon.png"
     }
 ]

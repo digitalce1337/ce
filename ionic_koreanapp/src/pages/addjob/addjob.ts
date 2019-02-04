@@ -76,6 +76,7 @@ export class AddjobPage {
         this.selectedOp = [];
         this.selectedVeh = [];
         this.counter = 0;
+        //FormBuilder: Angular form builder that creates desired form 
         this.form = this._FB.group({
           ClientName: ['',Validators.required],
           PayOut : ['',Validators.required],
@@ -85,12 +86,14 @@ export class AddjobPage {
           Desc: ['',Validators.required],
           OpVehPay : this._FB.array([
             this.initOpVehPay()
-          ])
-        });
+          ])//OpVehPay
+        });//this.form
         this._initializeTranslation();    
     
-  }
+  }//end of constructor
 
+  /*app tab starts here. All are functions*/
+  
   ionViewDidEnter() {
     this._initializeTranslation();  
   }
@@ -122,6 +125,8 @@ export class AddjobPage {
       this.addjobmsg = this._translate.instant("addjob.addjobmsg");
   }
 
+  /*To initialize form for Operator & vehicle for new job */
+  //Formbuilder works hand-in-hand with Validators. Validators: validate input(s) for created form
   initOpVehPay(): FormGroup{
     this.counter ++;
     
@@ -131,6 +136,7 @@ export class AddjobPage {
     });
   }
 
+  /* */
   addNewInputField():void{
     if(this.form.valid){
       this.UpdateSelectedOpVeh(this.form.value.OpVehPay);
@@ -233,7 +239,7 @@ export class AddjobPage {
     },(err) => {
       console.log(err);
     });
-  }
+  }// end of getOperators
 
   getVehicles(datefrom,dateto){
     this.VehicleTD[this.counter] = [];
@@ -280,7 +286,7 @@ export class AddjobPage {
     },(err) => {
       console.log(err);
     });
-  }
+  }//end of getVehicles
 
   UpdateSelectedOpVeh(Selected){
 

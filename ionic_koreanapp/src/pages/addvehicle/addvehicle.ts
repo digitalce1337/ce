@@ -77,6 +77,7 @@ export class AddvehiclePage {
       this.addmsg = this._translate.instant("addvehicle.addmsg");
   }
 
+  /*Add vehicle page content */
   AddVehicle(){
 
     if(this.SerialNo != '' && 
@@ -107,6 +108,7 @@ export class AddvehiclePage {
     }
   }
 
+  /*if vehicle type is none of the given*/
   showOthrVType(){
     if(this.SelVeh == 'Others'){
       this.VehTypeTb = true;
@@ -115,7 +117,7 @@ export class AddvehiclePage {
       this.VehTypeTb = false;
     }
   }
-
+  /*if veh manufacturer type is none of the given*/
   showOthrManu(){
     if(this.SelManu == 'Others'){
       this.ManuTB = true;

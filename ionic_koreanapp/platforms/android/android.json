@@ -10,15 +10,15 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 125
+              "count": 7
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 124
+              "count": 6
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 124
+              "count": 6
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -172,51 +172,51 @@
   "installed_plugins": {
     "cordova-android-play-services-gradle-release": {
       "PLAY_SERVICES_VERSION": "15.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-android-permissions": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-filepath": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-kakao-sdk": {
       "KAKAO_APP_KEY": "50b41b005e41e57d2fb3423bb8a9019d",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.digitalce.digitalce"
     }
   },
   "dependent_plugins": {},

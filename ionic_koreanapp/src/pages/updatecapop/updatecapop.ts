@@ -48,6 +48,7 @@ export class UpdatecapopPage {
         this.navCtrl.setRoot(LoginPage);
       }
       else{
+        //the url to display the image icon of the vehicles is the public DNS of AWS instance
         var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
                       'http://18.222.185.105/static/vehicles/Excavator.png',
                       'http://18.222.185.105/static/vehicles/loader.png',

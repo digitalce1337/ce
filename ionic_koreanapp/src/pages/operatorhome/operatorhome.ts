@@ -86,8 +86,10 @@ export class OperatorhomePage {
         this._initializeTranslation();
       }
     });
-  }
+  }//end of constructor
 
+  /*app starts here. All are functions
+  */
   ionViewDidEnter() {
     console.log('ionViewDidLoad OperatorhomePage');
     this._initializeTranslation();
@@ -231,10 +233,25 @@ export class OperatorhomePage {
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
+    var month_range = 4;
+
+    for(let i=0; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 - i)%12]);
+    }
+    labels_month.reverse();
+    for(let i=1; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 + i)%12]);
+    }
+    /*
+    //Old codes
     var labels_end = month-6;
     for (let i = 0; i<6; i++){
       labels_month.push(months[month-5+i]);
     }
+    */
+
     // add data y-axis
     var date_from = jobs.date_from;
     var data_y = [0, 0, 0, 0, 0, 0];

@@ -92,8 +92,8 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "cordova-android-play-services-gradle-release/starter-cordova-android-play-services-gradle-release.gradle"
-apply from: "cordova-plugin-kakao-sdk/starter-kakao.gradle"
+apply from: "cordova-android-play-services-gradle-release/digitalce-cordova-android-play-services-gradle-release.gradle"
+apply from: "cordova-plugin-kakao-sdk/digitalce-kakao.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

@@ -73,7 +73,7 @@ export class AddoperatorPage {
         this._initializeTranslation();
       }
     });
-  }
+  }//end of constructor
 
   ionViewDidEnter() {
     console.log('ionViewDidLoad AddoperatorPage');
@@ -100,11 +100,12 @@ export class AddoperatorPage {
       this.addmsg = this._translate.instant("addoperator.addmsg");
   }
 
-
+  /*Function to close page. the close button to close page*/
   closeModal(){
     this.view.dismiss();
   }
 
+  /*getting the vehicle image of operator skill set */
   getVehicleUrl(){
     console.log("getting vehicle url");
     this.appprov.getVehicleUrl(this.access_token).then((res) =>{
@@ -133,6 +134,7 @@ export class AddoperatorPage {
     this.loading.present();
   }
 
+  /*adding new operator to operator list */
   itemTappedAdd(){
     console.log("adding oeprator");
     this.appprov.checkEmail(this.access_token, this.emailField).then((res) => {
@@ -177,7 +179,7 @@ export class AddoperatorPage {
     }, err => {
       console.log(err);
     });
-  }
+  }//end of itemTappedAdd()
  
   // itemTappedAd(){
   //   console.log(this.emailField);
@@ -191,6 +193,7 @@ export class AddoperatorPage {
   //   console.log (vehicletype);
   // }
 
+  /*Display the skill set of operator under the name*/
   selectVehicle(data){
     if (data.checked == true) {
       this.selectedArray.push(data);

@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\android.arch.core\runtime\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\android.arch.core-runtime-1.1.0_635dcb7550b5d3de31ba6e9fd6fe9afb88cc75c5.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\message-template\1.12.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -57,87 +66,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\org.apache.cordova\CordovaLib\6.3.0\debug\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="53d2966f0ad9d41e13d20b2458ca77a55aef3154">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-6.3.0-debug_06e265b90974c1b8c7a2dad1ebe4cfb582dabc15.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="4961be1437163ab598620a3c907c0f3432936f51">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.4.0_7e9909bd9a02132c96c17b4827a3075418f85f58.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-core-utils\27.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="ec657bb192b20229696216bf233779b16bf75a54">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-27.1.1_4879d43c652e621584835bd4e5ebe746a096f5b7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\android.arch.lifecycle\viewmodel\1.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\android.arch.lifecycle-viewmodel-1.1.0_bdfbc53c7b118710644374c1f9e4c953a94088a0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\friends\1.12.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="b6e4dfdb24a01259cad7dc0fcf4ddab4677b0c92">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-friends-1.12.0_3b2f4fc6c235d505d7f1ebdbabf3b2028efe4e40.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-core-ui\27.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-27.1.1_ad588b0ec8b55d614065b385aa938681ed20edc7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\network\1.12.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="9586ea5fe50ddc6525b1952254acda4cc1d0d771">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-network-1.12.0_d46a005938c3ab7e9b2ff5e07e3c5a35dc06652d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-media-compat\27.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="88c68e5ef7c5ace393d014c9ec5fe736b1ca55cf">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-27.1.1_b18a8b9378af744d62fa7c779347cb5cae1706ea.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\android.arch.core\runtime\1.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="28.0.3"
-        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
-        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\android.arch.core-runtime-1.1.0_635dcb7550b5d3de31ba6e9fd6fe9afb88cc75c5.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\usermgmt\1.12.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -165,6 +93,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\org.apache.cordova\CordovaLib\6.3.0\debug\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="53d2966f0ad9d41e13d20b2458ca77a55aef3154">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-6.3.0-debug_06e265b90974c1b8c7a2dad1ebe4cfb582dabc15.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -183,6 +120,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="4961be1437163ab598620a3c907c0f3432936f51">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.4.0_7e9909bd9a02132c96c17b4827a3075418f85f58.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\libs\sqlite-connector.jar"
         jumboMode="false"
         optimize="true"
@@ -198,6 +144,15 @@
         revision="28.0.3"
         sha1="4b11ffc4b288c63aed118fc9cf5df96ef6ed26df">
         <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-kakaotalk-1.12.0_2c4e40168b405ecd4abd1bd339d0d0bbe0a5ac84.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-core-utils\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="ec657bb192b20229696216bf233779b16bf75a54">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-27.1.1_4879d43c652e621584835bd4e5ebe746a096f5b7.jar" />
     </item>
     <item
         is-multidex="false"
@@ -228,12 +183,57 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\android.arch.lifecycle\viewmodel\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\android.arch.lifecycle-viewmodel-1.1.0_bdfbc53c7b118710644374c1f9e4c953a94088a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\friends\1.12.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="b6e4dfdb24a01259cad7dc0fcf4ddab4677b0c92">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-friends-1.12.0_3b2f4fc6c235d505d7f1ebdbabf3b2028efe4e40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-core-ui\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-27.1.1_ad588b0ec8b55d614065b385aa938681ed20edc7.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\auth\1.12.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="28.0.3"
         sha1="1785433fad823bd143ba5f969fa09386788d1cde">
         <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-auth-1.12.0_0d56b3e60de5d49ce6246aae42f08db0d5ceb03d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.kakao.sdk\network\1.12.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="9586ea5fe50ddc6525b1952254acda4cc1d0d771">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.kakao.sdk-network-1.12.0_d46a005938c3ab7e9b2ff5e07e3c5a35dc06652d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\exploded-aar\com.android.support\support-media-compat\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="88c68e5ef7c5ace393d014c9ec5fe736b1ca55cf">
+        <dex dex="C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-27.1.1_b18a8b9378af744d62fa7c779347cb5cae1706ea.jar" />
     </item>
 
 </items>
