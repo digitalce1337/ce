@@ -3,7 +3,10 @@
     <div style="font-size: 2em">{{ mode }}</div>
     <ion-list *ngFor="let job of jobs; let i = index" (click) = "itemTapped($event,job)">
       <ion-list-header class="listHeader">
-        <b>{{jobs[i][0]}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon> {{jobs[i][1]}}
+        <b>{{jobs[i][0]}}</b>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+      <br/> 
+        <ion-icon name="pin"></ion-icon> {{jobs[i][1]}}
         <ion-note float-right>{{jobs[i][2]}} Won</ion-note>
       </ion-list-header>
       <ion-item *ngFor="let opveh of jobs[i][3]" class="listHeader">

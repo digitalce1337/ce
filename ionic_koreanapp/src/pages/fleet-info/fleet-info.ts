@@ -217,7 +217,7 @@ export class FleetInfoPage {
       let month_total = data['month_total'];
       let year_total = data['year_total'];
       this.getJobStats(vehicle_month, month_total);
-      this.getJobStats2(vehicle_year, year_total);
+      // sthis.getJobStats2(vehicle_year, year_total); //comment this sn 27
       }, err=>{
       console.log(err);
     });
@@ -299,6 +299,7 @@ export class FleetInfoPage {
         labels: [this.assigned, this.total_job_count],
         datasets: [{
           label: "Vehicle Utilization",
+          //data: [this.vehicle_month, month_total - this.vehicle_month],
           data: [vehicle_month, month_total-vehicle_month],
           backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
           borderColor: "rbga(0, 110, 255, 1)",
@@ -307,25 +308,26 @@ export class FleetInfoPage {
       }
     });
   }
-
-  getJobStats2(vehicle_year, year_total ){
-    if (year_total == '0'){
-      year_total = '1';
-    }
-    this.doughnutChart2 = new Chart(this.doughnutCanvas2.nativeElement, {
-      type: 'doughnut',
-      data:{
-        labels: [this.assigned, this.total_job_count],
-        datasets: [{
-          label: "Vehicle utilization",
-          data: [vehicle_year, year_total-vehicle_year],
-          backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-          borderColor: "rbga(0, 110, 255, 1)",
-          borderWidth:1
-        }]
-      }
-    });
-  }
+  //comment this block sn 27
+  //YEAR chart
+  // getJobStats2(vehicle_year, year_total ){
+  //   if (year_total == '0'){
+  //     year_total = '1';
+  //   }
+  //   this.doughnutChart2 = new Chart(this.doughnutCanvas2.nativeElement, {
+  //     type: 'doughnut',
+  //     data:{
+  //       labels: [this.assigned, this.total_job_count],
+  //       datasets: [{
+  //         label: "Vehicle utilization",
+  //         data: [vehicle_year, year_total-vehicle_year],
+  //         backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+  //         borderColor: "rbga(0, 110, 255, 1)",
+  //         borderWidth:1
+  //       }]
+  //     }
+  //   });
+  // }
 
   deleteVehicle(serial_no, model_no){
     this.appprov.deleteVehicle(this.access_token, serial_no, model_no).then((res) => {
