@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 905:
+/***/ 906:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddoperatorPageModule", function() { return AddoperatorPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addoperator__ = __webpack_require__(918);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addoperator__ = __webpack_require__(919);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var AddoperatorPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 918:
+/***/ 919:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -106,7 +106,7 @@ var AddoperatorPage = /** @class */ (function () {
                 _this._initializeTranslation();
             }
         });
-    }
+    } //end of constructor
     AddoperatorPage.prototype.ionViewDidEnter = function () {
         console.log('ionViewDidLoad AddoperatorPage');
         this._initializeTranslation();
@@ -128,9 +128,11 @@ var AddoperatorPage = /** @class */ (function () {
         this.errormsg = this._translate.instant("addoperator.errormsg");
         this.addmsg = this._translate.instant("addoperator.addmsg");
     };
+    /*Function to close page. the close button to close page*/
     AddoperatorPage.prototype.closeModal = function () {
         this.view.dismiss();
     };
+    /*getting the vehicle image of operator skill set */
     AddoperatorPage.prototype.getVehicleUrl = function () {
         var _this = this;
         console.log("getting vehicle url");
@@ -157,6 +159,7 @@ var AddoperatorPage = /** @class */ (function () {
         });
         this.loading.present();
     };
+    /*adding new operator to operator list */
     AddoperatorPage.prototype.itemTappedAdd = function () {
         var _this = this;
         console.log("adding oeprator");
@@ -202,7 +205,7 @@ var AddoperatorPage = /** @class */ (function () {
         }, function (err) {
             console.log(err);
         });
-    };
+    }; //end of itemTappedAdd()
     // itemTappedAd(){
     //   console.log(this.emailField);
     //   console.log(this.selectedArray);
@@ -214,6 +217,7 @@ var AddoperatorPage = /** @class */ (function () {
     //   }
     //   console.log (vehicletype);
     // }
+    /*Display the skill set of operator under the name*/
     AddoperatorPage.prototype.selectVehicle = function (data) {
         if (data.checked == true) {
             this.selectedArray.push(data);
@@ -228,7 +232,7 @@ var AddoperatorPage = /** @class */ (function () {
     };
     AddoperatorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addoperator',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addoperator\addoperator.html"*/'\n<!--\n  Generated template for the AddoperatorPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title >{{ title }}</ion-title>\n    <ion-buttons>\n      <button ion-button (click)="closeModal()">\n          <ion-icon name="arrow-back"></ion-icon>  \n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item>\n    <ion-label stacked>{{ email }}</ion-label>\n    <ion-input type="text" [(ngModel)]="emailField"></ion-input>\n  </ion-item>\n\n</ion-content>\n<ion-footer no-shadow>\n    <button full ion-button (click)="itemTappedAdd($event)">{{ add }}</button>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addoperator\addoperator.html"*/,
+            selector: 'page-addoperator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addoperator\addoperator.html"*/'\n\n<!--\n\n  Generated template for the AddoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title >{{ title }}</ion-title>\n\n    <ion-buttons>\n\n      <button ion-button (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>  \n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ email }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="emailField"></ion-input>\n\n  </ion-item>\n\n\n\n</ion-content>\n\n<ion-footer no-shadow>\n\n    <button full ion-button (click)="itemTappedAdd($event)">{{ add }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addoperator\addoperator.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],

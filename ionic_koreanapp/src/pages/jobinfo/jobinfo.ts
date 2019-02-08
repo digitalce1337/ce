@@ -286,7 +286,8 @@ export class JobinfoPage {
 
   editJob(){
     console.log("editing");
-    this.navCtrl.push(EditjobPage, {'jid':this.jid, 'access_token':this.access_token});
+    // this.navCtrl.push(EditjobPage, {'jid':this.jid, 'access_token':this.access_token});
+    this.navCtrl.push(EditjobPage, {'access_token':this.access_token,'jid':this.jid });
     
   }
   

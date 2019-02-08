@@ -8,7 +8,19 @@
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
     },
     {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_next_item.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_remove.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_remove.png"
+    },
+    {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_next_item.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_previous_item.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
     }
 ]

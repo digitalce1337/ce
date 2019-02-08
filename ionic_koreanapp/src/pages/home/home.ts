@@ -26,6 +26,10 @@ export class HomePage {
 
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
+  @ViewChild('barCanvas2') barCanvas2;
+  barChart2: any;
+  // @ViewChild('barCanvas3') barCanvas3;
+  // barChart3: any;
 
   eventSource;
   viewTitle;
@@ -153,6 +157,7 @@ getOwnerJoblist(){
     this.loadEvents(job);
     this.plotSchedule(job);
     this.getJobStats({'date_from':job_datefrom});
+    this.getJobStats2();
   }, err =>{
     console.log(err);
   });
@@ -272,6 +277,71 @@ getJobStats(jobs){
     }
   })
 }// end of getJobStats
+
+
+// numberwithcommas(x) {
+//   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
+// };
+
+getJobStats2()
+{
+  
+
+  var months = ["Jan","Feb","Mar"];
+  var dataPack1 = ['50555','75555','70555'];
+  var dataPack2 = ['120000','150000','160000'];
+  
+  this.barChart2 = new Chart(this.barCanvas2.nativeElement, {
+    type: 'bar',
+    data:{
+      labels: months,
+      datasets: [
+        {
+        label: 'Expected',
+        data: dataPack1,
+        backgroundColor: "rgba(0, 110,255, 0.2)",
+        borderWidth:1
+      },
+      {
+        label: 'Total',
+        data: dataPack2,
+        backgroundColor: "rgba(173, 137, 94, 0.7)",
+        borderWidth:1      
+      },
+    ]
+    }, 
+    options:{ 
+      animation: {
+        duration: 10,
+      },
+      tooltips:{
+        mode:'label',
+        callbacks: {
+          label: function(tooltipItem,data){
+            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");                   
+          },
+        },
+      },
+      scales: {
+        xAxes: [{
+          stacked: true,
+          gridLines: {display:false},          
+        }],
+        yAxes: [{
+          stacked: true,
+          // gridLines: {display:false},
+          ticks:{
+            // callback: function(value){ return this.numberwithcommas(value);},
+            beginatZero: true
+          },          
+        }],
+      },
+      legend: {display:true}
+    }
+  })
+
+
+}
 
 loadEvents(job){
   this.eventSource = this.plotSchedule(job);

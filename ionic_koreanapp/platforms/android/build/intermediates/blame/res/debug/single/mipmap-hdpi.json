@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\icon.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\mipmap-hdpi\\icon.png"
+    },
+    {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\icon.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\res\\mipmap-hdpi\\icon.png"
     }

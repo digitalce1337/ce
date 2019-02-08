@@ -1,4 +1,4 @@
-#Thu Feb 07 16:15:00 SGT 2019
-base.0=C\:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+#Fri Feb 08 17:06:07 SGT 2019
+base.0=C\:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
-file.0=C\:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+file.0=C\:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
