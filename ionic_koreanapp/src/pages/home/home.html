@@ -79,11 +79,29 @@
 
   <ion-card>
       <ion-card-header>   
-             Earnings          
+             Earnings (MWon)       
         </ion-card-header>
     <ion-card-content>
-      <canvas #barCanvas2></canvas>
+      <canvas #barCanvasEarnings></canvas>
     </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>   
+           Fleet Usage %
+      </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvasFleetUsage></canvas>
+  </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>   
+           Operator Usage %
+      </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvasOperatorUsage></canvas>
+  </ion-card-content>
   </ion-card>
 
 </ion-content>

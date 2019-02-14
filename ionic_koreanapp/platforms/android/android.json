@@ -10,15 +10,15 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
-              "count": 44
+              "count": 94
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 43
+              "count": 93
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
-              "count": 43
+              "count": 93
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
