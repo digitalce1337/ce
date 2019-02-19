@@ -4325,6 +4325,10 @@ var HomePage = /** @class */ (function () {
             _this.jobstats = _this._translate.instant("home.jobstats");
         }, 200);
     };
+    HomePage.prototype.addCommaNumber = function (text) {
+        var x = (text.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        return x;
+    };
     HomePage.prototype.presentAlert = function (title, msg) {
         var alert = this.alertCtrl.create({
             title: title,
@@ -4333,6 +4337,7 @@ var HomePage = /** @class */ (function () {
         });
         alert.present();
     };
+    //On start and access database to retrieve owner information
     HomePage.prototype.getOwnerJoblist = function () {
         var _this = this;
         this.appprov.getOwnerJoblist(this.access_token).then(function (res) {
@@ -4347,7 +4352,9 @@ var HomePage = /** @class */ (function () {
             _this.loadEvents(job);
             _this.plotSchedule(job);
             _this.getJobStats({ 'date_from': job_datefrom });
-            _this.getJobStats2();
+            _this.getEarnings();
+            _this.getFleetUsage();
+            _this.getOperatorUsage();
         }, function (err) {
             console.log(err);
         });
@@ -4463,25 +4470,39 @@ var HomePage = /** @class */ (function () {
     // numberwithcommas(x) {
     //   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
     // };
-    HomePage.prototype.getJobStats2 = function () {
-        var months = ["Jan", "Feb", "Mar"];
-        var dataPack1 = ['50555', '75555', '70555'];
-        var dataPack2 = ['120000', '150000', '160000'];
-        this.barChart2 = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvas2.nativeElement, {
+    HomePage.prototype.getEarnings = function () {
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var today = new Date();
+        var month = today.getUTCMonth();
+        var labels_month = [];
+        var month_range = 4;
+        for (var i = 0; i < month_range; i++) {
+            labels_month.push(months[(month + 12 - i) % 12]);
+        }
+        labels_month.reverse();
+        for (var i = 1; i < month_range; i++) {
+            labels_month.push(months[(month + 12 + i) % 12]);
+        }
+        var dataPack1 = ['5', '14', '14', '4', '30', '45', '60'];
+        var dataPack2 = ['10', '35', '50', '10', '35', '50', '90'];
+        this.EarningsChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvasEarnings.nativeElement, {
             type: 'bar',
             data: {
-                labels: months,
+                labels: labels_month,
                 datasets: [
                     {
                         label: 'Expected',
                         data: dataPack1,
-                        backgroundColor: "rgba(0, 110,255, 0.2)",
+                        // backgroundColor: "rgba(0, 110,255, 0.2)",
+                        backgroundColor: "rgba(107,142,35, 0.2)",
                         borderWidth: 1
                     },
                     {
                         label: 'Total',
                         data: dataPack2,
-                        backgroundColor: "rgba(173, 137, 94, 0.7)",
+                        // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
+                        // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
+                        backgroundColor: "rgba(152,251,152, 0.2)",
                         borderWidth: 1
                     },
                 ]
@@ -4494,7 +4515,8 @@ var HomePage = /** @class */ (function () {
                     mode: 'label',
                     callbacks: {
                         label: function (tooltipItem, data) {
-                            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            // return this.addCommaNumber(tooltipItem.yLabel.toString());                       
                         },
                     },
                 },
@@ -4504,12 +4526,105 @@ var HomePage = /** @class */ (function () {
                             gridLines: { display: false },
                         }],
                     yAxes: [{
-                            stacked: true,
+                            stacked: false,
                             // gridLines: {display:false},
                             ticks: {
-                                // callback: function(value){ return this.numberwithcommas(value);},
-                                beginatZero: true
+                                // callback: function(value){ return this.addCommaNumber(value);},          
+                                // beginatZero: true,
+                                min: 0,
                             },
+                        }],
+                },
+                legend: { display: true }
+            }
+        });
+    };
+    HomePage.prototype.getFleetUsage = function () {
+        // var specificMachine = [10,15,6,12];
+        var baseDays = 22;
+        var vehNum = 4;
+        var fleetDays = baseDays * vehNum;
+        var fleetPercentage = Math.round(((10 + 15 + 6 + 12) / fleetDays) * 100);
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var today = new Date();
+        var month = today.getUTCMonth();
+        var labels_month = [];
+        var month_range = 4;
+        var dataPack1 = [fleetPercentage, '14', '14', '4', '30', '45', '60'];
+        for (var i = 0; i < month_range; i++) {
+            labels_month.push(months[(month + 12 - i) % 12]);
+        }
+        labels_month.reverse();
+        for (var i = 1; i < month_range; i++) {
+            labels_month.push(months[(month + 12 + i) % 12]);
+        }
+        this.FleetUsageChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvasFleetUsage.nativeElement, {
+            type: 'bar',
+            data: {
+                labels: labels_month,
+                datasets: [{
+                        label: 'Statistics',
+                        data: dataPack1,
+                        backgroundColor: "rgba(0, 110,255, 0.2)",
+                        borderColor: "rbga(0, 110, 255, 1)",
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                callback: function (value) { return value + "%"; }
+                            },
+                            scaleLabel: { display: true }
+                        }],
+                },
+                legend: { display: true }
+            }
+        });
+    };
+    HomePage.prototype.getOperatorUsage = function () {
+        // var specificMachine = [10,15,6,12];
+        var baseDays = 22;
+        var vehNum = 4;
+        var fleetDays = baseDays * vehNum;
+        var fleetPercentage = Math.round(((10 + 15 + 6 + 12) / fleetDays) * 100);
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var today = new Date();
+        var month = today.getUTCMonth();
+        var labels_month = [];
+        var month_range = 4;
+        var dataPack1 = [fleetPercentage, '14', '14', '4', '30', '45', '60'];
+        for (var i = 0; i < month_range; i++) {
+            labels_month.push(months[(month + 12 - i) % 12]);
+        }
+        labels_month.reverse();
+        for (var i = 1; i < month_range; i++) {
+            labels_month.push(months[(month + 12 + i) % 12]);
+        }
+        this.OperatorUsageChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvasOperatorUsage.nativeElement, {
+            type: 'bar',
+            data: {
+                labels: labels_month,
+                datasets: [{
+                        label: 'Statistics',
+                        data: dataPack1,
+                        backgroundColor: "rgba(0, 110,255, 0.2)",
+                        borderColor: "rbga(0, 110, 255, 1)",
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                callback: function (value) { return value + "%"; }
+                            },
+                            scaleLabel: { display: true }
                         }],
                 },
                 legend: { display: true }
@@ -4580,12 +4695,20 @@ var HomePage = /** @class */ (function () {
         __metadata("design:type", Object)
     ], HomePage.prototype, "barCanvas", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barCanvas2'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barCanvasEarnings'),
         __metadata("design:type", Object)
-    ], HomePage.prototype, "barCanvas2", void 0);
+    ], HomePage.prototype, "barCanvasEarnings", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barCanvasFleetUsage'),
+        __metadata("design:type", Object)
+    ], HomePage.prototype, "barCanvasFleetUsage", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barCanvasOperatorUsage'),
+        __metadata("design:type", Object)
+    ], HomePage.prototype, "barCanvasOperatorUsage", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings          \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
