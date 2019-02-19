@@ -32,12 +32,12 @@
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
-        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
-    },
-    {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png",
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",
+        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\notification_bg_normal.9.png",
@@ -108,12 +108,12 @@
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
-        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\kakaostory_icon.png",
-        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-xhdpi-v4\\kakaostory_icon.png"
-    },
-    {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png",
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\kakaostory_icon.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable-xhdpi-v4\\kakaostory_icon.png"
     },
     {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
@@ -140,12 +140,12 @@
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png",
-        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_ic_star_half_black_36dp.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png",
+        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_ic_star_half_black_36dp.png",

@@ -64,12 +64,12 @@
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable\\story.png"
     },
     {
-        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
-        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_btn_radio_material.xml"
-    },
-    {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
@@ -112,12 +112,12 @@
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.12.0\\res\\drawable\\kakao_login_button_background.9.png"
     },
     {
-        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
-        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\notification_bg_low.xml"
-    },
-    {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\notification_bg_low.xml"
     },
     {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
@@ -184,12 +184,12 @@
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
-        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_x.png",
-        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable\\btn_x.png"
-    },
-    {
         "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.4.0\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_x.png",
+        "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\drawable\\btn_x.png"
     },
     {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
