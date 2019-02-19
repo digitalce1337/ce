@@ -55,7 +55,7 @@ export class AppProvider {
       this.http.get(apiKey+'addVehicle?email=' + email + '&sn=' + sn + '&mn=' + mn + '&pd=' + pd + '&manu=' + manu + '&desc=' + desc + '&Vtype=' + vtype)
         .subscribe(res => {
           resolve(res);
-
+          
         }, (err) => {
           console.log(err);
         });
@@ -66,6 +66,7 @@ export class AppProvider {
     return new Promise(resolve=>{
       this.http.get(apiKey+'getFleet?email=' + email).subscribe(res =>{
         resolve(res);
+        console.log("heyyyy2");
       }, (err) =>{
         console.log(err)
       })
@@ -76,6 +77,7 @@ export class AppProvider {
     return new Promise(resolve=>{
       this.http.get(apiKey+'getVehicleStatus?email=' + email+'&datetime='+datetime).subscribe(res =>{
         resolve(res);
+
       }, (err) =>{
         console.log(err);
       })
@@ -86,6 +88,8 @@ export class AppProvider {
     return new Promise(resolve=>{
       this.http.get(apiKey+'getOperatorList?email='+ email+'&access_token='+access_token).subscribe(res =>{
         resolve(res);
+        console.log("heyyyy2");
+        console.log("access token: "+ access_token);
       }, (err) =>{
         console.log(err);
       })
@@ -146,6 +150,7 @@ export class AppProvider {
       this.http.get(apiKey + 'getOperatorDetails?email='+email+ '&access_token='+access_token).subscribe((res) => {
         resolve(res);
         console.log("Operator details fetched");
+        console.log("access token: "+ access_token);
       }, err => {
         console.log(err);
       })
@@ -206,6 +211,7 @@ export class AppProvider {
       this.http.get(apiKey+'retrieveVehMachineHour?serial_no='+serial_no+'&access_token='+access_token).subscribe((res) => {
         resolve(res);
         console.log("Retrieve machine hour");
+        console.log("access token: "+ access_token);
       }, err => {
         console.log(err);
       })
@@ -374,7 +380,10 @@ public retrieveJobDetails(access_token, jid){
   return new Promise(resolve => {
     this.http.get(apiKey+'retrieveJobDetails?access_token='+access_token+'&jid='+jid).subscribe((res) => {
       resolve(res);
+      console.log("heyyyy");
       console.log("Job Details Retrieved");
+      console.log("jid: "+ jid);
+      
     }, err => {
       console.log(err);
       })
@@ -386,7 +395,9 @@ public retrieveJobOperators(access_token, jid){
   return new Promise(resolve => {
     this.http.get(apiKey+'retrieveJobOperators?access_token='+access_token+'&jid='+jid).subscribe((res) => {
       resolve(res);
+      
       console.log("Job Operators Retrieved");
+      
     }, err => {
       console.log(err);
       })
@@ -483,6 +494,7 @@ getOperatorNames(access_token,datefrom,dateto){
     this.http.get(apiKey+'getOperatorNames?access_token='+access_token+ '&date_from=' +datefrom + '&date_to=' + dateto).subscribe((res) => {
       resolve(res);
       console.log("Owner's Operators Retrieved");
+      console.log("access token: "+ access_token);
     }, err =>{
       console.log(err);
     })
@@ -495,6 +507,7 @@ getJobCards(access_token, jid, no_of_days){
     this.http.get(apiKey + 'getJobCards?access_token='+access_token+'&jid='+jid+'&no_of_days='+no_of_days).subscribe((res) => {
       resolve(res);
       console.log("Job reports retrieved");
+      console.log("jid: "+ jid);
     }, err => {
       console.log(err);
     })
@@ -519,6 +532,7 @@ public retrievePastJobsOps(access_token){
     this.http.get(apiKey+'OpsretrievePastJobs?access_token='+access_token).subscribe((res) => {
       resolve(res);
       console.log("History Jobs Retrieved");
+      console.log("access token: "+ access_token);
     }, err => {
       console.log(err);
     })

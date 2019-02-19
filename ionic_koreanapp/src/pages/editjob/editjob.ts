@@ -152,6 +152,7 @@ export class EditjobPage {
       console.log("Job details retrieved");
       this.Client_Name = data['Client_Name'];
       this.Earning = data['Earning'];
+      // console.log("Earning got: " + this.Earning);
       this.locatio = data['location'];
       this.date_from_ = data['date_from'];
       this.date_to_ = data['date_to'];
@@ -216,7 +217,7 @@ export class EditjobPage {
     this.appprov.getemail().then((res) => {
       this.UsrEmail = res;
       this.getOperators(res.toString());
-      
+      console.log("Email is: " + this.UsrEmail);
     }, err =>{
       console.log(err);
     });

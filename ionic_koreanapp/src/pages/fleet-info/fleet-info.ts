@@ -39,8 +39,8 @@ export class FleetInfoPage {
   public total_no_job: string;
   public assigned: string;
 
-  @ViewChild('doughnutCanvas') doughnutCanvas;
-  doughnutChart: any;
+  @ViewChild('barVehCanvas') barVehCanvas;
+  barVehChart: any;
   @ViewChild('doughnutCanvas2') doughnutCanvas2;
   doughnutChart2: any;
 
@@ -290,23 +290,71 @@ export class FleetInfoPage {
   }
 
   getJobStats(vehicle_month, month_total){
-    if (month_total == '0'){
-      month_total = '1';
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var today = new Date();
+    var month = today.getUTCMonth();
+    var labels_month = [];
+    var month_range = 4;
+    var dataPack1 = ['7','14','14','4','22','20','15'];
+    for(let i=0; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 - i)%12]);
     }
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
+    labels_month.reverse();
+    for(let i=1; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 + i)%12]);
+    }
+    this.barVehChart = new Chart(this.barVehCanvas.nativeElement, {
+      type: 'bar',
       data:{
-        labels: [this.assigned, this.total_job_count],
+        labels: labels_month,
         datasets: [{
-          label: "Vehicle Utilization",
-          //data: [this.vehicle_month, month_total - this.vehicle_month],
-          data: [vehicle_month, month_total-vehicle_month],
-          backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-          borderColor: "rbga(0, 110, 255, 1)",
+          label: 'Statistics',
+          data: dataPack1,
+          backgroundColor: "rgba(0, 110,255, 0.2)",
           borderWidth:1
         }]
+      },
+      options:{
+        scales: {
+          xAxes: [{
+            gridLines: {display:false},          
+          }],
+          yAxes: [{
+            ticks:{
+            min: 0,
+            max: 30,
+            gridLines: {display:false}, 
+            callback: function(value){return value}
+          },
+        scaleLabel:{
+          display:true,
+          labelString: "Days"
+        }
+          }],
+        },
+        legend: {display:false}
       }
-    });
+    })
+    //old codes
+    // if (month_total == '0'){
+    //   month_total = '1';
+    // }
+    // this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+    //   type: 'doughnut',
+    //   data:{
+    //     labels: [this.assigned, this.total_job_count],
+    //     datasets: [{
+    //       label: "Vehicle Utilization",
+    //       //data: [this.vehicle_month, month_total - this.vehicle_month],
+    //       data: [vehicle_month, month_total-vehicle_month],
+    //       backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+    //       borderColor: "rbga(0, 110, 255, 1)",
+    //       borderWidth:1
+    //     }]
+    //   }
+    // });
   }
   //comment this block sn 27
   //YEAR chart

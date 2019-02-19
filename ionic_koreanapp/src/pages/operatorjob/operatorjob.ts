@@ -43,7 +43,8 @@ export class OperatorjobPage {
     date_to:string,
     description: string, 
     location: string,
-    payout:string}>;
+    payout:string
+     }>;
 
   pastJid: string[];
   pastTitle: string[];
@@ -61,7 +62,8 @@ export class OperatorjobPage {
     date_to:string,
     description: string, 
     location: string,
-    payout:string}>;
+    payout:string
+    }>;
 
   ongoingJid: string[];
   ongoingTitle: string[];
@@ -79,7 +81,8 @@ export class OperatorjobPage {
     date_to:string,
     description: string, 
     location: string,
-    payout:string}>;
+    payout:string
+  }>;
     
   upcomingJid: string[];
   upcomingTitle: string[];
@@ -146,6 +149,8 @@ export class OperatorjobPage {
   }
 
   retrievePastJobs(){
+    var totalPayout= 0;
+
     this.appprov.retrievePastJobsOps(this.access_token).then((res) => {
       this.past = res;
       this.pastJid = this.past.jid;
@@ -156,6 +161,11 @@ export class OperatorjobPage {
       this.past_location = this.past.location;  
       this.past_payout = this.past.payout;
       this.pastJobs = [];
+
+      for(let i = 0; i < this.pastTitle.length; i++) {
+        totalPayout += parseInt(this.past.payout[i],10);
+      }
+      
       try{
         for(let i = 0; i < this.pastTitle.length; i++) {
           this.pastJobs.push({
@@ -165,13 +175,19 @@ export class OperatorjobPage {
             date_from: this.past_date_from[i].substring(0,10),
             date_to: this.past_date_to[i].substring(0,10),
             location: this.past_location[i],
-            payout: this.past_payout[i]
+            payout: this.past_payout[i]  
+
           });
         }
+        
       }
       catch{
         console.log("Past job cannot retrieve length");
       }
+      console.log("pastTitle: "+ this.pastTitle);
+      console.log("pastPayout: "+ this.past_payout);
+      console.log("1st Payout: "+ this.past_payout[0]+" 2ndPayout: "+ this.past_payout[1]);
+      console.log("Get the total pastPayout: "+ totalPayout);
       console.log("History job pushed");
       
     }, err=>{

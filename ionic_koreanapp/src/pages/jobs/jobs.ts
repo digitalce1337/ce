@@ -171,6 +171,8 @@ export class JobsPage {
   }
 
   retrieveOngoingJobs(){
+    var totalPayout= 0;
+
     this.appprov.retrieveOngoingJobs(this.access_token).then((res) => {
       this.ongoing = res;
       this.ongoingJid = this.ongoing.jid;
@@ -181,6 +183,11 @@ export class JobsPage {
       this.ongoing_location = this.ongoing.location;
       this.ongoing_payout = this.ongoing.payout;
       this.ongoingJobs = [];
+
+      for(let i = 0; i < this.ongoingTitle.length; i++) {
+        totalPayout += parseInt(this.ongoing.payout[i],10);
+      }
+
       try{
         for(let i = 0; i < this.ongoingTitle.length; i++) {
           this.ongoingJobs.push({
@@ -198,13 +205,15 @@ export class JobsPage {
         console.log("Ongoing job cannot retrieve length");
       }
       console.log("Ongoing jobs pushed");
-      
+      console.log("Total Ongoing Payout: "+ totalPayout);
     }, err=>{
       console.log(err);
     });
   }
 
   retrieveUpcomingJobs(){
+    var totalPayout= 0;
+
     this.appprov.retrieveUpcomingJobs(this.access_token).then((res) => {
       this.upcoming = res;
       this.upcomingJid = this.upcoming.jid;
@@ -215,6 +224,11 @@ export class JobsPage {
       this.upcoming_location = this.upcoming.location;
       this.upcoming_payout = this.upcoming.payout;
       this.upcomingJobs = [];
+
+      for(let i = 0; i < this.upcomingTitle.length; i++) {
+        totalPayout += parseInt(this.upcoming.payout[i],10);
+      }
+
       try{
         for(let i = 0; i < this.upcomingTitle.length; i++) {
           this.upcomingJobs.push({
@@ -232,6 +246,7 @@ export class JobsPage {
         console.log("Upcoming Job cannot retrieve length");
       }
       console.log("Upcoming job pushed");
+      console.log("Total Upcoming Payout: "+ totalPayout);
     }, err=>{
       console.log(err);
     });
