@@ -24,17 +24,20 @@ SECRET_KEY = '6mrmb&%ww6smn)@(6sly+5cv9-nkg7p!yn6$l+@v(^(1bniuw!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# IN deployment make DEBUG = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['192.168.8.100','192.168.8.104']
 
+#Original for AWS,'PASSWORD': 'P@ssw0rd',
 DATABASES = {
     'default':{
         'ENGINE' : 'django.db.backends.mysql',
         'NAME': 'volvoce',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'root',        
+		'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
