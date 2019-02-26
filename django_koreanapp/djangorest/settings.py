@@ -34,7 +34,7 @@ DATABASES = {
         'ENGINE' : 'django.db.backends.mysql',
         'NAME': 'volvoce',
         'USER': 'root',
-        'PASSWORD': 'P@ssw0rd',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

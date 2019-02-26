@@ -49,10 +49,10 @@ export class UpdatecapopPage {
       }
       else{
         //the url to display the image icon of the vehicles is the public DNS of AWS instance
-        var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                      'http://18.222.185.105/static/vehicles/Excavator.png',
-                      'http://18.222.185.105/static/vehicles/loader.png',
-                      'http://18.222.185.105/static/vehicles/truck.png'];
+        var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
+                      'http://192.168.8.100:8000/static/vehicles/Excavator.png',
+                      'http://192.168.8.100:8000/static/vehicles/loader.png',
+                      'http://192.168.8.100:8000/static/vehicles/truck.png'];
         var vehtype = ['Compactor','Excavator','Loader','Truck'];
         console.log("Got access token");
         this.access_token = val.toString();
