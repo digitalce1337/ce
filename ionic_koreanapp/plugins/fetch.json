@@ -140,5 +140,13 @@
     "variables": {
       "KAKAO_APP_KEY": "50b41b005e41e57d2fb3423bb8a9019d"
     }
+  },
+  "cordova-plugin-facebook4": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-facebook4@^4.2.1"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
