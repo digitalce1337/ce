@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 910:
+/***/ 913:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OperatorjobPageModule", function() { return OperatorjobPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OtpOperatorPageModule", function() { return OtpOperatorPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operatorjob__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__otp_operator__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var OperatorjobPageModule = /** @class */ (function () {
-    function OperatorjobPageModule() {
+var OtpOperatorPageModule = /** @class */ (function () {
+    function OtpOperatorPageModule() {
     }
-    OperatorjobPageModule = __decorate([
+    OtpOperatorPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__operatorjob__["a" /* OperatorjobPage */],
+                __WEBPACK_IMPORTED_MODULE_2__otp_operator__["a" /* OtpOperatorPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__operatorjob__["a" /* OperatorjobPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__otp_operator__["a" /* OtpOperatorPage */]),
             ],
         })
-    ], OperatorjobPageModule);
-    return OperatorjobPageModule;
+    ], OtpOperatorPageModule);
+    return OtpOperatorPageModule;
 }());
 
-//# sourceMappingURL=operatorjob.module.js.map
+//# sourceMappingURL=otp-operator.module.js.map
 
 /***/ })
 

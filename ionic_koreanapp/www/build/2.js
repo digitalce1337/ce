@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 905:
+/***/ 908:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddMaintenancePageModule", function() { return AddMaintenancePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_maintenance__ = __webpack_require__(918);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_maintenance__ = __webpack_require__(923);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,17 +38,17 @@ var AddMaintenancePageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 918:
+/***/ 923:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddMaintenancePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -135,7 +135,7 @@ var AddMaintenancePage = /** @class */ (function () {
     };
     AddMaintenancePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-maintenance',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\add-maintenance\add-maintenance.html"*/'<!--\n\n  Generated template for the AddMaintenancePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar> \n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n    <ion-item>\n\n        <ion-label color="primary" stacked>{{ start_date }}</ion-label>\n\n        <ion-datetime displayFormat="YYYY/MM/DD" max="2030" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n    <ion-item>\n\n        <ion-label color="primary" stacked>{{ end_date }}</ion-label>\n\n        <ion-datetime displayFormat="YYYY/MM/DD" max="2030" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n    <ion-col>\n\n    <ion-item>\n\n        <ion-label stacked>{{ location }}</ion-label>\n\n        <ion-input type="text" maxlength="200" [(ngModel)]="LocationField"></ion-input>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-item>\n\n          <ion-label stacked>{{ description }}</ion-label>\n\n          <ion-input type="text" maxlength="200" [(ngModel)]="DescriptionField"></ion-input>\n\n        </ion-item>\n\n      </ion-col>\n\n    </ion-row>\n\n    </ion-grid>\n\n\n\n</ion-content>\n\n \n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button color = "primary" (click) = "addMaintenance()" float-center >{{ add }}</button>\n\n    <button ion-button color = "primary" (click) = "close()" float-center >{{ cancel }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\add-maintenance\add-maintenance.html"*/,
+            selector: 'page-add-maintenance',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/add-maintenance/add-maintenance.html"*/'<!--\n\n  Generated template for the AddMaintenancePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar> \n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n    <ion-item>\n\n        <ion-label color="primary" stacked>{{ start_date }}</ion-label>\n\n        <ion-datetime displayFormat="YYYY/MM/DD" max="2030" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n    <ion-item>\n\n        <ion-label color="primary" stacked>{{ end_date }}</ion-label>\n\n        <ion-datetime displayFormat="YYYY/MM/DD" max="2030" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n    <ion-col>\n\n    <ion-item>\n\n        <ion-label stacked>{{ location }}</ion-label>\n\n        <ion-input type="text" maxlength="200" [(ngModel)]="LocationField"></ion-input>\n\n    </ion-item>\n\n    </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-item>\n\n          <ion-label stacked>{{ description }}</ion-label>\n\n          <ion-input type="text" maxlength="200" [(ngModel)]="DescriptionField"></ion-input>\n\n        </ion-item>\n\n      </ion-col>\n\n    </ion-row>\n\n    </ion-grid>\n\n\n\n</ion-content>\n\n \n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button color = "primary" (click) = "addMaintenance()" float-center >{{ add }}</button>\n\n    <button ion-button color = "primary" (click) = "close()" float-center >{{ cancel }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/add-maintenance/add-maintenance.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Modal, ModalOptions,LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Modal, ModalOptions, LoadingController } from 'ionic-angular';
 
 import { Http } from '@angular/http';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -9,6 +9,7 @@ import { ViewoperatorPage } from '../../pages/viewoperator/viewoperator';
 import { LoginPage } from '../../pages/login/login';
 import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
+import { Facebook } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-operators',
@@ -27,11 +28,11 @@ export class OperatorsPage {
 
   private access_token: string;
   public UsrEmail: any;
-  loading:any;
+  loading: any;
 
   operators: Array<{
-    operatorlist:string,
-    operatordetails_profileurl:string,
+    operatorlist: string,
+    operatordetails_profileurl: string,
     operatordetails_name: string,
     operatordetails_role: string,
     operatordetails_status: string,
@@ -48,71 +49,72 @@ export class OperatorsPage {
   public operatordetails_busydate: string[];
 
   constructor(public navCtrl: NavController,
-              public http: Http, 
-              public authService:AuthProvider,
-              public navParams:NavParams,
-              public appprov:AppProvider,
-              private modal: ModalController,
-              private storage: Storage,
-              public _kakaoCordovaSDK: KakaoCordovaSDK,
-              public loadingCtrl: LoadingController,
-              public _translate: TranslateService) {
-                storage.ready().then(() => {
-                });
-                storage.get('access_token').then((val) => {
-                  if (val == null){
-                    console.log("No acccess token");
-                    this.navCtrl.push(LoginPage);
-                  }
-                  else{
-                    console.log("Got access token");
-                    this.access_token = val.toString();
-                    this.getOperatorList(this.access_token);
-                    this._initializeTranslation();
-                  }
-                });
+    public http: Http,
+    public authService: AuthProvider,
+    public navParams: NavParams,
+    public appprov: AppProvider,
+    private modal: ModalController,
+    private storage: Storage,
+    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    public facebookNative: Facebook,
+    public loadingCtrl: LoadingController,
+    public _translate: TranslateService) {
+    storage.ready().then(() => {
+    });
+    storage.get('access_token').then((val) => {
+      if (val == null) {
+        console.log("No acccess token");
+        this.navCtrl.push(LoginPage);
+      }
+      else {
+        console.log("Got access token");
+        this.access_token = val.toString();
+        this.getOperatorList(this.access_token);
+        this._initializeTranslation();
+      }
+    });
 
   }
 
   ionViewDidEnter() {
-    this._initializeTranslation();     
+    this._initializeTranslation();
   }
-    public changeLanguage(): void{
-      this._translateLanguage();
-    }
-     
-    private _translateLanguage() : void{
-      this._translate.use(this.language);
-      this._initializeTranslation();
-    }
-      
-    private _initializeTranslation(): void{
-        this.title =  this._translate.instant("operators.title");
-        this.available =  this._translate.instant("operators.available");
-        this.busy =  this._translate.instant("operators.busy");
-        this.add_operator =  this._translate.instant("operators.add_operator");
-        this.downloadappmsgtitle =  this._translate.instant("operators.downloadappmsgtitle");
-        this.downloadappmsg1 =  this._translate.instant("operators.downloadappmsg1");
-        this.downloadappmsg2 =  this._translate.instant("operators.downloadappmsg2");
-    }
-  
+  public changeLanguage(): void {
+    this._translateLanguage();
+  }
 
-  getEmail(access_token){
+  private _translateLanguage(): void {
+    this._translate.use(this.language);
+    this._initializeTranslation();
+  }
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("operators.title");
+    this.available = this._translate.instant("operators.available");
+    this.busy = this._translate.instant("operators.busy");
+    this.add_operator = this._translate.instant("operators.add_operator");
+    this.downloadappmsgtitle = this._translate.instant("operators.downloadappmsgtitle");
+    this.downloadappmsg1 = this._translate.instant("operators.downloadappmsg1");
+    this.downloadappmsg2 = this._translate.instant("operators.downloadappmsg2");
+  }
+
+
+  getEmail(access_token) {
     this.appprov.getEmail(access_token).then((res) => {
       this.UsrEmail = res;
-//      this.getOperatorList(this.UsrEmail);
-    }, err =>{
+      //      this.getOperatorList(this.UsrEmail);
+    }, err => {
       console.log(err);
     });
   }
 
-  getOperatorList(email){
+  getOperatorList(email) {
     email = JSON.stringify(email);
     email = JSON.parse(email).email;
-    this.appprov.getOperatorList(this.access_token, email).then((res) =>{
+    this.appprov.getOperatorList(this.access_token, email).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
-      let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       this.operatorlist = data['operatorlist'];
       console.log(this.operatorlist);
       this.operatordetails_profileurl = data['operatordetails_profileurl'];
@@ -123,20 +125,20 @@ export class OperatorsPage {
       this.operatordetails_busydate = data['operatordetails_role'];
       this.operators = [];
       console.log("fist checkpoint");
-      for (let i =0; i<this.operatordetails_profileurl.length;i++){
-        if (this.operatordetails_status[i] == "1"){
+      for (let i = 0; i < this.operatordetails_profileurl.length; i++) {
+        if (this.operatordetails_status[i] == "1") {
           this.operatordetails_status[i] = "assets/imgs/greencircle.jpg";
           this.operatordetails_busydate[i] = this.available;
         }
-        else{
-          let year = this.operatordetails_status[i].substring(0,4);
-          let month2 = month[parseInt(this.operatordetails_status[i].substring(5,7))-1];
-          let day = this.operatordetails_status[i].substring(8,10);
+        else {
+          let year = this.operatordetails_status[i].substring(0, 4);
+          let month2 = month[parseInt(this.operatordetails_status[i].substring(5, 7)) - 1];
+          let day = this.operatordetails_status[i].substring(8, 10);
           let date = day + " " + month2 + " " + year;
           this.operatordetails_busydate[i] = this.busy + date.toString();
           this.operatordetails_status[i] = "assets/imgs/redcircle.png";
         }
-        if (this.operatordetails_vehicles[i] == ""){
+        if (this.operatordetails_vehicles[i] == "") {
           this.operators.push({
             operatorlist: this.operatorlist[i],
             operatordetails_profileurl: this.operatordetails_profileurl[i],
@@ -147,33 +149,33 @@ export class OperatorsPage {
             operatordetails_busydate: this.operatordetails_busydate[i],
           })
         }
-        else{
+        else {
           console.log("pushing");
           console.log(this.operatorlist);
           this.operators.push({
-          operatorlist: this.operatorlist[i],
-          operatordetails_profileurl: this.operatordetails_profileurl[i],
-          operatordetails_name: this.operatordetails_name[i],
-          operatordetails_role: this.operatordetails_role[i],
-          operatordetails_status: this.operatordetails_status[i],
-          operatordetails_vehicles: this.operatordetails_vehicles[i],
-          operatordetails_busydate: this.operatordetails_busydate[i],
-        })
+            operatorlist: this.operatorlist[i],
+            operatordetails_profileurl: this.operatordetails_profileurl[i],
+            operatordetails_name: this.operatordetails_name[i],
+            operatordetails_role: this.operatordetails_role[i],
+            operatordetails_status: this.operatordetails_status[i],
+            operatordetails_vehicles: this.operatordetails_vehicles[i],
+            operatordetails_busydate: this.operatordetails_busydate[i],
+          })
+        }
       }
-      }
-    }, err =>{
+    }, err => {
       console.log(err);
     });
   }
 
-  addOperator(){
+  addOperator() {
     console.log('clicked');
 
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: false
     };
 
-    const myModal: Modal = this.modal.create("AddoperatorPage", {access_token:this.access_token}, myModalOptions);
+    const myModal: Modal = this.modal.create("AddoperatorPage", { access_token: this.access_token }, myModalOptions);
     myModal.present();
 
     myModal.onDidDismiss((data) => {
@@ -183,14 +185,14 @@ export class OperatorsPage {
     });
   }
 
-  viewOperator(event, email){
+  viewOperator(event, email) {
     console.log("Viewing operator")
     //this.navCtrl.push(ViewoperatorPage, {'email':email});
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: false
     };
 
-    const myModal: Modal = this.modal.create(ViewoperatorPage, {email:email}, myModalOptions);
+    const myModal: Modal = this.modal.create(ViewoperatorPage, { email: email }, myModalOptions);
     myModal.present();
 
     myModal.onDidDismiss((data) => {
@@ -200,35 +202,51 @@ export class OperatorsPage {
     });
   }
 
-  kkShare(){
+  kkShare() {
     this.showLoader();
     var OTP: any;
-    this.appprov.MakeOTP(this.access_token).then((res:any) => {
+    this.appprov.MakeOTP(this.access_token).then((res: any) => {
       console.log(res);
       OTP = res.otp;
       console.log('i am using this' + OTP);
 
       console.log("Going to kakao invite api");
- 
+
       let InviteTemplate: KLCustomTemplate = {
-        templateId:'13618',
+        templateId: '13618',
         title: this.downloadappmsgtitle,
         description: this.downloadappmsg1 + ': ' + OTP + this.downloadappmsg2
       };
       this._kakaoCordovaSDK.sendLinkCustom(InviteTemplate).then(
-       res=>{
-         console.log(res);
-       },err => {
-         console.log(err);
-       }
-    )
+        res => {
+          console.log(res);
+        }, err => {
+          console.log(err);
+        }
+      )
 
-    this.loading.dismiss();
+      this.loading.dismiss();
 
     })
-  }  
+  }
 
-  showLoader(){
+  fbShare() {
+    this.showLoader();
+    var OTP: any;
+    this.appprov.MakeOTP(this.access_token).then((res: any) => {
+      console.log(res);
+      OTP = res.otp;
+      console.log('i am using this' + OTP);
+
+      console.log("Going to Facebook invite api");
+
+      this.loading.dismiss();
+
+    })
+  }
+
+
+  showLoader() {
     this.loading = this.loadingCtrl.create({
       content: 'Loading...'
     });

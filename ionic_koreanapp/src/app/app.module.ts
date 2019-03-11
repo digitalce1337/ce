@@ -25,6 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 
 import { LoginPage } from '../pages/login/login';
+import { LoginKkPage } from '../pages/login-kk/login-kk';
+import { RegisterPage } from '../pages/register/register';
 import { JobsPage } from '../pages/jobs/jobs';
 import { JoblistsPage } from '../pages/joblists/joblists'
 import { FleetInfoPage } from '../pages/fleet-info/fleet-info';
@@ -47,6 +49,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { KakaoCordovaSDK } from 'kakao-sdk';
 
+import { Facebook } from '@ionic-native/facebook';
+
 export function HttpLoaderFactory(http: HttpClient) { 
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -60,6 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsPage,
     OperatorstabsPage,
     LoginPage,
+    LoginKkPage,
+    RegisterPage,
     JobsPage,
     FleetInfoPage,
     AddvehiclePage,
@@ -105,6 +111,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsPage,
     OperatorstabsPage,
     LoginPage,
+    LoginKkPage,
+    RegisterPage,
     JobsPage,
     FleetInfoPage,
     AddvehiclePage,
@@ -134,7 +142,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     KakaoCordovaSDK,
     File,
     FileTransfer,
-    FilePath
+    FilePath,
+    Facebook
   ]
 })
 export class AppModule {}

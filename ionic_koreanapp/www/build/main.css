@@ -25947,6 +25947,10 @@ page-jobs .block .deleteIcon:before {
   font-size: 30px !important;
 }
 
+page-login ion-icon::before {
+  margin-right: 10px;
+}
+
 page-operatorjob .md page-jobs ion-header,
 page-operatorjob .ios page-jobs ion-header,
 page-operatorjob .wp page-jobs ion-header {

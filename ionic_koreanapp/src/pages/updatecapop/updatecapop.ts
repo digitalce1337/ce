@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { AppProvider } from '../../providers/app/app';
 import { TranslateService } from '@ngx-translate/core';
+import { apiKey } from '../../app/apiurls/serverurls.js';
 
 /**
  * Generated class for the UpdatecapopPage page.
@@ -27,41 +28,41 @@ export class UpdatecapopPage {
     vehicle_url: string,
     vehicle_type: string
   }>;
-  access_token:string;
+  access_token: string;
 
   capabilities: any[];
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
     public appprov: AppProvider,
-    public viewCtrl:ViewController,
+    public viewCtrl: ViewController,
     public _translate: TranslateService) {
 
     storage.ready().then(() => {
     });
 
     storage.get('access_token').then((val) => {
-      if (val == null){
+      if (val == null) {
         console.log(this.access_token);
         console.log("No acccess token");
         this.navCtrl.setRoot(LoginPage);
       }
-      else{
+      else {
         //the url to display the image icon of the vehicles is the public DNS of AWS instance
-        var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
-                      'http://192.168.8.100:8000/static/vehicles/Excavator.png',
-                      'http://192.168.8.100:8000/static/vehicles/loader.png',
-                      'http://192.168.8.100:8000/static/vehicles/truck.png'];
-        var vehtype = ['Compactor','Excavator','Loader','Truck'];
+        var vehurl = [apiKey + 'static/vehicles/compactor.png',
+                      apiKey + 'static/vehicles/Excavator.png',
+                      apiKey + 'static/vehicles/loader.png',
+                      apiKey + 'static/vehicles/truck.png'];
+        var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
         console.log("Got access token");
         this.access_token = val.toString();
         this.vehicles = [];
         this.capabilities = [];
-        for(let i = 0; i<vehurl.length; i++){
+        for (let i = 0; i < vehurl.length; i++) {
           this.vehicles.push({
-            vehicle_url:vehurl[i],
-            vehicle_type:vehtype[i]
+            vehicle_url: vehurl[i],
+            vehicle_type: vehtype[i]
           })
         }
         this._initializeTranslation();
@@ -74,41 +75,41 @@ export class UpdatecapopPage {
     this._initializeTranslation();
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.skill_sets =  this._translate.instant("operatorhome.skill_sets");
-      this.submit =  this._translate.instant("opjobdetails.submit");
+
+  private _initializeTranslation(): void {
+    this.skill_sets = this._translate.instant("operatorhome.skill_sets");
+    this.submit = this._translate.instant("opjobdetails.submit");
   }
 
 
-  selectVehicle(data){
+  selectVehicle(data) {
     if (data.checked == true) {
-      if(!(this.capabilities.indexOf(data.vehicle_type) > -1)){
+      if (!(this.capabilities.indexOf(data.vehicle_type) > -1)) {
         this.capabilities.push(data.vehicle_type);
       }
-    }else{
-      if(this.capabilities.indexOf(data.vehicle_type) > -1){
-        var index = this.capabilities.indexOf(data.vehicle_type,0);
-        this.capabilities.splice(index,1);
+    } else {
+      if (this.capabilities.indexOf(data.vehicle_type) > -1) {
+        var index = this.capabilities.indexOf(data.vehicle_type, 0);
+        this.capabilities.splice(index, 1);
       }
     }
     console.log(this.capabilities.toString());
   }
 
-  UpdateCap(){
+  UpdateCap() {
     console.log(this.access_token);
     console.log(this.capabilities.toString());
 
-    this.appprov.UpdateCapabilities(this.access_token,this.capabilities.toString()).then((res) => {
-      this.appprov.presentAlert('Success!','Skillsets successfully updated!');
+    this.appprov.UpdateCapabilities(this.access_token, this.capabilities.toString()).then((res) => {
+      this.appprov.presentAlert('Success!', 'Skillsets successfully updated!');
       this.close();
     });
   }

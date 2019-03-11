@@ -1,31 +1,13 @@
-webpackJsonp([13],{
+webpackJsonp([15],{
 
-/***/ 139:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//export const apiKey = 'http://127.0.0.1:8000/';
-// export const apiKey = 'http://18.222.220.169/';
-//export const apiKey = 'http://10.0.2.2:8000/'
-//export const apiKey = 'http://18.221.233.168/';
-
-// export const apiKey = 'http://52.14.34.166/';
-//export const apiKey = 'http://18.220.42.164/'
-const apiKey = 'http://18.222.185.105/'
-/* harmony export (immutable) */ __webpack_exports__["a"] = apiKey;
-
-
-
-/***/ }),
-
-/***/ 153:
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatorstabsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operatorhome_operatorhome__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operatorjob_operatorjob__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operatorhome_operatorhome__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operatorjob_operatorjob__ = __webpack_require__(185);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44,7 +26,7 @@ var OperatorstabsPage = /** @class */ (function () {
         this.tab2Operator = __WEBPACK_IMPORTED_MODULE_2__operatorjob_operatorjob__["a" /* OperatorjobPage */];
     }
     OperatorstabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Operator" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Operator" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorstabs/operatorstabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Operator" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Operator" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorstabs/operatorstabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], OperatorstabsPage);
@@ -55,17 +37,634 @@ var OperatorstabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 176:
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreatecompanyPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_tabs_tabs__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the CreatecompanyPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CreatecompanyPage = /** @class */ (function () {
+    function CreatecompanyPage(navCtrl, navParams, appprov, alertCtrl, storage, _translate) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appprov = appprov;
+        this.alertCtrl = alertCtrl;
+        this.storage = storage;
+        this._translate = _translate;
+        this.companynameField = "";
+        this.companyaddField = "";
+        this.phonenoField = "";
+        this.workingdaysField = "";
+        storage.ready().then(function () {
+        });
+        // storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q').then(() =>{
+        //   console.log("access_token set");     
+        //   storage.get('access_token').then((val) => {
+        //     if (val == null){
+        //       console.log(this.access_token);
+        //       console.log("No acccess token");
+        //       //this.navCtrl.setRoot(LoginPage);
+        //     }
+        //     else{
+        //       console.log("Got access token");
+        //       this.access_token = val.toString(); 
+        //       console.log(this.access_token);
+        //       //this.navCtrl.setRoot(TabsPage);
+        //     }
+        //   });
+        // });
+        storage.get('access_token').then(function (val) {
+            if (val == null) {
+                console.log(_this.access_token);
+                console.log("No acccess token");
+                //this.navCtrl.setRoot(LoginPage);
+            }
+            else {
+                console.log("Got access token");
+                _this.access_token = val.toString();
+                _this._initializeTranslation();
+            }
+        });
+    }
+    CreatecompanyPage.prototype.ionViewDidEnter = function () {
+        console.log('ionViewDidLoad CreatecompanyPage');
+        this._initializeTranslation();
+    };
+    CreatecompanyPage.prototype.changeLanguage = function () {
+        this._translateLanguage();
+    };
+    CreatecompanyPage.prototype._translateLanguage = function () {
+        this._translate.use(this.language);
+        this._initializeTranslation();
+    };
+    CreatecompanyPage.prototype._initializeTranslation = function () {
+        this.title = this._translate.instant("createcompany.title");
+        this.company_name = this._translate.instant("createcompany.company_name");
+        this.company_address = this._translate.instant("createcompany.company_address");
+        this.phone_no = this._translate.instant("createcompany.phone_no");
+        this.working_days = this._translate.instant("createcompany.working_days");
+        this.continue = this._translate.instant("createcompany.continue");
+    };
+    CreatecompanyPage.prototype.itemTappedAdd = function () {
+        var _this = this;
+        // this.navCtrl.setRoot(TabsPage);
+        var company_name = this.companynameField;
+        var company_add = this.companyaddField;
+        var phone_no = this.phonenoField;
+        var working_days = this.workingdaysField;
+        if (company_name == "" || company_add == "" || phone_no == "" || working_days == "") {
+            var alert_1 = this.alertCtrl.create({
+                title: 'Empty Field(s)',
+                subTitle: 'Please fill up all details before proceeding',
+                buttons: ['OK']
+            });
+            alert_1.present();
+            return;
+        }
+        this.appprov.addCompany(this.access_token, company_name, company_add, phone_no, working_days).then(function (res) {
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            if (data['result'].toString() == 'true') {
+                console.log("Company and phone number added");
+            }
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_tabs_tabs__["a" /* TabsPage */]);
+        }, function (err) {
+            console.log(err);
+        });
+        //this.navCtrl.setRoot(TabsPage);
+    };
+    CreatecompanyPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-createcompany',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/createcompany/createcompany.html"*/'<!--\n\n  Generated template for the CreatecompanyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The page for owner to fill in the details of their company-->\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_name }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companynameField"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_address }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companyaddField"></ion-input>\n\n  </ion-item>\n\n<br>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }} </ion-label>\n\n  <ion-input type="text" [(ngModel)]="phonenoField"></ion-input>\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ working_days }}</ion-label>\n\n  <ion-input type="number" [(ngModel)]="workingdaysField"></ion-input>\n\n</ion-item>\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="itemTappedAdd($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/createcompany/createcompany.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_app_app__["a" /* AppProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
+    ], CreatecompanyPage);
+    return CreatecompanyPage;
+}());
+
+//# sourceMappingURL=createcompany.js.map
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OtpOperatorPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operatorstabs_operatorstabs__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_apiurls_serverurls_js__ = __webpack_require__(68);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the OtpOperatorPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var OtpOperatorPage = /** @class */ (function () {
+    function OtpOperatorPage(navCtrl, navParams, appprov, storage, _translate) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appprov = appprov;
+        this.storage = storage;
+        this._translate = _translate;
+        this.otp = ' ';
+        storage.ready().then(function () {
+        });
+        storage.get('access_token').then(function (val) {
+            if (val == null) {
+                console.log(_this.access_token);
+                console.log("No acccess token");
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */]);
+            }
+            else {
+                //the url to display the image icon of the vehicles is the public DNS of AWS instance
+                var vehurl = [__WEBPACK_IMPORTED_MODULE_7__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/compactor.png',
+                    __WEBPACK_IMPORTED_MODULE_7__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/Excavator.png',
+                    __WEBPACK_IMPORTED_MODULE_7__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/loader.png',
+                    __WEBPACK_IMPORTED_MODULE_7__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/truck.png'];
+                var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
+                console.log("Got access token");
+                _this.access_token = val.toString();
+                _this._initializeTranslation();
+                _this.vehicles = [];
+                _this.capabilities = [];
+                for (var i = 0; i < vehurl.length; i++) {
+                    _this.vehicles.push({
+                        vehicle_url: vehurl[i],
+                        vehicle_type: vehtype[i]
+                    });
+                }
+            }
+        });
+    }
+    OtpOperatorPage.prototype.ionViewDidEnter = function () {
+        console.log('ionViewDidLoad OtpOperatorPage');
+        this._initializeTranslation();
+    };
+    OtpOperatorPage.prototype.changeLanguage = function () {
+        this._translateLanguage();
+    };
+    OtpOperatorPage.prototype._translateLanguage = function () {
+        this._translate.use(this.language);
+        this._initializeTranslation();
+    };
+    OtpOperatorPage.prototype._initializeTranslation = function () {
+        this.title = this._translate.instant("otp-operator.title");
+        this.invitation_code = this._translate.instant("otp-operator.invitation_code");
+        this.invited_by = this._translate.instant("otp-operator.invited_by");
+        this.phone_no = this._translate.instant("otp-operator.phone_no");
+        this.continue = this._translate.instant("otp-operator.continue");
+        this.skill_sets = this._translate.instant("otp-operator.skill_sets");
+        this.errormsgtitle = this._translate.instant("otp-operator.errormsgtitle");
+        this.errormsg = this._translate.instant("otp-operator.errormsg");
+        this.invite_error = this._translate.instant("otp-operator.invite_error");
+    };
+    OtpOperatorPage.prototype.Submit = function () {
+        var _this = this;
+        console.log('----HERE-----');
+        console.log(this.access_token);
+        console.log(this.capabilities);
+        if (this.PhoneNo != null) {
+            this.appprov.OperatorLogin(this.access_token, this.otp, this.PhoneNo).then(function (res) {
+                _this.appprov.UpdateCapabilities(_this.access_token, _this.capabilities.toString()).then(function (res) {
+                    console.log('Capabilities Updated');
+                });
+                if (res.result == 'true') {
+                    console.log('Operator Logged in');
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */]);
+                }
+            });
+        }
+        else {
+            this.appprov.presentAlert(this.errormsgtitle, this.errormsg);
+        }
+    };
+    OtpOperatorPage.prototype.selectVehicle = function (data) {
+        if (data.checked == true) {
+            if (!(this.capabilities.indexOf(data.vehicle_type) > -1)) {
+                this.capabilities.push(data.vehicle_type);
+            }
+        }
+        else {
+            if (this.capabilities.indexOf(data.vehicle_type) > -1) {
+                var index = this.capabilities.indexOf(data.vehicle_type, 0);
+                this.capabilities.splice(index, 1);
+            }
+        }
+        console.log(this.capabilities.toString());
+    };
+    OtpOperatorPage.prototype.CheckOTP = function () {
+        var _this = this;
+        if (this.otp.length == 6) {
+            this.appprov.CheckOTP(this.otp.toLowerCase()).then(function (res) {
+                if (res.result == '0') {
+                    _this.Owner = _this.invite_error;
+                }
+                else if (res.result == '1') {
+                    _this.Owner = res.Nick;
+                }
+            });
+        }
+    };
+    OtpOperatorPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-otp-operator',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/otp-operator/otp-operator.html"*/'<!--\n\n  Generated template for the OtpOperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ invitation_code }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="otp" (ionChange)="CheckOTP()"></ion-input>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ invited_by }}: <b>{{Owner}}</b></ion-label>\n\n  </ion-item>\n\n<br/>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }}</ion-label>\n\n  <ion-input type="text" [(ngModel)]="PhoneNo"></ion-input>\n\n</ion-item>\n\n\n\n\n\n<ion-list no-lines>\n\n  <ion-list-header>\n\n    {{ skill_sets }}\n\n  </ion-list-header>\n\n  <ion-item *ngFor="let veh of vehicles">\n\n    <ion-avatar item-left>\n\n        <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n    </ion-avatar>\n\n    <ion-label></ion-label>\n\n    <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="Submit($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/otp-operator/otp-operator.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_app_app__["a" /* AppProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
+    ], OtpOperatorPage);
+    return OtpOperatorPage;
+}());
+
+//# sourceMappingURL=otp-operator.js.map
+
+/***/ }),
+
+/***/ 179:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginKkPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__createcompany_createcompany__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__otp_operator_otp_operator__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(16);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the LoginKkPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginKkPage = /** @class */ (function () {
+    /*note: console command is to see using java console when using web to test*/
+    function LoginKkPage(navCtrl, loadingCtrl, navParams, authService, alertCtrl, iab, _kakaoCordovaSDK, appprov, storage, _translate) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.navParams = navParams;
+        this.authService = authService;
+        this.alertCtrl = alertCtrl;
+        this.iab = iab;
+        this._kakaoCordovaSDK = _kakaoCordovaSDK;
+        this.appprov = appprov;
+        this.storage = storage;
+        this._translate = _translate;
+        this.username = '';
+        this.password = '';
+        var elements = document.querySelectorAll(".tabbar");
+        if (elements != null) {
+            Object.keys(elements).map(function (key) {
+                elements[key].style.display = 'none';
+            });
+        }
+        this._initializeTranslation();
+        storage.ready().then(function () {
+            storage.get('access_token').then(function (val) {
+                _this.showLoader();
+                if (val == null) {
+                    console.log("No acccess token");
+                    //this.navCtrl.push(CreatecompanyPage);
+                }
+                else {
+                    console.log("Got access token");
+                    _this.access_token = val.toString();
+                    _this.appprov.checkRole(_this.access_token).then(function (res) {
+                        var data = JSON.stringify(res);
+                        data = JSON.parse(data);
+                        _this.loading.dismiss();
+                        if (data['result'] == "1") {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */], storage);
+                        }
+                        else if (data['result'] == "0") {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */], storage);
+                        }
+                        else {
+                            console.log("Not in database");
+                        }
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }
+                _this.loading.dismiss();
+            }); //storage.get('access_token').then((val)
+        }); //storage.ready().then(()
+    } //constructor
+    //app starts from here.
+    LoginKkPage.prototype.ionViewDidEnter = function () {
+        console.log('ionViewDidLoad LoginKkPage');
+        this._initializeTranslation();
+    };
+    LoginKkPage.prototype.changeLanguage = function () {
+        this._translateLanguage();
+    };
+    LoginKkPage.prototype._translateLanguage = function () {
+        this._translate.use(this.language);
+        this._initializeTranslation();
+    };
+    LoginKkPage.prototype._initializeTranslation = function () {
+        this.title = this._translate.instant("login.title");
+        this.owner = this._translate.instant("login.owner");
+        this.operator = this._translate.instant("login.operator");
+        this.rolemsgtitle = this._translate.instant("login.rolemsgtitle");
+        this.rolemsg = this._translate.instant("login.rolemsg");
+        this.kakaomsgtitle = this._translate.instant("login.kakaomsgtitle");
+        this.kakaomsg = this._translate.instant("login.kakaomsg");
+    };
+    LoginKkPage.prototype.showLoader = function () {
+        this.loading = this.loadingCtrl.create({
+            content: 'Loading...'
+        });
+        this.loading.present();
+    }; //showLoader()
+    LoginKkPage.prototype.errorFunc = function (message) {
+        var alert = this.alertCtrl.create({
+            title: 'Warning!',
+            subTitle: message,
+            buttons: ['OK'],
+        });
+        alert.present();
+    }; //errorFunc(message)
+    LoginKkPage.prototype.myLogIn = function () {
+        var _this = this;
+        if (this.username.trim() !== '') {
+            if (this.password.trim() === '') {
+                this.errorFunc('Please Enter your Password!');
+            }
+            else {
+                var credentials = {
+                    username: this.username,
+                    password: this.password
+                };
+                this.showLoader();
+                this.authService.login(credentials).then(function (result) {
+                    console.log(result);
+                    _this.loading.dismiss();
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
+                }, function (err) {
+                    console.log(err);
+                    _this.errorFunc('Wrong Credentials, Please try Again');
+                    _this.loading.dismiss();
+                } //(err)
+                ); //this.authService.login(credentials).then((result)
+            } //else
+        } //if(this.username.trim() !== '')
+        else {
+            this.errorFunc('Please input a valid password');
+        }
+    }; //myLogIn()
+    // myLogout(){
+    //   this.authService.logout();
+    // }
+    LoginKkPage.prototype.role = function (value) {
+        this.Role = value;
+    };
+    LoginKkPage.prototype.login = function () {
+        var _this = this;
+        if (this.Role == null || this.Role == undefined) {
+            var alert_1 = this.alertCtrl.create({
+                title: this.rolemsgtitle,
+                subTitle: this.rolemsg,
+                buttons: ['OK']
+            });
+            alert_1.present();
+            return;
+        } //if role
+        // if (this.Role=='Owner'){
+        //   this.storage.clear();
+        //   this.storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q');
+        //   this.navCtrl.push(CreatecompanyPage);
+        //   return;
+        // }
+        // else{
+        //   this.storage.clear();
+        //   this.storage.set('access_token', 'accessop');
+        //   this.navCtrl.setRoot(OperatorstabsPage);
+        //   return;
+        // }
+        //the page where user key in user's kakao credentials info
+        console.log("Logging into kakao");
+        this.showLoader();
+        var loginOptions = {};
+        loginOptions['authTypes'] = [
+            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeTalk,
+            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeStory,
+            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeAccount
+        ];
+        /*this connects kakaoTalk SDK manager account to user's KakaoTalk account*/
+        this._kakaoCordovaSDK.login(loginOptions).then(function (res) {
+            console.log(JSON.stringify(res));
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            _this.access_token = data['accessToken'];
+            var name = data['properties']['nickname'];
+            var profile_url = data['properties']['thumbnail_image'];
+            if (profile_url == null || profile_url == undefined) {
+                profile_url = 'assets/imgs/blank_profile.png';
+            }
+            var has_email = data['kakao_account']['has_email'].toString();
+            var email = data['kakao_account']['email'];
+            /*has email but does not allow link to account*/
+            if (has_email == 'true' && (email == null)) {
+                _this.loading.dismiss();
+                console.log("please allow email");
+                _this._kakaoCordovaSDK.unlinkApp().then(function () {
+                    console.log("Unlinked");
+                }, function (err) { console.log("cannot unlinked"); });
+                var alert_2 = _this.alertCtrl.create({
+                    title: _this.kakaomsgtitle,
+                    subTitle: _this.kakaomsg,
+                    buttons: ['OK']
+                });
+                alert_2.present();
+                console.log("User did not check email in permission");
+                return;
+            }
+            else if (has_email == 'true' && (email != null)) {
+                _this.loading.dismiss();
+                console.log("User is logged in either by new access_token or revisit user");
+                _this.appprov.checkExistingUser(email).then(function (res) {
+                    var checkUser = JSON.stringify(res);
+                    checkUser = JSON.parse(checkUser);
+                    checkUser = checkUser['result'].toString();
+                    console.log(checkUser);
+                    if (checkUser == 'false') {
+                        _this.appprov.updateAccessToken(email, _this.access_token, profile_url).then(function (res) {
+                            var update = JSON.stringify(res);
+                            update = JSON.parse(update);
+                            console.log(update);
+                            _this.storage.set('access_token', _this.access_token);
+                            if (_this.Role == 'Owner') {
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
+                                return;
+                            }
+                            else {
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */], _this.storage);
+                                return;
+                            }
+                            // this.storage.set('access_token', this.access_token);
+                            // if (this.Role == 'Owner'){
+                            //   this.navCtrl.push(CreatecompanyPage, this.storage);
+                            // }
+                            // else{
+                            //   this.navCtrl.push(OtpOperatorPage, this.storage);
+                            // }
+                        }, function (err) { console.log(err); });
+                    }
+                    else {
+                        _this.loading.dismiss();
+                        _this.appprov.addUser(email, _this.access_token, name, profile_url, _this.Role).then(function (res) {
+                            var adduser = JSON.stringify(res);
+                            adduser = JSON.parse(adduser);
+                            console.log(adduser['result']);
+                        }, function (err) { console.log(err); });
+                    } //else
+                }, function (err) {
+                    console.log(err);
+                }); //this.appprov.checkExistingUser(email).then((res)
+                _this.storage.set('access_token', _this.access_token);
+                if (_this.Role == 'Owner') {
+                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__createcompany_createcompany__["a" /* CreatecompanyPage */], _this.storage);
+                }
+                else {
+                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__otp_operator_otp_operator__["a" /* OtpOperatorPage */], _this.storage);
+                }
+                return;
+            }
+            else {
+                var alert_3 = _this.alertCtrl.create({
+                    title: _this.kakaomsgtitle2,
+                    subTitle: _this.kakaomsg2,
+                    buttons: ['OK']
+                });
+                alert_3.present();
+                console.log("User do not have email in kakao");
+                return;
+            }
+        }, function (err) {
+            console.log(JSON.stringify(err));
+            _this.appprov.presentAlert('error', JSON.stringify(err));
+        });
+        this.loading.dismiss();
+    }; //login()
+    LoginKkPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login-kk',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/login-kk/login-kk.html"*/'<!--\n  Generated template for the LoginKkPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<!--creating login field. padding provides padding into container -->\n<ion-content padding>\n  <img src="assets/imgs/LoginIcon.png">\n  <br />\n  <ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)">\n    <ion-item>\n      <ion-label>{{ owner }}</ion-label>\n      <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>{{ operator }}</ion-label>\n      <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio>\n    </ion-item>\n  </ion-list>\n\n  <img src="assets/imgs/kakaologin.jpg" style="width:100%; height:50px" (click)="login()">\n\n\n  <!-- <div padding>\n      <button ion-button color = "secondary" (click) = "myLogout()">Log Out</button>\n    </div> -->\n\n\n</ion-content>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/login-kk/login-kk.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["b" /* KakaoCordovaSDK */],
+            __WEBPACK_IMPORTED_MODULE_8__providers_app_app__["a" /* AppProvider */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["c" /* TranslateService */]])
+    ], LoginKkPage);
+    return LoginKkPage;
+}()); //class LoginKkPage
+
+//# sourceMappingURL=login-kk.js.map
+
+/***/ }),
+
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddjobPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -337,7 +936,7 @@ var AddjobPage = /** @class */ (function () {
     };
     AddjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addjob\addjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The add job page in owner job management tab-->\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateFrom\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateTo\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\'></ion-input>\n\n  </ion-item>\n\n\n\n\n\n  \n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (click)="ValidateDate($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">\n\n                {{op.name}} &nbsp; - &nbsp;{{op.availbility}}\n\n              </ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{vehicle}}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}} - {{veh.availability}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addjob\addjob.html"*/,
+            selector: 'page-addjob',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/addjob/addjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The add job page in owner job management tab-->\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateFrom\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateTo\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\'></ion-input>\n\n  </ion-item>\n\n\n\n\n\n  \n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (click)="ValidateDate($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">\n\n                {{op.name}} &nbsp; - &nbsp;{{op.availbility}}\n\n              </ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{vehicle}}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}} - {{veh.availability}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/addjob/addjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -354,22 +953,22 @@ var AddjobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 177:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobinfoPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_editjob_editjob__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_in_app_browser__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_editjob_editjob__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_in_app_browser__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -611,7 +1210,7 @@ var JobinfoPage = /** @class */ (function () {
     };
     JobinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobinfo',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/'<!--\n\n  Generated template for the JobinfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ txtitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <h2>{{title}}</h2>\n\n      </ion-col>\n\n      <ion-col>\n\n          <ion-icon name="create" (click)=editJob();></ion-icon>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-7>\n\n        {{date_from}} - {{date_to}}\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        $ &nbsp;{{payout}}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      {{location}}\n\n    </ion-row>\n\n    <ion-row>\n\n      {{description}}\n\n    </ion-row>\n\n  </ion-grid>\n\n<br>\n\n\n\n  <ion-list>\n\n      <ion-grid>\n\n          <ion-item *ngFor="let jobOperator of jobOperators">\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-3>\n\n                  <ion-avatar>\n\n                    <img [src] = jobOperator.profile_url >\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-7>\n\n                {{ jobOperator.name }} \n\n                </ion-col>\n\n                <ion-col col-2>\n\n                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> \n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n  </ion-list>\n\n\n\n  <br>\n\n  <h3>{{ reports }}</h3>\n\n  <ion-item>\n\n    <ion-label></ion-label>\n\n    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">\n\n      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>\n\n      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>\n\n      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>\n\n      <ion-option value="1">{{ all }}</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-card *ngFor="let report of ReportCards">\n\n    <ion-card-content>\n\n      {{report.report_operator_name}}<br>\n\n      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>\n\n      <img [src]=report.report_img><br> \n\n      {{report.report_desc}}<br>\n\n      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>\n\n      <font color="red">{{report.report_fault}}</font>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/,
+            selector: 'page-jobinfo',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/jobinfo/jobinfo.html"*/'<!--\n\n  Generated template for the JobinfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ txtitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <h2>{{title}}</h2>\n\n      </ion-col>\n\n      <ion-col>\n\n          <ion-icon name="create" (click)=editJob();></ion-icon>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-7>\n\n        {{date_from}} - {{date_to}}\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        $ &nbsp;{{payout}}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      {{location}}\n\n    </ion-row>\n\n    <ion-row>\n\n      {{description}}\n\n    </ion-row>\n\n  </ion-grid>\n\n<br>\n\n\n\n  <ion-list>\n\n      <ion-grid>\n\n          <ion-item *ngFor="let jobOperator of jobOperators">\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-3>\n\n                  <ion-avatar>\n\n                    <img [src] = jobOperator.profile_url >\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-7>\n\n                {{ jobOperator.name }} \n\n                </ion-col>\n\n                <ion-col col-2>\n\n                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> \n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n  </ion-list>\n\n\n\n  <br>\n\n  <h3>{{ reports }}</h3>\n\n  <ion-item>\n\n    <ion-label></ion-label>\n\n    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">\n\n      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>\n\n      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>\n\n      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>\n\n      <ion-option value="1">{{ all }}</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-card *ngFor="let report of ReportCards">\n\n    <ion-card-content>\n\n      {{report.report_operator_name}}<br>\n\n      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>\n\n      <img [src]=report.report_img><br> \n\n      {{report.report_desc}}<br>\n\n      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>\n\n      <font color="red">{{report.report_fault}}</font>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/jobinfo/jobinfo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_app_app__["a" /* AppProvider */],
@@ -631,17 +1230,17 @@ var JobinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 178:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditjobPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -742,6 +1341,7 @@ var EditjobPage = /** @class */ (function () {
             console.log("Job details retrieved");
             _this.Client_Name = data['Client_Name'];
             _this.Earning = data['Earning'];
+            // console.log("Earning got: " + this.Earning);
             _this.locatio = data['location'];
             _this.date_from_ = data['date_from'];
             _this.date_to_ = data['date_to'];
@@ -804,6 +1404,7 @@ var EditjobPage = /** @class */ (function () {
         this.appprov.getemail().then(function (res) {
             _this.UsrEmail = res;
             _this.getOperators(res.toString());
+            console.log("Email is: " + _this.UsrEmail);
         }, function (err) {
             console.log(err);
         });
@@ -895,7 +1496,7 @@ var EditjobPage = /** @class */ (function () {
     };
     EditjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-editjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\editjob\editjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\' value= {{Client_Name}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\' value= {{Earning}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\' value = {{locatio}}></ion-input>\n\n  </ion-item>\n\n \n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateFrom\' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateTo\' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\' value={{description}}></ion-input>\n\n  </ion-item>\n\n\n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (ionChange)="test($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{ vehicle }}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ update }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\editjob\editjob.html"*/,
+            selector: 'page-editjob',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/editjob/editjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\' value= {{Client_Name}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\' value= {{Earning}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\' value = {{locatio}}></ion-input>\n\n  </ion-item>\n\n \n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateFrom\' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateTo\' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\' value={{description}}></ion-input>\n\n  </ion-item>\n\n\n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (ionChange)="test($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{ vehicle }}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ update }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/editjob/editjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -912,163 +1513,22 @@ var EditjobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 179:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreatecompanyPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_tabs_tabs__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-/**
- * Generated class for the CreatecompanyPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var CreatecompanyPage = /** @class */ (function () {
-    function CreatecompanyPage(navCtrl, navParams, appprov, alertCtrl, storage, _translate) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.appprov = appprov;
-        this.alertCtrl = alertCtrl;
-        this.storage = storage;
-        this._translate = _translate;
-        this.companynameField = "";
-        this.companyaddField = "";
-        this.phonenoField = "";
-        this.workingdaysField = "";
-        storage.ready().then(function () {
-        });
-        // storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q').then(() =>{
-        //   console.log("access_token set");     
-        //   storage.get('access_token').then((val) => {
-        //     if (val == null){
-        //       console.log(this.access_token);
-        //       console.log("No acccess token");
-        //       //this.navCtrl.setRoot(LoginPage);
-        //     }
-        //     else{
-        //       console.log("Got access token");
-        //       this.access_token = val.toString(); 
-        //       console.log(this.access_token);
-        //       //this.navCtrl.setRoot(TabsPage);
-        //     }
-        //   });
-        // });
-        storage.get('access_token').then(function (val) {
-            if (val == null) {
-                console.log(_this.access_token);
-                console.log("No acccess token");
-                //this.navCtrl.setRoot(LoginPage);
-            }
-            else {
-                console.log("Got access token");
-                _this.access_token = val.toString();
-                _this._initializeTranslation();
-            }
-        });
-    }
-    CreatecompanyPage.prototype.ionViewDidEnter = function () {
-        console.log('ionViewDidLoad CreatecompanyPage');
-        this._initializeTranslation();
-    };
-    CreatecompanyPage.prototype.changeLanguage = function () {
-        this._translateLanguage();
-    };
-    CreatecompanyPage.prototype._translateLanguage = function () {
-        this._translate.use(this.language);
-        this._initializeTranslation();
-    };
-    CreatecompanyPage.prototype._initializeTranslation = function () {
-        this.title = this._translate.instant("createcompany.title");
-        this.company_name = this._translate.instant("createcompany.company_name");
-        this.company_address = this._translate.instant("createcompany.company_address");
-        this.phone_no = this._translate.instant("createcompany.phone_no");
-        this.working_days = this._translate.instant("createcompany.working_days");
-        this.continue = this._translate.instant("createcompany.continue");
-    };
-    CreatecompanyPage.prototype.itemTappedAdd = function () {
-        var _this = this;
-        // this.navCtrl.setRoot(TabsPage);
-        var company_name = this.companynameField;
-        var company_add = this.companyaddField;
-        var phone_no = this.phonenoField;
-        var working_days = this.workingdaysField;
-        if (company_name == "" || company_add == "" || phone_no == "" || working_days == "") {
-            var alert_1 = this.alertCtrl.create({
-                title: 'Empty Field(s)',
-                subTitle: 'Please fill up all details before proceeding',
-                buttons: ['OK']
-            });
-            alert_1.present();
-            return;
-        }
-        this.appprov.addCompany(this.access_token, company_name, company_add, phone_no, working_days).then(function (res) {
-            var data = JSON.stringify(res);
-            data = JSON.parse(data);
-            if (data['result'].toString() == 'true') {
-                console.log("Company and phone number added");
-            }
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__pages_tabs_tabs__["a" /* TabsPage */]);
-        }, function (err) {
-            console.log(err);
-        });
-        //this.navCtrl.setRoot(TabsPage);
-    };
-    CreatecompanyPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-createcompany',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/'<!--\n\n  Generated template for the CreatecompanyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The page for owner to fill in the details of their company-->\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_name }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companynameField"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_address }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companyaddField"></ion-input>\n\n  </ion-item>\n\n<br>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }} </ion-label>\n\n  <ion-input type="text" [(ngModel)]="phonenoField"></ion-input>\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ working_days }}</ion-label>\n\n  <ion-input type="number" [(ngModel)]="workingdaysField"></ion-input>\n\n</ion-item>\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="itemTappedAdd($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_app_app__["a" /* AppProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
-    ], CreatecompanyPage);
-    return CreatecompanyPage;
-}());
-
-//# sourceMappingURL=createcompany.js.map
-
-/***/ }),
-
-/***/ 180:
+/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatorhomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__updatecapop_updatecapop__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__updatecapop_updatecapop__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_auth__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chart_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chart_js__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1313,7 +1773,7 @@ var OperatorhomePage = /** @class */ (function () {
     ], OperatorhomePage.prototype, "barCanvas", void 0);
     OperatorhomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operatorhome',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n          <b style="font-size:1.4em"> {{ welcome }}, {{Uname}} </b>\n\n          <b style="font-size:1.1em">{{Uemail}}</b>\n\n          <br><b style="font-size:1em">{{Unum}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><h3>{{ skill_sets }}&nbsp;  <ion-icon name="create" (click)="showCap($event)"></ion-icon></h3></ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col *ngFor="let veh of capabilities">\n\n          <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  \n\n  <h2>{{ forecast }}</h2>\n\n\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/,
+            selector: 'page-operatorhome',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorhome/operatorhome.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n          <b style="font-size:1.4em"> {{ welcome }}, {{Uname}} </b>\n\n          <b style="font-size:1.1em">{{Uemail}}</b>\n\n          <br><b style="font-size:1em">{{Unum}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><h3>{{ skill_sets }}&nbsp;  <ion-icon name="create" (click)="showCap($event)"></ion-icon></h3></ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col *ngFor="let veh of capabilities">\n\n          <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  \n\n  <h2>{{ forecast }}</h2>\n\n\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorhome/operatorhome.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */],
@@ -1332,17 +1792,18 @@ var OperatorhomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 181:
+/***/ 184:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdatecapopPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1352,6 +1813,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1383,10 +1845,10 @@ var UpdatecapopPage = /** @class */ (function () {
             }
             else {
                 //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
+                var vehurl = [__WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/compactor.png',
+                    __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/Excavator.png',
+                    __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/loader.png',
+                    __WEBPACK_IMPORTED_MODULE_6__app_apiurls_serverurls_js__["a" /* apiKey */] + 'static/vehicles/truck.png'];
                 var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
                 console.log("Got access token");
                 _this.access_token = val.toString();
@@ -1445,7 +1907,7 @@ var UpdatecapopPage = /** @class */ (function () {
     };
     UpdatecapopPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-updatecapop',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/'\n\n<ion-content>\n\n    <ion-list no-lines>\n\n        <ion-list-header>\n\n        {{ skill_sets }}\n\n        </ion-list-header>\n\n        <ion-item *ngFor="let veh of vehicles">\n\n          <ion-avatar item-left>\n\n            <!--<img src ="assets/imgs/VolvoLogo.png" style="width:6rem; height:6rem" alt = "Compactor">-->  \n\n            <img [src] = veh.vehicle_url style="width:6rem; height:6rem" alt = "Compactor">\n\n          </ion-avatar>\n\n          <ion-label></ion-label>\n\n          <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n\n<ion-footer>\n\n    <button full ion-button (click)="UpdateCap()">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/,
+            selector: 'page-updatecapop',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/updatecapop/updatecapop.html"*/'\n\n<ion-content>\n\n    <ion-list no-lines>\n\n        <ion-list-header>\n\n        {{ skill_sets }}\n\n        </ion-list-header>\n\n        <ion-item *ngFor="let veh of vehicles">\n\n          <ion-avatar item-left>\n\n            <!--<img src ="assets/imgs/VolvoLogo.png" style="width:6rem; height:6rem" alt = "Compactor">-->  \n\n            <img [src] = veh.vehicle_url style="width:6rem; height:6rem" alt = "Compactor">\n\n          </ion-avatar>\n\n          <ion-label></ion-label>\n\n          <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n\n<ion-footer>\n\n    <button full ion-button (click)="UpdateCap()">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/updatecapop/updatecapop.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1461,20 +1923,20 @@ var UpdatecapopPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 182:
+/***/ 185:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatorjobPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__opjobdetails_opjobdetails__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__opjobdetails_opjobdetails__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1551,6 +2013,7 @@ var OperatorjobPage = /** @class */ (function () {
     };
     OperatorjobPage.prototype.retrievePastJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrievePastJobsOps(this.access_token).then(function (res) {
             _this.past = res;
             _this.pastJid = _this.past.jid;
@@ -1561,6 +2024,9 @@ var OperatorjobPage = /** @class */ (function () {
             _this.past_location = _this.past.location;
             _this.past_payout = _this.past.payout;
             _this.pastJobs = [];
+            for (var i = 0; i < _this.pastTitle.length; i++) {
+                totalPayout += parseInt(_this.past.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.pastTitle.length; i++) {
                     _this.pastJobs.push({
@@ -1577,6 +2043,10 @@ var OperatorjobPage = /** @class */ (function () {
             catch (_a) {
                 console.log("Past job cannot retrieve length");
             }
+            console.log("pastTitle: " + _this.pastTitle);
+            console.log("pastPayout: " + _this.past_payout);
+            console.log("1st Payout: " + _this.past_payout[0] + " 2ndPayout: " + _this.past_payout[1]);
+            console.log("Get the total pastPayout: " + totalPayout);
             console.log("History job pushed");
         }, function (err) {
             console.log(err);
@@ -1657,7 +2127,7 @@ var OperatorjobPage = /** @class */ (function () {
     };
     OperatorjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operatorjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/'<ion-header padding-top>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid,pastJob.title);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{pastJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid,ongoingJob.title);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{ongoingJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid,upcomingJob.title);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <!-- <h3>$ &nbsp; {{upcomingJob.payout}}</h3> -->\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/,
+            selector: 'page-operatorjob',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorjob/operatorjob.html"*/'<ion-header padding-top>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid,pastJob.title);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{pastJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid,ongoingJob.title);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{ongoingJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid,upcomingJob.title);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <!-- <h3>$ &nbsp; {{upcomingJob.payout}}</h3> -->\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operatorjob/operatorjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1676,18 +2146,13 @@ var OperatorjobPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 183:
+/***/ 186:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OtpOperatorPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operatorstabs_operatorstabs__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1699,141 +2164,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
 /**
- * Generated class for the OtpOperatorPage page.
+ * Generated class for the RegisterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var OtpOperatorPage = /** @class */ (function () {
-    function OtpOperatorPage(navCtrl, navParams, appprov, storage, _translate) {
-        var _this = this;
+var RegisterPage = /** @class */ (function () {
+    // constructor(private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+    function RegisterPage(alertCtrl, navCtrl, navParams) {
+        this.alertCtrl = alertCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.appprov = appprov;
-        this.storage = storage;
-        this._translate = _translate;
-        this.otp = ' ';
-        storage.ready().then(function () {
-        });
-        storage.get('access_token').then(function (val) {
-            if (val == null) {
-                console.log(_this.access_token);
-                console.log("No acccess token");
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */]);
-            }
-            else {
-                //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
-                var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
-                console.log("Got access token");
-                _this.access_token = val.toString();
-                _this._initializeTranslation();
-                _this.vehicles = [];
-                _this.capabilities = [];
-                for (var i = 0; i < vehurl.length; i++) {
-                    _this.vehicles.push({
-                        vehicle_url: vehurl[i],
-                        vehicle_type: vehtype[i]
-                    });
-                }
-            }
-        });
     }
-    OtpOperatorPage.prototype.ionViewDidEnter = function () {
-        console.log('ionViewDidLoad OtpOperatorPage');
-        this._initializeTranslation();
+    RegisterPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RegisterPage');
     };
-    OtpOperatorPage.prototype.changeLanguage = function () {
-        this._translateLanguage();
+    RegisterPage.prototype.showAlert = function (message) {
+        var alert = this.alertCtrl.create({
+            title: 'Info',
+            subTitle: message,
+            buttons: ['OK']
+        });
+        alert.present();
     };
-    OtpOperatorPage.prototype._translateLanguage = function () {
-        this._translate.use(this.language);
-        this._initializeTranslation();
+    RegisterPage.prototype.register = function () {
+        // this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value).then(res => {
+        //   console.log('got data', res);
+        //   this.showAlert('Register success!');
+        //   this.navCtrl.push(LoginPage);
+        // }).catch(error => {
+        //   console.log('got error', error);
+        //   this.showAlert(error.message);
+        // });
     };
-    OtpOperatorPage.prototype._initializeTranslation = function () {
-        this.title = this._translate.instant("otp-operator.title");
-        this.invitation_code = this._translate.instant("otp-operator.invitation_code");
-        this.invited_by = this._translate.instant("otp-operator.invited_by");
-        this.phone_no = this._translate.instant("otp-operator.phone_no");
-        this.continue = this._translate.instant("otp-operator.continue");
-        this.skill_sets = this._translate.instant("otp-operator.skill_sets");
-        this.errormsgtitle = this._translate.instant("otp-operator.errormsgtitle");
-        this.errormsg = this._translate.instant("otp-operator.errormsg");
-        this.invite_error = this._translate.instant("otp-operator.invite_error");
-    };
-    OtpOperatorPage.prototype.Submit = function () {
-        var _this = this;
-        console.log('----HERE-----');
-        console.log(this.access_token);
-        console.log(this.capabilities);
-        if (this.PhoneNo != null) {
-            this.appprov.OperatorLogin(this.access_token, this.otp, this.PhoneNo).then(function (res) {
-                _this.appprov.UpdateCapabilities(_this.access_token, _this.capabilities.toString()).then(function (res) {
-                    console.log('Capabilities Updated');
-                });
-                if (res.result == 'true') {
-                    console.log('Operator Logged in');
-                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */]);
-                }
-            });
-        }
-        else {
-            this.appprov.presentAlert(this.errormsgtitle, this.errormsg);
-        }
-    };
-    OtpOperatorPage.prototype.selectVehicle = function (data) {
-        if (data.checked == true) {
-            if (!(this.capabilities.indexOf(data.vehicle_type) > -1)) {
-                this.capabilities.push(data.vehicle_type);
-            }
-        }
-        else {
-            if (this.capabilities.indexOf(data.vehicle_type) > -1) {
-                var index = this.capabilities.indexOf(data.vehicle_type, 0);
-                this.capabilities.splice(index, 1);
-            }
-        }
-        console.log(this.capabilities.toString());
-    };
-    OtpOperatorPage.prototype.CheckOTP = function () {
-        var _this = this;
-        if (this.otp.length == 6) {
-            this.appprov.CheckOTP(this.otp.toLowerCase()).then(function (res) {
-                if (res.result == '0') {
-                    _this.Owner = _this.invite_error;
-                }
-                else if (res.result == '1') {
-                    _this.Owner = res.Nick;
-                }
-            });
-        }
-    };
-    OtpOperatorPage = __decorate([
+    RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-otp-operator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/'<!--\n\n  Generated template for the OtpOperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ invitation_code }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="otp" (ionChange)="CheckOTP()"></ion-input>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ invited_by }}: <b>{{Owner}}</b></ion-label>\n\n  </ion-item>\n\n<br/>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }}</ion-label>\n\n  <ion-input type="text" [(ngModel)]="PhoneNo"></ion-input>\n\n</ion-item>\n\n\n\n\n\n<ion-list no-lines>\n\n  <ion-list-header>\n\n    {{ skill_sets }}\n\n  </ion-list-header>\n\n  <ion-item *ngFor="let veh of vehicles">\n\n    <ion-avatar item-left>\n\n        <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n    </ion-avatar>\n\n    <ion-label></ion-label>\n\n    <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="Submit($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Register</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n	<ion-list>\n	  <ion-item>\n	    <ion-label floating>Email</ion-label>\n	    <ion-input type="text" #email></ion-input>\n	  </ion-item>\n\n	  <ion-item>\n	    <ion-label floating>Password</ion-label>\n	    <ion-input type="password" #password></ion-input>\n	  </ion-item>\n	</ion-list>\n\n	<button ion-button block (click)="register()">Register</button>\n</ion-content>\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/register/register.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_app_app__["a" /* AppProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
-    ], OtpOperatorPage);
-    return OtpOperatorPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]])
+    ], RegisterPage);
+    return RegisterPage;
 }());
 
-//# sourceMappingURL=otp-operator.js.map
+//# sourceMappingURL=register.js.map
 
 /***/ }),
 
-/***/ 194:
+/***/ 197:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1846,23 +2224,23 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 194;
+webpackEmptyAsyncContext.id = 197;
 
 /***/ }),
 
-/***/ 22:
+/***/ 20:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_transfer__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_kakao_sdk__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(91);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1932,6 +2310,7 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getFleet?email=' + email).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy2");
             }, function (err) {
                 console.log(err);
             });
@@ -1952,6 +2331,8 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorList?email=' + email + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy2");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2012,6 +2393,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorDetails?email=' + email + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Operator details fetched");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2072,6 +2454,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehMachineHour?serial_no=' + serial_no + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Retrieve machine hour");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2240,7 +2623,9 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveJobDetails?access_token=' + access_token + '&jid=' + jid).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy");
                 console.log("Job Details Retrieved");
+                console.log("jid: " + jid);
             }, function (err) {
                 console.log(err);
             });
@@ -2349,6 +2734,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorNames?access_token=' + access_token + '&date_from=' + datefrom + '&date_to=' + dateto).subscribe(function (res) {
                 resolve(res);
                 console.log("Owner's Operators Retrieved");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2361,6 +2747,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getJobCards?access_token=' + access_token + '&jid=' + jid + '&no_of_days=' + no_of_days).subscribe(function (res) {
                 resolve(res);
                 console.log("Job reports retrieved");
+                console.log("jid: " + jid);
             }, function (err) {
                 console.log(err);
             });
@@ -2386,6 +2773,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'OpsretrievePastJobs?access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("History Jobs Retrieved");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2625,60 +3013,68 @@ var AppProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 238:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/add-maintenance/add-maintenance.module": [
-		905,
+		908,
 		2
 	],
 	"../pages/addjob/addjob.module": [
-		913,
-		12
+		916,
+		14
 	],
 	"../pages/addoperator/addoperator.module": [
-		906,
+		909,
 		1
 	],
 	"../pages/createcompany/createcompany.module": [
-		907,
-		11
+		910,
+		13
 	],
 	"../pages/edit-maintenance/edit-maintenance.module": [
-		908,
+		911,
 		0
 	],
 	"../pages/editjob/editjob.module": [
-		914,
-		10
+		917,
+		12
 	],
 	"../pages/jobinfo/jobinfo.module": [
-		915,
-		9
+		918,
+		11
 	],
 	"../pages/joblists/joblists.module": [
-		909,
-		8
+		912,
+		10
+	],
+	"../pages/login-kk/login-kk.module": [
+		919,
+		9
 	],
 	"../pages/login/login.module": [
-		916,
-		7
+		920,
+		8
 	],
 	"../pages/operatorhome/operatorhome.module": [
-		917,
-		6
+		921,
+		7
 	],
 	"../pages/operatorjob/operatorjob.module": [
-		910,
-		5
+		922,
+		6
 	],
 	"../pages/otp-operator/otp-operator.module": [
-		911,
+		913,
+		5
+	],
+	"../pages/register/register.module": [
+		914,
 		4
 	],
 	"../pages/updatecapop/updatecapop.module": [
-		912,
+		915,
 		3
 	]
 };
@@ -2693,24 +3089,24 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 238;
+webpackAsyncContext.id = 241;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 244:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FleetsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fleet_info_fleet_info__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addvehicle_addvehicle__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fleet_info_fleet_info__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addvehicle_addvehicle__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2814,7 +3210,7 @@ var FleetsPage = /** @class */ (function () {
     };
     FleetsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-Fleets',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleets\fleets.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">\n\n        <ion-thumbnail item-start>\n\n            <img [src] =vehicle.img>\n\n        </ion-thumbnail>\n\n        <h2>{{vehicle.Modelno}}</h2>\n\n        <p>{{vehicle.Desc}}</p>\n\n      </button>\n\n    </ion-list>\n\n\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button full (click)="AddVeh()" >{{ add }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleets\fleets.html"*/
+            selector: 'page-Fleets',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/fleets/fleets.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">\n\n        <ion-thumbnail item-start>\n\n            <img [src] =vehicle.img>\n\n        </ion-thumbnail>\n\n        <h2>{{vehicle.Modelno}}</h2>\n\n        <p>{{vehicle.Desc}}</p>\n\n      </button>\n\n    </ion-list>\n\n\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button full (click)="AddVeh()" >{{ add }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/fleets/fleets.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -2829,19 +3225,19 @@ var FleetsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 245:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FleetInfoPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chart_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chart_js__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3087,23 +3483,69 @@ var FleetInfoPage = /** @class */ (function () {
         return job;
     };
     FleetInfoPage.prototype.getJobStats = function (vehicle_month, month_total) {
-        if (month_total == '0') {
-            month_total = '1';
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var today = new Date();
+        var month = today.getUTCMonth();
+        var labels_month = [];
+        var month_range = 4;
+        var dataPack1 = ['7', '14', '14', '4', '22', '20', '15'];
+        for (var i = 0; i < month_range; i++) {
+            labels_month.push(months[(month + 12 - i) % 12]);
         }
-        this.doughnutChart = new __WEBPACK_IMPORTED_MODULE_5_chart_js__["Chart"](this.doughnutCanvas.nativeElement, {
-            type: 'doughnut',
+        labels_month.reverse();
+        for (var i = 1; i < month_range; i++) {
+            labels_month.push(months[(month + 12 + i) % 12]);
+        }
+        this.barVehChart = new __WEBPACK_IMPORTED_MODULE_5_chart_js__["Chart"](this.barVehCanvas.nativeElement, {
+            type: 'bar',
             data: {
-                labels: [this.assigned, this.total_job_count],
+                labels: labels_month,
                 datasets: [{
-                        label: "Vehicle Utilization",
-                        //data: [this.vehicle_month, month_total - this.vehicle_month],
-                        data: [vehicle_month, month_total - vehicle_month],
-                        backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-                        borderColor: "rbga(0, 110, 255, 1)",
+                        label: 'Statistics',
+                        data: dataPack1,
+                        backgroundColor: "rgba(0, 110,255, 0.2)",
                         borderWidth: 1
                     }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                            gridLines: { display: false },
+                        }],
+                    yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 30,
+                                gridLines: { display: false },
+                                callback: function (value) { return value; }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Days"
+                            }
+                        }],
+                },
+                legend: { display: false }
             }
         });
+        //old codes
+        // if (month_total == '0'){
+        //   month_total = '1';
+        // }
+        // this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+        //   type: 'doughnut',
+        //   data:{
+        //     labels: [this.assigned, this.total_job_count],
+        //     datasets: [{
+        //       label: "Vehicle Utilization",
+        //       //data: [this.vehicle_month, month_total - this.vehicle_month],
+        //       data: [vehicle_month, month_total-vehicle_month],
+        //       backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+        //       borderColor: "rbga(0, 110, 255, 1)",
+        //       borderWidth:1
+        //     }]
+        //   }
+        // });
     };
     //comment this block sn 27
     //YEAR chart
@@ -3137,16 +3579,16 @@ var FleetInfoPage = /** @class */ (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('doughnutCanvas'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barVehCanvas'),
         __metadata("design:type", Object)
-    ], FleetInfoPage.prototype, "doughnutCanvas", void 0);
+    ], FleetInfoPage.prototype, "barVehCanvas", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('doughnutCanvas2'),
         __metadata("design:type", Object)
     ], FleetInfoPage.prototype, "doughnutCanvas2", void 0);
     FleetInfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-fleet-info',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/,
+            selector: 'page-fleet-info',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/fleet-info/fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barVehCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/fleet-info/fleet-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -3168,18 +3610,18 @@ var FleetInfoPage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__createcompany_createcompany__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__otp_operator_otp_operator__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_kk_login_kk__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operatorstabs_operatorstabs__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__register_register__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__createcompany_createcompany__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__otp_operator_otp_operator__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_facebook__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_app_app__ = __webpack_require__(20);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3191,6 +3633,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+// import { Facebook } from '@ionic-native/facebook';
+// import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+// import { AngularFireAuth } from 'angularfire2/auth';
+// import firebase from 'firebase';
 
 
 
@@ -3208,36 +3654,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var LoginPage = /** @class */ (function () {
-    /*note: console command is to see using java console when using web to test*/
-    function LoginPage(navCtrl, loadingCtrl, navParams, authService, alertCtrl, iab, _kakaoCordovaSDK, appprov, storage, _translate) {
+    // constructor(private alertCtrl: AlertController, private fire: AngularFireAuth, private fb: Facebook,
+    //   public navCtrl: NavController, public navParams: NavParams) {
+    // }
+    function LoginPage(alertCtrl, fb, navCtrl, loadingCtrl, storage, appprov, navParams, _translate) {
         var _this = this;
+        this.alertCtrl = alertCtrl;
+        this.fb = fb;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.navParams = navParams;
-        this.authService = authService;
-        this.alertCtrl = alertCtrl;
-        this.iab = iab;
-        this._kakaoCordovaSDK = _kakaoCordovaSDK;
-        this.appprov = appprov;
         this.storage = storage;
+        this.appprov = appprov;
+        this.navParams = navParams;
         this._translate = _translate;
-        this.username = '';
-        this.password = '';
-        var elements = document.querySelectorAll(".tabbar");
-        if (elements != null) {
-            Object.keys(elements).map(function (key) {
-                elements[key].style.display = 'none';
-            });
-        }
-        this._initializeTranslation();
+        this.isLoggedIn = false;
+        this.provider = {
+            loggedin: false,
+            name: '',
+            email: '',
+            profilePicture: ''
+        };
         storage.ready().then(function () {
             storage.get('access_token').then(function (val) {
                 _this.showLoader();
-                if (val == null) {
-                    console.log("No acccess token");
-                    //this.navCtrl.push(CreatecompanyPage);
-                }
-                else {
+                if (val !== null) {
                     console.log("Got access token");
                     _this.access_token = val.toString();
                     _this.appprov.checkRole(_this.access_token).then(function (res) {
@@ -3248,7 +3688,7 @@ var LoginPage = /** @class */ (function () {
                             _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */], storage);
                         }
                         else if (data['result'] == "0") {
-                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */], storage);
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */], storage);
                         }
                         else {
                             console.log("Not in database");
@@ -3258,17 +3698,9 @@ var LoginPage = /** @class */ (function () {
                     });
                 }
                 _this.loading.dismiss();
-            }); //storage.get('access_token').then((val)
-        }); //storage.ready().then(()
-    } //constructor
-    //app starts from here.
-    LoginPage.prototype.ionViewDidEnter = function () {
-        console.log('ionViewDidLoad LoginPage');
-        this._initializeTranslation();
-    };
-    LoginPage.prototype.changeLanguage = function () {
-        this._translateLanguage();
-    };
+            });
+        });
+    }
     LoginPage.prototype._translateLanguage = function () {
         this._translate.use(this.language);
         this._initializeTranslation();
@@ -3277,12 +3709,26 @@ var LoginPage = /** @class */ (function () {
         this.title = this._translate.instant("login.title");
         this.owner = this._translate.instant("login.owner");
         this.operator = this._translate.instant("login.operator");
-        ;
         this.rolemsgtitle = this._translate.instant("login.rolemsgtitle");
         this.rolemsg = this._translate.instant("login.rolemsg");
-        this.kakaomsgtitle = this._translate.instant("login.kakaomsgtitle");
-        ;
-        this.kakaomsg = this._translate.instant("login.kakaomsg");
+    };
+    LoginPage.prototype.changeLanguage = function () {
+        this._translateLanguage();
+    };
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+        this._initializeTranslation();
+    };
+    LoginPage.prototype.role = function (value) {
+        this.Role = value;
+    };
+    LoginPage.prototype.showAlert = function (message) {
+        var alert = this.alertCtrl.create({
+            title: 'Info',
+            subTitle: message,
+            buttons: ['OK']
+        });
+        alert.present();
     };
     LoginPage.prototype.showLoader = function () {
         this.loading = this.loadingCtrl.create({
@@ -3290,49 +3736,38 @@ var LoginPage = /** @class */ (function () {
         });
         this.loading.present();
     }; //showLoader()
-    LoginPage.prototype.errorFunc = function (message) {
-        var alert = this.alertCtrl.create({
-            title: 'Warning!',
-            subTitle: message,
-            buttons: ['OK'],
-        });
-        alert.present();
-    }; //errorFunc(message)
-    LoginPage.prototype.myLogIn = function () {
-        var _this = this;
-        if (this.username.trim() !== '') {
-            if (this.password.trim() === '') {
-                this.errorFunc('Please Enter your Password!');
-            }
-            else {
-                var credentials = {
-                    username: this.username,
-                    password: this.password
-                };
-                this.showLoader();
-                this.authService.login(credentials).then(function (result) {
-                    console.log(result);
-                    _this.loading.dismiss();
-                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
-                }, function (err) {
-                    console.log(err);
-                    _this.errorFunc('Wrong Credentials, Please try Again');
-                    _this.loading.dismiss();
-                } //(err)
-                ); //this.authService.login(credentials).then((result)
-            } //else
-        } //if(this.username.trim() !== '')
-        else {
-            this.errorFunc('Please input a valid password');
-        }
-    }; //myLogIn()
-    // myLogout(){
-    //   this.authService.logout();
-    // }
-    LoginPage.prototype.role = function (value) {
-        this.Role = value;
+    LoginPage.prototype.signIn = function () {
+        // this.fire.auth.signInWithEmailAndPassword(this.email.value, this.password.value).then(res => {
+        //   this.provider.loggedin = true;
+        //   this.provider.name = res.user.displayName;
+        //   this.provider.email = res.user.email;
+        //   this.provider.profilePicture = res.user.photoURL;
+        //   console.log('from Email', res);
+        //   this.showAlert('Success! you\'re logged in by Email');
+        //   this.navCtrl.setRoot(HomePage, this.provider);
+        // }).catch(error => {
+        //   console.log('got error', error);
+        //   this.showAlert(error.message);
+        // });
     };
-    LoginPage.prototype.login = function () {
+    LoginPage.prototype.register = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__register_register__["a" /* RegisterPage */]);
+    };
+    LoginPage.prototype.loginWithFacebook = function () {
+        // this.fire.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
+        //   this.provider.loggedin = true;
+        //   this.provider.name = res.user.displayName;
+        //   this.provider.email = res.user.email;
+        //   this.provider.profilePicture = res.user.photoURL;
+        //   console.log('from Facebook', res);
+        //   this.showAlert('Success! you\'re logged in by Facebook');
+        //   this.navCtrl.setRoot(HomePage, this.provider);
+        // }).catch(error => {
+        //   console.log('got error', error);
+        //   this.showAlert(error.message);
+        // });
+    };
+    LoginPage.prototype.loginWithFacebook1 = function () {
         var _this = this;
         if (this.Role == null || this.Role == undefined) {
             var alert_1 = this.alertCtrl.create({
@@ -3343,154 +3778,120 @@ var LoginPage = /** @class */ (function () {
             alert_1.present();
             return;
         } //if role
-        // if (this.Role=='Owner'){
-        //   this.storage.clear();
-        //   this.storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q');
-        //   this.navCtrl.push(CreatecompanyPage);
-        //   return;
-        // }
-        // else{
-        //   this.storage.clear();
-        //   this.storage.set('access_token', 'accessop');
-        //   this.navCtrl.setRoot(OperatorstabsPage);
-        //   return;
-        // }
-        //the page where user key in user's kakao credentials info
-        console.log("Logging into kakao");
         this.showLoader();
-        var loginOptions = {};
-        loginOptions['authTypes'] = [
-            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeTalk,
-            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeStory,
-            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["a" /* AuthTypes */].AuthTypeAccount
-        ];
-        /*this connects kakaoTalk SDK manager account to user's KakaoTalk account*/
-        this._kakaoCordovaSDK.login(loginOptions).then(function (res) {
-            console.log(JSON.stringify(res));
-            var data = JSON.stringify(res);
-            data = JSON.parse(data);
-            _this.access_token = data['accessToken'];
-            var name = data['properties']['nickname'];
-            var profile_url = data['properties']['thumbnail_image'];
-            if (profile_url == null || profile_url == undefined) {
-                profile_url = 'assets/imgs/blank_profile.png';
-            }
-            var has_email = data['kakao_account']['has_email'].toString();
-            var email = data['kakao_account']['email'];
-            /*has email but does not allow link to account*/
-            if (has_email == 'true' && (email == null)) {
-                _this.loading.dismiss();
-                console.log("please allow email");
-                _this._kakaoCordovaSDK.unlinkApp().then(function () {
-                    console.log("Unlinked");
-                }, function (err) { console.log("cannot unlinked"); });
-                var alert_2 = _this.alertCtrl.create({
-                    title: _this.kakaomsgtitle,
-                    subTitle: _this.kakaomsg,
-                    buttons: ['OK']
-                });
-                alert_2.present();
-                console.log("User did not check email in permission");
-                return;
-            }
-            else if (has_email == 'true' && (email != null)) {
-                _this.loading.dismiss();
-                console.log("User is logged in either by new access_token or revisit user");
-                _this.appprov.checkExistingUser(email).then(function (res) {
-                    var checkUser = JSON.stringify(res);
-                    checkUser = JSON.parse(checkUser);
-                    checkUser = checkUser['result'].toString();
-                    console.log(checkUser);
-                    if (checkUser == 'false') {
-                        _this.appprov.updateAccessToken(email, _this.access_token, profile_url).then(function (res) {
-                            var update = JSON.stringify(res);
-                            update = JSON.parse(update);
-                            console.log(update);
-                            _this.storage.set('access_token', _this.access_token);
-                            if (_this.Role == 'Owner') {
-                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_tabs__["a" /* TabsPage */]);
-                                return;
-                            }
-                            else {
-                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_9__operatorstabs_operatorstabs__["a" /* OperatorstabsPage */], _this.storage);
-                                return;
-                            }
-                            // this.storage.set('access_token', this.access_token);
-                            // if (this.Role == 'Owner'){
-                            //   this.navCtrl.push(CreatecompanyPage, this.storage);
-                            // }
-                            // else{
-                            //   this.navCtrl.push(OtpOperatorPage, this.storage);
-                            // }
-                        }, function (err) { console.log(err); });
-                    } //if checkUser
-                    else {
-                        _this.loading.dismiss();
-                        _this.appprov.addUser(email, _this.access_token, name, profile_url, _this.Role).then(function (res) {
-                            var adduser = JSON.stringify(res);
-                            adduser = JSON.parse(adduser);
-                            console.log(adduser['result']);
-                        }, function (err) { console.log(err); });
-                    } //else
-                }, function (err) {
-                    console.log(err);
-                }); //this.appprov.checkExistingUser(email).then((res)
-                _this.storage.set('access_token', _this.access_token);
+        this.fb.login(['public_profile', 'user_friends', 'email']).then(function (res) {
+            _this.loading.dismiss();
+            if (res.status === "connected") {
+                //this.showAlert(res.authResponse.userID + ": " + res.authResponse.accessToken);
+                _this.storage.set('access_token', res.authResponse.accessToken);
+                _this.isLoggedIn = true;
                 if (_this.Role == 'Owner') {
                     _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__createcompany_createcompany__["a" /* CreatecompanyPage */], _this.storage);
                 }
                 else {
-                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_10__otp_operator_otp_operator__["a" /* OtpOperatorPage */], _this.storage);
+                    _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__otp_operator_otp_operator__["a" /* OtpOperatorPage */], _this.storage);
                 }
-                return;
-            } // else if has_email
-            else {
-                var alert_3 = _this.alertCtrl.create({
-                    title: _this.kakaomsgtitle2,
-                    subTitle: _this.kakaomsg2,
-                    buttons: ['OK']
-                });
-                alert_3.present();
-                console.log("User do not have email in kakao");
-                return;
             }
-        }, function (err) {
-            console.log(JSON.stringify(err));
-            _this.appprov.presentAlert('error', JSON.stringify(err));
+            else {
+                _this.isLoggedIn = false;
+                _this.showAlert(res.status);
+            }
+        }).catch(function (e) {
+            console.log('Error logging into Facebook', e);
         });
         this.loading.dismiss();
-    }; //login()
+    };
+    LoginPage.prototype.loginWithGoogle = function () {
+        // this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(res => {
+        //   this.provider.loggedin = true;
+        //   this.provider.name = res.user.displayName;
+        //   this.provider.email = res.user.email;
+        //   this.provider.profilePicture = res.user.photoURL;
+        //   console.log('from Google', res);
+        //   this.showAlert('Success! you\'re logged in by Google');
+        //   this.navCtrl.setRoot(HomePage, this.provider);
+        // }).catch(error => {
+        //   console.log('got error', error);
+        //   this.showAlert(error.message);
+        // });
+    };
+    LoginPage.prototype.loginWithTwitter = function () {
+        // this.fire.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then(res => {
+        //   this.provider.loggedin = true;
+        //   this.provider.name = res.user.displayName;
+        //   this.provider.email = res.user.email;
+        //   this.provider.profilePicture = res.user.photoURL;
+        //   console.log('from Twitter', res);
+        //   this.showAlert('Success! you\'re logged in by Twitter');
+        //   this.navCtrl.setRoot(HomePage, this.provider);
+        // }).catch(error => {
+        //   console.log('got error', error);
+        //   this.showAlert(error.message);
+        // });
+    };
+    LoginPage.prototype.loginWithGithub = function () {
+        // this.fire.auth.signInWithPopup(new firebase.auth.GithubAuthProvider()).then(res => {
+        //   this.provider.loggedin = true;
+        //   this.provider.name = res.user.displayName;
+        //   this.provider.email = res.user.email;
+        //   this.provider.profilePicture = res.user.photoURL;
+        //   console.log('from Github', res);
+        //   this.showAlert('Success! you\'re logged in by Github');
+        //   this.navCtrl.setRoot(HomePage, this.provider);
+        // });
+    };
+    LoginPage.prototype.loginWithKakaoTalk = function () {
+        // this.fire.auth.signInWithRedirect(new firebase.auth.OAuthProvider()).then(function () {
+        //   firebase.auth().getRedirectResult().then(function (result) {
+        //     // This gives you a Google Access Token.
+        //     // You can use it to access the Google API.
+        //     //var token = result.credential.accessToken;
+        //     // The signed-in user info.
+        //     var user = result.user;
+        //   }).catch(function (error) {
+        //     // Handle Errors here.
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //   });
+        // });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__login_kk_login_kk__["a" /* LoginKkPage */]);
+    };
+    LoginPage.prototype.logout = function () {
+        var _this = this;
+        this.fb.logout()
+            .then(function (res) { return _this.isLoggedIn = false; })
+            .catch(function (e) { return console.log('Error logout from Facebook', e); });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('email'),
+        __metadata("design:type", Object)
+    ], LoginPage.prototype, "email", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('password'),
+        __metadata("design:type", Object)
+    ], LoginPage.prototype, "password", void 0);
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--creating login field. padding provides padding into container -->\n\n<ion-content padding>\n\n    <img src="assets/imgs/LoginIcon.png">\n\n  <br/>\n\n<ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)">\n\n  <ion-item>\n\n    <ion-label>{{ owner }}</ion-label>\n\n    <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ operator }}</ion-label>\n\n    <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<img src="assets/imgs/kakaologin.jpg" style="width:100%; height:50px" (click)="login()">\n\n\n\n\n\n  <!-- <div padding>\n\n      <button ion-button color = "secondary" (click) = "myLogout()">Log Out</button>\n\n    </div> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<!--creating login field. padding provides padding into container -->\n<ion-content padding>\n  <img src="assets/imgs/LoginIcon.png">\n  <br />\n  <ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)">\n    <ion-item>\n      <ion-label>{{ owner }}</ion-label>\n      <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>{{ operator }}</ion-label>\n      <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio>\n    </ion-item>\n  </ion-list>\n\n  <button ion-button block outline (click)="loginWithFacebook1()" *ngIf="!provider.loggedin">\n    <ion-icon name="logo-facebook"></ion-icon>\n    Login With Facebook\n  </button>\n\n  <!--\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #email></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n  </ion-list>\n\n  <button ion-button block (click)="signIn()">Sign In</button>\n  <button ion-button block (click)="register()">Register</button>\n\n  <button ion-button block outline (click)="loginWithKakaoTalk()" *ngIf="!provider.loggedin">\n    <ion-icon name="logo-kakaoTalk"></ion-icon>\n    Login With KakaoTalk\n  </button>\n\n  <button ion-button block outline (click)="loginWithFacebook()" *ngIf="!provider.loggedin">\n    <ion-icon name="logo-facebook"></ion-icon>\n    Login With Facebook\n  </button>\n\n  <button ion-button block outline (click)="loginWithFacebook1()" *ngIf="!provider.loggedin">\n    <ion-icon name="logo-facebook"></ion-icon>\n    Login With Facebook Native\n  </button>\n\n  <button ion-button block outline (click)="loginWithGoogle()" *ngIf="!provider.loggedin">\n    <ion-icon name="logo-google"></ion-icon>\n    Login With Google\n  </button>\n\n  <button ion-button block outline (click)="loginWithTwitter()" *ngIf="!provider.loggedin">\n		<ion-icon name="logo-twitter"></ion-icon>\n		Login With Twitter\n  </button>\n  \n	<button ion-button block outline (click)="loginWithGithub()" *ngIf="!provider.loggedin">\n		<ion-icon name="logo-github"></ion-icon>\n		Login With Github\n  </button> -->\n\n</ion-content>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_auth_auth__["a" /* AuthProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-            __WEBPACK_IMPORTED_MODULE_7_kakao_sdk__["b" /* KakaoCordovaSDK */],
-            __WEBPACK_IMPORTED_MODULE_8__providers_app_app__["a" /* AppProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__["c" /* TranslateService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11__providers_app_app__["a" /* AppProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */]])
     ], LoginPage);
     return LoginPage;
-}()); //class LoginPage
+}());
 
 //# sourceMappingURL=login.js.map
 
 /***/ }),
 
-/***/ 466:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddvehiclePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3599,7 +4000,7 @@ var AddvehiclePage = /** @class */ (function () {
     };
     AddvehiclePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addvehicle',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/'<!--\n\n  Generated template for the AddvehiclePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title padding-top>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content class="outer-content">\n\n  <form (ngsubmit)="AddVehicle()">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        {{ vehicle_type }}: {{ SelVeh }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-segment [(ngModel)]="SelVeh" name="VehicleType" (ionChange)="showOthrVType()">\n\n          <ion-segment-button value="Excavator">\n\n            <ion-icon name="custom-excavator2" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Compactor">\n\n            <ion-icon name="custom-dozer" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Loader">\n\n            <ion-icon name="custom-shovel" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Truck">\n\n              <ion-icon name="custom-truck" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <!-- <ion-segment-button value="Others">\n\n              Othrs\n\n          </ion-segment-button> -->\n\n        </ion-segment>\n\n        <ion-input type="text" placeholder="Vehicle Type" *ngIf="VehTypeTb" [(ngModel)]="OthrVehType" name="OthrVehTypeVal"></ion-input>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n        <ion-card-header>\n\n          {{ manufacturer }} : {{ SelManu }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">\n\n            <ion-segment-button value="Volvo">\n\n                <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Hyundai">\n\n                <ion-img src="assets/imgs/hyundai.png" class="center_hyundai_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Doosan">\n\n                <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Komatsu">\n\n                <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Others">\n\n                Others\n\n            </ion-segment-button>\n\n          </ion-segment>\n\n          <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n      <ion-card-header>{{ vehicle_details }}</ion-card-header>\n\n      <ion-card-content>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ model_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. EC250" [(ngModel)]="ModelNo" name="ModelNoVal"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ serial_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. 987123" [(ngModel)]="SerialNo" name="SerialNoVal"></ion-input>\n\n        </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ purchase_date }}. </ion-label>\n\n            <ion-datetime displayFormat="YYYY/MM/DD" placeholder="YYYY-MM-DD" [(ngModel)]="PurchaseDate" name="PDateVal"></ion-datetime>\n\n          </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ description }}. </ion-label>\n\n            <ion-input type="text" placeholder="Please enter vehicle description here" [(ngModel)]="Description" name="DescriptionVal"></ion-input>\n\n          </ion-item>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n  </form>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n  <button ion-button full (click) = "AddVehicle()">{{ add }}</button>\n\n  </ion-toolbar>\n\n  </ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/,
+            selector: 'page-addvehicle',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/addvehicle/addvehicle.html"*/'<!--\n\n  Generated template for the AddvehiclePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title padding-top>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content class="outer-content">\n\n  <form (ngsubmit)="AddVehicle()">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        {{ vehicle_type }}: {{ SelVeh }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-segment [(ngModel)]="SelVeh" name="VehicleType" (ionChange)="showOthrVType()">\n\n          <ion-segment-button value="Excavator">\n\n            <ion-icon name="custom-excavator2" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Compactor">\n\n            <ion-icon name="custom-dozer" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Loader">\n\n            <ion-icon name="custom-shovel" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Truck">\n\n              <ion-icon name="custom-truck" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <!-- <ion-segment-button value="Others">\n\n              Othrs\n\n          </ion-segment-button> -->\n\n        </ion-segment>\n\n        <ion-input type="text" placeholder="Vehicle Type" *ngIf="VehTypeTb" [(ngModel)]="OthrVehType" name="OthrVehTypeVal"></ion-input>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n        <ion-card-header>\n\n          {{ manufacturer }} : {{ SelManu }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">\n\n            <ion-segment-button value="Volvo">\n\n                <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Hyundai">\n\n                <ion-img src="assets/imgs/hyundai.png" class="center_hyundai_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Doosan">\n\n                <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Komatsu">\n\n                <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Others">\n\n                Others\n\n            </ion-segment-button>\n\n          </ion-segment>\n\n          <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n      <ion-card-header>{{ vehicle_details }}</ion-card-header>\n\n      <ion-card-content>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ model_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. EC250" [(ngModel)]="ModelNo" name="ModelNoVal"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ serial_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. 987123" [(ngModel)]="SerialNo" name="SerialNoVal"></ion-input>\n\n        </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ purchase_date }}. </ion-label>\n\n            <ion-datetime displayFormat="YYYY/MM/DD" placeholder="YYYY-MM-DD" [(ngModel)]="PurchaseDate" name="PDateVal"></ion-datetime>\n\n          </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ description }}. </ion-label>\n\n            <ion-input type="text" placeholder="Please enter vehicle description here" [(ngModel)]="Description" name="DescriptionVal"></ion-input>\n\n          </ion-item>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n  </form>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n  <button ion-button full (click) = "AddVehicle()">{{ add }}</button>\n\n  </ion-toolbar>\n\n  </ion-footer>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/addvehicle/addvehicle.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -3613,21 +4014,22 @@ var AddvehiclePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 467:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatorsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_auth__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_viewoperator_viewoperator__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_viewoperator_viewoperator__ = __webpack_require__(471);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_facebook__ = __webpack_require__(156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3647,8 +4049,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OperatorsPage = /** @class */ (function () {
-    function OperatorsPage(navCtrl, http, authService, navParams, appprov, modal, storage, _kakaoCordovaSDK, loadingCtrl, _translate) {
+    function OperatorsPage(navCtrl, http, authService, navParams, appprov, modal, storage, _kakaoCordovaSDK, facebookNative, loadingCtrl, _translate) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.http = http;
@@ -3658,6 +4061,7 @@ var OperatorsPage = /** @class */ (function () {
         this.modal = modal;
         this.storage = storage;
         this._kakaoCordovaSDK = _kakaoCordovaSDK;
+        this.facebookNative = facebookNative;
         this.loadingCtrl = loadingCtrl;
         this._translate = _translate;
         storage.ready().then(function () {
@@ -3814,6 +4218,18 @@ var OperatorsPage = /** @class */ (function () {
             _this.loading.dismiss();
         });
     };
+    OperatorsPage.prototype.fbShare = function () {
+        var _this = this;
+        this.showLoader();
+        var OTP;
+        this.appprov.MakeOTP(this.access_token).then(function (res) {
+            console.log(res);
+            OTP = res.otp;
+            console.log('i am using this' + OTP);
+            console.log("Going to Facebook invite api");
+            _this.loading.dismiss();
+        });
+    };
     OperatorsPage.prototype.showLoader = function () {
         this.loading = this.loadingCtrl.create({
             content: 'Loading...'
@@ -3822,7 +4238,7 @@ var OperatorsPage = /** @class */ (function () {
     };
     OperatorsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operators',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operators\operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 83%"> {{ add_operator }}</button>\n\n    <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operators\operators.html"*/
+            selector: 'page-operators',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 83%"> {{ add_operator }}</button>\n\n    <!-- <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom"> -->\n\n    <img src="assets/imgs/facebook.png" style="width:40px; height:40px" (click)="fbShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
@@ -3832,6 +4248,7 @@ var OperatorsPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
             __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__["b" /* KakaoCordovaSDK */],
+            __WEBPACK_IMPORTED_MODULE_10__ionic_native_facebook__["a" /* Facebook */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["c" /* TranslateService */]])
     ], OperatorsPage);
@@ -3842,19 +4259,19 @@ var OperatorsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 468:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewoperatorPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_chart_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_app__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4204,7 +4621,7 @@ var ViewoperatorPage = /** @class */ (function () {
     ], ViewoperatorPage.prototype, "doughnutCanvas4", void 0);
     ViewoperatorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewoperator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/,
+            selector: 'page-viewoperator',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/viewoperator/viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This page is to the owner\'s operator tab to view the individual operator work details -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/viewoperator/viewoperator.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_app_app__["a" /* AppProvider */],
@@ -4220,22 +4637,22 @@ var ViewoperatorPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 469:
+/***/ 472:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_chart_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4708,7 +5125,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "barCanvasOperatorUsage", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/home/home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
@@ -4727,21 +5144,21 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 470:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JobsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addjob_addjob__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addjob_addjob__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_jobinfo_jobinfo__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_android_permissions__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_jobinfo_jobinfo__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_android_permissions__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4882,6 +5299,7 @@ var JobsPage = /** @class */ (function () {
     };
     JobsPage.prototype.retrieveOngoingJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrieveOngoingJobs(this.access_token).then(function (res) {
             _this.ongoing = res;
             _this.ongoingJid = _this.ongoing.jid;
@@ -4892,6 +5310,9 @@ var JobsPage = /** @class */ (function () {
             _this.ongoing_location = _this.ongoing.location;
             _this.ongoing_payout = _this.ongoing.payout;
             _this.ongoingJobs = [];
+            for (var i = 0; i < _this.ongoingTitle.length; i++) {
+                totalPayout += parseInt(_this.ongoing.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.ongoingTitle.length; i++) {
                     _this.ongoingJobs.push({
@@ -4909,12 +5330,14 @@ var JobsPage = /** @class */ (function () {
                 console.log("Ongoing job cannot retrieve length");
             }
             console.log("Ongoing jobs pushed");
+            console.log("Total Ongoing Payout: " + totalPayout);
         }, function (err) {
             console.log(err);
         });
     };
     JobsPage.prototype.retrieveUpcomingJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrieveUpcomingJobs(this.access_token).then(function (res) {
             _this.upcoming = res;
             _this.upcomingJid = _this.upcoming.jid;
@@ -4925,6 +5348,9 @@ var JobsPage = /** @class */ (function () {
             _this.upcoming_location = _this.upcoming.location;
             _this.upcoming_payout = _this.upcoming.payout;
             _this.upcomingJobs = [];
+            for (var i = 0; i < _this.upcomingTitle.length; i++) {
+                totalPayout += parseInt(_this.upcoming.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.upcomingTitle.length; i++) {
                     _this.upcomingJobs.push({
@@ -4942,6 +5368,7 @@ var JobsPage = /** @class */ (function () {
                 console.log("Upcoming Job cannot retrieve length");
             }
             console.log("Upcoming job pushed");
+            console.log("Total Upcoming Payout: " + totalPayout);
         }, function (err) {
             console.log(err);
         });
@@ -5017,7 +5444,7 @@ var JobsPage = /** @class */ (function () {
     };
     JobsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-Jobs',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/
+            selector: 'page-Jobs',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/jobs/jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This is for Job Management tab page -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/jobs/jobs.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -5036,23 +5463,23 @@ var JobsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 471:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OpjobdetailsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_path__ = __webpack_require__(473);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_geolocation__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_path__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_geolocation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5355,7 +5782,7 @@ var OpjobdetailsPage = /** @class */ (function () {
     };
     OpjobdetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-opjobdetails',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{JobTitle}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row justify-content:center>\n\n      <ion-col>\n\n          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <button ion-button full (click)="presentAS()">\n\n              <ion-icon name="camera"></ion-icon>{{ take_photo }}\n\n            </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults">\n\n            <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>\n\n          </ion-select>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button full (click)="UploadImg()">\n\n      {{ submit }}\n\n    </button>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/,
+            selector: 'page-opjobdetails',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/opjobdetails/opjobdetails.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{JobTitle}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row justify-content:center>\n\n      <ion-col>\n\n          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <button ion-button full (click)="presentAS()">\n\n              <ion-icon name="camera"></ion-icon>{{ take_photo }}\n\n            </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults">\n\n            <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>\n\n          </ion-select>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button full (click)="UploadImg()">\n\n      {{ submit }}\n\n    </button>\n\n</ion-footer>'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/opjobdetails/opjobdetails.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -5379,12 +5806,12 @@ var OpjobdetailsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 515:
+/***/ 518:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JoblistsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5452,7 +5879,7 @@ var JoblistsPage = /** @class */ (function () {
     };
     JoblistsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-joblists',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\joblists\joblists.html"*/'\n\n<ion-content padding class = "list-avatar-page">\n\n    <div style="font-size: 2em">{{ mode }}</div>\n\n    <ion-list *ngFor="let job of jobs; let i = index" (click) = "itemTapped($event,job)">\n\n      <ion-list-header class="listHeader">\n\n        <b>{{jobs[i][0]}}</b>\n\n        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->\n\n      <br/> \n\n        <ion-icon name="pin"></ion-icon> {{jobs[i][1]}}\n\n        <ion-note float-right>{{jobs[i][2]}} Won</ion-note>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let opveh of jobs[i][3]" class="listHeader">\n\n        <ion-avatar item-start>\n\n            <ion-img src={{opveh.opimg}}></ion-img> \n\n            <ion-icon name={{opveh.vehtype}} color="dark"></ion-icon>\n\n        </ion-avatar>\n\n        <p>{{opveh.opname}}</p>\n\n        <p item-end>{{opveh.oppay}} Won</p>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\joblists\joblists.html"*/,
+            selector: 'page-joblists',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/joblists/joblists.html"*/'\n\n<ion-content padding class = "list-avatar-page">\n\n    <div style="font-size: 2em">{{ mode }}</div>\n\n    <ion-list *ngFor="let job of jobs; let i = index" (click) = "itemTapped($event,job)">\n\n      <ion-list-header class="listHeader">\n\n        <b>{{jobs[i][0]}}</b>\n\n        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->\n\n      <br/> \n\n        <ion-icon name="pin"></ion-icon> {{jobs[i][1]}}\n\n        <ion-note float-right>{{jobs[i][2]}} Won</ion-note>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let opveh of jobs[i][3]" class="listHeader">\n\n        <ion-avatar item-start>\n\n            <ion-img src={{opveh.opimg}}></ion-img> \n\n            <ion-icon name={{opveh.vehtype}} color="dark"></ion-icon>\n\n        </ion-avatar>\n\n        <p>{{opveh.opname}}</p>\n\n        <p item-end>{{opveh.oppay}} Won</p>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/joblists/joblists.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
     ], JoblistsPage);
@@ -5463,13 +5890,13 @@ var JoblistsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(524);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -5477,54 +5904,57 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 521:
+/***/ 524:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export HttpLoaderFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(892);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(473);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_android_permissions__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_updatecapop_updatecapop__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_fleets_fleets__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_operators_operators__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(469);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_operatorstabs_operatorstabs__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_operatorhome_operatorhome__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_operatorjob_operatorjob__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_otp_operator_otp_operator__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_status_bar__ = __webpack_require__(513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_splash_screen__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_android_permissions__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_updatecapop_updatecapop__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_fleets_fleets__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_operators_operators__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_operatorstabs_operatorstabs__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_operatorhome_operatorhome__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_operatorjob_operatorjob__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_otp_operator_otp_operator__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_status_bar__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_splash_screen__ = __webpack_require__(517);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_auth_auth__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_jobs_jobs__ = __webpack_require__(470);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_joblists_joblists__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_fleet_info_fleet_info__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_addvehicle_addvehicle__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_addjob_addjob__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_viewoperator_viewoperator__ = __webpack_require__(468);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_jobinfo_jobinfo__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_createcompany_createcompany__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_editjob_editjob__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__angular_http__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__angular_common_http__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ionic2_calendar__ = __webpack_require__(893);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_app_app__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_geolocation__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__ngx_translate_core__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ngx_translate_http_loader__ = __webpack_require__(904);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_kakao_sdk__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_login_kk_login_kk__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_register_register__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_jobs_jobs__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_joblists_joblists__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_fleet_info_fleet_info__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_addvehicle_addvehicle__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_addjob_addjob__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pages_viewoperator_viewoperator__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_jobinfo_jobinfo__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_createcompany_createcompany__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_editjob_editjob__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__angular_http__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__angular_common_http__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_ionic2_calendar__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__providers_app_app__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_geolocation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__ngx_translate_core__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ngx_translate_http_loader__ = __webpack_require__(907);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_kakao_sdk__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__ionic_native_facebook__ = __webpack_require__(156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5573,8 +6003,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
 function HttpLoaderFactory(http) {
-    return new __WEBPACK_IMPORTED_MODULE_40__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, "./assets/i18n/", ".json");
+    return new __WEBPACK_IMPORTED_MODULE_42__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, "./assets/i18n/", ".json");
 }
 /*actual main module file of Angular that will be presented in browser*/
 var AppModule = /** @class */ (function () {
@@ -5590,18 +6023,20 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_15__pages_operatorstabs_operatorstabs__["a" /* OperatorstabsPage */],
                 __WEBPACK_IMPORTED_MODULE_23__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_jobs_jobs__["a" /* JobsPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_fleet_info_fleet_info__["a" /* FleetInfoPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_addvehicle_addvehicle__["a" /* AddvehiclePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_joblists_joblists__["a" /* JoblistsPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_addjob_addjob__["a" /* AddjobPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_viewoperator_viewoperator__["a" /* ViewoperatorPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_jobinfo_jobinfo__["a" /* JobinfoPage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_createcompany_createcompany__["a" /* CreatecompanyPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_login_kk_login_kk__["a" /* LoginKkPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_register_register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_jobs_jobs__["a" /* JobsPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_fleet_info_fleet_info__["a" /* FleetInfoPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_addvehicle_addvehicle__["a" /* AddvehiclePage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_joblists_joblists__["a" /* JoblistsPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_addjob_addjob__["a" /* AddjobPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_viewoperator_viewoperator__["a" /* ViewoperatorPage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_jobinfo_jobinfo__["a" /* JobinfoPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_createcompany_createcompany__["a" /* CreatecompanyPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_operatorhome_operatorhome__["a" /* OperatorhomePage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_operatorjob_operatorjob__["a" /* OperatorjobPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__["a" /* OpjobdetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_editjob_editjob__["a" /* EditjobPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_editjob_editjob__["a" /* EditjobPage */],
                 __WEBPACK_IMPORTED_MODULE_19__pages_otp_operator_otp_operator__["a" /* OtpOperatorPage */],
                 __WEBPACK_IMPORTED_MODULE_10__pages_updatecapop_updatecapop__["a" /* UpdatecapopPage */]
             ],
@@ -5618,25 +6053,27 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/createcompany/createcompany.module#CreatecompanyPageModule', name: 'CreatecompanyPage', segment: 'createcompany', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-maintenance/edit-maintenance.module#EditMaintenancePageModule', name: 'EditMaintenancePage', segment: 'edit-maintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/joblists/joblists.module#JoblistsPageModule', name: 'JoblistsPage', segment: 'joblists', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operatorjob/operatorjob.module#OperatorjobPageModule', name: 'OperatorjobPage', segment: 'operatorjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/otp-operator/otp-operator.module#OtpOperatorPageModule', name: 'OtpOperatorPage', segment: 'otp-operator', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/updatecapop/updatecapop.module#UpdatecapopPageModule', name: 'UpdatecapopPage', segment: 'updatecapop', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addjob/addjob.module#AddjobPageModule', name: 'AddjobPage', segment: 'addjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/editjob/editjob.module#EditjobPageModule', name: 'EditjobPage', segment: 'editjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/jobinfo/jobinfo.module#JobinfoPageModule', name: 'JobinfoPage', segment: 'jobinfo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login-kk/login-kk.module#LoginKkPageModule', name: 'LoginKkPage', segment: 'login-kk', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/operatorjob/operatorjob.module#OperatorjobPageModule', name: 'OperatorjobPage', segment: 'operatorjob', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_33__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_34__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_35__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_36_ionic2_calendar__["a" /* NgCalendarModule */],
-                __WEBPACK_IMPORTED_MODULE_39__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                __WEBPACK_IMPORTED_MODULE_35__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_36__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_37__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_38_ionic2_calendar__["a" /* NgCalendarModule */],
+                __WEBPACK_IMPORTED_MODULE_41__ngx_translate_core__["b" /* TranslateModule */].forRoot({
                     loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_39__ngx_translate_core__["a" /* TranslateLoader */],
+                        provide: __WEBPACK_IMPORTED_MODULE_41__ngx_translate_core__["a" /* TranslateLoader */],
                         useFactory: HttpLoaderFactory,
-                        deps: [__WEBPACK_IMPORTED_MODULE_35__angular_common_http__["a" /* HttpClient */]]
+                        deps: [__WEBPACK_IMPORTED_MODULE_37__angular_common_http__["a" /* HttpClient */]]
                     }
                 })
             ],
@@ -5650,18 +6087,20 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_15__pages_operatorstabs_operatorstabs__["a" /* OperatorstabsPage */],
                 __WEBPACK_IMPORTED_MODULE_23__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pages_jobs_jobs__["a" /* JobsPage */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_fleet_info_fleet_info__["a" /* FleetInfoPage */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_addvehicle_addvehicle__["a" /* AddvehiclePage */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_joblists_joblists__["a" /* JoblistsPage */],
-                __WEBPACK_IMPORTED_MODULE_28__pages_addjob_addjob__["a" /* AddjobPage */],
-                __WEBPACK_IMPORTED_MODULE_29__pages_viewoperator_viewoperator__["a" /* ViewoperatorPage */],
-                __WEBPACK_IMPORTED_MODULE_30__pages_jobinfo_jobinfo__["a" /* JobinfoPage */],
-                __WEBPACK_IMPORTED_MODULE_31__pages_createcompany_createcompany__["a" /* CreatecompanyPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_login_kk_login_kk__["a" /* LoginKkPage */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_register_register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_26__pages_jobs_jobs__["a" /* JobsPage */],
+                __WEBPACK_IMPORTED_MODULE_28__pages_fleet_info_fleet_info__["a" /* FleetInfoPage */],
+                __WEBPACK_IMPORTED_MODULE_29__pages_addvehicle_addvehicle__["a" /* AddvehiclePage */],
+                __WEBPACK_IMPORTED_MODULE_27__pages_joblists_joblists__["a" /* JoblistsPage */],
+                __WEBPACK_IMPORTED_MODULE_30__pages_addjob_addjob__["a" /* AddjobPage */],
+                __WEBPACK_IMPORTED_MODULE_31__pages_viewoperator_viewoperator__["a" /* ViewoperatorPage */],
+                __WEBPACK_IMPORTED_MODULE_32__pages_jobinfo_jobinfo__["a" /* JobinfoPage */],
+                __WEBPACK_IMPORTED_MODULE_33__pages_createcompany_createcompany__["a" /* CreatecompanyPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_operatorhome_operatorhome__["a" /* OperatorhomePage */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_operatorjob_operatorjob__["a" /* OperatorjobPage */],
                 __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__["a" /* OpjobdetailsPage */],
-                __WEBPACK_IMPORTED_MODULE_32__pages_editjob_editjob__["a" /* EditjobPage */],
+                __WEBPACK_IMPORTED_MODULE_34__pages_editjob_editjob__["a" /* EditjobPage */],
                 __WEBPACK_IMPORTED_MODULE_19__pages_otp_operator_otp_operator__["a" /* OtpOperatorPage */],
                 __WEBPACK_IMPORTED_MODULE_10__pages_updatecapop_updatecapop__["a" /* UpdatecapopPage */]
             ],
@@ -5670,15 +6109,16 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_21__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_android_permissions__["a" /* AndroidPermissions */],
-                __WEBPACK_IMPORTED_MODULE_38__ionic_native_geolocation__["a" /* Geolocation */],
+                __WEBPACK_IMPORTED_MODULE_40__ionic_native_geolocation__["a" /* Geolocation */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_22__providers_auth_auth__["a" /* AuthProvider */],
-                __WEBPACK_IMPORTED_MODULE_37__providers_app_app__["a" /* AppProvider */],
+                __WEBPACK_IMPORTED_MODULE_39__providers_app_app__["a" /* AppProvider */],
                 __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_41_kakao_sdk__["b" /* KakaoCordovaSDK */],
+                __WEBPACK_IMPORTED_MODULE_43_kakao_sdk__["b" /* KakaoCordovaSDK */],
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__["a" /* FileTransfer */],
-                __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__["a" /* FilePath */]
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__["a" /* FilePath */],
+                __WEBPACK_IMPORTED_MODULE_44__ionic_native_facebook__["a" /* Facebook */]
             ]
         })
     ], AppModule);
@@ -5694,10 +6134,10 @@ var AppModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_apiurls_serverurls_js__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_apiurls_serverurls_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5824,256 +6264,256 @@ var AuthProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 576:
+/***/ 579:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 252,
-	"./af.js": 252,
-	"./ar": 253,
-	"./ar-dz": 254,
-	"./ar-dz.js": 254,
-	"./ar-kw": 255,
-	"./ar-kw.js": 255,
-	"./ar-ly": 256,
-	"./ar-ly.js": 256,
-	"./ar-ma": 257,
-	"./ar-ma.js": 257,
-	"./ar-sa": 258,
-	"./ar-sa.js": 258,
-	"./ar-tn": 259,
-	"./ar-tn.js": 259,
-	"./ar.js": 253,
-	"./az": 260,
-	"./az.js": 260,
-	"./be": 261,
-	"./be.js": 261,
-	"./bg": 262,
-	"./bg.js": 262,
-	"./bm": 263,
-	"./bm.js": 263,
-	"./bn": 264,
-	"./bn.js": 264,
-	"./bo": 265,
-	"./bo.js": 265,
-	"./br": 266,
-	"./br.js": 266,
-	"./bs": 267,
-	"./bs.js": 267,
-	"./ca": 268,
-	"./ca.js": 268,
-	"./cs": 269,
-	"./cs.js": 269,
-	"./cv": 270,
-	"./cv.js": 270,
-	"./cy": 271,
-	"./cy.js": 271,
-	"./da": 272,
-	"./da.js": 272,
-	"./de": 273,
-	"./de-at": 274,
-	"./de-at.js": 274,
-	"./de-ch": 275,
-	"./de-ch.js": 275,
-	"./de.js": 273,
-	"./dv": 276,
-	"./dv.js": 276,
-	"./el": 277,
-	"./el.js": 277,
-	"./en-au": 278,
-	"./en-au.js": 278,
-	"./en-ca": 279,
-	"./en-ca.js": 279,
-	"./en-gb": 280,
-	"./en-gb.js": 280,
-	"./en-ie": 281,
-	"./en-ie.js": 281,
-	"./en-il": 282,
-	"./en-il.js": 282,
-	"./en-nz": 283,
-	"./en-nz.js": 283,
-	"./eo": 284,
-	"./eo.js": 284,
-	"./es": 285,
-	"./es-do": 286,
-	"./es-do.js": 286,
-	"./es-us": 287,
-	"./es-us.js": 287,
-	"./es.js": 285,
-	"./et": 288,
-	"./et.js": 288,
-	"./eu": 289,
-	"./eu.js": 289,
-	"./fa": 290,
-	"./fa.js": 290,
-	"./fi": 291,
-	"./fi.js": 291,
-	"./fo": 292,
-	"./fo.js": 292,
-	"./fr": 293,
-	"./fr-ca": 294,
-	"./fr-ca.js": 294,
-	"./fr-ch": 295,
-	"./fr-ch.js": 295,
-	"./fr.js": 293,
-	"./fy": 296,
-	"./fy.js": 296,
-	"./gd": 297,
-	"./gd.js": 297,
-	"./gl": 298,
-	"./gl.js": 298,
-	"./gom-latn": 299,
-	"./gom-latn.js": 299,
-	"./gu": 300,
-	"./gu.js": 300,
-	"./he": 301,
-	"./he.js": 301,
-	"./hi": 302,
-	"./hi.js": 302,
-	"./hr": 303,
-	"./hr.js": 303,
-	"./hu": 304,
-	"./hu.js": 304,
-	"./hy-am": 305,
-	"./hy-am.js": 305,
-	"./id": 306,
-	"./id.js": 306,
-	"./is": 307,
-	"./is.js": 307,
-	"./it": 308,
-	"./it.js": 308,
-	"./ja": 309,
-	"./ja.js": 309,
-	"./jv": 310,
-	"./jv.js": 310,
-	"./ka": 311,
-	"./ka.js": 311,
-	"./kk": 312,
-	"./kk.js": 312,
-	"./km": 313,
-	"./km.js": 313,
-	"./kn": 314,
-	"./kn.js": 314,
-	"./ko": 315,
-	"./ko.js": 315,
-	"./ky": 316,
-	"./ky.js": 316,
-	"./lb": 317,
-	"./lb.js": 317,
-	"./lo": 318,
-	"./lo.js": 318,
-	"./lt": 319,
-	"./lt.js": 319,
-	"./lv": 320,
-	"./lv.js": 320,
-	"./me": 321,
-	"./me.js": 321,
-	"./mi": 322,
-	"./mi.js": 322,
-	"./mk": 323,
-	"./mk.js": 323,
-	"./ml": 324,
-	"./ml.js": 324,
-	"./mn": 325,
-	"./mn.js": 325,
-	"./mr": 326,
-	"./mr.js": 326,
-	"./ms": 327,
-	"./ms-my": 328,
-	"./ms-my.js": 328,
-	"./ms.js": 327,
-	"./mt": 329,
-	"./mt.js": 329,
-	"./my": 330,
-	"./my.js": 330,
-	"./nb": 331,
-	"./nb.js": 331,
-	"./ne": 332,
-	"./ne.js": 332,
-	"./nl": 333,
-	"./nl-be": 334,
-	"./nl-be.js": 334,
-	"./nl.js": 333,
-	"./nn": 335,
-	"./nn.js": 335,
-	"./pa-in": 336,
-	"./pa-in.js": 336,
-	"./pl": 337,
-	"./pl.js": 337,
-	"./pt": 338,
-	"./pt-br": 339,
-	"./pt-br.js": 339,
-	"./pt.js": 338,
-	"./ro": 340,
-	"./ro.js": 340,
-	"./ru": 341,
-	"./ru.js": 341,
-	"./sd": 342,
-	"./sd.js": 342,
-	"./se": 343,
-	"./se.js": 343,
-	"./si": 344,
-	"./si.js": 344,
-	"./sk": 345,
-	"./sk.js": 345,
-	"./sl": 346,
-	"./sl.js": 346,
-	"./sq": 347,
-	"./sq.js": 347,
-	"./sr": 348,
-	"./sr-cyrl": 349,
-	"./sr-cyrl.js": 349,
-	"./sr.js": 348,
-	"./ss": 350,
-	"./ss.js": 350,
-	"./sv": 351,
-	"./sv.js": 351,
-	"./sw": 352,
-	"./sw.js": 352,
-	"./ta": 353,
-	"./ta.js": 353,
-	"./te": 354,
-	"./te.js": 354,
-	"./tet": 355,
-	"./tet.js": 355,
-	"./tg": 356,
-	"./tg.js": 356,
-	"./th": 357,
-	"./th.js": 357,
-	"./tl-ph": 358,
-	"./tl-ph.js": 358,
-	"./tlh": 359,
-	"./tlh.js": 359,
-	"./tr": 360,
-	"./tr.js": 360,
-	"./tzl": 361,
-	"./tzl.js": 361,
-	"./tzm": 362,
-	"./tzm-latn": 363,
-	"./tzm-latn.js": 363,
-	"./tzm.js": 362,
-	"./ug-cn": 364,
-	"./ug-cn.js": 364,
-	"./uk": 365,
-	"./uk.js": 365,
-	"./ur": 366,
-	"./ur.js": 366,
-	"./uz": 367,
-	"./uz-latn": 368,
-	"./uz-latn.js": 368,
-	"./uz.js": 367,
-	"./vi": 369,
-	"./vi.js": 369,
-	"./x-pseudo": 370,
-	"./x-pseudo.js": 370,
-	"./yo": 371,
-	"./yo.js": 371,
-	"./zh-cn": 372,
-	"./zh-cn.js": 372,
-	"./zh-hk": 373,
-	"./zh-hk.js": 373,
-	"./zh-tw": 374,
-	"./zh-tw.js": 374
+	"./af": 255,
+	"./af.js": 255,
+	"./ar": 256,
+	"./ar-dz": 257,
+	"./ar-dz.js": 257,
+	"./ar-kw": 258,
+	"./ar-kw.js": 258,
+	"./ar-ly": 259,
+	"./ar-ly.js": 259,
+	"./ar-ma": 260,
+	"./ar-ma.js": 260,
+	"./ar-sa": 261,
+	"./ar-sa.js": 261,
+	"./ar-tn": 262,
+	"./ar-tn.js": 262,
+	"./ar.js": 256,
+	"./az": 263,
+	"./az.js": 263,
+	"./be": 264,
+	"./be.js": 264,
+	"./bg": 265,
+	"./bg.js": 265,
+	"./bm": 266,
+	"./bm.js": 266,
+	"./bn": 267,
+	"./bn.js": 267,
+	"./bo": 268,
+	"./bo.js": 268,
+	"./br": 269,
+	"./br.js": 269,
+	"./bs": 270,
+	"./bs.js": 270,
+	"./ca": 271,
+	"./ca.js": 271,
+	"./cs": 272,
+	"./cs.js": 272,
+	"./cv": 273,
+	"./cv.js": 273,
+	"./cy": 274,
+	"./cy.js": 274,
+	"./da": 275,
+	"./da.js": 275,
+	"./de": 276,
+	"./de-at": 277,
+	"./de-at.js": 277,
+	"./de-ch": 278,
+	"./de-ch.js": 278,
+	"./de.js": 276,
+	"./dv": 279,
+	"./dv.js": 279,
+	"./el": 280,
+	"./el.js": 280,
+	"./en-au": 281,
+	"./en-au.js": 281,
+	"./en-ca": 282,
+	"./en-ca.js": 282,
+	"./en-gb": 283,
+	"./en-gb.js": 283,
+	"./en-ie": 284,
+	"./en-ie.js": 284,
+	"./en-il": 285,
+	"./en-il.js": 285,
+	"./en-nz": 286,
+	"./en-nz.js": 286,
+	"./eo": 287,
+	"./eo.js": 287,
+	"./es": 288,
+	"./es-do": 289,
+	"./es-do.js": 289,
+	"./es-us": 290,
+	"./es-us.js": 290,
+	"./es.js": 288,
+	"./et": 291,
+	"./et.js": 291,
+	"./eu": 292,
+	"./eu.js": 292,
+	"./fa": 293,
+	"./fa.js": 293,
+	"./fi": 294,
+	"./fi.js": 294,
+	"./fo": 295,
+	"./fo.js": 295,
+	"./fr": 296,
+	"./fr-ca": 297,
+	"./fr-ca.js": 297,
+	"./fr-ch": 298,
+	"./fr-ch.js": 298,
+	"./fr.js": 296,
+	"./fy": 299,
+	"./fy.js": 299,
+	"./gd": 300,
+	"./gd.js": 300,
+	"./gl": 301,
+	"./gl.js": 301,
+	"./gom-latn": 302,
+	"./gom-latn.js": 302,
+	"./gu": 303,
+	"./gu.js": 303,
+	"./he": 304,
+	"./he.js": 304,
+	"./hi": 305,
+	"./hi.js": 305,
+	"./hr": 306,
+	"./hr.js": 306,
+	"./hu": 307,
+	"./hu.js": 307,
+	"./hy-am": 308,
+	"./hy-am.js": 308,
+	"./id": 309,
+	"./id.js": 309,
+	"./is": 310,
+	"./is.js": 310,
+	"./it": 311,
+	"./it.js": 311,
+	"./ja": 312,
+	"./ja.js": 312,
+	"./jv": 313,
+	"./jv.js": 313,
+	"./ka": 314,
+	"./ka.js": 314,
+	"./kk": 315,
+	"./kk.js": 315,
+	"./km": 316,
+	"./km.js": 316,
+	"./kn": 317,
+	"./kn.js": 317,
+	"./ko": 318,
+	"./ko.js": 318,
+	"./ky": 319,
+	"./ky.js": 319,
+	"./lb": 320,
+	"./lb.js": 320,
+	"./lo": 321,
+	"./lo.js": 321,
+	"./lt": 322,
+	"./lt.js": 322,
+	"./lv": 323,
+	"./lv.js": 323,
+	"./me": 324,
+	"./me.js": 324,
+	"./mi": 325,
+	"./mi.js": 325,
+	"./mk": 326,
+	"./mk.js": 326,
+	"./ml": 327,
+	"./ml.js": 327,
+	"./mn": 328,
+	"./mn.js": 328,
+	"./mr": 329,
+	"./mr.js": 329,
+	"./ms": 330,
+	"./ms-my": 331,
+	"./ms-my.js": 331,
+	"./ms.js": 330,
+	"./mt": 332,
+	"./mt.js": 332,
+	"./my": 333,
+	"./my.js": 333,
+	"./nb": 334,
+	"./nb.js": 334,
+	"./ne": 335,
+	"./ne.js": 335,
+	"./nl": 336,
+	"./nl-be": 337,
+	"./nl-be.js": 337,
+	"./nl.js": 336,
+	"./nn": 338,
+	"./nn.js": 338,
+	"./pa-in": 339,
+	"./pa-in.js": 339,
+	"./pl": 340,
+	"./pl.js": 340,
+	"./pt": 341,
+	"./pt-br": 342,
+	"./pt-br.js": 342,
+	"./pt.js": 341,
+	"./ro": 343,
+	"./ro.js": 343,
+	"./ru": 344,
+	"./ru.js": 344,
+	"./sd": 345,
+	"./sd.js": 345,
+	"./se": 346,
+	"./se.js": 346,
+	"./si": 347,
+	"./si.js": 347,
+	"./sk": 348,
+	"./sk.js": 348,
+	"./sl": 349,
+	"./sl.js": 349,
+	"./sq": 350,
+	"./sq.js": 350,
+	"./sr": 351,
+	"./sr-cyrl": 352,
+	"./sr-cyrl.js": 352,
+	"./sr.js": 351,
+	"./ss": 353,
+	"./ss.js": 353,
+	"./sv": 354,
+	"./sv.js": 354,
+	"./sw": 355,
+	"./sw.js": 355,
+	"./ta": 356,
+	"./ta.js": 356,
+	"./te": 357,
+	"./te.js": 357,
+	"./tet": 358,
+	"./tet.js": 358,
+	"./tg": 359,
+	"./tg.js": 359,
+	"./th": 360,
+	"./th.js": 360,
+	"./tl-ph": 361,
+	"./tl-ph.js": 361,
+	"./tlh": 362,
+	"./tlh.js": 362,
+	"./tr": 363,
+	"./tr.js": 363,
+	"./tzl": 364,
+	"./tzl.js": 364,
+	"./tzm": 365,
+	"./tzm-latn": 366,
+	"./tzm-latn.js": 366,
+	"./tzm.js": 365,
+	"./ug-cn": 367,
+	"./ug-cn.js": 367,
+	"./uk": 368,
+	"./uk.js": 368,
+	"./ur": 369,
+	"./ur.js": 369,
+	"./uz": 370,
+	"./uz-latn": 371,
+	"./uz-latn.js": 371,
+	"./uz.js": 370,
+	"./vi": 372,
+	"./vi.js": 372,
+	"./x-pseudo": 373,
+	"./x-pseudo.js": 373,
+	"./yo": 374,
+	"./yo.js": 374,
+	"./zh-cn": 375,
+	"./zh-cn.js": 375,
+	"./zh-hk": 376,
+	"./zh-hk.js": 376,
+	"./zh-tw": 377,
+	"./zh-tw.js": 377
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -6089,23 +6529,102 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 576;
+webpackContext.id = 579;
 
 /***/ }),
 
-/***/ 892:
+/***/ 68:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//Production on AWS - Public DNS
+//export const apiKey = 'http://18.222.185.105/'
+
+//Testing on local pc - Jeremy IPv4 address
+//export const apiKey = 'http://192.168.8.100:8000/'
+
+const apiKey = 'http://18.216.233.84/'
+/* harmony export (immutable) */ __webpack_exports__["a"] = apiKey;
+
+
+/***/ }),
+
+/***/ 70:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fleets_fleets__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_operators__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var TabsPage = /** @class */ (function () {
+    function TabsPage(_translate) {
+        this._translate = _translate;
+        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__fleets_fleets__["a" /* FleetsPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__operators_operators__["a" /* OperatorsPage */];
+        this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__["a" /* JobsPage */];
+        this._initializeTranslation();
+    }
+    TabsPage.prototype.ionViewDidEnter = function () {
+        this._initializeTranslation();
+    };
+    TabsPage.prototype.changeLanguage = function () {
+        this._translateLanguage();
+    };
+    TabsPage.prototype._translateLanguage = function () {
+        this._translate.use(this.language);
+        this._initializeTranslation();
+    };
+    TabsPage.prototype._initializeTranslation = function () {
+        this.home = this._translate.instant("tabs.home");
+        this.fleets = this._translate.instant("tabs.fleets");
+        this.operators = this._translate.instant("tabs.operators");
+        this.jobs = this._translate.instant("tabs.jobs");
+    };
+    TabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/tabs/tabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Root" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Root" tabIcon="custom-excavator"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab3Root" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab4Root" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n<!--sets the tabs on screen/app-->'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/tabs/tabs.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
+    ], TabsPage);
+    return TabsPage;
+}());
+
+//# sourceMappingURL=tabs.js.map
+
+/***/ }),
+
+/***/ 895:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(517);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6160,7 +6679,7 @@ var MyApp = /** @class */ (function () {
         // }
     };
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n<!--ionic navigation controller. will connect to the file/page that links the nav which is ion-navbar-->\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n<!--ionic navigation controller. will connect to the file/page that links the nav which is ion-navbar-->\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
@@ -6176,75 +6695,12 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 897:
+/***/ 900:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
-/***/ }),
-
-/***/ 90:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fleets_fleets__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_operators__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(469);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__ = __webpack_require__(470);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var TabsPage = /** @class */ (function () {
-    function TabsPage(_translate) {
-        this._translate = _translate;
-        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__fleets_fleets__["a" /* FleetsPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__operators_operators__["a" /* OperatorsPage */];
-        this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__["a" /* JobsPage */];
-        this._initializeTranslation();
-    }
-    TabsPage.prototype.ionViewDidEnter = function () {
-        this._initializeTranslation();
-    };
-    TabsPage.prototype.changeLanguage = function () {
-        this._translateLanguage();
-    };
-    TabsPage.prototype._translateLanguage = function () {
-        this._translate.use(this.language);
-        this._initializeTranslation();
-    };
-    TabsPage.prototype._initializeTranslation = function () {
-        this.home = this._translate.instant("tabs.home");
-        this.fleets = this._translate.instant("tabs.fleets");
-        this.operators = this._translate.instant("tabs.operators");
-        this.jobs = this._translate.instant("tabs.jobs");
-    };
-    TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Root" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Root" tabIcon="custom-excavator"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab3Root" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab4Root" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n<!--sets the tabs on screen/app-->'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\tabs\tabs.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
-    ], TabsPage);
-    return TabsPage;
-}());
-
-//# sourceMappingURL=tabs.js.map
-
 /***/ })
 
-},[516]);
+},[519]);
 //# sourceMappingURL=main.js.map

@@ -4,6 +4,7 @@
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
+    <preference name="loadUrlTimeoutValue" value="50000" />
     <access origin="*" />
     <allow-intent href="*" />
     <allow-navigation href="*" />
@@ -117,6 +118,13 @@
     <plugin name="cordova-plugin-kakao-sdk" spec="^2.1.4">
         <variable name="KAKAO_APP_KEY" value="50b41b005e41e57d2fb3423bb8a9019d" />
     </plugin>
-    <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-plugin-facebook4" spec="4.2.1">
+        <variable name="APP_ID" value="2249231348693264" />
+        <variable name="APP_NAME" value="Construct EQ" />
+        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
+    </plugin>
+    <engine name="ios" spec="4.5.5" />
+    <engine name="android" spec="^6.3.0" />
     <engine name="browser" spec="5.0.4" />
 </widget>
