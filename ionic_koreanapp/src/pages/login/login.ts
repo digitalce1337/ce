@@ -195,7 +195,7 @@ export class LoginPage {
         this.showAlert(res.status);
       }
     }).catch(e => {
-      console.log('Error logging into Facebook', e)
+      console.log('Error logging into Facebook:', e)
     });
 
     this.loading.dismiss();

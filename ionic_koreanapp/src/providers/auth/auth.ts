@@ -120,7 +120,7 @@ export class AuthProvider {
     return new Promise(resolve =>{
       this.http.get(apiKey + 'getUserInfo?access_token=' + AToken).subscribe(data => {
         resolve (data);
-      }, err =>{
+      }, err => {
         console.log("error in auth getuserinfo");
         console.log(err);
       })

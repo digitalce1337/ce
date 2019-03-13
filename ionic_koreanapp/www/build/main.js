@@ -1935,7 +1935,7 @@ var UpdatecapopPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__opjobdetails_opjobdetails__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__opjobdetails_opjobdetails__ = __webpack_require__(475);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3018,63 +3018,63 @@ var AppProvider = /** @class */ (function () {
 
 var map = {
 	"../pages/add-maintenance/add-maintenance.module": [
-		908,
+		909,
 		2
 	],
 	"../pages/addjob/addjob.module": [
-		916,
+		917,
 		14
 	],
 	"../pages/addoperator/addoperator.module": [
-		909,
+		910,
 		1
 	],
 	"../pages/createcompany/createcompany.module": [
-		910,
+		911,
 		13
 	],
 	"../pages/edit-maintenance/edit-maintenance.module": [
-		911,
+		912,
 		0
 	],
 	"../pages/editjob/editjob.module": [
-		917,
+		918,
 		12
 	],
 	"../pages/jobinfo/jobinfo.module": [
-		918,
+		919,
 		11
 	],
 	"../pages/joblists/joblists.module": [
-		912,
+		913,
 		10
 	],
 	"../pages/login-kk/login-kk.module": [
-		919,
+		920,
 		9
 	],
 	"../pages/login/login.module": [
-		920,
+		921,
 		8
 	],
 	"../pages/operatorhome/operatorhome.module": [
-		921,
+		922,
 		7
 	],
 	"../pages/operatorjob/operatorjob.module": [
-		922,
+		923,
 		6
 	],
 	"../pages/otp-operator/otp-operator.module": [
-		913,
+		914,
 		5
 	],
 	"../pages/register/register.module": [
-		914,
+		915,
 		4
 	],
 	"../pages/updatecapop/updatecapop.module": [
-		915,
+		916,
 		3
 	]
 };
@@ -3797,7 +3797,7 @@ var LoginPage = /** @class */ (function () {
                 _this.showAlert(res.status);
             }
         }).catch(function (e) {
-            console.log('Error logging into Facebook', e);
+            console.log('Error logging into Facebook:', e);
         });
         this.loading.dismiss();
     };
@@ -4030,6 +4030,7 @@ var AddvehiclePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_facebook__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_social_sharing__ = __webpack_require__(472);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4050,8 +4051,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OperatorsPage = /** @class */ (function () {
-    function OperatorsPage(navCtrl, http, authService, navParams, appprov, modal, storage, _kakaoCordovaSDK, facebookNative, loadingCtrl, _translate) {
+    function OperatorsPage(navCtrl, http, authService, navParams, appprov, modal, storage, _kakaoCordovaSDK, facebookNative, loadingCtrl, _translate, socialSharing) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.http = http;
@@ -4064,6 +4066,7 @@ var OperatorsPage = /** @class */ (function () {
         this.facebookNative = facebookNative;
         this.loadingCtrl = loadingCtrl;
         this._translate = _translate;
+        this.socialSharing = socialSharing;
         storage.ready().then(function () {
         });
         storage.get('access_token').then(function (val) {
@@ -4225,8 +4228,56 @@ var OperatorsPage = /** @class */ (function () {
         this.appprov.MakeOTP(this.access_token).then(function (res) {
             console.log(res);
             OTP = res.otp;
-            console.log('i am using this' + OTP);
-            console.log("Going to Facebook invite api");
+            console.log('i am using this ' + OTP);
+            _this.socialSharing.canShareVia("com.facebook.katana")
+                .then(function (res) {
+                if (res == "OK") {
+                    console.log("canShareVia, with response- " + res);
+                    // this.socialSharing.shareViaFacebook("Share one awesome APP ConstructEQ for you.", "ConstructEQ", "http://play.google.com/store/apps/details?id=com.digitalce.digitalce")
+                    _this.socialSharing.shareViaFacebook(_this.downloadappmsg1 + ': ' + OTP + " " + _this.downloadappmsg2 + " " +
+                        'http://play.google.com/store/apps/details?id=com.digitalce.digitalce')
+                        .catch(function (ex) {
+                        console.log(ex);
+                    })
+                        .then(function (res) {
+                        console.log("shareViaFacebook: Success, with response- " + res);
+                    }, function (error) {
+                        console.log(error);
+                        _this.loading.dismiss();
+                    });
+                }
+            }, function (error) {
+                console.log(error);
+                _this.loading.dismiss();
+            });
+            _this.loading.dismiss();
+        });
+    };
+    OperatorsPage.prototype.emailShare = function () {
+        var _this = this;
+        this.showLoader();
+        var OTP;
+        this.appprov.MakeOTP(this.access_token).then(function (res) {
+            console.log(res);
+            OTP = res.otp;
+            console.log('i am using this ' + OTP);
+            // Check if sharing via email is supported
+            _this.socialSharing.canShareViaEmail()
+                .then(function (res) {
+                if (res == "OK") {
+                    console.log(res);
+                    // Share via email
+                    _this.socialSharing.shareViaEmail(_this.downloadappmsg1 + ': ' + OTP + " " + _this.downloadappmsg2 + " " +
+                        'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', _this.downloadappmsgtitle, ['recipient@example.org'])
+                        .then(function (res) {
+                        console.log("ShareViaEmail status: " + res);
+                    }, function (error) {
+                        console.log("ShareViaEmail error: " + error);
+                    });
+                }
+            }, function (error) {
+                console.log(error);
+            });
             _this.loading.dismiss();
         });
     };
@@ -4238,7 +4289,7 @@ var OperatorsPage = /** @class */ (function () {
     };
     OperatorsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operators',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 83%"> {{ add_operator }}</button>\n\n    <!-- <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom"> -->\n\n    <img src="assets/imgs/facebook.png" style="width:40px; height:40px" (click)="fbShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/
+            selector: 'page-operators',template:/*ion-inline-start:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 70%"> {{ add_operator }}</button>\n\n    <!-- <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom"> -->\n\n    <img src="assets/imgs/facebook.png" style="width:40px; height:40px" (click)="fbShare($event)" style="vertical-align: bottom">\n\n    <img src="assets/imgs/email.png" style="width:50px; height:50px" (click)="emailShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"/Users/wen/Work/3.Korea App VCE New/ionic_koreanapp/src/pages/operators/operators.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
@@ -4250,7 +4301,8 @@ var OperatorsPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_8_kakao_sdk__["b" /* KakaoCordovaSDK */],
             __WEBPACK_IMPORTED_MODULE_10__ionic_native_facebook__["a" /* Facebook */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["c" /* TranslateService */]])
+            __WEBPACK_IMPORTED_MODULE_9__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_11__ionic_native_social_sharing__["a" /* SocialSharing */]])
     ], OperatorsPage);
     return OperatorsPage;
 }());
@@ -4637,7 +4689,7 @@ var ViewoperatorPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 472:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5144,7 +5196,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 473:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5463,7 +5515,7 @@ var JobsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 474:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5475,9 +5527,9 @@ var JobsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_android_permissions__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_path__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file_path__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_geolocation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -5806,7 +5858,7 @@ var OpjobdetailsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 518:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5890,13 +5942,13 @@ var JoblistsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 519:
+/***/ 520:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(525);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -5904,7 +5956,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 524:
+/***/ 525:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5913,31 +5965,31 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(896);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_android_permissions__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_updatecapop_updatecapop__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_fleets_fleets__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_operators_operators__ = __webpack_require__(470);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_home__ = __webpack_require__(473);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_operatorstabs_operatorstabs__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_operatorhome_operatorhome__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_operatorjob_operatorjob__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_opjobdetails_opjobdetails__ = __webpack_require__(475);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_otp_operator_otp_operator__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_status_bar__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_splash_screen__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ionic_native_status_bar__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_splash_screen__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_auth_auth__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_login_login__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_login_kk_login_kk__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_register_register__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_jobs_jobs__ = __webpack_require__(473);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_joblists_joblists__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_jobs_jobs__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_joblists_joblists__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_fleet_info_fleet_info__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pages_addvehicle_addvehicle__ = __webpack_require__(469);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_addjob_addjob__ = __webpack_require__(180);
@@ -5948,19 +6000,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ionic_storage__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__angular_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__angular_common_http__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_ionic2_calendar__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_ionic2_calendar__ = __webpack_require__(897);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__providers_app_app__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__ionic_native_geolocation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__ngx_translate_core__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ngx_translate_http_loader__ = __webpack_require__(907);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__ngx_translate_http_loader__ = __webpack_require__(908);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_kakao_sdk__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__ionic_native_facebook__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_social_sharing__ = __webpack_require__(472);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -6118,7 +6172,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */],
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__["a" /* FileTransfer */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_path__["a" /* FilePath */],
-                __WEBPACK_IMPORTED_MODULE_44__ionic_native_facebook__["a" /* Facebook */]
+                __WEBPACK_IMPORTED_MODULE_44__ionic_native_facebook__["a" /* Facebook */],
+                __WEBPACK_IMPORTED_MODULE_45__ionic_native_social_sharing__["a" /* SocialSharing */]
             ]
         })
     ], AppModule);
@@ -6264,7 +6319,7 @@ var AuthProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 579:
+/***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -6529,7 +6584,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 579;
+webpackContext.id = 580;
 
 /***/ }),
 
@@ -6557,8 +6612,8 @@ const apiKey = 'http://18.216.233.84/'
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fleets_fleets__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_operators__ = __webpack_require__(470);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobs_jobs__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6612,15 +6667,15 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 895:
+/***/ 896:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_auth__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(27);
@@ -6695,12 +6750,12 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 900:
+/***/ 901:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ })
 
-},[519]);
+},[520]);
 //# sourceMappingURL=main.js.map

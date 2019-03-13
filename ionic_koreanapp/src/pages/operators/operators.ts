@@ -10,6 +10,7 @@ import { LoginPage } from '../../pages/login/login';
 import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { Facebook } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-operators',
@@ -58,7 +59,8 @@ export class OperatorsPage {
     public _kakaoCordovaSDK: KakaoCordovaSDK,
     public facebookNative: Facebook,
     public loadingCtrl: LoadingController,
-    public _translate: TranslateService) {
+    public _translate: TranslateService,
+    private socialSharing: SocialSharing) {
     storage.ready().then(() => {
     });
     storage.get('access_token').then((val) => {
@@ -236,15 +238,69 @@ export class OperatorsPage {
     this.appprov.MakeOTP(this.access_token).then((res: any) => {
       console.log(res);
       OTP = res.otp;
-      console.log('i am using this' + OTP);
+      console.log('i am using this ' + OTP);
 
-      console.log("Going to Facebook invite api");
+      this.socialSharing.canShareVia("com.facebook.katana")
+        .then(
+          res => {
+            if (res == "OK") {
+              console.log("canShareVia, with response- " + res);
+              // this.socialSharing.shareViaFacebook("Share one awesome APP ConstructEQ for you.", "ConstructEQ", "http://play.google.com/store/apps/details?id=com.digitalce.digitalce")
+              this.socialSharing.shareViaFacebook(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2 + " " +
+                'http://play.google.com/store/apps/details?id=com.digitalce.digitalce')
+                .catch(ex => {
+                  console.log(ex);
+                })
+                .then(
+                  res => {
+                    console.log("shareViaFacebook: Success, with response- " + res);
+                  }, error => {
+                    console.log(error);
+                    this.loading.dismiss();
+                  }
+                );
+            }
+          }, error => {
+            console.log(error);
+            this.loading.dismiss();
+          }
+        );
 
       this.loading.dismiss();
-
     })
   }
 
+  emailShare() {
+    this.showLoader();
+    var OTP: any;
+    this.appprov.MakeOTP(this.access_token).then((res: any) => {
+      console.log(res);
+      OTP = res.otp;
+      console.log('i am using this ' + OTP);
+
+      // Check if sharing via email is supported
+      this.socialSharing.canShareViaEmail()
+        .then(
+          res => {
+            if (res == "OK") {
+              console.log(res);
+              // Share via email
+              this.socialSharing.shareViaEmail(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2 + " " +
+                'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, ['recipient@example.org'])
+                .then(
+                  res => {
+                    console.log("ShareViaEmail status: " + res);
+                  }, error => {
+                    console.log("ShareViaEmail error: " + error);
+                  });
+            }
+          }, error => {
+            console.log(error);
+          });
+
+      this.loading.dismiss();
+    })
+  }
 
   showLoader() {
     this.loading = this.loadingCtrl.create({

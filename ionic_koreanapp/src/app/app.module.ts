@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { Camera } from '@ionic-native/camera';
-import {File} from '@ionic-native/file';
+import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -30,12 +30,12 @@ import { RegisterPage } from '../pages/register/register';
 import { JobsPage } from '../pages/jobs/jobs';
 import { JoblistsPage } from '../pages/joblists/joblists'
 import { FleetInfoPage } from '../pages/fleet-info/fleet-info';
-import {AddvehiclePage} from '../pages/addvehicle/addvehicle';
-import {AddjobPage} from '../pages/addjob/addjob';
+import { AddvehiclePage } from '../pages/addvehicle/addvehicle';
+import { AddjobPage } from '../pages/addjob/addjob';
 import { ViewoperatorPage } from '../pages/viewoperator/viewoperator';
 import { JobinfoPage } from '../pages/jobinfo/jobinfo';
 import { CreatecompanyPage } from '../pages/createcompany/createcompany';
-import { EditjobPage} from '../pages/editjob/editjob'
+import { EditjobPage } from '../pages/editjob/editjob'
 
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
@@ -50,8 +50,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { KakaoCordovaSDK } from 'kakao-sdk';
 
 import { Facebook } from '@ionic-native/facebook';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
-export function HttpLoaderFactory(http: HttpClient) { 
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 /*actual main module file of Angular that will be presented in browser*/
@@ -100,7 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  
+
   /*below contains pages as in NgModule to tell angular keep comp. ready in use to make use anytime angular takes time to load*/
   bootstrap: [IonicApp],
   entryComponents: [
@@ -128,14 +129,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     OtpOperatorPage,
     UpdatecapopPage
   ],
-  
+
   /*user service to be provided in the ionic*/
   providers: [
     StatusBar,
-    SplashScreen, 
+    SplashScreen,
     Camera, AndroidPermissions,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
     AppProvider,
     InAppBrowser,
@@ -143,7 +144,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     File,
     FileTransfer,
     FilePath,
-    Facebook
+    Facebook,
+    SocialSharing
   ]
 })
-export class AppModule {}
+export class AppModule { }
