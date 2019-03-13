@@ -45,7 +45,7 @@ export class LoginPage {
   Role: String;
   loading: any;
   access_token: string;
-  isLoggedIn:boolean = false;
+  isLoggedIn: boolean = false;
 
   provider = {
     loggedin: false,
@@ -179,27 +179,79 @@ export class LoginPage {
     this.showLoader();
 
     this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
+
       this.loading.dismiss();
       if (res.status === "connected") {
         //this.showAlert(res.authResponse.userID + ": " + res.authResponse.accessToken);
-        this.storage.set('access_token', res.authResponse.accessToken);
-        this.isLoggedIn = true;
 
-        if (this.Role == 'Owner') {
-          this.navCtrl.push(CreatecompanyPage, this.storage);
-        } else {
-          this.navCtrl.push(OtpOperatorPage, this.storage);
-        }
-      } else {
+        this.access_token = res.authResponse.accessToken;
+        let userID = res.authResponse.userID;
+
+        this.fb.api('/me?fields=id,name,email,picture,first_name,last_name', []).then(
+          profile => {
+            let email = profile['email'];
+            let profile_url = profile['picture']['data']['url'];
+            let name = profile['name'];
+
+            if (email != null && email != "") {
+              this.loading.dismiss();
+              console.log("User is logged in either by new access_token or revisit user");
+              this.appprov.checkExistingUser(email).then((res) => {
+                let checkUser = JSON.stringify(res);
+                checkUser = JSON.parse(checkUser);
+                checkUser = checkUser['result'].toString();
+                console.log(checkUser);
+                
+                if (checkUser == 'false') {
+                  this.appprov.updateAccessToken(email, this.access_token, profile_url).then((res) => {
+                    let update = JSON.stringify(res);
+                    update = JSON.parse(update);
+                    console.log(update);
+                    this.storage.set('access_token', this.access_token);
+                    if (this.Role == 'Owner') {
+                      this.navCtrl.setRoot(TabsPage);
+                      return;
+                    }
+                    else {
+                      this.navCtrl.setRoot(OperatorstabsPage, this.storage);
+                      return;
+                    }
+                  }, err => { console.log(err); });
+                }
+                else {
+                  this.loading.dismiss();
+                  this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
+                    let adduser = JSON.stringify(res);
+                    adduser = JSON.parse(adduser);
+                    console.log(adduser['result']);
+                  }, err => { console.log(err); });
+                }
+              }, err => {
+                console.log(err);
+              });
+
+              this.storage.set('access_token', this.access_token);
+              this.isLoggedIn = true;
+
+              if (this.Role == 'Owner') {
+                this.navCtrl.push(CreatecompanyPage, this.storage);
+              } else {
+                this.navCtrl.push(OtpOperatorPage, this.storage);
+              }
+              return;
+            }
+          }
+        );
+      }
+      else {
         this.isLoggedIn = false;
         this.showAlert(res.status);
       }
     }).catch(e => {
-      console.log('Error logging into Facebook:', e)
+      console.log('Error logging into Facebook', e)
     });
 
     this.loading.dismiss();
-
   }
 
   loginWithGoogle() {
@@ -263,7 +315,7 @@ export class LoginPage {
 
   logout() {
     this.fb.logout()
-      .then( res => this.isLoggedIn = false)
+      .then(res => this.isLoggedIn = false)
       .catch(e => console.log('Error logout from Facebook', e));
   }
 }

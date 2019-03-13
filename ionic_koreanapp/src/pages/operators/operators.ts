@@ -248,7 +248,7 @@ export class OperatorsPage {
               // this.socialSharing.shareViaFacebook("Share one awesome APP ConstructEQ for you.", null, "http://play.google.com/store/apps/details?id=com.digitalce.digitalce")
               //"https://brigade-electronics.com/wp-content/uploads/2016/04/volvo-construction-equipment-791x500.jpg"
               this.socialSharing.shareViaFacebookWithPasteMessageHint(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2,
-                null, "http://play.google.com/store/apps/details?id=com.digitalce.digitalce", 
+                null, "http://play.google.com/store/apps/details?id=com.digitalce.digitalce",
                 this.downloadappmsgtitle + " " + this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2)
                 .catch(ex => {
                   console.log(ex);

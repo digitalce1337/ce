@@ -244,7 +244,8 @@ export class LoginKkPage {
         alert.present();
         console.log("User did not check email in permission");
         return;
-      } else if (has_email == 'true' && (email != null)) {
+      }
+      else if (has_email == 'true' && (email != null)) {
         this.loading.dismiss();
         console.log("User is logged in either by new access_token or revisit user");
         this.appprov.checkExistingUser(email).then((res) => {
@@ -293,7 +294,8 @@ export class LoginKkPage {
           this.navCtrl.push(OtpOperatorPage, this.storage);
         }
         return;
-      } else {
+      }
+      else {
         let alert = this.alertCtrl.create({
           title: this.kakaomsgtitle2,
           subTitle: this.kakaomsg2,
