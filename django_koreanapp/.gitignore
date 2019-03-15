@@ -15,7 +15,7 @@ npm-debug.log*
 node_modules/
 tmp/
 temp/
-
+__pycache__/
 
 .DS_Store
 Thumbs.db
