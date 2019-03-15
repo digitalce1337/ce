@@ -187,7 +187,7 @@ export class LoginPage {
         this.access_token = res.authResponse.accessToken;
         let userID = res.authResponse.userID;
 
-        this.fb.api('/me?fields=id,name,email,picture,first_name,last_name', []).then(
+        this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
           profile => {
             let email = profile['email'];
             let profile_url = profile['picture']['data']['url'];
@@ -201,7 +201,7 @@ export class LoginPage {
                 checkUser = JSON.parse(checkUser);
                 checkUser = checkUser['result'].toString();
                 console.log(checkUser);
-                
+
                 if (checkUser == 'false') {
                   this.appprov.updateAccessToken(email, this.access_token, profile_url).then((res) => {
                     let update = JSON.stringify(res);

@@ -104,6 +104,7 @@ export class CreatecompanyPage {
     let company_add = this.companyaddField;
     let phone_no = this.phonenoField;
     let working_days = this.workingdaysField;
+
     if (company_name == "" || company_add == "" || phone_no == "" || working_days == "") {
       let alert = this.alertCtrl.create({
         title: 'Empty Field(s)',
@@ -113,6 +114,7 @@ export class CreatecompanyPage {
       alert.present();
       return;
     }
+
     this.appprov.addCompany(this.access_token, company_name, company_add, phone_no, working_days).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);

@@ -11,6 +11,7 @@ import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-operators',
@@ -60,7 +61,8 @@ export class OperatorsPage {
     public facebookNative: Facebook,
     public loadingCtrl: LoadingController,
     public _translate: TranslateService,
-    private socialSharing: SocialSharing) {
+    private socialSharing: SocialSharing,
+    private platform: Platform) {
     storage.ready().then(() => {
     });
     storage.get('access_token').then((val) => {
@@ -75,7 +77,6 @@ export class OperatorsPage {
         this._initializeTranslation();
       }
     });
-
   }
 
   ionViewDidEnter() {
@@ -235,6 +236,15 @@ export class OperatorsPage {
   fbShare() {
     this.showLoader();
     var OTP: any;
+    var appUrl = "http://play.google.com/store/apps/details?id=com.digitalce.digitalce";
+
+    if (this.platform.is('android')) {
+      appUrl = "http://play.google.com/store/apps/details?id=com.digitalce.digitalce";
+    }
+    else if (this.platform.is('ios')) {
+      appUrl = "";
+    }
+
     this.appprov.MakeOTP(this.access_token).then((res: any) => {
       console.log(res);
       OTP = res.otp;
@@ -245,11 +255,9 @@ export class OperatorsPage {
           res => {
             if (res == "OK") {
               console.log("canShareVia, with response- " + res);
-              // this.socialSharing.shareViaFacebook("Share one awesome APP ConstructEQ for you.", null, "http://play.google.com/store/apps/details?id=com.digitalce.digitalce")
               //"https://brigade-electronics.com/wp-content/uploads/2016/04/volvo-construction-equipment-791x500.jpg"
               this.socialSharing.shareViaFacebookWithPasteMessageHint(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2,
-                null, "http://play.google.com/store/apps/details?id=com.digitalce.digitalce",
-                this.downloadappmsgtitle + " " + this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2)
+                null, appUrl, this.downloadappmsgtitle + " " + this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2)
                 .catch(ex => {
                   console.log(ex);
                 })
