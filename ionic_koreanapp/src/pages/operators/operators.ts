@@ -75,7 +75,7 @@ export class OperatorsPage {
   }
 
   ionViewDidEnter() {
-    this._initializeTranslation();     
+    this._initializeTranslation();
   }
     public changeLanguage(): void{
       this._translateLanguage();
@@ -96,7 +96,6 @@ export class OperatorsPage {
         this.downloadappmsg2 =  this._translate.instant("operators.downloadappmsg2");
     }
   
-
   getEmail(access_token){
     this.appprov.getEmail(access_token).then((res) => {
       this.UsrEmail = res;
@@ -121,7 +120,7 @@ export class OperatorsPage {
       this.operatordetails_status = data['operatordetails_status'];
       this.operatordetails_vehicles = data['operatordetails_vehicles'];
       this.operatordetails_busydate = data['operatordetails_role'];
-      this.operators = [];
+      this.operators = [];      
       console.log("fist checkpoint");
       for (let i =0; i<this.operatordetails_profileurl.length;i++){
         if (this.operatordetails_status[i] == "1"){
@@ -161,6 +160,7 @@ export class OperatorsPage {
         })
       }
       }
+ 
     }, err =>{
       console.log(err);
     });
@@ -184,7 +184,7 @@ export class OperatorsPage {
   }
 
   viewOperator(event, email){
-    console.log("Viewing operator")
+    console.log("Viewing operator")    
     //this.navCtrl.push(ViewoperatorPage, {'email':email});
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: false
@@ -196,7 +196,7 @@ export class OperatorsPage {
     myModal.onDidDismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
-      this.getOperatorList(this.access_token);
+      this.getOperatorList(this.access_token);      
     });
   }
 
@@ -232,6 +232,6 @@ export class OperatorsPage {
     this.loading = this.loadingCtrl.create({
       content: 'Loading...'
     });
-    this.loading.present();
+    this.loading.present();    
   }
 }

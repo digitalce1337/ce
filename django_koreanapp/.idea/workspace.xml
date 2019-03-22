@@ -2,7 +2,402 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2269079-8fa8-4769-a3d1-0666ee101b6b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/django_koreanapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django_koreanapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangorest/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangorest/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangorest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangorest/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/volvoce/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/volvoce/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/volvoce/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/volvoce/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/.sourcemaps/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/.sourcemaps/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/ionic.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/ionic.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/node_modules/.bin/create" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/node_modules/.bin/create" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/node_modules/cordova-android/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/node_modules/cordova-android/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_CordovaLib_compileReleaseJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/.gradle/3.3/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/intermediates/incremental/packageReleaseResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-release.aar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/android.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/assets/www/build/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/generated/source/buildConfig/debug/com/digitalce/digitalce/BuildConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/generated/source/r/debug/com/digitalce/digitalce/R.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/assets/debug/www/build/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-af.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-af.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-am.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-am.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ar.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-az-rAZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-az-rAZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-az.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-az.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-b+sr+Latn.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-b+sr+Latn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-be-rBY.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-be-rBY.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-be.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-be.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bg.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bg.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bn-rBD.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bn-rBD.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bn.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bs-rBA.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bs-rBA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bs.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-bs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ca.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ca.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-cs.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-cs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-da.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-da.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-de.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-el.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-el.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rAU.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rAU.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rGB.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rGB.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-en-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-es-rUS.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-es-rUS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-es.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-es.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-et-rEE.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-et-rEE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-et.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-et.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-eu-rES.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-eu-rES.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-eu.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-eu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fa.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fr-rCA.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fr-rCA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gl-rES.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gl-rES.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gl.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gu-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gu-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gu.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-gu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-h720dp-v13.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-h720dp-v13.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hu.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hy-rAM.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hy-rAM.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hy.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-hy.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-in.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-in.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-is-rIS.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-is-rIS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-is.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-is.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-it.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-it.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-iw.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-iw.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ja.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ja.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ka-rGE.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ka-rGE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ka.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ka.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kk-rKZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kk-rKZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kk.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-km-rKH.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-km-rKH.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-km.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-km.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kn-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kn-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kn.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-kn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ko.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ko.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ky-rKG.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ky-rKG.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ky.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ky.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-land.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-land.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-large-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-large-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ldltr-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ldltr-v21.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lo-rLA.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lo-rLA.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lo.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lt.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lt.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lv.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-lv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mk-rMK.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mk-rMK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mk.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ml-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ml-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ml.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ml.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mn-rMN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mn-rMN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mn.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mr-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mr-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-mr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ms-rMY.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ms-rMY.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ms.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ms.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-my-rMM.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-my-rMM.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-my.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-my.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-nb.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-nb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ne-rNP.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ne-rNP.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ne.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ne.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-night-v8.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-night-v8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-nl.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-nl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pa-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pa-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pa.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-port.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-port.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt-rBR.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt-rBR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt-rPT.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt-rPT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-pt.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ro.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ro.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ru.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-si-rLK.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-si-rLK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-si.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-si.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sk.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sl.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sq-rAL.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sq-rAL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sq.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sq.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sv.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sw.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sw.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sw600dp-v13.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-sw600dp-v13.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ta-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ta-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ta.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ta.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-te-rIN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-te-rIN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-te.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-te.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-th.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-th.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-tl.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-tl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-tr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-tr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uk.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uk.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ur-rPK.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ur-rPK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ur.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-ur.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uz-rUZ.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uz-rUZ.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-uz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v11.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v11.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v12.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v12.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v13.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v13.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v14.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v14.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v16.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v16.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v18.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v18.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v21.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v22.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v22.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v23.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v23.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v24.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v24.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v25.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-v25.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-vi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-vi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-xlarge-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-xlarge-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rCN.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rCN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rHK.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rHK.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rTW.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zh-rTW.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zu.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values-zu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/multi/values.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/anim.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/anim.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color-v11.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color-v11.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color-v23.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color-v23.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/color.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-hdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-hdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-hdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-hdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-ldpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-ldpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-mdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-mdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xxxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-land-xxxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-hdpi-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-hdpi-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-mdpi-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-mdpi-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xhdpi-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xhdpi-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxhdpi-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxhdpi-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxxhdpi-v17.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-ldrtl-xxxhdpi-v17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-mdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-mdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-mdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-hdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-hdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-ldpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-ldpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-mdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-mdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xxxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-port-xxxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-small-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-small-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-v21.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-v23.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-v23.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxhdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable-xxxhdpi-v4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/drawable.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v11.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v11.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v16.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v16.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v21.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout-v21.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/layout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-hdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-hdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-ldpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-ldpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-mdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-mdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xxxhdpi.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/mipmap-xxxhdpi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/xml.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/blame/res/debug/single/xml.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/BuildConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/MainActivity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$anim.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$array.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$attr.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$bool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$dimen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$id.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$integer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$layout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$mipmap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$string.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$style.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$styleable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R$xml.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/classes/debug/com/digitalce/digitalce/R.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/dex-cache/cache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/dex-cache/cache.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/mergeDebugShaders/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/zip-cache/8Wyw33abH4SFW7mQgJDHpSH8TBI=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/zip-cache/8cQ8z7yWQylwnhpTi2UUJIzcuT4=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/zip-cache/QC7HQS_X6pYkm0k+9pLGz1P89+Q=" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/zip-cache/QC7HQS_X6pYkm0k+9pLGz1P89+Q=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/incremental/packageDebug/zip-cache/uLH7KUV1peiuHo+HvLhrUUJThyo=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/manifests/full/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-6.3.0-debug_06e265b90974c1b8c7a2dad1ebe4cfb582dabc15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-6.3.0-debug_fc9eaff52e83a3ac97160b5546f53b79cb23da36.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-6.3.0-debug_fc9eaff52e83a3ac97160b5546f53b79cb23da36.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_628b5ee8b2a26248f8974f7fb02433a9f3b605b7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_628b5ee8b2a26248f8974f7fb02433a9f3b605b7.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_635dcb7550b5d3de31ba6e9fd6fe9afb88cc75c5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_7255f0c6b3610db9c829c0614d6a4094b02dc68f.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_7255f0c6b3610db9c829c0614d6a4094b02dc68f.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_7e6230dc3b808d0261cfb2de0064f7e68039ca5f.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_b751ccbdae98b477a14a450369c87534999fffd3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_b751ccbdae98b477a14a450369c87534999fffd3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_d6ddec430828b22d7dabcd3272c7f51d10214ff1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_6f060a3efed78fc129cfac45732de66d305f8503.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_6f060a3efed78fc129cfac45732de66d305f8503.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_bdfbc53c7b118710644374c1f9e4c953a94088a0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.4.0_7e9909bd9a02132c96c17b4827a3075418f85f58.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.4.0_d87a3295e82153ec6b0a0c5a02ff58f6a1c91b1c.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.4.0_d87a3295e82153ec6b0a0c5a02ff58f6a1c91b1c.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.4.0_453ddffe626f2a854c90a9b52e3947d259da0aa1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.4.0_453ddffe626f2a854c90a9b52e3947d259da0aa1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.4.0_b098aaafc66819f4bc5faf3b008f63519a45ab71.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.1_5b4e9b12f69ea2454f87f873c176ee4204c5ecfc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.1_85eaeb81be5aad4be67a87d7a6f04480e0589ee0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.1_85eaeb81be5aad4be67a87d7a6f04480e0589ee0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_43e3ea75a412362f95fa87dcc7d2949a015ceb48.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_43e3ea75a412362f95fa87dcc7d2949a015ceb48.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_79e8e50441157823dc325c3a7a3a08bfb839ed0f.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_ad588b0ec8b55d614065b385aa938681ed20edc7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_d20086ad18c6d5da5762794de84f035f5b04047d.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_d20086ad18c6d5da5762794de84f035f5b04047d.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_4879d43c652e621584835bd4e5ebe746a096f5b7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_ddf027e34fc76d39cb3d5211fa9a37d106b9f230.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_ddf027e34fc76d39cb3d5211fa9a37d106b9f230.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_2567537489d35ea76579cb0f7147aae1e9f38f96.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_2567537489d35ea76579cb0f7147aae1e9f38f96.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_e4d4be2e8d535d515acb8e796fd6c8353e0494a5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.1.1_7de70465427c832973721b65ddffaafe2a5a009a.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.1.1_7de70465427c832973721b65ddffaafe2a5a009a.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.1.1_b18a8b9378af744d62fa7c779347cb5cae1706ea.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.4.0_121cb841005cab6366edf14c1ddd30f7ae26d21d.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.4.0_121cb841005cab6366edf14c1ddd30f7ae26d21d.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.4.0_50b1df00206a2b4c9ae511e1ed18bb64449d8d5c.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-auth-1.12.0_0d56b3e60de5d49ce6246aae42f08db0d5ceb03d.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-auth-1.12.0_5bd56f1bb0a8ac8c7ca1986f68b0f7d7f8a9b4fd.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-auth-1.12.0_5bd56f1bb0a8ac8c7ca1986f68b0f7d7f8a9b4fd.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-friends-1.12.0_3b2f4fc6c235d505d7f1ebdbabf3b2028efe4e40.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-friends-1.12.0_3ec7022b34f71a5f9df0844c00400439de289e57.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-friends-1.12.0_3ec7022b34f71a5f9df0844c00400439de289e57.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaolink-1.12.0_642d52b4fa45e67fe7dc2c8568a3d024556c83f3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaolink-1.12.0_642d52b4fa45e67fe7dc2c8568a3d024556c83f3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaolink-1.12.0_b6e67585be01dac541c0107479f16f18601ad8da.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaotalk-1.12.0_2c4e40168b405ecd4abd1bd339d0d0bbe0a5ac84.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaotalk-1.12.0_89b280eefad303392c28998687fb6b0d9e0e33cd.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-kakaotalk-1.12.0_89b280eefad303392c28998687fb6b0d9e0e33cd.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-message-template-1.12.0_116eadbf4fe02eba5f7b2454c4583dab4ec3201e.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-message-template-1.12.0_f4ed6e0edde4cf26b19fe7d32a97fde864a276d1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-message-template-1.12.0_f4ed6e0edde4cf26b19fe7d32a97fde864a276d1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-network-1.12.0_c378a73ddd4042ede53fc8cfb6d4fdf736edf3ed.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-network-1.12.0_c378a73ddd4042ede53fc8cfb6d4fdf736edf3ed.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-network-1.12.0_d46a005938c3ab7e9b2ff5e07e3c5a35dc06652d.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-usermgmt-1.12.0_a046ed1efb5aa0f1974603e7acfdb8acd6d420e2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-usermgmt-1.12.0_a046ed1efb5aa0f1974603e7acfdb8acd6d420e2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-usermgmt-1.12.0_e7325932b3ead30b5bb09110b2de1a4dc359e338.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-util-1.12.0_27b2d6babc80850ffc21d48739477dcd49d9f200.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-util-1.12.0_27b2d6babc80850ffc21d48739477dcd49d9f200.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/com.kakao.sdk-util-1.12.0_abc7e22e7e9099fc29f35b2f9544f3f1c1fbb451.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_0fd9ea7620964f45640c5abe52360031d1a41f09.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_0fd9ea7620964f45640c5abe52360031d1a41f09.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_51631ee37b6cc1a28fa721692731c14939bcc878.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_b375a7efb342908f9ea212f929c5742a5b7c8dc4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_b375a7efb342908f9ea212f929c5742a5b7c8dc4.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/common-1.1.0_e7d5cf097e184c22eda8568ff0680d7592d59e36.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/debug_aa56f12f4be077240bba7054194294d9961df5ff.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/debug_aa56f12f4be077240bba7054194294d9961df5ff.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/debug_abd283bc60d1db645e5fd6ebd675f3de0f4952c5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/sqlite-connector_479dc41f2c4ca0bf7c5d75de22cc4f2a5aeb8653.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/sqlite-connector_bdeaa622ae820d85bb15411ea560e8b1f73f39bb.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/sqlite-connector_bdeaa622ae820d85bb15411ea560e8b1f73f39bb.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_507425f87320ae3a04c96191bb5c35308bf4bceb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_d1b77a20081c4be5358b4de365e6f9e680cf1e79.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_d1b77a20081c4be5358b4de365e6f9e680cf1e79.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/merged/debug/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/merged/debug/values/values.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/merged/debug/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/merged/debug/xml/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/res/resources-debug.ap_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/outputs/apk/android-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/outputs/apk/android-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/res/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/res/xml/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/android/src/com/digitalce/digitalce/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/browser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/assets/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/assets/i18n/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/1.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/1.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/10.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/10.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/11.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/11.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/11.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/11.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/3.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/3.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/4.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/4.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/6.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/6.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/8.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/8.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/vendor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/build/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/platforms/browser/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/app/apiurls/serverurls.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/app/apiurls/serverurls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/addjob/addjob.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/addjob/addjob.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/fleet-info/fleet-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/fleet-info/fleet-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/fleets/fleets.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/fleets/fleets.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/home/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/home/home.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/jobinfo/jobinfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/jobinfo/jobinfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/operatorhome/operatorhome.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/operatorhome/operatorhome.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/operators/operators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/pages/operators/operators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/src/providers/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/src/providers/app/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/10.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/10.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/12.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/12.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/6.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/6.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/7.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/9.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/9.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_koreanapp/www/build/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_koreanapp/www/build/vendor.js.map" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,96 +406,99 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47587574">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/djangorest/wsgi.py">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manage.py">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/djangorest/settings.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/djangorest/urls.py">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/volvoce/apps.py">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/volvoce/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1547">
-                  <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/volvoce/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1326">
-                  <caret line="105" column="31" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#0#50#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/emailsignup.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/dobsignup.html">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/volvoce/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="1042" column="46" selection-start-line="1042" selection-start-column="46" selection-end-line="1042" selection-end-column="46" />
+              <folding>
+                <element signature="e#36#86#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djangorest/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djangorest/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1656">
+              <caret line="81" column="64" selection-start-line="81" selection-start-column="64" selection-end-line="81" selection-end-column="64" />
+              <folding>
+                <element signature="e#634#666#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/volvoce/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2599">
+              <caret line="113" column="47" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ongoing</find>
-      <find>company</find>
-      <find>retrieve</find>
+      <find>addJob</find>
+      <find>yunhong93@hotmail.com</find>
+      <find>volvoce.</find>
+      <find>getfleethomechart</find>
+      <find>user</find>
+      <find>addjobDetails</find>
+      <find>addjobdetails</find>
+      <find>getMonthly</find>
+      <find>retrieveVeh</find>
+      <find>retrievevehicleutil</find>
+      <find>month</find>
+      <find>getMonthlypay</find>
+      <find>select</find>
+      <find>sor.execute(insert_query)</find>
+      <find>cursor</find>
+      <find>getmonthlyPa</find>
+      <find>append(exp</find>
+      <find>cursor.exe</find>
+      <find>chart_li</find>
+      <find>getmonthly</find>
+      <find>chart_list</find>
+      <find>console</find>
+      <find>cur_month</find>
+      <find>vehicleUtil</find>
+      <find>list</find>
+      <find>expect</find>
+      <find>months</find>
+      <find>util</find>
+      <find>vehicleutil</find>
+      <find>totalDay_clist</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/djangorest/__init__.py" />
+        <option value="$PROJECT_DIR$/djangorest/urls.py" />
+        <option value="$PROJECT_DIR$/volvoce/models.py" />
+        <option value="$PROJECT_DIR$/volvoce/views.py" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="185" />
+    <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1020" />
-    <option name="height" value="868" />
+    <option name="width" value="1939" />
+    <option name="height" value="1099" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -108,8 +506,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,7 +521,7 @@
             <path>
               <item name="django_koreanapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="django_koreanapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="django_koreanapp" type="b2602c69:ProjectViewProjectNode" />
@@ -136,11 +532,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Course" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -169,10 +567,36 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16853933" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15503356" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32998884" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32998884" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.22315203" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="DB Execution Console" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Json Parser" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17866324" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="DB Browser" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -182,76 +606,30 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32998884" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="11" visible="true" weight="0.22315203" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="DB Execution Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+      <window_info anchor="right" id="Json Parser" order="3" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/volvoce/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/volvoce/migrations/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangorest/__init__.py">
+    <entry file="file://$PROJECT_DIR$/venv/pip-selfcheck.json" />
+    <entry file="file://$PROJECT_DIR$/static/testlink.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/pip-selfcheck.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/login.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangorest/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/static/kakaologin.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djangorest/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/dobsignup.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/volvoce/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="105" column="31" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/emailsignup.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -260,12 +638,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangorest/settings.py">
+    <entry file="file://$PROJECT_DIR$/static/dobsignup.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#94#144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangorest/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1003">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangorest/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="1042" column="46" selection-start-line="1042" selection-start-column="46" selection-end-line="1042" selection-end-column="46" />
+          <folding>
+            <element signature="e#36#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangorest/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangorest/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="81" column="64" selection-start-line="81" selection-start-column="64" selection-end-line="81" selection-end-column="64" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/volvoce/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2599">
+          <caret line="113" column="47" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

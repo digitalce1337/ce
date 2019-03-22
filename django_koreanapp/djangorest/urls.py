@@ -33,6 +33,8 @@ admin.autodiscover()
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     #url(r'^', include(router.urls)),
+    # New url to be linked for extraction of data from charts
+    url(r'^addJobDetails', addJobDetails, name="addJobDetails"),
     #----------------Added------------------Steffano----------------------
     url(r'^OpsretrievePastJobs', retrieveOpPastJobsz, name="retrieveOpPastJobsz"),
     url(r'^OpsretrieveOngoingJobs', retrieveOpOngoJobsz, name="retrieveOpOngoJobsz"),
@@ -54,7 +56,13 @@ urlpatterns = [
     url(r'^getEmail', getEmail, name='getEmail'),
     url(r'^getOperatorList', getOperatorList, name="getOperatorList"),
     url(r'^removeVeh', RemoveVeh, name='RemoveVeh'),
+    #Adding of new methods to try for charts
+    url(r'^getMonthlyPay',getMonthlyPay, name="getMonthlyPay"),
+    # url(r'^getFleetHomeChart',getFleetHomeChart, name="getFleetHomeChart"),
+    url(r'^getHomeFleet', getHomeFleet, name = 'getHomeFleet'),
     #url(r'^addMaint', addMaint, name='addMaint'),
+    #jeremy test for alert
+    #url(r'^getReply', getReply, name ='getReply'),
     url(r'^updownmaint', updownMaint, name = 'updownMaint'),
     url(r'^getMaintRec', getMaintRec, name = 'getMaintRec'),
     url(r'^DelMaint',delMaint, name='delMaint'),

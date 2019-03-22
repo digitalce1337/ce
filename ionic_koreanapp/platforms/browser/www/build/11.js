@@ -18,6 +18,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+/*Module file of Angular */
 var CreatecompanyPageModule = /** @class */ (function () {
     function CreatecompanyPageModule() {
     }
@@ -26,6 +27,7 @@ var CreatecompanyPageModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__createcompany__["a" /* CreatecompanyPage */],
             ],
+            /*importing browser module for making use of browser APs*/
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__createcompany__["a" /* CreatecompanyPage */]),
             ],

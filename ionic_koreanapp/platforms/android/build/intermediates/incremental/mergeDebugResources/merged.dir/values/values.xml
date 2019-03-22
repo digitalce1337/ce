@@ -459,7 +459,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="activity_name">@string/launcher_name</string>
-    <string name="app_name">ConstructEQ</string>
+    <string name="app_name">MyApp</string>
     <string name="auth_code_cancel">Pressed back button or disagree button during requesting auth code.</string>
     <string name="button_for_ssl_go_back">Back</string>
     <string name="button_for_ssl_go_forward">Continue</string>

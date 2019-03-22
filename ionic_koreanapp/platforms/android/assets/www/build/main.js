@@ -4,17 +4,20 @@ webpackJsonp([13],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//export const apiKey = 'http://127.0.0.1:8000/';
-// export const apiKey = 'http://18.222.220.169/';
-//export const apiKey = 'http://10.0.2.2:8000/'
-//export const apiKey = 'http://18.221.233.168/';
+//Production on AWS - Public DNS
+//export const apiKey = 'http://18.222.185.105/'
 
-// export const apiKey = 'http://52.14.34.166/';
-//export const apiKey = 'http://18.220.42.164/'
-const apiKey = 'http://18.222.185.105/'
+//IPv4 address on phone hotspot circlelife
+// export const apiKey = 'http://192.168.43.188:8000/'
+
+//Singtel IPv4 address
+const apiKey = 'http://192.168.8.100:8000/'
 /* harmony export (immutable) */ __webpack_exports__["a"] = apiKey;
 
+// export const apiKey = 'http://192.168.8.101:8000/'
+// export const apiKey = 'http://192.168.8.102:8000/'
 
+// export const apiKey = 'http://192.168.1.31:8000/'
 
 /***/ }),
 
@@ -44,7 +47,7 @@ var OperatorstabsPage = /** @class */ (function () {
         this.tab2Operator = __WEBPACK_IMPORTED_MODULE_2__operatorjob_operatorjob__["a" /* OperatorjobPage */];
     }
     OperatorstabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Operator" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Operator" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Operator" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Operator" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorstabs\operatorstabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], OperatorstabsPage);
@@ -200,6 +203,7 @@ var AddjobPage = /** @class */ (function () {
             _this.appprov.insertOperatorJob(_this.access_token, result.jid, names, vehicles).then(function (res) {
                 _this.appprov.presentAlert(_this.addjobmsgtitle, _this.addjobmsg);
                 _this.viewctrl.dismiss('1');
+                _this.appprov.addJobDetails(_this.access_token, val.DateFrom.toString(), val.DateTo.toString(), result.jid, names, vehicles);
             }, function (err) {
                 console.log(err);
             });
@@ -337,7 +341,7 @@ var AddjobPage = /** @class */ (function () {
     };
     AddjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addjob',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addjob\addjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The add job page in owner job management tab-->\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateFrom\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateTo\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\'></ion-input>\n\n  </ion-item>\n\n\n\n\n\n  \n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (click)="ValidateDate($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">\n\n                {{op.name}} &nbsp; - &nbsp;{{op.availbility}}\n\n              </ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{vehicle}}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}} - {{veh.availability}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addjob\addjob.html"*/,
+            selector: 'page-addjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addjob\addjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The add job page in owner job management tab-->\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\'></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateFrom\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="DD/MM/YYYY" formControlName =\'DateTo\' (ionChange)="LoadOpCheck()" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\'></ion-input>\n\n  </ion-item>\n\n\n\n\n\n  \n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (click)="ValidateDate($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">\n\n                {{op.name}} &nbsp; - &nbsp;{{op.availbility}}\n\n              </ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{vehicle}}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}} - {{veh.availability}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addjob\addjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -545,6 +549,7 @@ var JobinfoPage = /** @class */ (function () {
             _this.description = data['description'];
             _this.title = data['title'];
             _this.completed = data['completed'];
+            alert("This is the value of the pay.. :" + _this.payout);
             if (_this.completed == '1') {
                 _this.buttonDisabled = true;
                 _this.buttonColor = 'secondary';
@@ -611,7 +616,7 @@ var JobinfoPage = /** @class */ (function () {
     };
     JobinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-jobinfo',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/'<!--\n\n  Generated template for the JobinfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ txtitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <h2>{{title}}</h2>\n\n      </ion-col>\n\n      <ion-col>\n\n          <ion-icon name="create" (click)=editJob();></ion-icon>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-7>\n\n        {{date_from}} - {{date_to}}\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        $ &nbsp;{{payout}}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      {{location}}\n\n    </ion-row>\n\n    <ion-row>\n\n      {{description}}\n\n    </ion-row>\n\n  </ion-grid>\n\n<br>\n\n\n\n  <ion-list>\n\n      <ion-grid>\n\n          <ion-item *ngFor="let jobOperator of jobOperators">\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-3>\n\n                  <ion-avatar>\n\n                    <img [src] = jobOperator.profile_url >\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-7>\n\n                {{ jobOperator.name }} \n\n                </ion-col>\n\n                <ion-col col-2>\n\n                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> \n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n  </ion-list>\n\n\n\n  <br>\n\n  <h3>{{ reports }}</h3>\n\n  <ion-item>\n\n    <ion-label></ion-label>\n\n    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">\n\n      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>\n\n      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>\n\n      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>\n\n      <ion-option value="1">{{ all }}</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-card *ngFor="let report of ReportCards">\n\n    <ion-card-content>\n\n      {{report.report_operator_name}}<br>\n\n      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>\n\n      <img [src]=report.report_img><br> \n\n      {{report.report_desc}}<br>\n\n      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>\n\n      <font color="red">{{report.report_fault}}</font>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/,
+            selector: 'page-jobinfo',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/'<!--\n\n  Generated template for the JobinfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ txtitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <h2>{{title}}</h2>\n\n      </ion-col>\n\n      <ion-col>\n\n          <ion-icon name="create" (click)=editJob();></ion-icon>\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-7>\n\n        {{date_from}} - {{date_to}}\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        $ &nbsp;{{payout}}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      {{location}}\n\n    </ion-row>\n\n    <ion-row>\n\n      {{description}}\n\n    </ion-row>\n\n  </ion-grid>\n\n<br>\n\n\n\n  <ion-list>\n\n      <ion-grid>\n\n          <ion-item *ngFor="let jobOperator of jobOperators">\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-3>\n\n                  <ion-avatar>\n\n                    <img [src] = jobOperator.profile_url >\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-7>\n\n                {{ jobOperator.name }} \n\n                </ion-col>\n\n                <ion-col col-2>\n\n                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> \n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n  </ion-list>\n\n\n\n  <br>\n\n  <h3>{{ reports }}</h3>\n\n  <ion-item>\n\n    <ion-label></ion-label>\n\n    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">\n\n      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>\n\n      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>\n\n      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>\n\n      <ion-option value="1">{{ all }}</ion-option>\n\n    </ion-select>\n\n  </ion-item>\n\n  <ion-card *ngFor="let report of ReportCards">\n\n    <ion-card-content>\n\n      {{report.report_operator_name}}<br>\n\n      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>\n\n      <img [src]=report.report_img><br> \n\n      {{report.report_desc}}<br>\n\n      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>\n\n      <font color="red">{{report.report_fault}}</font>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobinfo\jobinfo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_app_app__["a" /* AppProvider */],
@@ -897,7 +902,7 @@ var EditjobPage = /** @class */ (function () {
     };
     EditjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-editjob',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\editjob\editjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\' value= {{Client_Name}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\' value= {{Earning}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\' value = {{locatio}}></ion-input>\n\n  </ion-item>\n\n \n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateFrom\' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateTo\' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\' value={{description}}></ion-input>\n\n  </ion-item>\n\n\n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (ionChange)="test($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{ vehicle }}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ update }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\editjob\editjob.html"*/,
+            selector: 'page-editjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\editjob\editjob.html"*/'<!--\n\n  Generated template for the AddjobPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-title>{{ title }}</ion-title> \n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <form [formGroup]="form" (ngSubmit)="manage(form.value)">\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ client }}</ion-label>\n\n      <ion-input type="text" formControlName =\'ClientName\' value= {{Client_Name}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ project_earning }}</ion-label>\n\n      <ion-input type="number" formControlName =\'PayOut\' value= {{Earning}}></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ location }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Loc\' value = {{locatio}}></ion-input>\n\n  </ion-item>\n\n \n\n  <ion-item>\n\n      <ion-label stacked>{{ date_from }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateFrom\' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ date_to }}</ion-label>\n\n      <ion-datetime displayFormat="YYYY/MM/DD" formControlName =\'DateTo\' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n      <ion-label stacked>{{ description }}</ion-label>\n\n      <ion-input type="text" formControlName =\'Desc\' value={{description}}></ion-input>\n\n  </ion-item>\n\n\n\n    <div formArrayName="OpVehPay" margin-bottom>\n\n      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">\n\n        <ion-item-group>\n\n          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           \n\n            <span float-right ion-button icon-left clear \n\n            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">\n\n              <ion-icon name="close"></ion-icon>\n\n            </span></ion-item-divider>\n\n          <ion-item>\n\n            <ion-label floating>{{ operator_name }}:</ion-label>\n\n            <ion-select formControlName="Opname" (ionChange)="test($event)">\n\n              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n\n\n          <ion-item>\n\n              <ion-label floating>{{ vehicle }}:</ion-label>\n\n              <ion-select formControlName="Vehtype">\n\n                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>\n\n              </ion-select>\n\n          </ion-item>\n\n\n\n        </ion-item-group>\n\n      </section>\n\n    </div>\n\n    <span ion-button float-left icon-left clear\n\n      (click)="addNewInputField()">{{ add }}</span>\n\n\n\n   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ update }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\editjob\editjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1039,7 +1044,7 @@ var CreatecompanyPage = /** @class */ (function () {
     };
     CreatecompanyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-createcompany',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/'<!--\n\n  Generated template for the CreatecompanyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The page for owner to fill in the details of their company-->\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_name }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companynameField"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_address }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companyaddField"></ion-input>\n\n  </ion-item>\n\n<br>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }} </ion-label>\n\n  <ion-input type="text" [(ngModel)]="phonenoField"></ion-input>\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ working_days }}</ion-label>\n\n  <ion-input type="number" [(ngModel)]="workingdaysField"></ion-input>\n\n</ion-item>\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="itemTappedAdd($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/,
+            selector: 'page-createcompany',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/'<!--\n\n  Generated template for the CreatecompanyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--The page for owner to fill in the details of their company-->\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_name }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companynameField"></ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <ion-label stacked>{{ company_address }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="companyaddField"></ion-input>\n\n  </ion-item>\n\n<br>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }} </ion-label>\n\n  <ion-input type="text" [(ngModel)]="phonenoField"></ion-input>\n\n</ion-item>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ working_days }}</ion-label>\n\n  <ion-input type="number" [(ngModel)]="workingdaysField"></ion-input>\n\n</ion-item>\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="itemTappedAdd($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\createcompany\createcompany.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1127,6 +1132,7 @@ var OperatorhomePage = /** @class */ (function () {
                 _this.access_token = val.toString();
                 _this.getUserInfo();
                 _this.getOperatorJoblist();
+                _this.getvalueList();
                 _this.getCapabilities();
                 _this._initializeTranslation();
             }
@@ -1141,6 +1147,7 @@ var OperatorhomePage = /** @class */ (function () {
     OperatorhomePage.prototype.ionViewWillEnter = function () {
         this.getUserInfo();
         this.getOperatorJoblist();
+        this.getvalueList();
     };
     OperatorhomePage.prototype.changeLanguage = function () {
         this._translateLanguage();
@@ -1190,6 +1197,21 @@ var OperatorhomePage = /** @class */ (function () {
             _this.Ucompany = _this.userinfo.company_name;
             _this.Ucompanyadd = _this.userinfo.company_add;
             _this.appprov.setemail(_this.userinfo.email);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    OperatorhomePage.prototype.getvalueList = function () {
+        this.appprov.getvalueList(this.access_token).then(function (res) {
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var job_desc = data['job_desc'];
+            var job_datefrom = data['job_datefrom'];
+            var job_dateto = data['job_dateto'];
+            console.log(job_dateto);
+            var job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom };
+            console.log(job);
+            alert('Got value from getvalueList which is: ' + job);
         }, function (err) {
             console.log(err);
         });
@@ -1315,7 +1337,7 @@ var OperatorhomePage = /** @class */ (function () {
     ], OperatorhomePage.prototype, "barCanvas", void 0);
     OperatorhomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operatorhome',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n          <b style="font-size:1.4em"> {{ welcome }}, {{Uname}} </b>\n\n          <b style="font-size:1.1em">{{Uemail}}</b>\n\n          <br><b style="font-size:1em">{{Unum}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><h3>{{ skill_sets }}&nbsp;  <ion-icon name="create" (click)="showCap($event)"></ion-icon></h3></ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col *ngFor="let veh of capabilities">\n\n          <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  \n\n  <h2>{{ forecast }}</h2>\n\n\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/,
+            selector: 'page-operatorhome',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n          <b style="font-size:1.4em"> {{ welcome }}, {{Uname}} </b>\n\n          <b style="font-size:1.1em">{{Uemail}}</b>\n\n          <br><b style="font-size:1em">{{Unum}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col><h3>{{ skill_sets }}&nbsp;  <ion-icon name="create" (click)="showCap($event)"></ion-icon></h3></ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col *ngFor="let veh of capabilities">\n\n          <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  \n\n  <h2>{{ forecast }}</h2>\n\n\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorhome\operatorhome.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */],
@@ -1385,10 +1407,10 @@ var UpdatecapopPage = /** @class */ (function () {
             }
             else {
                 //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
+                var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
+                    'http://192.168.8.100:8000/static/vehicles/Excavator.png',
+                    'http://192.168.8.100:8000/static/vehicles/loader.png',
+                    'http://192.168.8.100:8000/static/vehicles/truck.png'];
                 var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
                 console.log("Got access token");
                 _this.access_token = val.toString();
@@ -1447,7 +1469,7 @@ var UpdatecapopPage = /** @class */ (function () {
     };
     UpdatecapopPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-updatecapop',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/'\n\n<ion-content>\n\n    <ion-list no-lines>\n\n        <ion-list-header>\n\n        {{ skill_sets }}\n\n        </ion-list-header>\n\n        <ion-item *ngFor="let veh of vehicles">\n\n          <ion-avatar item-left>\n\n            <!--<img src ="assets/imgs/VolvoLogo.png" style="width:6rem; height:6rem" alt = "Compactor">-->  \n\n            <img [src] = veh.vehicle_url style="width:6rem; height:6rem" alt = "Compactor">\n\n          </ion-avatar>\n\n          <ion-label></ion-label>\n\n          <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n\n<ion-footer>\n\n    <button full ion-button (click)="UpdateCap()">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/,
+            selector: 'page-updatecapop',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/'\n\n<ion-content>\n\n    <ion-list no-lines>\n\n        <ion-list-header>\n\n        {{ skill_sets }}\n\n        </ion-list-header>\n\n        <ion-item *ngFor="let veh of vehicles">\n\n          <ion-avatar item-left>\n\n            <!--<img src ="assets/imgs/VolvoLogo.png" style="width:6rem; height:6rem" alt = "Compactor">-->  \n\n            <img [src] = veh.vehicle_url style="width:6rem; height:6rem" alt = "Compactor">\n\n          </ion-avatar>\n\n          <ion-label></ion-label>\n\n          <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n</ion-content>\n\n<ion-footer>\n\n    <button full ion-button (click)="UpdateCap()">{{ submit }}</button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\updatecapop\updatecapop.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1667,7 +1689,7 @@ var OperatorjobPage = /** @class */ (function () {
     };
     OperatorjobPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operatorjob',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/'<ion-header padding-top>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid,pastJob.title);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{pastJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid,ongoingJob.title);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{ongoingJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid,upcomingJob.title);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <!-- <h3>$ &nbsp; {{upcomingJob.payout}}</h3> -->\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/,
+            selector: 'page-operatorjob',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/'<ion-header padding-top>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid,pastJob.title);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{pastJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid,ongoingJob.title);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <!-- <h3>$ &nbsp; {{ongoingJob.payout}}</h3> -->\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid,upcomingJob.title);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <!-- <h3>$ &nbsp; {{upcomingJob.payout}}</h3> -->\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operatorjob\operatorjob.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -1739,10 +1761,10 @@ var OtpOperatorPage = /** @class */ (function () {
             }
             else {
                 //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
+                var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
+                    'http://192.168.8.100:8000/static/vehicles/Excavator.png',
+                    'http://192.168.8.100:8000/static/vehicles/loader.png',
+                    'http://192.168.8.100:8000/static/vehicles/truck.png'];
                 var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
                 console.log("Got access token");
                 _this.access_token = val.toString();
@@ -1829,7 +1851,7 @@ var OtpOperatorPage = /** @class */ (function () {
     };
     OtpOperatorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-otp-operator',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/'<!--\n\n  Generated template for the OtpOperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ invitation_code }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="otp" (ionChange)="CheckOTP()"></ion-input>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ invited_by }}: <b>{{Owner}}</b></ion-label>\n\n  </ion-item>\n\n<br/>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }}</ion-label>\n\n  <ion-input type="text" [(ngModel)]="PhoneNo"></ion-input>\n\n</ion-item>\n\n\n\n\n\n<ion-list no-lines>\n\n  <ion-list-header>\n\n    {{ skill_sets }}\n\n  </ion-list-header>\n\n  <ion-item *ngFor="let veh of vehicles">\n\n    <ion-avatar item-left>\n\n        <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n    </ion-avatar>\n\n    <ion-label></ion-label>\n\n    <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="Submit($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/,
+            selector: 'page-otp-operator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/'<!--\n\n  Generated template for the OtpOperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <ion-label stacked>{{ invitation_code }}</ion-label>\n\n    <ion-input type="text" [(ngModel)]="otp" (ionChange)="CheckOTP()"></ion-input>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ invited_by }}: <b>{{Owner}}</b></ion-label>\n\n  </ion-item>\n\n<br/>\n\n\n\n<ion-item>\n\n  <ion-label stacked>{{ phone_no }}</ion-label>\n\n  <ion-input type="text" [(ngModel)]="PhoneNo"></ion-input>\n\n</ion-item>\n\n\n\n\n\n<ion-list no-lines>\n\n  <ion-list-header>\n\n    {{ skill_sets }}\n\n  </ion-list-header>\n\n  <ion-item *ngFor="let veh of vehicles">\n\n    <ion-avatar item-left>\n\n        <img [src] = veh.vehicle_url style="width:6rem; height:6rem">\n\n    </ion-avatar>\n\n    <ion-label></ion-label>\n\n    <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<br>\n\n  <ion-grid>\n\n    <ion-row>\n\n    <ion-col>\n\n  <button full ion-button (click)="Submit($event)">{{ continue }}</button>\n\n  </ion-col>\n\n  </ion-row>\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\otp-operator\otp-operator.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_app_app__["a" /* AppProvider */],
@@ -2128,11 +2150,11 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
-    AppProvider.prototype.retrieveVehicleUtil = function (serial_no, access_token) {
+    AppProvider.prototype.retrieveVehicleUtil = function (serial_no, model_no, access_token) {
         var _this = this;
         console.log("Retrieving Vehicle Utilization graph");
         return new Promise(function (resolve) {
-            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehicleUtil?serial_no=' + serial_no + '&access_token=' + access_token).subscribe(function (res) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehicleUtil?serial_no=' + serial_no + '&model_no' + model_no + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Retrieved Vehicle Utilization Graph");
             }, function (err) {
@@ -2231,6 +2253,19 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'addJob?access_token=' + access_token + '&payout=' + payField + '&date_from=' + datefromField + '&date_to=' + datetoField + '&location=' + locationField + '&description=' + descField + '&title=' + titleField).subscribe(function (res) {
                 resolve(res);
                 console.log("Jobs Added");
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    AppProvider.prototype.addJobDetails = function (access_token, datefromField, datetoField, jid, operator_names, operator_vehicles) {
+        var _this = this;
+        console.log("Adding JobsDetails");
+        console.log(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'addJobDetails?access_token=' + access_token + '&date_from=' + datefromField + '&date_to=' + datetoField + '&jid=' + jid + '&operator_names=' + operator_names + '&operator_vehicles=' + operator_vehicles);
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'addJobDetails?access_token=' + access_token + '&date_from=' + datefromField + '&date_to=' + datetoField + '&jid=' + jid + '&operator_names=' + operator_names + '&operator_vehicles=' + operator_vehicles).subscribe(function (res) {
+                resolve(res);
+                console.log("JobDetails Added");
             }, function (err) {
                 console.log(err);
             });
@@ -2592,6 +2627,16 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
+    AppProvider.prototype.getvalueList = function (access_token) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorJoblist?access_token=' + access_token).subscribe(function (res) {
+                resolve(res);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     AppProvider.prototype.UpdateCapabilities = function (access_token, vehicle_type) {
         var _this = this;
         console.log("Updating Capabilities");
@@ -2626,6 +2671,36 @@ var AppProvider = /** @class */ (function () {
             }, function (err) {
                 console.log('err');
                 console.log(err);
+            });
+        });
+    };
+    AppProvider.prototype.getMonthlyPay = function (email) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getMonthlyPay?email=' + email).subscribe(function (res) {
+                resolve(res);
+                console.log(res);
+                console.log('Monthly pay for chart recieved');
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    AppProvider.prototype.getHomeFleet = function (email) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getHomeFleet?email=' + email).subscribe(function (res) {
+                // alert('Recieved data back from testfn: '+res);
+                resolve(res);
+                // alert('Recieved data2 back from testfn: '+res);
+                console.log(res);
+                console.log('testabc function');
+            }, function (err) {
+                console.log(err);
+                var apple = JSON.stringify(err);
+                var pear = JSON.parse(apple);
+                alert('Retrieve went wrong:' + apple);
+                alert('2nd alert went wrong: ' + pear);
             });
         });
     };
@@ -2834,7 +2909,7 @@ var FleetsPage = /** @class */ (function () {
     };
     FleetsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-Fleets',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\fleets\fleets.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">\n\n        <ion-thumbnail item-start>\n\n            <img [src] =vehicle.img>\n\n        </ion-thumbnail>\n\n        <h2>{{vehicle.Modelno}}</h2>\n\n        <p>{{vehicle.Desc}}</p>\n\n      </button>\n\n    </ion-list>\n\n\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button full (click)="AddVeh()" >{{ add }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\fleets\fleets.html"*/
+            selector: 'page-Fleets',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleets\fleets.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n      <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">\n\n        <ion-thumbnail item-start>\n\n            <img [src] =vehicle.img>\n\n        </ion-thumbnail>\n\n        <h2>{{vehicle.Modelno}}</h2>\n\n        <p>{{vehicle.Desc}}</p>\n\n      </button>\n\n    </ion-list>\n\n\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n  <ion-toolbar position="bottom">\n\n    <button ion-button full (click)="AddVeh()" >{{ add }}</button>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleets\fleets.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -2936,7 +3011,7 @@ var FleetInfoPage = /** @class */ (function () {
                 _this.retrieveMaintenanceCompleted(_this.vehicle.serial_no, _this.todaydate);
                 _this.retrieveMaintenanceUpcoming(_this.vehicle.serial_no, _this.todaydate);
                 _this.retrieveVehicleSchedule(_this.vehicle.serial_no);
-                _this.retrieveVehicleUtil(_this.vehicle.serial_no);
+                _this.retrieveVehicleUtil(_this.vehicle.serial_no, _this.vehicle.model_no);
                 _this._initializeTranslation();
             }
         });
@@ -3034,16 +3109,18 @@ var FleetInfoPage = /** @class */ (function () {
             console.log(err);
         });
     };
-    FleetInfoPage.prototype.retrieveVehicleUtil = function (serial_no) {
+    FleetInfoPage.prototype.retrieveVehicleUtil = function (serial_no, model_no) {
         var _this = this;
-        this.appprov.retrieveVehicleUtil(serial_no, this.access_token).then(function (res) {
+        this.appprov.retrieveVehicleUtil(serial_no, model_no, this.access_token).then(function (res) {
             var data = JSON.stringify(res);
             data = JSON.parse(data);
-            var vehicle_month = data['vehicle_month'];
-            var vehicle_year = data['vehicle_year'];
-            var month_total = data['month_total'];
-            var year_total = data['year_total'];
-            _this.getJobStats(vehicle_month, month_total);
+            var chartData = data['chartData'];
+            // let vehicle_month = data['vehicle_month'];
+            // let vehicle_year = data['vehicle_year'];
+            // let month_total = data['month_total'];
+            // let year_total = data['year_total'];
+            _this.getJobStats(chartData);
+            // this.getJobStats(vehicle_month, month_total);
             // sthis.getJobStats2(vehicle_year, year_total); //comment this sn 27
         }, function (err) {
             console.log(err);
@@ -3106,12 +3183,14 @@ var FleetInfoPage = /** @class */ (function () {
         }
         return job;
     };
-    FleetInfoPage.prototype.getJobStats = function (vehicle_month, month_total) {
+    FleetInfoPage.prototype.getJobStats = function (chartData) {
+        // getJobStats(vehicle_month, month_total){
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         var today = new Date();
         var month = today.getUTCMonth();
         var labels_month = [];
         var month_range = 4;
+        var chart_DataPack = chartData;
         var dataPack1 = ['7', '14', '14', '4', '22', '20', '15'];
         for (var i = 0; i < month_range; i++) {
             labels_month.push(months[(month + 12 - i) % 12]);
@@ -3126,7 +3205,7 @@ var FleetInfoPage = /** @class */ (function () {
                 labels: labels_month,
                 datasets: [{
                         label: 'Statistics',
-                        data: dataPack1,
+                        data: chart_DataPack,
                         backgroundColor: "rgba(0, 110,255, 0.2)",
                         borderWidth: 1
                     }]
@@ -3212,7 +3291,7 @@ var FleetInfoPage = /** @class */ (function () {
     ], FleetInfoPage.prototype, "doughnutCanvas2", void 0);
     FleetInfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-fleet-info',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barVehCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/,
+            selector: 'page-fleet-info',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barVehCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -3528,7 +3607,7 @@ var LoginPage = /** @class */ (function () {
     }; //login()
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--creating login field. padding provides padding into container -->\n\n<ion-content padding>\n\n    <img src="assets/imgs/LoginIcon.png">\n\n  <br/>\n\n<ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)">\n\n  <ion-item>\n\n    <ion-label>{{ owner }}</ion-label>\n\n    <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ operator }}</ion-label>\n\n    <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<img src="assets/imgs/kakaologin.jpg" style="width:100%; height:50px" (click)="login()">\n\n\n\n\n\n  <!-- <div padding>\n\n      <button ion-button color = "secondary" (click) = "myLogout()">Log Out</button>\n\n    </div> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<!--creating login field. padding provides padding into container -->\n\n<ion-content padding>\n\n    <img src="assets/imgs/LoginIcon.png">\n\n  <br/>\n\n<ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)">\n\n  <ion-item>\n\n    <ion-label>{{ owner }}</ion-label>\n\n    <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio>\n\n  </ion-item>\n\n  <ion-item>\n\n    <ion-label>{{ operator }}</ion-label>\n\n    <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio>\n\n  </ion-item>\n\n</ion-list>\n\n\n\n<img src="assets/imgs/kakaologin.jpg" style="width:100%; height:50px" (click)="login()">\n\n\n\n\n\n  <!-- <div padding>\n\n      <button ion-button color = "secondary" (click) = "myLogout()">Log Out</button>\n\n    </div> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
@@ -3665,7 +3744,7 @@ var AddvehiclePage = /** @class */ (function () {
     };
     AddvehiclePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addvehicle',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/'<!--\n\n  Generated template for the AddvehiclePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title padding-top>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content class="outer-content">\n\n  <form (ngsubmit)="AddVehicle()">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        {{ vehicle_type }}: {{ SelVeh }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-segment [(ngModel)]="SelVeh" name="VehicleType" (ionChange)="showOthrVType()">\n\n          <ion-segment-button value="Excavator">\n\n            <ion-icon name="custom-excavator2" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Compactor">\n\n            <ion-icon name="custom-dozer" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Loader">\n\n            <ion-icon name="custom-shovel" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Truck">\n\n              <ion-icon name="custom-truck" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <!-- <ion-segment-button value="Others">\n\n              Othrs\n\n          </ion-segment-button> -->\n\n        </ion-segment>\n\n        <ion-input type="text" placeholder="Vehicle Type" *ngIf="VehTypeTb" [(ngModel)]="OthrVehType" name="OthrVehTypeVal"></ion-input>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n        <ion-card-header>\n\n          {{ manufacturer }} : {{ SelManu }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">\n\n            <ion-segment-button value="Volvo">\n\n                <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Hyundai">\n\n                <ion-img src="assets/imgs/hyundai.png" class="center_hyundai_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Doosan">\n\n                <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Komatsu">\n\n                <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Others">\n\n                Others\n\n            </ion-segment-button>\n\n          </ion-segment>\n\n          <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n      <ion-card-header>{{ vehicle_details }}</ion-card-header>\n\n      <ion-card-content>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ model_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. EC250" [(ngModel)]="ModelNo" name="ModelNoVal"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ serial_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. 987123" [(ngModel)]="SerialNo" name="SerialNoVal"></ion-input>\n\n        </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ purchase_date }}. </ion-label>\n\n            <ion-datetime displayFormat="YYYY/MM/DD" placeholder="YYYY-MM-DD" [(ngModel)]="PurchaseDate" name="PDateVal"></ion-datetime>\n\n          </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ description }}. </ion-label>\n\n            <ion-input type="text" placeholder="Please enter vehicle description here" [(ngModel)]="Description" name="DescriptionVal"></ion-input>\n\n          </ion-item>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n  </form>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n  <button ion-button full (click) = "AddVehicle()">{{ add }}</button>\n\n  </ion-toolbar>\n\n  </ion-footer>'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/,
+            selector: 'page-addvehicle',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/'<!--\n\n  Generated template for the AddvehiclePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title padding-top>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content class="outer-content">\n\n  <form (ngsubmit)="AddVehicle()">\n\n    <ion-card>\n\n      <ion-card-header>\n\n        {{ vehicle_type }}: {{ SelVeh }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <ion-segment [(ngModel)]="SelVeh" name="VehicleType" (ionChange)="showOthrVType()">\n\n          <ion-segment-button value="Excavator">\n\n            <ion-icon name="custom-excavator2" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Compactor">\n\n            <ion-icon name="custom-dozer" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Loader">\n\n            <ion-icon name="custom-shovel" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <ion-segment-button value="Truck">\n\n              <ion-icon name="custom-truck" color="dark"></ion-icon>\n\n          </ion-segment-button>\n\n          <!-- <ion-segment-button value="Others">\n\n              Othrs\n\n          </ion-segment-button> -->\n\n        </ion-segment>\n\n        <ion-input type="text" placeholder="Vehicle Type" *ngIf="VehTypeTb" [(ngModel)]="OthrVehType" name="OthrVehTypeVal"></ion-input>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n        <ion-card-header>\n\n          {{ manufacturer }} : {{ SelManu }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">\n\n            <ion-segment-button value="Volvo">\n\n                <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Hyundai">\n\n                <ion-img src="assets/imgs/hyundai.png" class="center_hyundai_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Doosan">\n\n                <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Komatsu">\n\n                <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="Others">\n\n                Others\n\n            </ion-segment-button>\n\n          </ion-segment>\n\n          <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>\n\n        </ion-card-content>\n\n    </ion-card>\n\n\n\n    <ion-card>\n\n      <ion-card-header>{{ vehicle_details }}</ion-card-header>\n\n      <ion-card-content>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ model_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. EC250" [(ngModel)]="ModelNo" name="ModelNoVal"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n          <ion-label color="primary" stacked>{{ serial_no }}. </ion-label>\n\n          <ion-input type="text" placeholder="E.g. 987123" [(ngModel)]="SerialNo" name="SerialNoVal"></ion-input>\n\n        </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ purchase_date }}. </ion-label>\n\n            <ion-datetime displayFormat="YYYY/MM/DD" placeholder="YYYY-MM-DD" [(ngModel)]="PurchaseDate" name="PDateVal"></ion-datetime>\n\n          </ion-item>\n\n          <ion-item>\n\n            <ion-label color="primary" stacked>{{ description }}. </ion-label>\n\n            <ion-input type="text" placeholder="Please enter vehicle description here" [(ngModel)]="Description" name="DescriptionVal"></ion-input>\n\n          </ion-item>\n\n      </ion-card-content>\n\n    </ion-card>\n\n\n\n  </form>\n\n\n\n  </ion-content>\n\n\n\n  <ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n  <button ion-button full (click) = "AddVehicle()">{{ add }}</button>\n\n  </ion-toolbar>\n\n  </ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\addvehicle\addvehicle.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -3888,7 +3967,7 @@ var OperatorsPage = /** @class */ (function () {
     };
     OperatorsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-operators',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operators\operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 83%"> {{ add_operator }}</button>\n\n    <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\operators\operators.html"*/
+            selector: 'page-operators',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operators\operators.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      {{ title }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <!-- <ion-grid>\n\n      <ion-col col-2><img src="../../assets/imgs/add_button.png" style="width:4rem; height:4rem" (click)="addOperator($event);"></ion-col>\n\n  </ion-grid> -->\n\n\n\n\n\n  <ion-list>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-item *ngFor="let operator of operators">\n\n        <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">\n\n          <ion-col col-2>\n\n              <ion-avatar>\n\n                <img [src] = operator.operatordetails_profileurl>\n\n              </ion-avatar>\n\n          </ion-col>\n\n          <ion-col col-8>\n\n            {{operator.operatordetails_name}}\n\n            <img [src] = operator.operatordetails_status style="width:1rem; height:1rem"> {{operator.operatordetails_busydate}}\n\n            <br>\n\n            <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src] = vehicles style="width:4rem; height:4rem">   \n\n          </ion-col>\n\n          <!-- <ion-col col-2>\n\n            <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">\n\n          </ion-col> -->\n\n        </ion-row>\n\n      </ion-item>    \n\n    </ion-grid>\n\n  </ion-list>\n\n    \n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n    <button ion-button (click)="addOperator($event)" style="width: 83%"> {{ add_operator }}</button>\n\n    <img src="assets/imgs/kakaotalk.png" style="width:50px; height:50px" (click)="kkShare($event)" style="vertical-align: bottom">\n\n    </ion-toolbar>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\operators\operators.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
@@ -4270,7 +4349,7 @@ var ViewoperatorPage = /** @class */ (function () {
     ], ViewoperatorPage.prototype, "doughnutCanvas4", void 0);
     ViewoperatorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewoperator',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This page is to the owner\'s operator tab to view the individual operator work details -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/,
+            selector: 'page-viewoperator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This page is to the owner\'s operator tab to view the individual operator work details -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_app_app__["a" /* AppProvider */],
@@ -4352,8 +4431,12 @@ var HomePage = /** @class */ (function () {
                     console.log("Got access token");
                     _this.access_token = val.toString();
                     _this.getUserInfo();
+                    _this.getEmailPay();
+                    // this.getTestFn();
+                    // this.getMonthlyPay();
                     _this.getVehicleStatus('');
                     _this.getOwnerJoblist();
+                    // this.getFleetHomeChart();
                     _this._initializeTranslation();
                 }
             }); //storage.get('access_token').then((val)
@@ -4366,8 +4449,12 @@ var HomePage = /** @class */ (function () {
     */
     HomePage.prototype.ionViewDidEnter = function () {
         this.getUserInfo();
+        this.getEmailPay();
+        // this.getTestFn();
+        // this.getMonthlyPay(this.Uemail);
         this.getVehicleStatus('');
         this.getOwnerJoblist();
+        // this.getFleetHomeChart();
         this._initializeTranslation();
     };
     HomePage.prototype.ionViewDidLoad = function () {
@@ -4403,6 +4490,86 @@ var HomePage = /** @class */ (function () {
         });
         alert.present();
     };
+    HomePage.prototype.getEmailPay = function () {
+        var _this = this;
+        this.appprov.getemail().then(function (res) {
+            _this.UsrEmail = res;
+            _this.getMonthlyPay(res);
+            _this.getFleetData(res);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    HomePage.prototype.getMonthlyPay = function (email) {
+        var _this = this;
+        this.appprov.getMonthlyPay(email).then(function (res) {
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var chartExpectedMoney = data['Expected'];
+            var chartReceivedMoney = data['Received'];
+            _this.pay = chartExpectedMoney;
+            _this.payOut = chartReceivedMoney;
+            // alert('This.pay: '+this.pay);
+            // alert('This.pay: '+this.payOut);
+            // alert('This.pay0: '+this.pay[0]);
+            // alert('This.pay1: '+this.pay[1]);
+            // alert('This.pay2: '+this.pay[2]);
+            console.log("pay here first " + _this.pay);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    HomePage.prototype.getFleetData = function (email) {
+        var _this = this;
+        //  alert('Going to call backend, getTestFn from home.ts');
+        this.appprov.getHomeFleet(email).then(function (res) {
+            //  alert("testfunction here") 
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var goo1 = data['StartMonth'];
+            var goo2 = data['StartDate'];
+            var foo1 = data['EndMonth'];
+            var foo2 = data['EndDate'];
+            var boo = data['1stdiff'];
+            _this.t1 = goo1;
+            _this.t2 = goo2;
+            _this.t3 = foo1;
+            _this.t4 = foo2;
+            _this.t5 = boo;
+            alert('Array from all jobs Start_Month: ' + _this.t1);
+            //  alert('FromTestFn fDate: '+ this.t2);
+            //  alert('FromTestFn eMonth: '+ this.t3);
+            //  alert('FromTestFn eDate: '+ this.t4);
+            alert('The dates differences: ' + _this.t5);
+        }, function (err) {
+            console.log(err);
+            alert("Something went wrong: " + err);
+        });
+    };
+    // getFleetHomeChart(){
+    //   this.appprov.getFleetHomeChart().then((res) =>{
+    //     alert('What is this returning:'+ res);
+    //     var dog = JSON.stringify(res);
+    //     var cat = JSON.parse(dog);    
+    //     // let chartFirstMonth = data['f_month'];
+    //     // let chartLastMonth = data['l_month']; 
+    //     let chartFirstMonth = cat['Excel'];
+    //     // let chartLastMonth = data1['RRR']; 
+    //     alert('Item from homechart:'+ dog +' Here cat data: '+cat);      
+    //     alert('This FirstMonth.pay: '+ chartFirstMonth);      
+    //     this.payOut = chartFirstMonth;
+    //     alert("Get this out pls: "+this.payOut);
+    //     // alert('This FirstMonth.pay: '+ chartFirstMonth+' This Lastmonth.pay: '+ chartLastMonth );      
+    //     // this.pay = chartExpectedMoney;
+    //     // this.payOut = chartReceivedMoney;    
+    //     // alert('This.pay0: '+this.pay[0]);
+    //     // alert('This.pay1: '+this.pay[1]);
+    //     // alert('This.pay2: '+this.pay[2]);
+    //     // console.log("pay here first "+ this.pay);
+    //   }, err => {
+    //     console.log(err);
+    //   })
+    // }
     //On start and access database to retrieve owner information
     HomePage.prototype.getOwnerJoblist = function () {
         var _this = this;
@@ -4413,12 +4580,17 @@ var HomePage = /** @class */ (function () {
             var job_datefrom = data['job_datefrom'];
             var job_dateto = data['job_dateto'];
             console.log(job_dateto);
+            // alert('Call  ownerjoblist');
             var job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom };
             console.log(job);
             _this.loadEvents(job);
             _this.plotSchedule(job);
-            _this.getJobStats({ 'date_from': job_datefrom });
+            // this.getJobStats({'date_from':job_datefrom});
+            // this.getMonthlyPay();  
             _this.getEarnings();
+            // this.getMonthlyPay();  
+            // this.getFleetChartDays();
+            // this.getFleetHomeChart();
             _this.getFleetUsage();
             _this.getOperatorUsage();
         }, function (err) {
@@ -4484,55 +4656,57 @@ var HomePage = /** @class */ (function () {
         });
     }; //end of getVehicle
     /*To create the job statistics on home page (owner)*/
-    HomePage.prototype.getJobStats = function (jobs) {
-        //add label x-axis
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var today = new Date();
-        var month = today.getUTCMonth();
-        var labels_month = [];
-        var month_range = 4;
-        for (var i = 0; i < month_range; i++) {
-            labels_month.push(months[(month + 12 - i) % 12]);
-        }
-        labels_month.reverse();
-        for (var i = 1; i < month_range; i++) {
-            labels_month.push(months[(month + 12 + i) % 12]);
-        }
-        /*
-        Old codes
-        var labels_end = month-6;
-        for (let i = 0; i<6; i++){
-          labels_month.push(months[month-5+i]);
-        } */
-        // add data y-axis
-        var date_from = jobs.date_from;
-        var data_y = [0, 0, 0, 0, 0, 0];
-        for (var j = 0; j < date_from.length; j++) {
-            var temp = parseInt(date_from[j].substring(5, 7), 10);
-            console.log(temp);
-            console.log(".....................................");
-            for (var p = 0; p < 6; p++) {
-                if ((temp - 1) == (month - p)) {
-                    data_y[5 - p] += 1;
-                }
-            }
-        }
-        //creating of the bar graph
-        console.log(data_y);
-        this.barChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvas.nativeElement, {
-            type: 'bar',
-            data: {
-                labels: labels_month,
-                datasets: [{
-                        label: this.jobstats,
-                        data: data_y,
-                        backgroundColor: "rgba(0, 110,255, 0.2)",
-                        borderColor: "rbga(0, 110, 255, 1)",
-                        borderWidth: 1
-                    }]
-            }
-        });
-    }; // end of getJobStats
+    // getJobStats(jobs){
+    //   //add label x-axis
+    //   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    //   var today = new Date();
+    //   var month = today.getUTCMonth();
+    //   var labels_month = [];
+    //   var month_range = 4;
+    //   for(let i=0; i<month_range; i++)
+    //   {
+    //     labels_month.push(months[(month+12 - i)%12]);
+    //   }
+    //   labels_month.reverse();
+    //   for(let i=1; i<month_range; i++)
+    //   {
+    //     labels_month.push(months[(month+12 + i)%12]);
+    //   }
+    //   /*
+    //   Old codes
+    //   var labels_end = month-6;
+    //   for (let i = 0; i<6; i++){
+    //     labels_month.push(months[month-5+i]);
+    //   } */
+    //   // add data y-axis
+    //   var date_from = jobs.date_from;
+    //   var data_y = [0, 0, 0, 0, 0, 0];
+    //   for (let j =0; j<date_from.length; j++){
+    //     var temp = parseInt(date_from[j].substring(5,7), 10);
+    //     console.log(temp);
+    //     console.log(".....................................");
+    //     for (let p=0; p<6; p++){
+    //       if ((temp-1) == (month-p)){
+    //         data_y[5-p] += 1;
+    //       }
+    //     }
+    //   }
+    //   //creating of the bar graph
+    //   console.log(data_y);
+    //   this.barChart = new Chart(this.barCanvas.nativeElement, {
+    //     type: 'bar',
+    //     data:{
+    //       labels: labels_month,
+    //       datasets: [{
+    //         label: this.jobstats,
+    //         data: data_y,
+    //         backgroundColor: "rgba(0, 110,255, 0.2)",
+    //         borderColor: "rbga(0, 110, 255, 1)",
+    //         borderWidth:1
+    //       }]
+    //     }
+    //   })
+    // }// end of getJobStats
     // numberwithcommas(x) {
     //   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
     // };
@@ -4549,8 +4723,13 @@ var HomePage = /** @class */ (function () {
         for (var i = 1; i < month_range; i++) {
             labels_month.push(months[(month + 12 + i) % 12]);
         }
-        var dataPack1 = ['5', '14', '14', '4', '30', '45', '60'];
-        var dataPack2 = ['10', '35', '50', '10', '35', '50', '90'];
+        //Expected
+        console.log("Load test DATA SETTT");
+        var ExpectedData = this.pay;
+        // var dataPack1 = ['5','14','14','4','30','45','60'];
+        //Total
+        var totalData = this.payOut;
+        // var dataPack2 = ['10','35','50','10','35','50','90'];
         this.EarningsChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvasEarnings.nativeElement, {
             type: 'bar',
             data: {
@@ -4558,14 +4737,15 @@ var HomePage = /** @class */ (function () {
                 datasets: [
                     {
                         label: 'Expected',
-                        data: dataPack1,
+                        data: ExpectedData,
+                        // data: dataPack1,
                         // backgroundColor: "rgba(0, 110,255, 0.2)",
                         backgroundColor: "rgba(107,142,35, 0.2)",
                         borderWidth: 1
                     },
                     {
-                        label: 'Total',
-                        data: dataPack2,
+                        label: 'Received',
+                        data: totalData,
                         // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
                         // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
                         backgroundColor: "rgba(152,251,152, 0.2)",
@@ -4582,7 +4762,7 @@ var HomePage = /** @class */ (function () {
                     callbacks: {
                         label: function (tooltipItem, data) {
                             return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                            // return this.addCommaNumber(tooltipItem.yLabel.toString());                       
+                            // return this./(tooltipItem.yLabel.toString());                       
                         },
                     },
                 },
@@ -4595,6 +4775,7 @@ var HomePage = /** @class */ (function () {
                             stacked: false,
                             // gridLines: {display:false},
                             ticks: {
+                                // display:false,
                                 // callback: function(value){ return this.addCommaNumber(value);},          
                                 // beginatZero: true,
                                 min: 0,
@@ -4632,7 +4813,7 @@ var HomePage = /** @class */ (function () {
                         label: 'Statistics',
                         data: dataPack1,
                         backgroundColor: "rgba(0, 110,255, 0.2)",
-                        borderColor: "rbga(0, 110, 255, 1)",
+                        // borderColor: "rbga(0, 110, 255, 1)",
                         borderWidth: 1
                     }]
             },
@@ -4774,7 +4955,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "barCanvasOperatorUsage", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n \n\n  <!-- <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card> -->\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card> \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
@@ -5093,7 +5274,7 @@ var JobsPage = /** @class */ (function () {
     };
     JobsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-Jobs',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\jobs\jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This is for Job Management tab page -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\jobs\jobs.html"*/
+            selector: 'page-Jobs',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This is for Job Management tab page -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -5431,7 +5612,7 @@ var OpjobdetailsPage = /** @class */ (function () {
     };
     OpjobdetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-opjobdetails',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{JobTitle}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row justify-content:center>\n\n      <ion-col>\n\n          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <button ion-button full (click)="presentAS()">\n\n              <ion-icon name="camera"></ion-icon>{{ take_photo }}\n\n            </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults">\n\n            <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>\n\n          </ion-select>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button full (click)="UploadImg()">\n\n      {{ submit }}\n\n    </button>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/,
+            selector: 'page-opjobdetails',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{JobTitle}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row justify-content:center>\n\n      <ion-col>\n\n          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <button ion-button full (click)="presentAS()">\n\n              <ion-icon name="camera"></ion-icon>{{ take_photo }}\n\n            </button>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults">\n\n            <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>\n\n          </ion-select>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button full (click)="UploadImg()">\n\n      {{ submit }}\n\n    </button>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\opjobdetails\opjobdetails.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -5528,7 +5709,7 @@ var JoblistsPage = /** @class */ (function () {
     };
     JoblistsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-joblists',template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\joblists\joblists.html"*/'\n\n<ion-content padding class = "list-avatar-page">\n\n    <div style="font-size: 2em">{{ mode }}</div>\n\n    <ion-list *ngFor="let job of jobs; let i = index" (click) = "itemTapped($event,job)">\n\n      <ion-list-header class="listHeader">\n\n        <b>{{jobs[i][0]}}</b>\n\n        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->\n\n      <br/> \n\n        <ion-icon name="pin"></ion-icon> {{jobs[i][1]}}\n\n        <ion-note float-right>{{jobs[i][2]}} Won</ion-note>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let opveh of jobs[i][3]" class="listHeader">\n\n        <ion-avatar item-start>\n\n            <ion-img src={{opveh.opimg}}></ion-img> \n\n            <ion-icon name={{opveh.vehtype}} color="dark"></ion-icon>\n\n        </ion-avatar>\n\n        <p>{{opveh.opname}}</p>\n\n        <p item-end>{{opveh.oppay}} Won</p>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\joblists\joblists.html"*/,
+            selector: 'page-joblists',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\joblists\joblists.html"*/'\n\n<ion-content padding class = "list-avatar-page">\n\n    <div style="font-size: 2em">{{ mode }}</div>\n\n    <ion-list *ngFor="let job of jobs; let i = index" (click) = "itemTapped($event,job)">\n\n      <ion-list-header class="listHeader">\n\n        <b>{{jobs[i][0]}}</b>\n\n        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->\n\n      <br/> \n\n        <ion-icon name="pin"></ion-icon> {{jobs[i][1]}}\n\n        <ion-note float-right>{{jobs[i][2]}} Won</ion-note>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let opveh of jobs[i][3]" class="listHeader">\n\n        <ion-avatar item-start>\n\n            <ion-img src={{opveh.opimg}}></ion-img> \n\n            <ion-icon name={{opveh.vehtype}} color="dark"></ion-icon>\n\n        </ion-avatar>\n\n        <p>{{opveh.opname}}</p>\n\n        <p item-end>{{opveh.oppay}} Won</p>\n\n      </ion-item>\n\n    </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\joblists\joblists.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
     ], JoblistsPage);
@@ -6236,7 +6417,7 @@ var MyApp = /** @class */ (function () {
         // }
     };
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n<!--ionic navigation controller. will connect to the file/page that links the nav which is ion-navbar-->\n\n'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n<!--ionic navigation controller. will connect to the file/page that links the nav which is ion-navbar-->\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
@@ -6311,7 +6492,7 @@ var TabsPage = /** @class */ (function () {
         this.jobs = this._translate.instant("tabs.jobs");
     };
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Root" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Root" tabIcon="custom-excavator"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab3Root" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab4Root" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n<!--sets the tabs on screen/app-->'/*ion-inline-end:"C:\Users\yo_wa\Desktop\IWSP Volvo\ionic_koreanapp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab1Root" tabIcon="home"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab2Root" tabIcon="custom-excavator"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab3Root" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [tabsHideOnSubPages]="true" [root]="tab4Root" tabIcon="briefcase"></ion-tab>\n\n</ion-tabs>\n\n<!--sets the tabs on screen/app-->'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__ngx_translate_core__["c" /* TranslateService */]])
     ], TabsPage);

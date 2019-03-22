@@ -53,7 +53,7 @@ export class FleetsPage {
         else{
           console.log("Got access token");
           this.access_token = val.toString();
-          this.getFleetin();
+          this.getFleetin();          
           this._initializeTranslation();
         }
       });
@@ -79,7 +79,7 @@ export class FleetsPage {
 
 
   ionViewWillEnter(){
-    this.getFleetin();
+    this.getFleetin();   
   }
 
   AddVeh(){

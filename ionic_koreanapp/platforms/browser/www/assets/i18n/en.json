@@ -65,7 +65,7 @@
         "maintenance" : "Maintenance",
         "completed" : "Completed",
         "last_service" : "Last service on",
-        "upcomming": "Upcomming",
+        "upcomming": "Upcoming",
         "employment" : "Employment",
         "utilization" : "Utilization",
         "month": "Month",
@@ -111,7 +111,7 @@
         "title": "Job Management",
         "history" : "History",
         "ongoing" : "Ongoing",
-        "upcomming" : "Upcomming",
+        "upcomming" : "Upcoming",
         "add_job": "Add Job"
     },
 
@@ -187,7 +187,7 @@
         "title": "Job Management",
         "history": "History",
         "txongoing": "Ongoing",
-        "upcomming": "Upcomming"
+        "upcomming": "Upcoming"
     },
 
     "opjobdetails": {

@@ -6,6 +6,8 @@ import { apiKey } from '../../app/apiurls/serverurls.js';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Geolocation } from '@ionic-native/geolocation';
+import { resolveDefinition } from '@angular/core/src/view/util';
+import { stringify } from '@angular/core/src/util';
 
 /*
   Generated class for the AppProvider provider.
@@ -254,10 +256,10 @@ export class AppProvider {
     })
   }
 
-  public retrieveVehicleUtil(serial_no, access_token){
+  public retrieveVehicleUtil(serial_no,model_no, access_token){
     console.log("Retrieving Vehicle Utilization graph");
     return new Promise(resolve =>{
-      this.http.get(apiKey+'retrieveVehicleUtil?serial_no='+serial_no+'&access_token='+access_token).subscribe((res) => {
+      this.http.get(apiKey+'retrieveVehicleUtil?serial_no='+serial_no+'&model_no'+model_no+'&access_token='+access_token).subscribe((res) => {
         resolve(res);
         console.log("Retrieved Vehicle Utilization Graph");
       }, err => {
@@ -360,6 +362,19 @@ export class AppProvider {
       console.log(err);
       })
     })
+}
+
+public addJobDetails(access_token, datefromField, datetoField,jid, operator_names,operator_vehicles){
+  console.log("Adding JobsDetails");
+  console.log(apiKey+'addJobDetails?access_token='+access_token+'&date_from='+datefromField+'&date_to='+datetoField+'&jid='+jid+'&operator_names='+operator_names+'&operator_vehicles='+operator_vehicles);
+  return new Promise(resolve => {
+  this.http.get(apiKey+'addJobDetails?access_token='+access_token+'&date_from='+datefromField+'&date_to='+datetoField+'&jid='+jid+'&operator_names='+operator_names+'&operator_vehicles='+operator_vehicles).subscribe((res) => {
+    resolve(res);
+    console.log("JobDetails Added");
+  }, err => {
+    console.log(err);
+    })
+  })
 }
 
 public insertOperatorJob(access_token, jid, operator_names, operator_vehicles){
@@ -725,6 +740,18 @@ public getOperatorJoblist(access_token){
   });
 }
 
+public getvalueList(access_token){  
+  return new Promise(resolve => {
+    this.http.get(apiKey+'getOperatorJoblist?access_token=' + access_token).subscribe((res) => {
+      resolve(res);      
+    }, err => {
+      console.log(err);
+    })
+  });
+}
+
+
+
 public UpdateCapabilities(access_token,vehicle_type){
   console.log("Updating Capabilities");
   return new Promise(resolve => {
@@ -762,6 +789,47 @@ public GetCurrentLoc(){
     });
 }
 
+public getMonthlyPay(email){
+  return new Promise(resolve =>{
+    this.http.get(apiKey+'getMonthlyPay?email=' + email).subscribe(res =>{
+      resolve(res);
+      console.log(res);
+      console.log('Monthly pay for chart recieved');
+    }, (err) =>{
+      console.log(err);    
+    })
+  })
+}
 
+public getHomeFleet(email){
+  return new Promise(resolve =>{
+    this.http.get(apiKey+'getHomeFleet?email=' + email).subscribe(res =>{
+      // alert('Recieved data back from testfn: '+res);
+      resolve(res);
+      // alert('Recieved data2 back from testfn: '+res);
+      console.log(res);
+      console.log('testabc function');   
+    },(err)=>{
+      console.log(err);
+      var apple = JSON.stringify(err);
+      var pear = JSON.parse(apple);
+      alert('Retrieve went wrong:'+ apple);
+      alert('2nd alert went wrong: '+ pear);
+    })
+  })
+}
+// public getFleetHomeChart(){
+//   console.log('Calling from front end to backend');
+//   return new Promise(resolve =>{
+//     this.http.get(apiKey+'getFleetHomeChart?email=' +'yunhong93@hotmail.com').subscribe(res =>{      
+//       resolve(res);
+//       alert('2nd Responding back')
+//       console.log(res);      
+//     }, (err) =>{
+//       console.log(err);    
+//       alert('failed to retrieve from backend')
+//     })
+//   })
+// }
 
 }

@@ -4,6 +4,10 @@
         "source": "C:\\Users\\Jeremy Wong\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\mipmap-xhdpi\\icon.png"
     },
     {
+        "merged": "C:\\Users\\yo_wa\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi\\icon.png",
+        "source": "C:\\Users\\yo_wa\\Desktop\\digitalce\\ce\\ionic_koreanapp\\platforms\\android\\res\\mipmap-xhdpi\\icon.png"
+    },
+    {
         "merged": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi\\icon.png",
         "source": "C:\\Users\\yo_wa\\Desktop\\IWSP Volvo\\ionic_koreanapp\\platforms\\android\\res\\mipmap-xhdpi\\icon.png"
     }

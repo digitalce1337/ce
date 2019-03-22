@@ -4,17 +4,20 @@ webpackJsonp([13],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//export const apiKey = 'http://127.0.0.1:8000/';
-// export const apiKey = 'http://18.222.220.169/';
-//export const apiKey = 'http://10.0.2.2:8000/'
-//export const apiKey = 'http://18.221.233.168/';
+//Production on AWS - Public DNS
+//export const apiKey = 'http://18.222.185.105/'
 
-// export const apiKey = 'http://52.14.34.166/';
-//export const apiKey = 'http://18.220.42.164/'
-const apiKey = 'http://18.222.185.105/'
+//IPv4 address on phone hotspot circlelife
+// export const apiKey = 'http://192.168.43.188:8000/'
+
+//Singtel IPv4 address
+const apiKey = 'http://192.168.8.100:8000/'
 /* harmony export (immutable) */ __webpack_exports__["a"] = apiKey;
 
+// export const apiKey = 'http://192.168.8.101:8000/'
+// export const apiKey = 'http://192.168.8.102:8000/'
 
+// export const apiKey = 'http://192.168.1.31:8000/'
 
 /***/ }),
 
@@ -200,6 +203,7 @@ var AddjobPage = /** @class */ (function () {
             _this.appprov.insertOperatorJob(_this.access_token, result.jid, names, vehicles).then(function (res) {
                 _this.appprov.presentAlert(_this.addjobmsgtitle, _this.addjobmsg);
                 _this.viewctrl.dismiss('1');
+                _this.appprov.addJobDetails(_this.access_token, val.DateFrom.toString(), val.DateTo.toString(), result.jid, names, vehicles);
             }, function (err) {
                 console.log(err);
             });
@@ -545,6 +549,7 @@ var JobinfoPage = /** @class */ (function () {
             _this.description = data['description'];
             _this.title = data['title'];
             _this.completed = data['completed'];
+            alert("This is the value of the pay.. :" + _this.payout);
             if (_this.completed == '1') {
                 _this.buttonDisabled = true;
                 _this.buttonColor = 'secondary';
@@ -742,6 +747,7 @@ var EditjobPage = /** @class */ (function () {
             console.log("Job details retrieved");
             _this.Client_Name = data['Client_Name'];
             _this.Earning = data['Earning'];
+            // console.log("Earning got: " + this.Earning);
             _this.locatio = data['location'];
             _this.date_from_ = data['date_from'];
             _this.date_to_ = data['date_to'];
@@ -804,6 +810,7 @@ var EditjobPage = /** @class */ (function () {
         this.appprov.getemail().then(function (res) {
             _this.UsrEmail = res;
             _this.getOperators(res.toString());
+            console.log("Email is: " + _this.UsrEmail);
         }, function (err) {
             console.log(err);
         });
@@ -1125,6 +1132,7 @@ var OperatorhomePage = /** @class */ (function () {
                 _this.access_token = val.toString();
                 _this.getUserInfo();
                 _this.getOperatorJoblist();
+                _this.getvalueList();
                 _this.getCapabilities();
                 _this._initializeTranslation();
             }
@@ -1139,6 +1147,7 @@ var OperatorhomePage = /** @class */ (function () {
     OperatorhomePage.prototype.ionViewWillEnter = function () {
         this.getUserInfo();
         this.getOperatorJoblist();
+        this.getvalueList();
     };
     OperatorhomePage.prototype.changeLanguage = function () {
         this._translateLanguage();
@@ -1188,6 +1197,21 @@ var OperatorhomePage = /** @class */ (function () {
             _this.Ucompany = _this.userinfo.company_name;
             _this.Ucompanyadd = _this.userinfo.company_add;
             _this.appprov.setemail(_this.userinfo.email);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    OperatorhomePage.prototype.getvalueList = function () {
+        this.appprov.getvalueList(this.access_token).then(function (res) {
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var job_desc = data['job_desc'];
+            var job_datefrom = data['job_datefrom'];
+            var job_dateto = data['job_dateto'];
+            console.log(job_dateto);
+            var job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom };
+            console.log(job);
+            alert('Got value from getvalueList which is: ' + job);
         }, function (err) {
             console.log(err);
         });
@@ -1383,10 +1407,10 @@ var UpdatecapopPage = /** @class */ (function () {
             }
             else {
                 //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
+                var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
+                    'http://192.168.8.100:8000/static/vehicles/Excavator.png',
+                    'http://192.168.8.100:8000/static/vehicles/loader.png',
+                    'http://192.168.8.100:8000/static/vehicles/truck.png'];
                 var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
                 console.log("Got access token");
                 _this.access_token = val.toString();
@@ -1551,6 +1575,7 @@ var OperatorjobPage = /** @class */ (function () {
     };
     OperatorjobPage.prototype.retrievePastJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrievePastJobsOps(this.access_token).then(function (res) {
             _this.past = res;
             _this.pastJid = _this.past.jid;
@@ -1561,6 +1586,9 @@ var OperatorjobPage = /** @class */ (function () {
             _this.past_location = _this.past.location;
             _this.past_payout = _this.past.payout;
             _this.pastJobs = [];
+            for (var i = 0; i < _this.pastTitle.length; i++) {
+                totalPayout += parseInt(_this.past.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.pastTitle.length; i++) {
                     _this.pastJobs.push({
@@ -1577,6 +1605,10 @@ var OperatorjobPage = /** @class */ (function () {
             catch (_a) {
                 console.log("Past job cannot retrieve length");
             }
+            console.log("pastTitle: " + _this.pastTitle);
+            console.log("pastPayout: " + _this.past_payout);
+            console.log("1st Payout: " + _this.past_payout[0] + " 2ndPayout: " + _this.past_payout[1]);
+            console.log("Get the total pastPayout: " + totalPayout);
             console.log("History job pushed");
         }, function (err) {
             console.log(err);
@@ -1729,10 +1761,10 @@ var OtpOperatorPage = /** @class */ (function () {
             }
             else {
                 //the url to display the image icon of the vehicles is the public DNS of AWS instance
-                var vehurl = ['http://18.222.185.105/static/vehicles/compactor.png',
-                    'http://18.222.185.105/static/vehicles/Excavator.png',
-                    'http://18.222.185.105/static/vehicles/loader.png',
-                    'http://18.222.185.105/static/vehicles/truck.png'];
+                var vehurl = ['http://192.168.8.100:8000/static/vehicles/compactor.png',
+                    'http://192.168.8.100:8000/static/vehicles/Excavator.png',
+                    'http://192.168.8.100:8000/static/vehicles/loader.png',
+                    'http://192.168.8.100:8000/static/vehicles/truck.png'];
                 var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
                 console.log("Got access token");
                 _this.access_token = val.toString();
@@ -1932,6 +1964,7 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getFleet?email=' + email).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy2");
             }, function (err) {
                 console.log(err);
             });
@@ -1952,6 +1985,8 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorList?email=' + email + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy2");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2012,6 +2047,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorDetails?email=' + email + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Operator details fetched");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2072,6 +2108,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehMachineHour?serial_no=' + serial_no + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Retrieve machine hour");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2113,11 +2150,11 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
-    AppProvider.prototype.retrieveVehicleUtil = function (serial_no, access_token) {
+    AppProvider.prototype.retrieveVehicleUtil = function (serial_no, model_no, access_token) {
         var _this = this;
         console.log("Retrieving Vehicle Utilization graph");
         return new Promise(function (resolve) {
-            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehicleUtil?serial_no=' + serial_no + '&access_token=' + access_token).subscribe(function (res) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveVehicleUtil?serial_no=' + serial_no + '&model_no' + model_no + '&access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("Retrieved Vehicle Utilization Graph");
             }, function (err) {
@@ -2221,6 +2258,19 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
+    AppProvider.prototype.addJobDetails = function (access_token, datefromField, datetoField, jid, operator_names, operator_vehicles) {
+        var _this = this;
+        console.log("Adding JobsDetails");
+        console.log(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'addJobDetails?access_token=' + access_token + '&date_from=' + datefromField + '&date_to=' + datetoField + '&jid=' + jid + '&operator_names=' + operator_names + '&operator_vehicles=' + operator_vehicles);
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'addJobDetails?access_token=' + access_token + '&date_from=' + datefromField + '&date_to=' + datetoField + '&jid=' + jid + '&operator_names=' + operator_names + '&operator_vehicles=' + operator_vehicles).subscribe(function (res) {
+                resolve(res);
+                console.log("JobDetails Added");
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     AppProvider.prototype.insertOperatorJob = function (access_token, jid, operator_names, operator_vehicles) {
         var _this = this;
         console.log("Adding Operator Jobs");
@@ -2240,7 +2290,9 @@ var AppProvider = /** @class */ (function () {
         return new Promise(function (resolve) {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'retrieveJobDetails?access_token=' + access_token + '&jid=' + jid).subscribe(function (res) {
                 resolve(res);
+                console.log("heyyyy");
                 console.log("Job Details Retrieved");
+                console.log("jid: " + jid);
             }, function (err) {
                 console.log(err);
             });
@@ -2349,6 +2401,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorNames?access_token=' + access_token + '&date_from=' + datefrom + '&date_to=' + dateto).subscribe(function (res) {
                 resolve(res);
                 console.log("Owner's Operators Retrieved");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2361,6 +2414,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getJobCards?access_token=' + access_token + '&jid=' + jid + '&no_of_days=' + no_of_days).subscribe(function (res) {
                 resolve(res);
                 console.log("Job reports retrieved");
+                console.log("jid: " + jid);
             }, function (err) {
                 console.log(err);
             });
@@ -2386,6 +2440,7 @@ var AppProvider = /** @class */ (function () {
             _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'OpsretrievePastJobs?access_token=' + access_token).subscribe(function (res) {
                 resolve(res);
                 console.log("History Jobs Retrieved");
+                console.log("access token: " + access_token);
             }, function (err) {
                 console.log(err);
             });
@@ -2572,6 +2627,16 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
+    AppProvider.prototype.getvalueList = function (access_token) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getOperatorJoblist?access_token=' + access_token).subscribe(function (res) {
+                resolve(res);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     AppProvider.prototype.UpdateCapabilities = function (access_token, vehicle_type) {
         var _this = this;
         console.log("Updating Capabilities");
@@ -2609,6 +2674,36 @@ var AppProvider = /** @class */ (function () {
             });
         });
     };
+    AppProvider.prototype.getMonthlyPay = function (email) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getMonthlyPay?email=' + email).subscribe(function (res) {
+                resolve(res);
+                console.log(res);
+                console.log('Monthly pay for chart recieved');
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    AppProvider.prototype.getHomeFleet = function (email) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_apiurls_serverurls_js__["a" /* apiKey */] + 'getHomeFleet?email=' + email).subscribe(function (res) {
+                // alert('Recieved data back from testfn: '+res);
+                resolve(res);
+                // alert('Recieved data2 back from testfn: '+res);
+                console.log(res);
+                console.log('testabc function');
+            }, function (err) {
+                console.log(err);
+                var apple = JSON.stringify(err);
+                var pear = JSON.parse(apple);
+                alert('Retrieve went wrong:' + apple);
+                alert('2nd alert went wrong: ' + pear);
+            });
+        });
+    };
     AppProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
@@ -2634,7 +2729,7 @@ var map = {
 		2
 	],
 	"../pages/addjob/addjob.module": [
-		913,
+		912,
 		12
 	],
 	"../pages/addoperator/addoperator.module": [
@@ -2650,11 +2745,11 @@ var map = {
 		0
 	],
 	"../pages/editjob/editjob.module": [
-		914,
+		913,
 		10
 	],
 	"../pages/jobinfo/jobinfo.module": [
-		915,
+		914,
 		9
 	],
 	"../pages/joblists/joblists.module": [
@@ -2662,23 +2757,23 @@ var map = {
 		8
 	],
 	"../pages/login/login.module": [
-		916,
+		915,
 		7
 	],
 	"../pages/operatorhome/operatorhome.module": [
-		917,
+		916,
 		6
 	],
 	"../pages/operatorjob/operatorjob.module": [
-		910,
+		917,
 		5
 	],
 	"../pages/otp-operator/otp-operator.module": [
-		911,
+		910,
 		4
 	],
 	"../pages/updatecapop/updatecapop.module": [
-		912,
+		911,
 		3
 	]
 };
@@ -2916,7 +3011,7 @@ var FleetInfoPage = /** @class */ (function () {
                 _this.retrieveMaintenanceCompleted(_this.vehicle.serial_no, _this.todaydate);
                 _this.retrieveMaintenanceUpcoming(_this.vehicle.serial_no, _this.todaydate);
                 _this.retrieveVehicleSchedule(_this.vehicle.serial_no);
-                _this.retrieveVehicleUtil(_this.vehicle.serial_no);
+                _this.retrieveVehicleUtil(_this.vehicle.serial_no, _this.vehicle.model_no);
                 _this._initializeTranslation();
             }
         });
@@ -3014,16 +3109,18 @@ var FleetInfoPage = /** @class */ (function () {
             console.log(err);
         });
     };
-    FleetInfoPage.prototype.retrieveVehicleUtil = function (serial_no) {
+    FleetInfoPage.prototype.retrieveVehicleUtil = function (serial_no, model_no) {
         var _this = this;
-        this.appprov.retrieveVehicleUtil(serial_no, this.access_token).then(function (res) {
+        this.appprov.retrieveVehicleUtil(serial_no, model_no, this.access_token).then(function (res) {
             var data = JSON.stringify(res);
             data = JSON.parse(data);
-            var vehicle_month = data['vehicle_month'];
-            var vehicle_year = data['vehicle_year'];
-            var month_total = data['month_total'];
-            var year_total = data['year_total'];
-            _this.getJobStats(vehicle_month, month_total);
+            var chartData = data['chartData'];
+            // let vehicle_month = data['vehicle_month'];
+            // let vehicle_year = data['vehicle_year'];
+            // let month_total = data['month_total'];
+            // let year_total = data['year_total'];
+            _this.getJobStats(chartData);
+            // this.getJobStats(vehicle_month, month_total);
             // sthis.getJobStats2(vehicle_year, year_total); //comment this sn 27
         }, function (err) {
             console.log(err);
@@ -3086,24 +3183,72 @@ var FleetInfoPage = /** @class */ (function () {
         }
         return job;
     };
-    FleetInfoPage.prototype.getJobStats = function (vehicle_month, month_total) {
-        if (month_total == '0') {
-            month_total = '1';
+    FleetInfoPage.prototype.getJobStats = function (chartData) {
+        // getJobStats(vehicle_month, month_total){
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var today = new Date();
+        var month = today.getUTCMonth();
+        var labels_month = [];
+        var month_range = 4;
+        var chart_DataPack = chartData;
+        var dataPack1 = ['7', '14', '14', '4', '22', '20', '15'];
+        for (var i = 0; i < month_range; i++) {
+            labels_month.push(months[(month + 12 - i) % 12]);
         }
-        this.doughnutChart = new __WEBPACK_IMPORTED_MODULE_5_chart_js__["Chart"](this.doughnutCanvas.nativeElement, {
-            type: 'doughnut',
+        labels_month.reverse();
+        for (var i = 1; i < month_range; i++) {
+            labels_month.push(months[(month + 12 + i) % 12]);
+        }
+        this.barVehChart = new __WEBPACK_IMPORTED_MODULE_5_chart_js__["Chart"](this.barVehCanvas.nativeElement, {
+            type: 'bar',
             data: {
-                labels: [this.assigned, this.total_job_count],
+                labels: labels_month,
                 datasets: [{
-                        label: "Vehicle Utilization",
-                        //data: [this.vehicle_month, month_total - this.vehicle_month],
-                        data: [vehicle_month, month_total - vehicle_month],
-                        backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-                        borderColor: "rbga(0, 110, 255, 1)",
+                        label: 'Statistics',
+                        data: chart_DataPack,
+                        backgroundColor: "rgba(0, 110,255, 0.2)",
                         borderWidth: 1
                     }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                            gridLines: { display: false },
+                        }],
+                    yAxes: [{
+                            ticks: {
+                                min: 0,
+                                max: 30,
+                                gridLines: { display: false },
+                                callback: function (value) { return value; }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Days"
+                            }
+                        }],
+                },
+                legend: { display: false }
             }
         });
+        //old codes
+        // if (month_total == '0'){
+        //   month_total = '1';
+        // }
+        // this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+        //   type: 'doughnut',
+        //   data:{
+        //     labels: [this.assigned, this.total_job_count],
+        //     datasets: [{
+        //       label: "Vehicle Utilization",
+        //       //data: [this.vehicle_month, month_total - this.vehicle_month],
+        //       data: [vehicle_month, month_total-vehicle_month],
+        //       backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+        //       borderColor: "rbga(0, 110, 255, 1)",
+        //       borderWidth:1
+        //     }]
+        //   }
+        // });
     };
     //comment this block sn 27
     //YEAR chart
@@ -3137,16 +3282,16 @@ var FleetInfoPage = /** @class */ (function () {
         });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('doughnutCanvas'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('barVehCanvas'),
         __metadata("design:type", Object)
-    ], FleetInfoPage.prototype, "doughnutCanvas", void 0);
+    ], FleetInfoPage.prototype, "barVehCanvas", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('doughnutCanvas2'),
         __metadata("design:type", Object)
     ], FleetInfoPage.prototype, "doughnutCanvas2", void 0);
     FleetInfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-fleet-info',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/,
+            selector: 'page-fleet-info',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/'<!--\n\n  Generated template for the FleetInfoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }} </ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col><ion-img src="{{vehicle.img}}" width="140" height="140"></ion-img></ion-col>\n\n      <ion-col>\n\n        <h4>{{ vehicle.model_no }}</h4> <br />\n\n        <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br />\n\n        <b>{{ purchase_date }}</b>: {{ vehicle.purchase_date }} <br />\n\n        <b>{{ machine_hour }}</b>: {{ vehicle.machine_hour }}\n\n        <br/>\n\n        <button ion-button float-center small color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col>\n\n          <b style="font-size:2em">{{ maintenance }}</b><br/>\n\n          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>\n\n          {{ last_service }}: {{vehicle.last_service }}\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} \n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> \n\n                <ion-icon name="add" style="font-size:1em"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only float-center small color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> \n\n                <ion-icon name="create" style="font-size:1em"></ion-icon>\n\n            </button>\n\n              <br/>\n\n            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ employment }}</b><br/>\n\n            <div text-center><b>{{ viewTitle }}</b></div>\n\n\n\n            <calendar \n\n            [eventSource]="eventSource"\n\n            [calendarMode]="calendar.mode"\n\n            [currentDate]="calendar.currentDate"\n\n            (onEventSelected)="onEventSelected($event)"\n\n            (onTitleChanged)="onViewTitleChanged($event)"\n\n            (onTimeSelected)="onTimeSelected($event)"\n\n            step="30"\n\n            class="calendar"></calendar>\n\n        </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n        <ion-col>\n\n            <b style="font-size:2em">{{ utilization }}</b><br/>\n\n        </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ month }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barVehCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <!-- <ion-card>\n\n      <ion-card-header>\n\n        {{ year }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas2></canvas>\n\n      </ion-card-content>\n\n    </ion-card> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\fleet-info\fleet-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -4204,7 +4349,7 @@ var ViewoperatorPage = /** @class */ (function () {
     ], ViewoperatorPage.prototype, "doughnutCanvas4", void 0);
     ViewoperatorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-viewoperator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/,
+            selector: 'page-viewoperator',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/'<!--\n\n  Generated template for the ViewoperatorPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This page is to the owner\'s operator tab to view the individual operator work details -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n      <button ion-buttons (click)="closeModal()">\n\n          <ion-icon name="arrow-back"></ion-icon>\n\n        </button>\n\n    <ion-buttons end>\n\n      <button ion-bitton (click)="deleteOperator()">{{ delete_contact }}</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n      <ion-row>\n\n      <ion-col col-4>\n\n          <ion-avatar>\n\n              <img [src] = "PhotoUrl">\n\n            </ion-avatar>    \n\n      </ion-col>\n\n      <ion-col col-1></ion-col>\n\n      <ion-col col-7>\n\n        <h2>{{ name }}</h2>\n\n        <br>\n\n        <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n    <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding> \n\n      <h3 align="center">{{viewTitle}}</h3>\n\n        <calendar [eventSource] = "eventSource"\n\n                  [calendarMode] = "calendar.mode"\n\n                  [currentDate] = "calendar.currentDate"\n\n                  (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n                  (onEventSelected) = "onEventSelected($event)"\n\n                  (onTitleChanged) = "onViewTitleChanged($event)"\n\n                  (onTimeSelected) = "onTimeSelected($event)"\n\n                  step="30">\n\n        </calendar>\n\n      </div>\n\n<!-- //comment this block sn 26 -->\n\n<ion-card>\n\n  <ion-card-header>\n\n    {{ txtoday }}\n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #doughnutCanvas></canvas>\n\n  </ion-card-content>\n\n</ion-card>\n\n\n\n<ion-card>\n\n    <ion-card-header>\n\n      {{ week }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #doughnutCanvas2></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        {{ month }}\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n        <canvas #doughnutCanvas3></canvas>\n\n      </ion-card-content>\n\n    </ion-card>\n\n    <!-- //comment this block sn 26 -->\n\n    <!-- <ion-card>\n\n        <ion-card-header>\n\n          {{ year }}\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n          <canvas #doughnutCanvas4></canvas>\n\n        </ion-card-content>\n\n      </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\viewoperator\viewoperator.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__providers_app_app__["a" /* AppProvider */],
@@ -4286,8 +4431,12 @@ var HomePage = /** @class */ (function () {
                     console.log("Got access token");
                     _this.access_token = val.toString();
                     _this.getUserInfo();
+                    _this.getEmailPay();
+                    // this.getTestFn();
+                    // this.getMonthlyPay();
                     _this.getVehicleStatus('');
                     _this.getOwnerJoblist();
+                    // this.getFleetHomeChart();
                     _this._initializeTranslation();
                 }
             }); //storage.get('access_token').then((val)
@@ -4300,8 +4449,12 @@ var HomePage = /** @class */ (function () {
     */
     HomePage.prototype.ionViewDidEnter = function () {
         this.getUserInfo();
+        this.getEmailPay();
+        // this.getTestFn();
+        // this.getMonthlyPay(this.Uemail);
         this.getVehicleStatus('');
         this.getOwnerJoblist();
+        // this.getFleetHomeChart();
         this._initializeTranslation();
     };
     HomePage.prototype.ionViewDidLoad = function () {
@@ -4337,6 +4490,86 @@ var HomePage = /** @class */ (function () {
         });
         alert.present();
     };
+    HomePage.prototype.getEmailPay = function () {
+        var _this = this;
+        this.appprov.getemail().then(function (res) {
+            _this.UsrEmail = res;
+            _this.getMonthlyPay(res);
+            _this.getFleetData(res);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    HomePage.prototype.getMonthlyPay = function (email) {
+        var _this = this;
+        this.appprov.getMonthlyPay(email).then(function (res) {
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var chartExpectedMoney = data['Expected'];
+            var chartReceivedMoney = data['Received'];
+            _this.pay = chartExpectedMoney;
+            _this.payOut = chartReceivedMoney;
+            // alert('This.pay: '+this.pay);
+            // alert('This.pay: '+this.payOut);
+            // alert('This.pay0: '+this.pay[0]);
+            // alert('This.pay1: '+this.pay[1]);
+            // alert('This.pay2: '+this.pay[2]);
+            console.log("pay here first " + _this.pay);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    HomePage.prototype.getFleetData = function (email) {
+        var _this = this;
+        //  alert('Going to call backend, getTestFn from home.ts');
+        this.appprov.getHomeFleet(email).then(function (res) {
+            //  alert("testfunction here") 
+            var data = JSON.stringify(res);
+            data = JSON.parse(data);
+            var goo1 = data['StartMonth'];
+            var goo2 = data['StartDate'];
+            var foo1 = data['EndMonth'];
+            var foo2 = data['EndDate'];
+            var boo = data['1stdiff'];
+            _this.t1 = goo1;
+            _this.t2 = goo2;
+            _this.t3 = foo1;
+            _this.t4 = foo2;
+            _this.t5 = boo;
+            alert('Array from all jobs Start_Month: ' + _this.t1);
+            //  alert('FromTestFn fDate: '+ this.t2);
+            //  alert('FromTestFn eMonth: '+ this.t3);
+            //  alert('FromTestFn eDate: '+ this.t4);
+            alert('The dates differences: ' + _this.t5);
+        }, function (err) {
+            console.log(err);
+            alert("Something went wrong: " + err);
+        });
+    };
+    // getFleetHomeChart(){
+    //   this.appprov.getFleetHomeChart().then((res) =>{
+    //     alert('What is this returning:'+ res);
+    //     var dog = JSON.stringify(res);
+    //     var cat = JSON.parse(dog);    
+    //     // let chartFirstMonth = data['f_month'];
+    //     // let chartLastMonth = data['l_month']; 
+    //     let chartFirstMonth = cat['Excel'];
+    //     // let chartLastMonth = data1['RRR']; 
+    //     alert('Item from homechart:'+ dog +' Here cat data: '+cat);      
+    //     alert('This FirstMonth.pay: '+ chartFirstMonth);      
+    //     this.payOut = chartFirstMonth;
+    //     alert("Get this out pls: "+this.payOut);
+    //     // alert('This FirstMonth.pay: '+ chartFirstMonth+' This Lastmonth.pay: '+ chartLastMonth );      
+    //     // this.pay = chartExpectedMoney;
+    //     // this.payOut = chartReceivedMoney;    
+    //     // alert('This.pay0: '+this.pay[0]);
+    //     // alert('This.pay1: '+this.pay[1]);
+    //     // alert('This.pay2: '+this.pay[2]);
+    //     // console.log("pay here first "+ this.pay);
+    //   }, err => {
+    //     console.log(err);
+    //   })
+    // }
     //On start and access database to retrieve owner information
     HomePage.prototype.getOwnerJoblist = function () {
         var _this = this;
@@ -4347,12 +4580,17 @@ var HomePage = /** @class */ (function () {
             var job_datefrom = data['job_datefrom'];
             var job_dateto = data['job_dateto'];
             console.log(job_dateto);
+            // alert('Call  ownerjoblist');
             var job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom };
             console.log(job);
             _this.loadEvents(job);
             _this.plotSchedule(job);
-            _this.getJobStats({ 'date_from': job_datefrom });
+            // this.getJobStats({'date_from':job_datefrom});
+            // this.getMonthlyPay();  
             _this.getEarnings();
+            // this.getMonthlyPay();  
+            // this.getFleetChartDays();
+            // this.getFleetHomeChart();
             _this.getFleetUsage();
             _this.getOperatorUsage();
         }, function (err) {
@@ -4418,55 +4656,57 @@ var HomePage = /** @class */ (function () {
         });
     }; //end of getVehicle
     /*To create the job statistics on home page (owner)*/
-    HomePage.prototype.getJobStats = function (jobs) {
-        //add label x-axis
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var today = new Date();
-        var month = today.getUTCMonth();
-        var labels_month = [];
-        var month_range = 4;
-        for (var i = 0; i < month_range; i++) {
-            labels_month.push(months[(month + 12 - i) % 12]);
-        }
-        labels_month.reverse();
-        for (var i = 1; i < month_range; i++) {
-            labels_month.push(months[(month + 12 + i) % 12]);
-        }
-        /*
-        Old codes
-        var labels_end = month-6;
-        for (let i = 0; i<6; i++){
-          labels_month.push(months[month-5+i]);
-        } */
-        // add data y-axis
-        var date_from = jobs.date_from;
-        var data_y = [0, 0, 0, 0, 0, 0];
-        for (var j = 0; j < date_from.length; j++) {
-            var temp = parseInt(date_from[j].substring(5, 7), 10);
-            console.log(temp);
-            console.log(".....................................");
-            for (var p = 0; p < 6; p++) {
-                if ((temp - 1) == (month - p)) {
-                    data_y[5 - p] += 1;
-                }
-            }
-        }
-        //creating of the bar graph
-        console.log(data_y);
-        this.barChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvas.nativeElement, {
-            type: 'bar',
-            data: {
-                labels: labels_month,
-                datasets: [{
-                        label: this.jobstats,
-                        data: data_y,
-                        backgroundColor: "rgba(0, 110,255, 0.2)",
-                        borderColor: "rbga(0, 110, 255, 1)",
-                        borderWidth: 1
-                    }]
-            }
-        });
-    }; // end of getJobStats
+    // getJobStats(jobs){
+    //   //add label x-axis
+    //   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    //   var today = new Date();
+    //   var month = today.getUTCMonth();
+    //   var labels_month = [];
+    //   var month_range = 4;
+    //   for(let i=0; i<month_range; i++)
+    //   {
+    //     labels_month.push(months[(month+12 - i)%12]);
+    //   }
+    //   labels_month.reverse();
+    //   for(let i=1; i<month_range; i++)
+    //   {
+    //     labels_month.push(months[(month+12 + i)%12]);
+    //   }
+    //   /*
+    //   Old codes
+    //   var labels_end = month-6;
+    //   for (let i = 0; i<6; i++){
+    //     labels_month.push(months[month-5+i]);
+    //   } */
+    //   // add data y-axis
+    //   var date_from = jobs.date_from;
+    //   var data_y = [0, 0, 0, 0, 0, 0];
+    //   for (let j =0; j<date_from.length; j++){
+    //     var temp = parseInt(date_from[j].substring(5,7), 10);
+    //     console.log(temp);
+    //     console.log(".....................................");
+    //     for (let p=0; p<6; p++){
+    //       if ((temp-1) == (month-p)){
+    //         data_y[5-p] += 1;
+    //       }
+    //     }
+    //   }
+    //   //creating of the bar graph
+    //   console.log(data_y);
+    //   this.barChart = new Chart(this.barCanvas.nativeElement, {
+    //     type: 'bar',
+    //     data:{
+    //       labels: labels_month,
+    //       datasets: [{
+    //         label: this.jobstats,
+    //         data: data_y,
+    //         backgroundColor: "rgba(0, 110,255, 0.2)",
+    //         borderColor: "rbga(0, 110, 255, 1)",
+    //         borderWidth:1
+    //       }]
+    //     }
+    //   })
+    // }// end of getJobStats
     // numberwithcommas(x) {
     //   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
     // };
@@ -4483,8 +4723,13 @@ var HomePage = /** @class */ (function () {
         for (var i = 1; i < month_range; i++) {
             labels_month.push(months[(month + 12 + i) % 12]);
         }
-        var dataPack1 = ['5', '14', '14', '4', '30', '45', '60'];
-        var dataPack2 = ['10', '35', '50', '10', '35', '50', '90'];
+        //Expected
+        console.log("Load test DATA SETTT");
+        var ExpectedData = this.pay;
+        // var dataPack1 = ['5','14','14','4','30','45','60'];
+        //Total
+        var totalData = this.payOut;
+        // var dataPack2 = ['10','35','50','10','35','50','90'];
         this.EarningsChart = new __WEBPACK_IMPORTED_MODULE_7_chart_js__["Chart"](this.barCanvasEarnings.nativeElement, {
             type: 'bar',
             data: {
@@ -4492,14 +4737,15 @@ var HomePage = /** @class */ (function () {
                 datasets: [
                     {
                         label: 'Expected',
-                        data: dataPack1,
+                        data: ExpectedData,
+                        // data: dataPack1,
                         // backgroundColor: "rgba(0, 110,255, 0.2)",
                         backgroundColor: "rgba(107,142,35, 0.2)",
                         borderWidth: 1
                     },
                     {
-                        label: 'Total',
-                        data: dataPack2,
+                        label: 'Received',
+                        data: totalData,
                         // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
                         // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
                         backgroundColor: "rgba(152,251,152, 0.2)",
@@ -4516,7 +4762,7 @@ var HomePage = /** @class */ (function () {
                     callbacks: {
                         label: function (tooltipItem, data) {
                             return data.datasets[tooltipItem.datasetIndex].label + ": " + tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                            // return this.addCommaNumber(tooltipItem.yLabel.toString());                       
+                            // return this./(tooltipItem.yLabel.toString());                       
                         },
                     },
                 },
@@ -4529,6 +4775,7 @@ var HomePage = /** @class */ (function () {
                             stacked: false,
                             // gridLines: {display:false},
                             ticks: {
+                                // display:false,
                                 // callback: function(value){ return this.addCommaNumber(value);},          
                                 // beginatZero: true,
                                 min: 0,
@@ -4566,7 +4813,7 @@ var HomePage = /** @class */ (function () {
                         label: 'Statistics',
                         data: dataPack1,
                         backgroundColor: "rgba(0, 110,255, 0.2)",
-                        borderColor: "rbga(0, 110, 255, 1)",
+                        // borderColor: "rbga(0, 110, 255, 1)",
                         borderWidth: 1
                     }]
             },
@@ -4708,7 +4955,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "barCanvasOperatorUsage", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n  \n\n  <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>\n\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-3>\n\n        <ion-avatar>\n\n          <img [src] = "uimg">\n\n        </ion-avatar>\n\n      </ion-col>\n\n      <ion-col col-2></ion-col>\n\n      <ion-col col-7> \n\n        <h3> {{ welcome }}, {{Uname}} </h3>\n\n          <b style="font-size:1.2em">{{Ucompany}},</b>\n\n          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>\n\n      </ion-col>          \n\n    </ion-row>\n\n    \n\n    <ion-row>\n\n      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>\n\n    </ion-row>\n\n      \n\n    <ion-item>\n\n      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>\n\n        <ion-option value="en">English</ion-option>\n\n        <ion-option value="kr">한국어</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-grid>\n\n  <h2> {{ forecast }}</h2>\n\n  <u>{{ fleet }} {{ displaydate }}</u>\n\n  \n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-4 *ngFor="let vehicle of vehicles">\n\n        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">\n\n        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">\n\n          {{vehicle.vehicle_count}}\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <ion-buttons end>\n\n    <button ion-button [disabled]="isToday" (click)="today()">Today</button>\n\n    <button ion-button (click)="changeMode(\'month\')">M</button>\n\n    <button ion-button (click)="changeMode(\'week\')">W</button>\n\n    <button ion-button (click)="changeMode(\'day\')">D</button>\n\n    <button ion-button (click)="loadEvents()">Load Events</button>\n\n  </ion-buttons> -->\n\n  <div padding>\n\n  <h3 align="center">{{viewTitle}}</h3>\n\n    <calendar [eventSource] = "eventSource"\n\n              [calendarMode] = "calendar.mode"\n\n              [currentDate] = "calendar.currentDate"\n\n              (onCurrentDateChanged) = "onCurrentDateChanged($event)"\n\n              (onEventSelected) = "onEventSelected($event)"\n\n              (onTitleChanged) = "onViewTitleChanged($event)"\n\n              (onTimeSelected) = "onTimeSelected($event)"\n\n              step="30">\n\n    </calendar>\n\n  </div> \n\n \n\n  <!-- <ion-card>\n\n    <ion-card-header>\n\n      {{ jobstats }}\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvas></canvas>\n\n    </ion-card-content>\n\n  </ion-card> -->\n\n\n\n  <ion-card>\n\n      <ion-card-header>   \n\n             Earnings (MWon)       \n\n        </ion-card-header>\n\n    <ion-card-content>\n\n      <canvas #barCanvasEarnings></canvas>\n\n    </ion-card-content>\n\n  </ion-card>\n\n \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Fleet Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasFleetUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card>\n\n  \n\n  <ion-card>\n\n    <ion-card-header>   \n\n           Operator Usage %\n\n      </ion-card-header>\n\n  <ion-card-content>\n\n    <canvas #barCanvasOperatorUsage></canvas>\n\n  </ion-card-content>\n\n  </ion-card> \n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
@@ -4882,6 +5129,7 @@ var JobsPage = /** @class */ (function () {
     };
     JobsPage.prototype.retrieveOngoingJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrieveOngoingJobs(this.access_token).then(function (res) {
             _this.ongoing = res;
             _this.ongoingJid = _this.ongoing.jid;
@@ -4892,6 +5140,9 @@ var JobsPage = /** @class */ (function () {
             _this.ongoing_location = _this.ongoing.location;
             _this.ongoing_payout = _this.ongoing.payout;
             _this.ongoingJobs = [];
+            for (var i = 0; i < _this.ongoingTitle.length; i++) {
+                totalPayout += parseInt(_this.ongoing.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.ongoingTitle.length; i++) {
                     _this.ongoingJobs.push({
@@ -4909,12 +5160,14 @@ var JobsPage = /** @class */ (function () {
                 console.log("Ongoing job cannot retrieve length");
             }
             console.log("Ongoing jobs pushed");
+            console.log("Total Ongoing Payout: " + totalPayout);
         }, function (err) {
             console.log(err);
         });
     };
     JobsPage.prototype.retrieveUpcomingJobs = function () {
         var _this = this;
+        var totalPayout = 0;
         this.appprov.retrieveUpcomingJobs(this.access_token).then(function (res) {
             _this.upcoming = res;
             _this.upcomingJid = _this.upcoming.jid;
@@ -4925,6 +5178,9 @@ var JobsPage = /** @class */ (function () {
             _this.upcoming_location = _this.upcoming.location;
             _this.upcoming_payout = _this.upcoming.payout;
             _this.upcomingJobs = [];
+            for (var i = 0; i < _this.upcomingTitle.length; i++) {
+                totalPayout += parseInt(_this.upcoming.payout[i], 10);
+            }
             try {
                 for (var i = 0; i < _this.upcomingTitle.length; i++) {
                     _this.upcomingJobs.push({
@@ -4942,6 +5198,7 @@ var JobsPage = /** @class */ (function () {
                 console.log("Upcoming Job cannot retrieve length");
             }
             console.log("Upcoming job pushed");
+            console.log("Total Upcoming Payout: " + totalPayout);
         }, function (err) {
             console.log(err);
         });
@@ -5017,7 +5274,7 @@ var JobsPage = /** @class */ (function () {
     };
     JobsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-Jobs',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/
+            selector: 'page-Jobs',template:/*ion-inline-start:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<!-- This is for Job Management tab page -->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header> \n\n\n\n<ion-content padding>\n\n    <div padding>\n\n      <ion-segment [(ngModel)]="job">\n\n        <ion-segment-button value="History">\n\n          {{ history }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Ongoing">\n\n          {{ txongoing }}\n\n        </ion-segment-button>\n\n        <ion-segment-button value="Upcoming">\n\n          {{ upcomming }}\n\n        </ion-segment-button>\n\n      </ion-segment>\n\n    </div>\n\n    \n\n    <div [ngSwitch]="job">\n\n      <ion-list *ngSwitchCase="\'History\'">\n\n        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">\n\n        <ion-grid>\n\n          <ion-item >\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{pastJob.location}} \n\n                <br>\n\n                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{pastJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n    \n\n      <ion-list *ngSwitchCase="\'Ongoing\'">\n\n        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">\n\n        <ion-grid>\n\n          <ion-item>\n\n            <ion-row class="bottomRow">\n\n              <ion-col col-2>\n\n                  <ion-avatar>\n\n                    <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                  </ion-avatar>\n\n              </ion-col>\n\n              <ion-col col-10>\n\n                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n                {{ongoingJob.location}} \n\n                <br>\n\n                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}\n\n                <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n                <br> -->\n\n                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>\n\n              </ion-col>\n\n              <!-- <ion-col col-2>\n\n                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">\n\n              </ion-col> -->\n\n            </ion-row>\n\n          </ion-item>    \n\n        </ion-grid>\n\n      </ion-card>\n\n      </ion-list>\n\n\n\n      <ion-list *ngSwitchCase="\'Upcoming\'">\n\n        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">\n\n        <ion-grid>\n\n        <ion-item >\n\n          <ion-row class="bottomRow">\n\n            <ion-col col-2>\n\n                <ion-avatar>\n\n                  <img src = \'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg\'>\n\n                </ion-avatar>\n\n            </ion-col>\n\n            <ion-col col-10>\n\n              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>\n\n              {{upcomingJob.location}} \n\n              <br>\n\n              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}\n\n              <!-- <img src = \'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg\' style="width:4rem; height:4rem">   \n\n              <br> -->\n\n              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>\n\n            </ion-col>\n\n            <!-- <ion-col col-2>\n\n              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">\n\n            </ion-col> -->\n\n          </ion-row>\n\n        </ion-item>    \n\n      </ion-grid>\n\n      </ion-card>\n\n    </ion-list>\n\n    </div>\n\n\n\n    <!-- <button ion-button full (click)="takePhoto()">\n\n      <ion-icon name="camera"></ion-icon>Take Photo\n\n    </button>\n\n   -->\n\n    <!-- <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button (click) = "takePhoto()">Test Camera</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col>\n\n          <img *ngIf="image" [src]="image" alt="">\n\n        </ion-col>\n\n      </ion-row>\n\n      </ion-grid> -->\n\n<!-- \n\n    <ion-fab right bottom>\n\n      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>\n\n    </ion-fab> -->\n\n</ion-content>\n\n\n\n<ion-footer no-shadow>\n\n    <ion-toolbar position="bottom">\n\n      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>\n\n    </ion-toolbar>\n\n  </ion-footer>\n\n'/*ion-inline-end:"C:\Users\Jeremy Wong\Desktop\digitalce\ce\ionic_koreanapp\src\pages\jobs\jobs.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -5618,14 +5875,14 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/createcompany/createcompany.module#CreatecompanyPageModule', name: 'CreatecompanyPage', segment: 'createcompany', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-maintenance/edit-maintenance.module#EditMaintenancePageModule', name: 'EditMaintenancePage', segment: 'edit-maintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/joblists/joblists.module#JoblistsPageModule', name: 'JoblistsPage', segment: 'joblists', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operatorjob/operatorjob.module#OperatorjobPageModule', name: 'OperatorjobPage', segment: 'operatorjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/otp-operator/otp-operator.module#OtpOperatorPageModule', name: 'OtpOperatorPage', segment: 'otp-operator', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/updatecapop/updatecapop.module#UpdatecapopPageModule', name: 'UpdatecapopPage', segment: 'updatecapop', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addjob/addjob.module#AddjobPageModule', name: 'AddjobPage', segment: 'addjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/editjob/editjob.module#EditjobPageModule', name: 'EditjobPage', segment: 'editjob', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/jobinfo/jobinfo.module#JobinfoPageModule', name: 'JobinfoPage', segment: 'jobinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/operatorjob/operatorjob.module#OperatorjobPageModule', name: 'OperatorjobPage', segment: 'operatorjob', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_33__ionic_storage__["a" /* IonicStorageModule */].forRoot(),

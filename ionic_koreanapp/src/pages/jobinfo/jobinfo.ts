@@ -232,6 +232,7 @@ export class JobinfoPage {
       this.description = data['description'];
       this.title = data['title'];
       this.completed = data['completed'];
+      alert("This is the value of the pay.. :"+this.payout);
       if (this.completed == '1'){
         this.buttonDisabled = true;
         this.buttonColor = 'secondary';

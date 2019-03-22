@@ -7,7 +7,8 @@ class User(models.Model):
 	dob = models.DateField(null=True)
 	role = models.IntegerField()
 	profile_image_url = models.CharField(max_length=200, default="")
-	access_token = models.CharField(max_length=200)
+	# access_token = models.CharField(max_length=200)
+	access_token = models.CharField(max_length=255)
 	companyName = models.CharField(max_length=100, null=True)
 	phoneNumber = models.CharField(max_length=100, null=True)
 
@@ -94,6 +95,33 @@ class Reporting(models.Model):
 	def __unicode(self):
 		return self
 
+class VehicleIndividualData(models.Model):
+	JID = models.CharField(max_length=100)
+	email = models.CharField(max_length=100)
+	vehicle_serial_no = models.CharField(max_length=100)
+	date_from = models.DateTimeField()
+	date_to = models.DateTimeField()
+	month = models.CharField(max_length=100)
+	year = models.CharField(max_length=100)
+	date = models.CharField(max_length=100)
+
+	def __unicode__(self):
+		return self
+
+class fullJobDetails(models.Model):
+	Job_date = models.CharField(max_length=100)
+	Job_month = models.CharField(max_length=100)
+	Job_year = models.CharField(max_length=100)
+	owner = models.CharField(max_length=100)
+	jid = models.CharField(max_length=100)
+	operator = models.CharField(max_length=100)
+	vehicle_serial_no = models.CharField(max_length=100)
+	vehicle_model_no = models.CharField(max_length=100)
+
+
+	def __unicode__(self):
+		return self
+
 class OperatorList(models.Model):
 	ownerEmail = models.CharField(max_length=100)
 	operatorEmail = models.CharField(max_length=100)
@@ -113,3 +141,4 @@ class OneTimePassword(models.Model):
 	otp = models.CharField(max_length=20)
 	timestamp = models.DateTimeField()
 	ownerEmail = models.CharField(max_length=100)
+

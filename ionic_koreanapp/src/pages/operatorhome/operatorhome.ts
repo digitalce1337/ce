@@ -82,6 +82,7 @@ export class OperatorhomePage {
         this.access_token = val.toString();
         this.getUserInfo();
         this.getOperatorJoblist();
+        this.getvalueList();
         this.getCapabilities();
         this._initializeTranslation();
       }
@@ -98,6 +99,7 @@ export class OperatorhomePage {
   ionViewWillEnter(){
     this.getUserInfo();
     this.getOperatorJoblist();
+    this.getvalueList();
   }
 
   public changeLanguage(): void{
@@ -152,6 +154,23 @@ export class OperatorhomePage {
       this.Ucompanyadd = this.userinfo.company_add;
       this.appprov.setemail(this.userinfo.email);
     }, (err) => {
+      console.log(err);
+    });
+  }
+
+
+  getvalueList(){
+    this.appprov.getvalueList(this.access_token).then((res) => {
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);
+      let job_desc = data['job_desc'];
+      let job_datefrom = data['job_datefrom'];
+      let job_dateto = data['job_dateto'];
+      console.log(job_dateto);
+      let job = {'job_desc':job_desc, 'job_dateto': job_dateto, 'job_datefrom':job_datefrom}
+      console.log(job);
+      alert('Got value from getvalueList which is: '+job)
+    }, err =>{
       console.log(err);
     });
   }
