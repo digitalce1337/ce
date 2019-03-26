@@ -171,6 +171,18 @@ export class AppProvider {
     });
   }
 
+  public getOperatorUtil(email, access_token){
+    console.log("Getting Operator Util");
+    return new Promise(resolve => {
+      this.http.get(apiKey + 'getOperatorUtil?email='+email+'&access_token='+access_token).subscribe((res) => {
+        resolve(res);
+        console.log("Chart data fetched");
+      }, err => {
+        console.log(err);
+      })
+    });
+  }
+
   public deleteOperator(email, access_token){
     console.log("Deleting Operator");
     return new Promise(resolve => {
@@ -801,35 +813,27 @@ public getMonthlyPay(email){
   })
 }
 
-public getHomeFleet(email){
+public getHomeFleetChart(access_token){
+  console.log('Calling from front end to backend');
   return new Promise(resolve =>{
-    this.http.get(apiKey+'getHomeFleet?email=' + email).subscribe(res =>{
-      // alert('Recieved data back from testfn: '+res);
-      resolve(res);
-      // alert('Recieved data2 back from testfn: '+res);
-      console.log(res);
-      console.log('testabc function');   
-    },(err)=>{
-      console.log(err);
-      var apple = JSON.stringify(err);
-      var pear = JSON.parse(apple);
-      alert('Retrieve went wrong:'+ apple);
-      alert('2nd alert went wrong: '+ pear);
+    this.http.get(apiKey+'getHomeFleetChart?access_token='+access_token).subscribe(res =>{      
+      resolve(res);      
+      console.log(res);      
+    }, (err) =>{
+      console.log(err);          
     })
   })
 }
-// public getFleetHomeChart(){
-//   console.log('Calling from front end to backend');
-//   return new Promise(resolve =>{
-//     this.http.get(apiKey+'getFleetHomeChart?email=' +'yunhong93@hotmail.com').subscribe(res =>{      
-//       resolve(res);
-//       alert('2nd Responding back')
-//       console.log(res);      
-//     }, (err) =>{
-//       console.log(err);    
-//       alert('failed to retrieve from backend')
-//     })
-//   })
-// }
 
+public getHomeOperatorChart(access_token){
+  console.log('Calling from front end to backend');
+  return new Promise(resolve =>{
+    this.http.get(apiKey+'getHomeOperatorChart?access_token='+access_token).subscribe(res =>{      
+      resolve(res);      
+      console.log(res);      
+    }, (err) =>{
+      console.log(err);          
+    })
+  })
+}
 }

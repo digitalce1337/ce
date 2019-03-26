@@ -1075,7 +1075,7 @@ def retrieveVehicleUtil(request):
         months = [1,2,3,4,5,6,7,8,9,10,11,12]
         chartData =[]
 
-        for i in range (cur_month-3,cur_month+4):
+        for i in range (cur_month-4,cur_month+3):
                 months_ToUse.append(months[i])
         # print("Value:",months_ToUse)
 
@@ -1086,11 +1086,27 @@ def retrieveVehicleUtil(request):
             else:
                 chartData.append(0)
         # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            dataPercent = (chartData[i]/ maxdays[i]) * 100
+            percentMonth.append(round(dataPercent))
+
         json_obj = {
-            'vehicle_totalWorkDays': totalDay_ChartList,
-            'vehicle_month': month_ChartList,
-            'vehicle_year': year_ChartList,
-            'chartData': chartData
+            'chartData': percentMonth,
+            # 'chartData': chartData,
+            # 'datapercent': percentMonth
+            # 'currentMonth': cur_month,
+            # 'maxDays': maxdays,
+            # 'month_touse': months_ToUse,
+            # 'vehicle_totalWorkDays': totalDay_ChartList,
+            # 'vehicle_month': month_ChartList,
+            # 'vehicle_year': year_ChartList,
+
         }
         print(json_obj)
         return JsonResponse(json_obj)
@@ -3000,116 +3016,259 @@ def getOperatorJoblist(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
+def getOperatorUtil(request):
+    operator_email = request.GET['email']
+    access_token = request.GET['access_token']
 
-def getHomeFleet(request):
-    theFirstMonth = []
-    theFirstDate = []
-    theSecMonth = []
-    theSecDate = []
-    new_list = []
-    # cur_date = datetime.datetime.now(tz=timezone.utc)
-    # cur_month = cur_date.month
-    email = request.GET['email']
-    with connection.cursor() as cursor:
-        # cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
-        # first_query = "SELECT MONTH(date_from) FROM volvoce.volvoce_joblist WHERE email = \'%s\'" %(str(email))
-        # first_query = "SELECT MONTH(date_from),DAY(date_from) FROM volvoce.volvoce_joblist WHERE email = \'%s\'" % (str(email))
-        first_query = "SELECT MONTH(date_from),DAY(date_from),MONTH(date_to),DAY(date_to) FROM volvoce.volvoce_joblist"
-        cursor.execute(first_query)
-        res = dictfetchall(cursor)
-        fromMonth = [r['MONTH(date_from)'] for r in res]
-        fromDate = [r['DAY(date_from)'] for r in res]
-        toMonth = [r['MONTH(date_to)'] for r in res]
-        toDate = [r['DAY(date_to)'] for r in res]
-        # fromDate = [r['MONTH(date_from)'] for r in res]
-        theFirstMonth.append(fromMonth)
-        theFirstDate.append(fromDate)
-        theSecMonth.append(toMonth)
-        theSecDate.append(toDate)
+    getTotalDays_list =[]
+    getMonth_list=[]
+    getYear_list =[]
 
-        # workingDateQuery = "SELECT no_working_days FROM volvoce_company WHERE ownerEmail = \'%s\'" % str(email)
-        # cursor.execute(workingDateQuery)
-        # workingDays = dictfetchall(cursor)
+    # model_no = request.GET['model_no']
+    access_token = request.GET['access_token']
+    cur_date = datetime.datetime.now(tz=timezone.utc)
+    cur_month = cur_date.month
+    cur_year = cur_date.year
 
-        try:
-            startMonth = theFirstMonth
-            startDate = theFirstDate
-            endMonth = theSecMonth
-            endDate = theSecDate
+    try:
+        owner = User.objects.get(access_token=access_token)
+        owner_email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        with connection.cursor() as cursor:
+            first_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND operator = \'%s\' AND job_year =\'%s\' GROUP BY job_month,job_year ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,operator_email,cur_year)
+            cursor.execute(first_query)
+            res = dictfetchall(cursor)
+            totalWorkDays = [r['totalWorkDays'] for r in res]
+            the_month=[r['job_month'] for r in res]
+            the_year=[r['job_year'] for r in res]
+            getTotalDays_list.append(totalWorkDays)
+            getMonth_list.append(the_month)
+            getYear_list.append(the_year)
+            totalDay_ChartList = getTotalDays_list[0]
+            month_ChartList = getMonth_list[0]
+            year_ChartList = getYear_list[0]
 
-            stMonthInner = startMonth[0]
-            stDateInner = startDate[0]
-            endMonthInner = endMonth[0]
-            endDateInner = endDate[0]
+        months_ToUse =[]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        chartData =[]
 
-            for i in range(len(stMonthInner)):
-                tempDays = calendar.monthrange(2019, stMonthInner[i])[1]
-                new_list.append(tempDays)
-            # tempDays = calendar.monthrange(2019, stMonthInner[1])[1]
-            # new_list.append(tempDays)
-            # tempDays = calendar.monthrange(2019, stMonthInner[2])[1]
-            # new_list.append(tempDays)
+        for i in range (cur_month-4,cur_month+3):
+                months_ToUse.append(months[i])
+        # print("Value:",months_ToUse)
 
-            # Difference between MAX of startMonth - startDate of work = total workin days in the first month
-            firstMthDays_list = []
-            for i in range(len(new_list)):
-                firstMthDays_list.append(new_list[i] - stDateInner[i])
-            # firstMthDays_list.append(new_list[1] - stDateInner[1])
-            # firstMthDays_list.append(new_list[2] - stDateInner[2])
+        for x in months_ToUse:
+            if x in month_ChartList:
+                ofIndex = month_ChartList.index(x)
+                chartData.append(totalDay_ChartList[ofIndex])
+            else:
+                chartData.append(0)
+        # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            dataPercent = (chartData[i]/ maxdays[i]) * 100
+            percentMonth.append(round(dataPercent))
 
-            # Case 1: Same month
-            # sameMonth_list = []
-            # for i in range(len(new_list)):
-            #     if stMonthInner[i] == endMonthInner[i]:
-            #         sameMonth_list.append(endDateInner[i] - stDateInner[i])
+        json_obj = {
+            'operatorEmail' : operator_email,
+            'ownerEmail': owner_email,
+            'chartData': percentMonth,
+            # 'chartData': chartData,
+            # 'datapercent': percentMonth
+            # 'currentMonth': cur_month,
+            # 'maxDays': maxdays,
+            # 'month_touse': months_ToUse,
+            # 'vehicle_totalWorkDays': totalDay_ChartList,
+            # 'vehicle_month': month_ChartList,
+            # 'vehicle_year': year_ChartList,
 
-            sameMonth_list = []
-            company_max_dates = 23
-            for i in range(len(new_list)):
-                if (stMonthInner[i]) == endMonthInner[i]:
-                    sameMonth_list.append(5)
-                # if (stMonthInner[i]+1) != endMonthInner[i]:
-                #     sameMonth_list.append(company_max_dates)
-
-            # Case 2: Start month +1 equal end month
-                elif (stMonthInner[i]+1) == endMonthInner[i]:
-                    sameMonth_list.append(25)
-                    # sameMonth_list.append(endDateInner[i])
-
-                else:
-                    # sameMonth_list.append(endDateInner[i] - stDateInner[i])
-                    # sameMonth_list.append(5)
-                    sameMonth_list.append(company_max_dates)
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'vehicle_totalWorkDays': 'N/A',
+            'vehicle_month': 'N/A',
+            'vehicle_year': 'N/A',
+            'chartData': 'N/A'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 
-            # if (stMonthInner[0]+1) == endMonthInner[0]:
-            #     stDateInner[0] + endDateInner[0]
-            #
+def getHomeFleetChart(request):
+    access_token= request.GET['access_token']
+    getTotalDays_list =[]
+    getMonth_list=[]
+    getYear_list =[]
 
-            # Case 3: Consist of in-between months
-            # if (stMonthInner[0]+1) != endMonthInner[0]:
-            #     stDateInner[0] + 22 + endDateInner[0]
-            #     stDateInner[1] + 22 + 1 + endDateInner[1]
-            #     stDateInner[2] + 22 + 1 + endDateInner[2]
+    cur_date = datetime.datetime.now(tz=timezone.utc)
+    cur_month = cur_date.month
+    cur_year = cur_date.year
 
-            JsonObj = {
-                "StartMonth": startMonth,
-                "StartDate": startDate,
-                "EndMonth": endMonth,
-                "EndDate": endDate,
-                "1stdiff": sameMonth_list
-            }
-        except:
-            JsonObj = {
-                "StartMonth": 'Non-existence',
-                "Start": 'Non-existence',
-                "EndMonth": 'Non-existence',
-                "EndDate": 'Non-existence',
-                "1stdiff": 'Non-existence'
-            }
-        cursor.close()
-        print(JsonObj)
-        return JsonResponse(JsonObj)
+    try:
+        owner = User.objects.get(access_token=access_token)
+        owner_email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        with connection.cursor() as cursor:
+            new_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND job_year =\'%s\' GROUP BY job_month ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,cur_year)
+            cursor.execute(new_query)
+            res = dictfetchall(cursor)
+            totalWorkDays = [r['totalWorkDays'] for r in res]
+            the_month=[r['job_month'] for r in res]
+            the_year=[r['job_year'] for r in res]
+            getTotalDays_list.append(totalWorkDays)
+            getMonth_list.append(the_month)
+            getYear_list.append(the_year)
+            totalDay_ChartList = getTotalDays_list[0]
+            month_ChartList = getMonth_list[0]
+            year_ChartList = getYear_list[0]
+
+            second_query = "SELECT count(distinct vehicle_serial_no) as totalVeh FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\'" % (owner_email)
+            cursor.execute(second_query)
+            res = dictfetchall(cursor)
+            totalVeh = [r['totalVeh'] for r in res]
+
+        months_ToUse =[]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        chartData =[]
+
+        for i in range (cur_month-4,cur_month+3):
+                months_ToUse.append(months[i])
+        # print("Value:",months_ToUse)
+
+        for x in months_ToUse:
+            if x in month_ChartList:
+                ofIndex = month_ChartList.index(x)
+                chartData.append(totalDay_ChartList[ofIndex])
+            else:
+                chartData.append(0)
+        # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            #Change totalVeh list type to int
+            dataPercent = (chartData[i]/(int(totalVeh[0])*(maxdays[i]))) * 100
+            percentMonth.append(round(dataPercent))
+
+        json_obj = {
+            'chartData': percentMonth,
+            'totalVeh': totalVeh
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'chartData': 'N/A',
+            'totalVeh': 'N/A'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+
+def getHomeOperatorChart(request):
+    access_token= request.GET['access_token']
+    getTotalDays_list =[]
+    getMonth_list=[]
+    getYear_list =[]
+
+    cur_date = datetime.datetime.now(tz=timezone.utc)
+    cur_month = cur_date.month
+    cur_year = cur_date.year
+
+    try:
+        owner = User.objects.get(access_token=access_token)
+        owner_email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        with connection.cursor() as cursor:
+            new_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND job_year =\'%s\' GROUP BY job_month ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,cur_year)
+            cursor.execute(new_query)
+            res = dictfetchall(cursor)
+            totalWorkDays = [r['totalWorkDays'] for r in res]
+            the_month=[r['job_month'] for r in res]
+            the_year=[r['job_year'] for r in res]
+            getTotalDays_list.append(totalWorkDays)
+            getMonth_list.append(the_month)
+            getYear_list.append(the_year)
+            totalDay_ChartList = getTotalDays_list[0]
+            month_ChartList = getMonth_list[0]
+            year_ChartList = getYear_list[0]
+
+            second_query = "SELECT count(distinct operator) as totalVeh FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\'" % (owner_email)
+            cursor.execute(second_query)
+            res = dictfetchall(cursor)
+            totalVeh = [r['totalVeh'] for r in res]
+
+        months_ToUse =[]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        chartData =[]
+
+        for i in range (cur_month-4,cur_month+3):
+                months_ToUse.append(months[i])
+        # print("Value:",months_ToUse)
+
+        for x in months_ToUse:
+            if x in month_ChartList:
+                ofIndex = month_ChartList.index(x)
+                chartData.append(totalDay_ChartList[ofIndex])
+            else:
+                chartData.append(0)
+        # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            #Change totalVeh list type to int
+            dataPercent = (chartData[i]/((int(totalVeh[0])-1)*(maxdays[i]))) * 100
+            percentMonth.append(round(dataPercent))
+
+        json_obj = {
+            'chartData': percentMonth,
+            'totalVeh': totalVeh
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'chartData': 'N/A',
+            'totalVeh': 'N/A'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 
 # def getMonthlyPay(request):
@@ -3135,7 +3294,7 @@ def getMonthlyPay(request):
     cur_date = datetime.datetime.now(tz=timezone.utc)
     cur_month = cur_date.month
     email = request.GET['email']
-    print("get dataaaa")
+    # print("get data")
     with connection.cursor() as cursor:
         months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         for i in months:

@@ -106,7 +106,8 @@ export class HomePage {
             // this.getMonthlyPay();
             this.getVehicleStatus('');
             this.getOwnerJoblist();            
-            // this.getFleetHomeChart();
+            this.getHomeFleetChart();
+            this.getHomeOperatorChart();
             this._initializeTranslation();     
           }
         });//storage.get('access_token').then((val)
@@ -127,7 +128,9 @@ export class HomePage {
     // this.getTestFn();
     // this.getMonthlyPay(this.Uemail);
     this.getVehicleStatus('');
-    this.getOwnerJoblist();    
+    this.getOwnerJoblist();
+    this.getHomeFleetChart();    
+    this.getHomeOperatorChart();
     // this.getFleetHomeChart();
     this._initializeTranslation();
     
@@ -190,71 +193,36 @@ getMonthlyPay(email){
     data = JSON.parse(data);
     let chartExpectedMoney = data['Expected'];
     let chartReceivedMoney = data['Received'];    
-    this.pay = chartExpectedMoney;
-    this.payOut = chartReceivedMoney;
-    // alert('This.pay: '+this.pay);
-    // alert('This.pay: '+this.payOut);
-    // alert('This.pay0: '+this.pay[0]);
-    // alert('This.pay1: '+this.pay[1]);
-    // alert('This.pay2: '+this.pay[2]);
-    console.log("pay here first "+ this.pay);
+    // this.pay = chartExpectedMoney;
+    // this.payOut = chartReceivedMoney;
+    // console.log("pay here first "+ this.pay);
+    this.getEarnings(chartExpectedMoney,chartReceivedMoney);    
   }, err => {
     console.log(err);
   })
 }
 
-// getFleetData(email){
-//   //  alert('Going to call backend, getTestFn from home.ts');
-//    this.appprov.getHomeFleet(email).then((res) =>{
-//     //  alert("testfunction here") 
-//      let data = JSON.stringify(res);
-//      data = JSON.parse(data);
-//      let goo1 = data['StartMonth'];
-//      let goo2 = data['StartDate'];
-//      let foo1 = data['EndMonth'];
-//      let foo2 = data['EndDate'];
-//      let boo = data['1stdiff'];
-//      this.t1 = goo1;
-//      this.t2 = goo2;
-//      this.t3 = foo1;
-//      this.t4 = foo2;
-//      this.t5 = boo;
-//      alert('Array from all jobs Start_Month: '+ this.t1);
-//     //  alert('FromTestFn fDate: '+ this.t2);
-//     //  alert('FromTestFn eMonth: '+ this.t3);
-//     //  alert('FromTestFn eDate: '+ this.t4);
-//      alert('The dates differences: '+ this.t5);
-//    },err => {
-//      console.log(err);
-//      alert("Something went wrong: "+err);
-//    })
-//  } 
+getHomeOperatorChart(){
+  this.appprov.getHomeOperatorChart(this.access_token).then((res) =>{    
+    var data = JSON.stringify(res);
+    data = JSON.parse(data);    
+    let chartFirstMonth = data['chartData'];  
+    this.getOperatorUsage(chartFirstMonth);     
+  }, err => {
+    console.log(err);
+  })
+}
 
-// getFleetHomeChart(){
-//   this.appprov.getFleetHomeChart().then((res) =>{
-//     alert('What is this returning:'+ res);
-//     var dog = JSON.stringify(res);
-//     var cat = JSON.parse(dog);    
-//     // let chartFirstMonth = data['f_month'];
-//     // let chartLastMonth = data['l_month']; 
-//     let chartFirstMonth = cat['Excel'];
-//     // let chartLastMonth = data1['RRR']; 
-  
-//     alert('Item from homechart:'+ dog +' Here cat data: '+cat);      
-//     alert('This FirstMonth.pay: '+ chartFirstMonth);      
-//     this.payOut = chartFirstMonth;
-//     alert("Get this out pls: "+this.payOut);
-//     // alert('This FirstMonth.pay: '+ chartFirstMonth+' This Lastmonth.pay: '+ chartLastMonth );      
-//     // this.pay = chartExpectedMoney;
-//     // this.payOut = chartReceivedMoney;    
-//     // alert('This.pay0: '+this.pay[0]);
-//     // alert('This.pay1: '+this.pay[1]);
-//     // alert('This.pay2: '+this.pay[2]);
-//     // console.log("pay here first "+ this.pay);
-//   }, err => {
-//     console.log(err);
-//   })
-// }
+getHomeFleetChart(){
+  this.appprov.getHomeFleetChart(this.access_token).then((res) =>{    
+    var data = JSON.stringify(res);
+    data = JSON.parse(data);    
+    let chartFirstMonth = data['chartData'];  
+    this.getFleetUsage(chartFirstMonth);     
+  }, err => {
+    console.log(err);
+  })
+}
 
 
 //On start and access database to retrieve owner information
@@ -273,12 +241,12 @@ getOwnerJoblist(){
     this.plotSchedule(job);
     // this.getJobStats({'date_from':job_datefrom});
     // this.getMonthlyPay();  
-    this.getEarnings();  
+    // this.getEarnings();  
     // this.getMonthlyPay();  
     // this.getFleetChartDays();
     // this.getFleetHomeChart();
-    this.getFleetUsage();
-    this.getOperatorUsage();
+    // this.getFleetUsage();
+    // this.getOperatorUsage();
   }, err =>{
     console.log(err);
   });
@@ -404,7 +372,7 @@ getVehicle(email, datetime){
 //   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
 // };
 
-getEarnings()
+getEarnings(chartExpectedMoney,chartReceivedMoney)
 {
   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var today = new Date();
@@ -423,11 +391,11 @@ getEarnings()
   }
   //Expected
   console.log("Load test DATA SETTT");
-  var ExpectedData = this.pay;
+  var ExpectedData = chartExpectedMoney;
   // var dataPack1 = ['5','14','14','4','30','45','60'];
   
   //Total
-  var totalData = this.payOut;
+  var totalData = chartReceivedMoney;
   // var dataPack2 = ['10','35','50','10','35','50','90'];
   
  
@@ -491,7 +459,7 @@ getEarnings()
 
 }
 
-getFleetUsage(){
+getFleetUsage(chartData){
   // var specificMachine = [10,15,6,12];
   var baseDays = 22;
   var vehNum = 4;
@@ -503,6 +471,7 @@ getFleetUsage(){
   var month = today.getUTCMonth();
   var labels_month = [];
   var month_range = 4;
+  var chartData_Pack = chartData;
   var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
   for(let i=0; i<month_range; i++)
   {
@@ -519,7 +488,7 @@ getFleetUsage(){
       labels: labels_month,
       datasets: [{
         label: 'Statistics',
-        data: dataPack1,
+        data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
         // borderColor: "rbga(0, 110, 255, 1)",
         borderWidth:1
@@ -541,7 +510,7 @@ getFleetUsage(){
   })
 }
 
-getOperatorUsage(){
+getOperatorUsage(chartData){
   // var specificMachine = [10,15,6,12];
   var baseDays = 22;
   var vehNum = 4;
@@ -553,6 +522,7 @@ getOperatorUsage(){
   var month = today.getUTCMonth();
   var labels_month = [];
   var month_range = 4;
+  var chartData_Pack = chartData;
   var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
 
   for(let i=0; i<month_range; i++)
@@ -570,7 +540,7 @@ getOperatorUsage(){
       labels: labels_month,
       datasets: [{
         label: 'Statistics',
-        data: dataPack1,
+        data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
         borderColor: "rbga(0, 110, 255, 1)",
         borderWidth:1

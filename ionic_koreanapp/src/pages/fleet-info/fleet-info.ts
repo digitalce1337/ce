@@ -328,9 +328,9 @@ export class FleetInfoPage {
           yAxes: [{
             ticks:{
             min: 0,
-            max: 30,
+            max: 100,
             gridLines: {display:false}, 
-            callback: function(value){return value}
+            callback: function(value){return value+ "%"}
           },
         scaleLabel:{
           display:true,
