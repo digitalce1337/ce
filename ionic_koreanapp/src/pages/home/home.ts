@@ -24,6 +24,7 @@ export class HomePage {
   public jobstats: string;
   public language: string;
 
+
   @ViewChild('barCanvas') barCanvas;
   barChart: any;
   @ViewChild('barCanvasEarnings') barCanvasEarnings;
@@ -53,6 +54,15 @@ export class HomePage {
   public ImgUrl: string[];
   public UsrEmail:any;
   public fleets: any;
+
+  public pay: any;
+  public payOut: string[];  
+
+  public t1: any;
+  public t2: any;
+  public t3: any;
+  public t4: any;
+  public t5: any;
 
   public vehicle_status: string[];
 
@@ -91,8 +101,13 @@ export class HomePage {
             console.log("Got access token");
             this.access_token = val.toString();
             this.getUserInfo();
+            this.getEmailPay();
+            // this.getTestFn();
+            // this.getMonthlyPay();
             this.getVehicleStatus('');
-            this.getOwnerJoblist();
+            this.getOwnerJoblist();            
+            this.getHomeFleetChart();
+            this.getHomeOperatorChart();
             this._initializeTranslation();     
           }
         });//storage.get('access_token').then((val)
@@ -109,9 +124,16 @@ export class HomePage {
 
   ionViewDidEnter(){
     this.getUserInfo();
+    this.getEmailPay();
+    // this.getTestFn();
+    // this.getMonthlyPay(this.Uemail);
     this.getVehicleStatus('');
     this.getOwnerJoblist();
+    this.getHomeFleetChart();    
+    this.getHomeOperatorChart();
+    // this.getFleetHomeChart();
     this._initializeTranslation();
+    
   }
 
   ionViewDidLoad(){
@@ -140,7 +162,7 @@ private _initializeTranslation(): void{
   }, 200);
 }
 
-addCommaNumber(text){
+addCommaNumber(text){ 
   let x = (text.replace(/\B(?=(\d{3})+(?!\d))/g, ","));    
   return x;
  }
@@ -154,6 +176,55 @@ presentAlert(title,msg){
   alert.present();
 }
 
+
+getEmailPay(){
+  this.appprov.getemail().then((res) => {
+    this.UsrEmail = res;
+    this.getMonthlyPay(res);
+    // this.getFleetData(res);
+  }, err =>{
+    console.log(err);
+  });
+}
+
+getMonthlyPay(email){ 
+  this.appprov.getMonthlyPay(email).then((res) =>{
+    let data = JSON.stringify(res);
+    data = JSON.parse(data);
+    let chartExpectedMoney = data['Expected'];
+    let chartReceivedMoney = data['Received'];    
+    // this.pay = chartExpectedMoney;
+    // this.payOut = chartReceivedMoney;
+    // console.log("pay here first "+ this.pay);
+    this.getEarnings(chartExpectedMoney,chartReceivedMoney);    
+  }, err => {
+    console.log(err);
+  })
+}
+
+getHomeOperatorChart(){
+  this.appprov.getHomeOperatorChart(this.access_token).then((res) =>{    
+    var data = JSON.stringify(res);
+    data = JSON.parse(data);    
+    let chartFirstMonth = data['chartData'];  
+    this.getOperatorUsage(chartFirstMonth);     
+  }, err => {
+    console.log(err);
+  })
+}
+
+getHomeFleetChart(){
+  this.appprov.getHomeFleetChart(this.access_token).then((res) =>{    
+    var data = JSON.stringify(res);
+    data = JSON.parse(data);    
+    let chartFirstMonth = data['chartData'];  
+    this.getFleetUsage(chartFirstMonth);     
+  }, err => {
+    console.log(err);
+  })
+}
+
+
 //On start and access database to retrieve owner information
 getOwnerJoblist(){
   this.appprov.getOwnerJoblist(this.access_token).then((res) => {
@@ -163,14 +234,19 @@ getOwnerJoblist(){
     let job_datefrom = data['job_datefrom'];
     let job_dateto = data['job_dateto']
     console.log(job_dateto);
+    // alert('Call  ownerjoblist');
     let job = {'job_desc':job_desc, 'job_dateto': job_dateto, 'job_datefrom':job_datefrom}
     console.log(job);
     this.loadEvents(job);
     this.plotSchedule(job);
-    this.getJobStats({'date_from':job_datefrom});
-    this.getEarnings();
-    this.getFleetUsage();
-    this.getOperatorUsage();
+    // this.getJobStats({'date_from':job_datefrom});
+    // this.getMonthlyPay();  
+    // this.getEarnings();  
+    // this.getMonthlyPay();  
+    // this.getFleetChartDays();
+    // this.getFleetHomeChart();
+    // this.getFleetUsage();
+    // this.getOperatorUsage();
   }, err =>{
     console.log(err);
   });
@@ -236,74 +312,74 @@ getVehicle(email, datetime){
 }//end of getVehicle
 
 /*To create the job statistics on home page (owner)*/
-getJobStats(jobs){
-  //add label x-axis
-  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var today = new Date();
-  var month = today.getUTCMonth();
-  var labels_month = [];
-  var month_range = 4;
+// getJobStats(jobs){
+//   //add label x-axis
+//   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+//   var today = new Date();
+//   var month = today.getUTCMonth();
+//   var labels_month = [];
+//   var month_range = 4;
 
-  for(let i=0; i<month_range; i++)
-  {
-    labels_month.push(months[(month+12 - i)%12]);
-  }
-  labels_month.reverse();
-  for(let i=1; i<month_range; i++)
-  {
-    labels_month.push(months[(month+12 + i)%12]);
-  }
+//   for(let i=0; i<month_range; i++)
+//   {
+//     labels_month.push(months[(month+12 - i)%12]);
+//   }
+//   labels_month.reverse();
+//   for(let i=1; i<month_range; i++)
+//   {
+//     labels_month.push(months[(month+12 + i)%12]);
+//   }
   
-  /*
-  Old codes
-  var labels_end = month-6;
-  for (let i = 0; i<6; i++){
-    labels_month.push(months[month-5+i]);
-  } */
+//   /*
+//   Old codes
+//   var labels_end = month-6;
+//   for (let i = 0; i<6; i++){
+//     labels_month.push(months[month-5+i]);
+//   } */
 
-  // add data y-axis
-  var date_from = jobs.date_from;
-  var data_y = [0, 0, 0, 0, 0, 0];
-  for (let j =0; j<date_from.length; j++){
-    var temp = parseInt(date_from[j].substring(5,7), 10);
-    console.log(temp);
-    console.log(".....................................");
-    for (let p=0; p<6; p++){
-      if ((temp-1) == (month-p)){
-        data_y[5-p] += 1;
-      }
-    }
-  }
-  //creating of the bar graph
-  console.log(data_y);
-  this.barChart = new Chart(this.barCanvas.nativeElement, {
-    type: 'bar',
-    data:{
-      labels: labels_month,
-      datasets: [{
-        label: this.jobstats,
-        data: data_y,
-        backgroundColor: "rgba(0, 110,255, 0.2)",
-        borderColor: "rbga(0, 110, 255, 1)",
-        borderWidth:1
-      }]
-    }
-  })
-}// end of getJobStats
+//   // add data y-axis
+//   var date_from = jobs.date_from;
+//   var data_y = [0, 0, 0, 0, 0, 0];
+//   for (let j =0; j<date_from.length; j++){
+//     var temp = parseInt(date_from[j].substring(5,7), 10);
+//     console.log(temp);
+//     console.log(".....................................");
+//     for (let p=0; p<6; p++){
+//       if ((temp-1) == (month-p)){
+//         data_y[5-p] += 1;
+//       }
+//     }
+//   }
+//   //creating of the bar graph
+//   console.log(data_y);
+//   this.barChart = new Chart(this.barCanvas.nativeElement, {
+//     type: 'bar',
+//     data:{
+//       labels: labels_month,
+//       datasets: [{
+//         label: this.jobstats,
+//         data: data_y,
+//         backgroundColor: "rgba(0, 110,255, 0.2)",
+//         borderColor: "rbga(0, 110, 255, 1)",
+//         borderWidth:1
+//       }]
+//     }
+//   })
+// }// end of getJobStats
 
 
 // numberwithcommas(x) {
 //   return x.toString().replace(/\B(?=(\d{3}+(?!\d)))/g, ",");
 // };
 
-getEarnings()
+getEarnings(chartExpectedMoney,chartReceivedMoney)
 {
   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var today = new Date();
   var month = today.getUTCMonth();
   var labels_month = [];
   var month_range = 4;
-
+  
   for(let i=0; i<month_range; i++)
   {
     labels_month.push(months[(month+12 - i)%12]);
@@ -313,10 +389,16 @@ getEarnings()
   {
     labels_month.push(months[(month+12 + i)%12]);
   }
-
-  var dataPack1 = ['5','14','14','4','30','45','60'];
-  var dataPack2 = ['10','35','50','10','35','50','90'];
+  //Expected
+  console.log("Load test DATA SETTT");
+  var ExpectedData = chartExpectedMoney;
+  // var dataPack1 = ['5','14','14','4','30','45','60'];
   
+  //Total
+  var totalData = chartReceivedMoney;
+  // var dataPack2 = ['10','35','50','10','35','50','90'];
+  
+ 
   this.EarningsChart = new Chart(this.barCanvasEarnings.nativeElement, {
     type: 'bar',
     data:{
@@ -324,14 +406,15 @@ getEarnings()
       datasets: [
         {
         label: 'Expected',
-        data: dataPack1,
+        data: ExpectedData,
+        // data: dataPack1,
         // backgroundColor: "rgba(0, 110,255, 0.2)",
         backgroundColor: "rgba(107,142,35, 0.2)",                
         borderWidth:1
       },
       {
-        label: 'Total',
-        data: dataPack2,
+        label: 'Received',
+        data: totalData,
         // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
         // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
         backgroundColor: "rgba(152,251,152, 0.2)",        
@@ -348,7 +431,7 @@ getEarnings()
         callbacks: {
           label: function(tooltipItem,data){
             return data.datasets[tooltipItem.datasetIndex].label +": " +tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            // return this.addCommaNumber(tooltipItem.yLabel.toString());                       
+            // return this./(tooltipItem.yLabel.toString());                       
           },
         },
       },
@@ -361,6 +444,7 @@ getEarnings()
           stacked: false,
           // gridLines: {display:false},
           ticks:{
+            // display:false,
             // callback: function(value){ return this.addCommaNumber(value);},          
             // beginatZero: true,
             min: 0,
@@ -375,8 +459,7 @@ getEarnings()
 
 }
 
-
-getFleetUsage(){
+getFleetUsage(chartData){
   // var specificMachine = [10,15,6,12];
   var baseDays = 22;
   var vehNum = 4;
@@ -388,6 +471,7 @@ getFleetUsage(){
   var month = today.getUTCMonth();
   var labels_month = [];
   var month_range = 4;
+  var chartData_Pack = chartData;
   var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
   for(let i=0; i<month_range; i++)
   {
@@ -404,9 +488,9 @@ getFleetUsage(){
       labels: labels_month,
       datasets: [{
         label: 'Statistics',
-        data: dataPack1,
+        data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
-        borderColor: "rbga(0, 110, 255, 1)",
+        // borderColor: "rbga(0, 110, 255, 1)",
         borderWidth:1
       }]
     },
@@ -426,7 +510,7 @@ getFleetUsage(){
   })
 }
 
-getOperatorUsage(){
+getOperatorUsage(chartData){
   // var specificMachine = [10,15,6,12];
   var baseDays = 22;
   var vehNum = 4;
@@ -438,6 +522,7 @@ getOperatorUsage(){
   var month = today.getUTCMonth();
   var labels_month = [];
   var month_range = 4;
+  var chartData_Pack = chartData;
   var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
 
   for(let i=0; i<month_range; i++)
@@ -455,7 +540,7 @@ getOperatorUsage(){
       labels: labels_month,
       datasets: [{
         label: 'Statistics',
-        data: dataPack1,
+        data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
         borderColor: "rbga(0, 110, 255, 1)",
         borderWidth:1

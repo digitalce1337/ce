@@ -183,6 +183,7 @@ export class AddjobPage {
       this.appprov.insertOperatorJob(this.access_token, result.jid,names, vehicles).then(res => {
         this.appprov.presentAlert(this.addjobmsgtitle, this.addjobmsg);
         this.viewctrl.dismiss('1');
+        this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles);
       },err => {
         console.log(err);
       })

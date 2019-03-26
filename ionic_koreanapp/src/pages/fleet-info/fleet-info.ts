@@ -103,7 +103,7 @@ export class FleetInfoPage {
           this.retrieveMaintenanceCompleted(this.vehicle.serial_no, this.todaydate);
           this.retrieveMaintenanceUpcoming(this.vehicle.serial_no, this.todaydate);
           this.retrieveVehicleSchedule(this.vehicle.serial_no);
-          this.retrieveVehicleUtil(this.vehicle.serial_no);
+          this.retrieveVehicleUtil(this.vehicle.serial_no,this.vehicle.model_no);
           this._initializeTranslation();
         }
       });
@@ -208,15 +208,17 @@ export class FleetInfoPage {
     });
   }
 
-  retrieveVehicleUtil(serial_no){
-    this.appprov.retrieveVehicleUtil(serial_no, this.access_token).then((res) => {
+  retrieveVehicleUtil(serial_no,model_no){
+    this.appprov.retrieveVehicleUtil(serial_no,model_no, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
-      let vehicle_month = data['vehicle_month'];
-      let vehicle_year = data['vehicle_year'];
-      let month_total = data['month_total'];
-      let year_total = data['year_total'];
-      this.getJobStats(vehicle_month, month_total);
+      let chartData = data['chartData'];
+      // let vehicle_month = data['vehicle_month'];
+      // let vehicle_year = data['vehicle_year'];
+      // let month_total = data['month_total'];
+      // let year_total = data['year_total'];
+      this.getJobStats(chartData);
+      // this.getJobStats(vehicle_month, month_total);
       // sthis.getJobStats2(vehicle_year, year_total); //comment this sn 27
       }, err=>{
       console.log(err);
@@ -289,12 +291,14 @@ export class FleetInfoPage {
     return job;
   }
 
-  getJobStats(vehicle_month, month_total){
+  getJobStats(chartData){
+  // getJobStats(vehicle_month, month_total){
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
+    var chart_DataPack = chartData;
     var dataPack1 = ['7','14','14','4','22','20','15'];
     for(let i=0; i<month_range; i++)
     {
@@ -311,7 +315,7 @@ export class FleetInfoPage {
         labels: labels_month,
         datasets: [{
           label: 'Statistics',
-          data: dataPack1,
+          data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           borderWidth:1
         }]
@@ -324,9 +328,9 @@ export class FleetInfoPage {
           yAxes: [{
             ticks:{
             min: 0,
-            max: 30,
+            max: 100,
             gridLines: {display:false}, 
-            callback: function(value){return value}
+            callback: function(value){return value+ "%"}
           },
         scaleLabel:{
           display:true,

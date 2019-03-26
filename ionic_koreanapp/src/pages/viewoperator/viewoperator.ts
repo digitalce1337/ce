@@ -47,14 +47,14 @@ export class ViewoperatorPage {
   public vehicle_type: string[];
   public vehicle_img: string[];
 
-  @ViewChild('doughnutCanvas') doughnutCanvas;
-  doughnutChart: any;
-  @ViewChild('doughnutCanvas2') doughnutCanvas2;
-  doughnutChart2: any;
-  @ViewChild('doughnutCanvas3') doughnutCanvas3;
-  doughnutChart3: any;
-  @ViewChild('doughnutCanvas4') doughnutCanvas4;
-  doughnutChart4: any;
+  @ViewChild('barOpCanvas') barOpCanvas;
+  barOpChart: any;
+  // @ViewChild('doughnutCanvas2') doughnutCanvas2;
+  // doughnutChart2: any;
+  // @ViewChild('doughnutCanvas3') doughnutCanvas3;
+  // doughnutChart3: any;
+  // @ViewChild('doughnutCanvas4') doughnutCanvas4;
+  // doughnutChart4: any;
 
   eventSource;
   viewTitle;
@@ -87,7 +87,8 @@ export class ViewoperatorPage {
           console.log("Got access token");
           this.access_token = val.toString();
           this.getOperatorDetails(this.email);
-          this.getChartData(this.email);
+          // this.getChartData(this.email);
+          this.getOperatorUtil(this.email);
           this.getOperatorSchedule(this.email);
           this._initializeTranslation();
         }
@@ -170,75 +171,123 @@ export class ViewoperatorPage {
   
 //comment this block sn 26
   //TODAY chart
-  getJobStats(){
-    if (this.owner_job[0] == '0'){
-      this.owner_job[0] = '2';
+  getJobStats(chartData){
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var today = new Date();
+    var month = today.getUTCMonth();
+    var labels_month = [];
+    var month_range = 4;
+    var chart_DataPack = chartData;
+    var dataPack1 = ['7','14','14','4','22','20','15'];
+    for(let i=0; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 - i)%12]);
     }
-    if (this.operator_job[0] == '0'){
-      this.owner_job[0] = (parseInt(this.owner_job[0])+ 1).toString();
+    labels_month.reverse();
+    for(let i=1; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 + i)%12]);
     }
-    // console.log (this.owner_job[0]);
-    // console.log(this.operator_job[0]);
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
+    this.barOpChart = new Chart(this.barOpCanvas.nativeElement, {
+      type: 'bar',
       data:{
-        labels: [this.assigned, this.job_count],
+        labels: labels_month,
         datasets: [{
-          label: "Operator Utilization",
-          // data: [this.operator_job[0], parseInt(this.owner_job[0])-1],
-          data: ['5', '10'],
-          backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-          borderColor: "rbga(0, 110, 255, 1)",
+          label: 'Statistics',
+          data: chart_DataPack,
+          backgroundColor: "rgba(0, 110,255, 0.2)",
           borderWidth:1
         }]
+      },
+      options:{
+        scales: {
+          xAxes: [{
+            gridLines: {display:false},          
+          }],
+          yAxes: [{
+            ticks:{
+            min: 0,
+            max: 100,
+            gridLines: {display:false}, 
+            callback: function(value){return value + "%"}
+          },
+        scaleLabel:{
+          display:true,
+          labelString: "Days"
+        }
+          }],
+        },
+        legend: {display:false}
       }
-    });
+    })  
+    // if (this.owner_job[0] == '0'){
+    //   this.owner_job[0] = '2';
+    // }
+    // if (this.operator_job[0] == '0'){
+    //   this.owner_job[0] = (parseInt(this.owner_job[0])+ 1).toString();
+    // }
+    // // console.log (this.owner_job[0]);
+    // // console.log(this.operator_job[0]);
+    // this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+    //   type: 'doughnut',
+    //   data:{
+    //     labels: [this.assigned, this.job_count],
+    //     datasets: [{
+    //       label: "Operator Utilization",
+    //       // data: [this.operator_job[0], parseInt(this.owner_job[0])-1],
+    //       data: ['5', '10'],
+    //       backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+    //       borderColor: "rbga(0, 110, 255, 1)",
+    //       borderWidth:1
+    //     }]
+    //   }
+    // });
   }
 
-  getJobStats2(){
-    if (this.owner_job[1] == '0'){
-      this.owner_job[1] = '2';
-    }
-    if (this.operator_job[1] == '0'){
-      this.owner_job[1] = (parseInt(this.owner_job[0])+ 1).toString();
-    }
-    this.doughnutChart2 = new Chart(this.doughnutCanvas2.nativeElement, {
-      type: 'doughnut',
-      data:{
-        labels: [this.assigned, this.job_count],
-        datasets: [{
-          label: "Operator utilization",
-          data: [this.operator_job[1], parseInt(this.owner_job[1])-1],
-          backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-          borderColor: "rbga(0, 110, 255, 1)",
-          borderWidth:1
-        }]
-      }
-    });
-  }
+  // getJobStats2(){
+  //   if (this.owner_job[1] == '0'){
+  //     this.owner_job[1] = '2';
+  //   }
+  //   if (this.operator_job[1] == '0'){
+  //     this.owner_job[1] = (parseInt(this.owner_job[0])+ 1).toString();
+  //   }
+  //   this.doughnutChart2 = new Chart(this.doughnutCanvas2.nativeElement, {
+  //     type: 'doughnut',
+  //     data:{
+  //       labels: [this.assigned, this.job_count],
+  //       datasets: [{
+  //         label: "Operator utilization",
+  //         data: [this.operator_job[1], parseInt(this.owner_job[1])-1],
+  //         backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+  //         borderColor: "rbga(0, 110, 255, 1)",
+  //         borderWidth:1
+  //       }]
+  //     }
+  //   });
+  // }
 
-  getJobStats3(){
-    if (this.owner_job[2] == '0'){
-      this.owner_job[2] = '2';
-    }
-    if (this.operator_job[2] == '0'){
-      this.owner_job[2] = (parseInt(this.owner_job[0])+ 1).toString();
-    }
+  // getJobStats3(){
+  //   if (this.owner_job[2] == '0'){
+  //     this.owner_job[2] = '2';
+  //   }
+  //   if (this.operator_job[2] == '0'){
+  //     this.owner_job[2] = (parseInt(this.owner_job[0])+ 1).toString();
+  //   }
 
-    this.doughnutChart3 = new Chart(this.doughnutCanvas3.nativeElement, {
-      type: 'doughnut',
-      data:{
-        labels: [this.assigned, this.job_count],
-        datasets: [{
-          label: "Operator utilization",
-          data: [this.operator_job[2], parseInt(this.owner_job[2])-1],
-          backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-          borderColor: "rbga(0, 110, 255, 1)",
-          borderWidth:1
-        }]
-      }
-    });
-  }
+  //   this.doughnutChart3 = new Chart(this.doughnutCanvas3.nativeElement, {
+  //     type: 'doughnut',
+  //     data:{
+  //       labels: [this.assigned, this.job_count],
+  //       datasets: [{
+  //         label: "Operator utilization",
+  //         data: [this.operator_job[2], parseInt(this.owner_job[2])-1],
+  //         backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
+  //         borderColor: "rbga(0, 110, 255, 1)",
+  //         borderWidth:1
+  //       }]
+  //     }
+  //   });
+  // }
   //comment this blok sn 26
     //YEAR chart
   // getJobStats4(){
@@ -264,32 +313,44 @@ export class ViewoperatorPage {
   //   });
   // }
 
-  getChartData(email){
-    this.appprov.getChartData(email, this.access_token).then((res) => {
+  // getChartData(email){
+  //   this.appprov.getChartData(email, this.access_token).then((res) => {
+  //     let data = JSON.stringify(res);
+  //     data = JSON.parse(data);
+  //     //2 lines below does not work. does not assign value to variable.
+  //     this.operator_job = data['operator'];
+  //     this.owner_job = data['owner'];
+  //     console.log(this.operator_job);
+  //     if (this.owner_job){
+  //       this.getJobStats();
+  //       // this.getJobStats2();
+  //       // this.getJobStats3();
+  //       // this.getJobStats4();
+  //     }
+  //     else{
+  //       this.owner_job = ['0','0','0','0'];
+  //       this.operator_job = ['0','0','0','0'];
+  //       this.getJobStats();
+  //       // this.getJobStats2();
+  //       // this.getJobStats3();
+  //       // this.getJobStats4();
+  //     }
+  //   }, err=>{
+  //     console.log(err);
+  //   });
+  // }
+
+  getOperatorUtil(email){
+    this.appprov.getOperatorUtil(email, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
-      //2 lines below does not work. does not assign value to variable.
-      this.operator_job = data['operator'];
-      this.owner_job = data['owner'];
-      console.log(this.operator_job);
-      if (this.owner_job){
-        this.getJobStats();
-        this.getJobStats2();
-        this.getJobStats3();
-        // this.getJobStats4();
-      }
-      else{
-        this.owner_job = ['0','0','0','0'];
-        this.operator_job = ['0','0','0','0'];
-        this.getJobStats();
-        this.getJobStats2();
-        this.getJobStats3();
-        // this.getJobStats4();
-      }
+      let chartData = data['chartData']                
+      this.getJobStats(chartData);              
     }, err=>{
       console.log(err);
     });
   }
+
 
   loadEvents(job){
     //var job = {jid:["001", "002"], date_from:["2018-10-10", "2018-10-12"], date_to:["2018-10-20","2018-10-22"]}
