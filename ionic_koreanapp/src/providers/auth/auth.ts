@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 
-import{ Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 import { apiKey } from '../../app/apiurls/serverurls.js';
-import { Http , Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 /*
   Generated class for the AuthProvider provider.
 
@@ -20,39 +20,64 @@ export class AuthProvider {
   }
 
 
-  createAccount(details){
+  createAccount(details) {
     return new Promise((resolve, reject) => {
- 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
- 
-        this.http.post(apiKey+'auth/users/create/', JSON.stringify(details), {headers: headers})
-          .subscribe(res => {
-            let data = res.json();
+
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.post(apiKey + 'auth/users/create/', JSON.stringify(details), { headers: headers })
+        .subscribe(res => {
+          let data = res.json();
           //  this.token = data.token;
-            //this.storage.set('token', data.token);
-            resolve(data);
- 
-          }, (err) => {
-            reject(err);
-          });
+          //this.storage.set('token', data.token);
+          resolve(data);
+
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 
-  login(credentials){
-    return new Promise((resolve,reject) => {
+  login(credentials) {
+    return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Access-Control-Allow-Origin', '*');
       headers.append('Acess-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-      headers.append('Accept','application/json');
-      headers.append('content-type','application/json');
+      headers.append('Accept', 'application/json');
+      headers.append('content-type', 'application/json');
 
-      this.http.post(apiKey+'auth/jwt/create',JSON.stringify(credentials),{headers:headers})
-      .subscribe(res => {
-        let data = res.json();
-        this.token = data.token;
-        this.storage.set('token', data.token);
-        resolve(data);
+      this.http.post(apiKey + 'auth/jwt/create', JSON.stringify(credentials), { headers: headers })
+        .subscribe(res => {
+          let data = res.json();
+          this.token = data.token;
+          this.storage.set('token', data.token);
+          resolve(data);
+        }, (err) => {
+          reject(err);
+
+        });
+    });
+  }
+
+
+  logout() {
+    this.storage.set('token', '');
+  }
+
+
+  checkAuthentication() {
+
+    return new Promise((resolve, reject) => {
+
+      this.storage.get('token').then((value) => {
+
+        // this.token = value;
+        this.token = "";
+
+        resolve(this.token)
+
+
       }, (err) => {
         reject(err);
 
@@ -60,32 +85,7 @@ export class AuthProvider {
     });
   }
 
-
-  logout(){
-    this.storage.set('token', '');
-  }
-
-
-  checkAuthentication(){
-
-    return new Promise((resolve, reject) => {
-    
-    this.storage.get('token').then((value) => {
- 
-      // this.token = value;
-       this.token = "";
-
-      resolve(this.token)
-
-
-    }, (err) => {
-      reject(err);
-    
-    });   
-  });
-  }
-
-  GetProducts(){
+  GetProducts() {
     // return new Promise((resolve,reject) => {
     //   let headers = new Headers();
     //   headers.append('Access-Control-Allow-Origin', '*');
@@ -102,24 +102,25 @@ export class AuthProvider {
 
     //   });
     // });
-    return new Promise(resolve =>{
+    return new Promise(resolve => {
       // let headers = new Headers();
       // headers.append('Access-Control-Allow-Origin', '*');
       // headers.append('Acess-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT');
       // headers.append('Accept','application/json');
       // headers.append('content-type','application/json');
-      this.http.get(apiKey).subscribe(data =>{
+      this.http.get(apiKey).subscribe(data => {
         resolve(data);
-      }, err=> {
+      }, err => {
         console.log(err);
       })
     });
   }
 
-  getUserinfo(AToken){
-    return new Promise(resolve =>{
+  getUserinfo(AToken) {
+    if (AToken == undefined) return;
+    return new Promise(resolve => {
       this.http.get(apiKey + 'getUserInfo?access_token=' + AToken).subscribe(data => {
-        resolve (data);
+        resolve(data);
       }, err => {
         console.log("error in auth getuserinfo");
         console.log(err);
