@@ -10,6 +10,7 @@ import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
+import { isUndefined } from 'ionic-angular/umd/util/util';
 
 
 /**
@@ -47,7 +48,7 @@ export class OperatorhomePage {
 
   eventSource;
   viewTitle;
-  isToday:boolean;
+  isToday: boolean;
   calendar = {
     mode: 'month',
     currentDate: new Date()
@@ -58,26 +59,25 @@ export class OperatorhomePage {
     vehicle_type: string
   }>;
 
-  constructor(public navCtrl: NavController, 
-    public http: Http, 
-    public authService:AuthProvider,
-    public alertCtrl:AlertController,
-    public navParams:NavParams,
-    public appprov:AppProvider,
+  constructor(public navCtrl: NavController,
+    public http: Http,
+    public authService: AuthProvider,
+    public alertCtrl: AlertController,
+    public navParams: NavParams,
+    public appprov: AppProvider,
     private storage: Storage,
-    public popO:PopoverController,
+    public popO: PopoverController,
     public _translate: TranslateService) {
+
     storage.ready().then(() => {
     });
     //storage.clear();
-    // storage.set('access_token', 'accessop');
-    //storage.set('access_token', 'accesstokenop');
     storage.get('access_token').then((val) => {
-      if (val == null){
+      if (val == null) {
         console.log("No acccess token");
         //this.navCtrl.setRoot(LoginPage);
       }
-      else{
+      else {
         console.log("Got access token");
         this.access_token = val.toString();
         this.getUserInfo();
@@ -86,61 +86,64 @@ export class OperatorhomePage {
         this._initializeTranslation();
       }
     });
+
   }//end of constructor
 
   /*app starts here. All are functions
   */
+  ionViewDidLoad() {
+  }
+
   ionViewDidEnter() {
-    console.log('ionViewDidLoad OperatorhomePage');
-    this._initializeTranslation();
+
   }
 
-  ionViewWillEnter(){
-    this.getUserInfo();
-    this.getOperatorJoblist();
+  ionViewWillEnter() {
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("operatorhome.title");
-      this.welcome =  this._translate.instant("operatorhome.welcome");
-      this.forecast =  this._translate.instant("operatorhome.forecast");
-      this.jobstats =  this._translate.instant("operatorhome.jobstats");
-      this.fleet =  this._translate.instant("operatorhome.fleet");
-      this.skill_sets =  this._translate.instant("operatorhome.skill_sets");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("operatorhome.title");
+    this.welcome = this._translate.instant("operatorhome.welcome");
+    this.forecast = this._translate.instant("operatorhome.forecast");
+    this.jobstats = this._translate.instant("operatorhome.jobstats");
+    this.fleet = this._translate.instant("operatorhome.fleet");
+    this.skill_sets = this._translate.instant("operatorhome.skill_sets");
   }
 
-  onViewTitleChanged(title){
+  onViewTitleChanged(title) {
     this.viewTitle = title;
   }
-  onEventSelected(event){
-    console.log("Event selected:" + event.startTime + '-' + event.endTime + "," +event.title);
+  onEventSelected(event) {
+    console.log("Event selected:" + event.startTime + '-' + event.endTime + "," + event.title);
   }
-  changeMode(mode){
+  changeMode(mode) {
     this.calendar.mode = mode;
   }
-  today(){
+  today() {
     this.calendar.currentDate = new Date();
   }
-  onTimeSelected(ev){
-    console.log("Selected time: " + ev.selectedTime + ", hasEvents: " + (ev.events !== undefined && ev.events.length !==0) + ", disabled: " + ev.disabled);
+  onTimeSelected(ev) {
+    console.log("Selected time: " + ev.selectedTime + ", hasEvents: " + (ev.events !== undefined && ev.events.length !== 0) + ", disabled: " + ev.disabled);
   }
-  onCurrentDateChanged(event:Date) {
+  onCurrentDateChanged(event: Date) {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
   }
 
-  getUserInfo(){
+  getUserInfo() {
+    if (this.access_token == undefined) return;
+
     this.authService.getUserinfo(this.access_token).then((result) => {
       this.userinfo = result;
       this.userinfo = JSON.parse(this.userinfo._body);
@@ -156,7 +159,9 @@ export class OperatorhomePage {
     });
   }
 
-  getOperatorJoblist(){
+  getOperatorJoblist() {
+    if (this.access_token == undefined) return;
+
     this.appprov.getOperatorJoblist(this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -164,31 +169,31 @@ export class OperatorhomePage {
       let job_datefrom = data['job_datefrom'];
       let job_dateto = data['job_dateto'];
       console.log(job_dateto);
-      let job = {'job_desc':job_desc, 'job_dateto': job_dateto, 'job_datefrom':job_datefrom}
+      let job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom }
       console.log(job);
       this.loadEvents(job);
       this.plotSchedule(job);
-      this.getJobStats({'date_from':job_datefrom});
-    }, err =>{
+      this.getJobStats({ 'date_from': job_datefrom });
+    }, err => {
       console.log(err);
     });
   }
-  loadEvents(job){
+  loadEvents(job) {
     this.eventSource = this.plotSchedule(job);
   }
 
-  plotSchedule(jobs){
+  plotSchedule(jobs) {
     var job = [];
     var dates_from = jobs.job_datefrom;
     var dates_to = jobs.job_dateto;
     var jids = jobs.job_desc;
     var today = new Date()
-    for (let i=0; i<dates_from.length; i++){
+    for (let i = 0; i < dates_from.length; i++) {
       // var temp = parseInt(dates_to[i].substring(8,10), 10) + 1;
       // dates_to[i] = temp+dates_to[i].substring(5,7)+dates_to[i].substring(0,4);
       // var d = dates_from[i].substring(4,8)+"/"+dates_from[i].substring(0,2)+"/"+dates_from[i].substring(2,4);
-      var start_day = new Date(Date.UTC(dates_from[i].substring(0,4), dates_from[i].substring(5,7)-1, parseInt(dates_from[i].substring(8,10), 10)+1));
-      var end_day = new Date(Date.UTC(dates_to[i].substring(0,4), dates_to[i].substring(5,7)-1, parseInt(dates_to[i].substring(8,10),10)+1));
+      var start_day = new Date(Date.UTC(dates_from[i].substring(0, 4), dates_from[i].substring(5, 7) - 1, parseInt(dates_from[i].substring(8, 10), 10) + 1));
+      var end_day = new Date(Date.UTC(dates_to[i].substring(0, 4), dates_to[i].substring(5, 7) - 1, parseInt(dates_to[i].substring(8, 10), 10) + 1));
       console.log("pushing job");
       job.push({
         title: jids[i],
@@ -200,49 +205,47 @@ export class OperatorhomePage {
     return job;
   }
 
-  SwithProfile(){
+  SwithProfile() {
     this.storage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
 
-  getCapabilities(){
+  getCapabilities() {
     this.capabilities = [];
-    this.appprov.getOpCapabilities(this.access_token.toString()).then((res:any) => {
+    this.appprov.getOpCapabilities(this.access_token.toString()).then((res: any) => {
       let caps = JSON.stringify(res);
       caps = JSON.parse(caps);
       let urls = caps['vehicle_url'];
       let types = caps['vehicle_type'];
-      for(let i = 0; i<urls.length;i++){
+      for (let i = 0; i < urls.length; i++) {
         this.capabilities.push({
-          vehicle_url:urls[i],
+          vehicle_url: urls[i],
           vehicle_type: types[i]
         })
       }
     })
   }
 
-  public showCap(){
+  public showCap() {
     let popover = this.popO.create(UpdatecapopPage);
     popover.present();
     popover.onDidDismiss(() => this.getCapabilities());
   }
 
-  getJobStats(jobs){
+  getJobStats(jobs) {
     //add label x-axis
-    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
 
-    for(let i=0; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 - i)%12]);
+    for (let i = 0; i < month_range; i++) {
+      labels_month.push(months[(month + 12 - i) % 12]);
     }
     labels_month.reverse();
-    for(let i=1; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 + i)%12]);
+    for (let i = 1; i < month_range; i++) {
+      labels_month.push(months[(month + 12 + i) % 12]);
     }
     /*
     //Old codes
@@ -255,24 +258,24 @@ export class OperatorhomePage {
     // add data y-axis
     var date_from = jobs.date_from;
     var data_y = [0, 0, 0, 0, 0, 0];
-    for (let j =0; j<date_from.length; j++){
-      var temp = parseInt(date_from[j].substring(5,7), 10);
-      for (let p=0; p<6; p++){
-        if ((temp-1) == (month-p)){
-          data_y[5-p] += 1;
+    for (let j = 0; j < date_from.length; j++) {
+      var temp = parseInt(date_from[j].substring(5, 7), 10);
+      for (let p = 0; p < 6; p++) {
+        if ((temp - 1) == (month - p)) {
+          data_y[5 - p] += 1;
         }
       }
     }
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
-      data:{
+      data: {
         labels: labels_month,
         datasets: [{
           label: "Job Statistics",
           data: data_y,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           borderColor: "rbga(0, 110, 255, 1)",
-          borderWidth:1
+          borderWidth: 1
         }]
       }
     })
