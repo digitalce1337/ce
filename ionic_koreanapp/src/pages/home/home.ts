@@ -98,8 +98,8 @@ export class HomePage {
             this.navCtrl.setRoot(LoginPage);
           }
           else{
-            console.log("Got access token");
-            this.access_token = val.toString();
+            console.log("Got access token");                   
+            this.access_token = val.toString();            
             this.getUserInfo();
             this.getEmailPay();
             // this.getTestFn();
@@ -122,16 +122,13 @@ export class HomePage {
     All are functions
   */
 
-  ionViewDidEnter(){
+  ionViewDidEnter(){        
     this.getUserInfo();
     this.getEmailPay();
-    // this.getTestFn();
-    // this.getMonthlyPay(this.Uemail);
     this.getVehicleStatus('');
     this.getOwnerJoblist();
     this.getHomeFleetChart();    
     this.getHomeOperatorChart();
-    // this.getFleetHomeChart();
     this._initializeTranslation();
     
   }
@@ -192,10 +189,7 @@ getMonthlyPay(email){
     let data = JSON.stringify(res);
     data = JSON.parse(data);
     let chartExpectedMoney = data['Expected'];
-    let chartReceivedMoney = data['Received'];    
-    // this.pay = chartExpectedMoney;
-    // this.payOut = chartReceivedMoney;
-    // console.log("pay here first "+ this.pay);
+    let chartReceivedMoney = data['Received'];        
     this.getEarnings(chartExpectedMoney,chartReceivedMoney);    
   }, err => {
     console.log(err);
@@ -233,8 +227,7 @@ getOwnerJoblist(){
     let job_desc = data['job_desc'];
     let job_datefrom = data['job_datefrom'];
     let job_dateto = data['job_dateto']
-    console.log(job_dateto);
-    // alert('Call  ownerjoblist');
+    console.log(job_dateto);    
     let job = {'job_desc':job_desc, 'job_dateto': job_dateto, 'job_datefrom':job_datefrom}
     console.log(job);
     this.loadEvents(job);

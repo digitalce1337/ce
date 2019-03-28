@@ -3121,6 +3121,7 @@ def getHomeFleetChart(request):
     try:
         owner = User.objects.get(access_token=access_token)
         owner_email = owner.email
+        print("The owner_email is:",owner_email)
     except Exception as e:
         print(e)
         json_obj = {
@@ -3130,6 +3131,7 @@ def getHomeFleetChart(request):
         return JsonResponse(json_obj)
     try:
         with connection.cursor() as cursor:
+            print("The owner_email after cursor is:",owner_email)
             new_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND job_year =\'%s\' GROUP BY job_month ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,cur_year)
             cursor.execute(new_query)
             res = dictfetchall(cursor)
@@ -3143,7 +3145,7 @@ def getHomeFleetChart(request):
             month_ChartList = getMonth_list[0]
             year_ChartList = getYear_list[0]
 
-            second_query = "SELECT count(distinct vehicle_serial_no) as totalVeh FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\'" % (owner_email)
+            second_query = "SELECT count(distinct serial_no) as totalVeh FROM volvoce.volvoce_vehiclelist WHERE email=\'%s\'" % (owner_email)
             cursor.execute(second_query)
             res = dictfetchall(cursor)
             totalVeh = [r['totalVeh'] for r in res]
@@ -3169,9 +3171,11 @@ def getHomeFleetChart(request):
             empt_list.append(i)
             maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
         percentMonth = []
+        test_data = [10,20,30,40,50,60,70]
         for i in range(len(chartData)):
             #Change totalVeh list type to int
             dataPercent = (chartData[i]/(int(totalVeh[0])*(maxdays[i]))) * 100
+            # dataPercent = (test_data[i]/(int(totalVeh[0])*(maxdays[i]))) * 100
             percentMonth.append(round(dataPercent))
 
         json_obj = {
@@ -3183,7 +3187,8 @@ def getHomeFleetChart(request):
     except Exception as e:
         print(e)
         json_obj = {
-            'chartData': 'N/A',
+            # 'chartData': 'N/A',
+            'chartData': test_data,
             'totalVeh': 'N/A'
         }
         print(json_obj)
@@ -3223,11 +3228,12 @@ def getHomeOperatorChart(request):
             totalDay_ChartList = getTotalDays_list[0]
             month_ChartList = getMonth_list[0]
             year_ChartList = getYear_list[0]
+            print("SHOW TOTAL WORK DAYS:",totalDay_ChartList,"Show email of owner:", owner_email)
 
-            second_query = "SELECT count(distinct operator) as totalVeh FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\'" % (owner_email)
+            second_query = "SELECT count(distinct operatorEmail) as totalOperator FROM volvoce.volvoce_operatorlist WHERE ownerEmail=\'%s\'" % (owner_email)
             cursor.execute(second_query)
             res = dictfetchall(cursor)
-            totalVeh = [r['totalVeh'] for r in res]
+            totalOperator = [r['totalOperator'] for r in res]
 
         months_ToUse =[]
         months = [1,2,3,4,5,6,7,8,9,10,11,12]
@@ -3250,22 +3256,32 @@ def getHomeOperatorChart(request):
             empt_list.append(i)
             maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
         percentMonth = []
+        test_data = [1,2,3,4,5,6,7]
+        print("return chartData value:", chartData)
+
+        #Prevent from hitting
+        if ((int(totalOperator[0])) == 1):
+            totalOperator[0] = 2
+
         for i in range(len(chartData)):
-            #Change totalVeh list type to int
-            dataPercent = (chartData[i]/((int(totalVeh[0])-1)*(maxdays[i]))) * 100
+            # dataPercent = (chartData[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
+            dataPercent = (chartData[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
+            # dataPercent = (test_data[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
+            # dataPercent = (test_data[i]/((0)*(maxdays[i]))) * 100
             percentMonth.append(round(dataPercent))
 
         json_obj = {
             'chartData': percentMonth,
-            'totalVeh': totalVeh
+            'totalOperator': totalOperator
         }
         print(json_obj)
         return JsonResponse(json_obj)
     except Exception as e:
         print(e)
         json_obj = {
-            'chartData': 'N/A',
-            'totalVeh': 'N/A'
+            # 'chartData': 'N/A',
+            'chartData': test_data,
+            'totalOperator': 'N/A'
         }
         print(json_obj)
         return JsonResponse(json_obj)

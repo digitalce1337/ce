@@ -71,9 +71,9 @@ export class OperatorsPage {
         this.navCtrl.push(LoginPage);
       }
       else {
-        console.log("Got access token");
-        this.access_token = val.toString();
-        this.getOperatorList(this.access_token);
+        console.log("Got access token");           
+        this.access_token = val.toString();        
+        this.getOperatorList(this.access_token);        
         this._initializeTranslation();
       }
     });

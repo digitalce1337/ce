@@ -51,8 +51,8 @@ export class FleetsPage {
           this.navCtrl.setRoot(LoginPage);
         }
         else{
-          console.log("Got access token");
-          this.access_token = val.toString();
+          console.log("Got access token");               
+          this.access_token = val.toString();          
           this.getFleetin();
           this._initializeTranslation();
         }
