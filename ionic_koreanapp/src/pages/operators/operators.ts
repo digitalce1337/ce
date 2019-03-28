@@ -105,6 +105,7 @@ export class OperatorsPage {
   getEmail(access_token) {
     this.appprov.getEmail(access_token).then((res) => {
       this.UsrEmail = res;
+      console.log("Result of EMAIL from res getEmail:"+res);
       //      this.getOperatorList(this.UsrEmail);
     }, err => {
       console.log(err);
@@ -113,8 +114,9 @@ export class OperatorsPage {
 
   getOperatorList(email) {
     email = JSON.stringify(email);
-    email = JSON.parse(email).email;
-    this.appprov.getOperatorList(this.access_token, email).then((res) => {
+    email = JSON.parse(email).email;    
+    // this.appprov.getOperatorList(this.access_token, email).then((res) => {
+    this.appprov.getOperatorList(this.access_token,).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

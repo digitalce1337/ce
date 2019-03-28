@@ -377,7 +377,7 @@ def getEmail(request):
 # 		return HttpResponse(e)
 
 def getOperatorList(request):
-    email = request.GET['email']
+    # email = request.GET['email']
     access_token = request.GET['access_token']
     operatorlist = []
     operatordetails_profileurl = []
@@ -391,6 +391,8 @@ def getOperatorList(request):
     try:
         owner = User.objects.get(access_token=access_token)
         owner_email = owner.email
+        # Temporary to check if email is really owner email and no need to pass in email
+        email = owner_email
     except:
         json_obj = {
             'result': 'false'
@@ -3228,7 +3230,7 @@ def getHomeOperatorChart(request):
             totalDay_ChartList = getTotalDays_list[0]
             month_ChartList = getMonth_list[0]
             year_ChartList = getYear_list[0]
-            print("SHOW TOTAL WORK DAYS:",totalDay_ChartList,"Show email of owner:", owner_email)
+            # print("SHOW TOTAL WORK DAYS:",totalDay_ChartList,"Show email of owner:", owner_email)
 
             second_query = "SELECT count(distinct operatorEmail) as totalOperator FROM volvoce.volvoce_operatorlist WHERE ownerEmail=\'%s\'" % (owner_email)
             cursor.execute(second_query)

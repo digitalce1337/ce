@@ -86,11 +86,12 @@ export class AppProvider {
     })
   }
 
-  public getOperatorList(access_token, email){
+  // public getOperatorList(access_token, email){
+  public getOperatorList(access_token){
     return new Promise(resolve=>{
-      this.http.get(apiKey+'getOperatorList?email='+ email+'&access_token='+access_token).subscribe(res =>{
-        resolve(res);
-        console.log("heyyyy2");
+      // this.http.get(apiKey+'getOperatorList?email='+ email+'&access_token='+access_token).subscribe(res =>{
+      this.http.get(apiKey+'getOperatorList?access_token='+access_token).subscribe(res =>{
+        resolve(res);        
         console.log("access token: "+ access_token);
       }, (err) =>{
         console.log(err);
