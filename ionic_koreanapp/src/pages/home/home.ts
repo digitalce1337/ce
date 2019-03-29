@@ -124,11 +124,11 @@ export class HomePage {
 
   ionViewDidEnter(){        
     // this.getUserInfo();
-    // this.getEmailPay();
+    this.getEmailPay();
     // this.getVehicleStatus('');
     // this.getOwnerJoblist();
-    // this.getHomeFleetChart();    
-    // this.getHomeOperatorChart();
+    this.getHomeFleetChart();    
+    this.getHomeOperatorChart();
     // this._initializeTranslation();
     
   }

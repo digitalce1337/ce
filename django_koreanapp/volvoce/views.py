@@ -3174,6 +3174,9 @@ def getHomeFleetChart(request):
             maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
         percentMonth = []
         test_data = [10,20,30,40,50,60,70]
+        #Prevent from divison by zero
+        if ((int(totalVeh[0])) == 0):
+            totalVeh[0] = 1
         for i in range(len(chartData)):
             #Change totalVeh list type to int
             dataPercent = (chartData[i]/(int(totalVeh[0])*(maxdays[i]))) * 100
@@ -3261,13 +3264,13 @@ def getHomeOperatorChart(request):
         test_data = [1,2,3,4,5,6,7]
         print("return chartData value:", chartData)
 
-        #Prevent from hitting
-        if ((int(totalOperator[0])) == 1):
-            totalOperator[0] = 2
+        #Prevent from divison by zero
+        # if ((int(totalOperator[0])) == 1):
+        #     totalOperator[0] = 2
 
         for i in range(len(chartData)):
             # dataPercent = (chartData[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
-            dataPercent = (chartData[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
+            dataPercent = (chartData[i]/((int(totalOperator[0]))*(maxdays[i]))) * 100
             # dataPercent = (test_data[i]/((int(totalOperator[0])-1)*(maxdays[i]))) * 100
             # dataPercent = (test_data[i]/((0)*(maxdays[i]))) * 100
             percentMonth.append(round(dataPercent))
