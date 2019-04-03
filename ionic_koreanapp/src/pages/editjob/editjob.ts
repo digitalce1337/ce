@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { FormBuilder, FormArray, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
 import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../../pages/login/login';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the AddjobPage page.
@@ -18,7 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-editjob',
   templateUrl: 'editjob.html',
 })
-export class EditjobPage {
+export class EditjobPage extends BasePage {
 
   public language: string;
   public title: string;
@@ -38,29 +39,30 @@ export class EditjobPage {
   public addjobmsg: string;
   public update: string;
 
-  private access_token;
+  // private access_token;
   public form: FormGroup;
-  public UsrEmail:any;
+  public UsrEmail: any;
   public OpList: any;
   public VehList: any;
 
   public VehicleTD: any[][];
-  public OpTD: any [][];
-  public counter:number;
+  public OpTD: any[][];
+  public counter: number;
   public selectedOp: any[];
   public selectedVeh: any[];
-  
+
   VehArray: Array<{
-      Vtype: string,
-      Vsno: string}>;
+    Vtype: string,
+    Vsno: string
+  }>;
 
   opname: string[];
   opemail: string[];
 
   vehsno: string[];
   vehtype: string[];
-  DispSno:string[];
-  vehModel:string[];
+  DispSno: string[];
+  vehModel: string[];
 
   jid: string;
   public Client_Name: string;
@@ -70,82 +72,85 @@ export class EditjobPage {
   public date_to_: string;
   public description_: string;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public _FB: FormBuilder,
     public appprov: AppProvider,
     private storage: Storage,
     public viewctrl: ViewController,
     public _translate: TranslateService) {
-      // storage.ready().then(() => {
-      // });
-      // storage.get('access_token').then((val) => {
-      //   if (val == null){
-      //     console.log("No acccess token");
-      //     this.navCtrl.setRoot(LoginPage);
-      //   }
-      //   else{
-      //     console.log("Got access token");
-      //     this.access_token = val.toString();
-      //     this.jid = navParams.get('jid');
-      //     this.getJobInfo();  
-      //   }
-      // });
-      this.jid = navParams.get('jid');
-      this.access_token = navParams.get('access_token');
-      this.VehicleTD = [];
-      this.OpTD = [];
-      this.selectedOp = [];
-      this.selectedVeh = [];
-      this.counter = 0;
-      this.form = this._FB.group({
-        ClientName: ['',Validators.required],
-        PayOut : ['',Validators.required],
-        Loc: ['',Validators.required],
-        DateFrom: ['',Validators.required],
-        DateTo: ['',Validators.required],
-        Desc: ['',Validators.required],
-        OpVehPay : this._FB.array([
-          this.initOpVehPay()
-        ])
-      });
-      this.getJobInfo();
-      this._initializeTranslation();    
+
+    super(appprov);
+
+    // storage.ready().then(() => {
+    // });
+    // storage.get('access_token').then((val) => {
+    //   if (val == null){
+    //     console.log("No acccess token");
+    //     this.navCtrl.setRoot(LoginPage);
+    //   }
+    //   else{
+    //     console.log("Got access token");
+    //     this.access_token = val.toString();
+    //     this.jid = navParams.get('jid');
+    //     this.getJobInfo();  
+    //   }
+    // });
+    this.jid = navParams.get('jid');
+    // this.access_token = navParams.get('access_token');
+    this.VehicleTD = [];
+    this.OpTD = [];
+    this.selectedOp = [];
+    this.selectedVeh = [];
+    this.counter = 0;
+    this.form = this._FB.group({
+      ClientName: ['', Validators.required],
+      PayOut: ['', Validators.required],
+      Loc: ['', Validators.required],
+      DateFrom: ['', Validators.required],
+      DateTo: ['', Validators.required],
+      Desc: ['', Validators.required],
+      OpVehPay: this._FB.array([
+        this.initOpVehPay()
+      ])
+    });
+    this.getJobInfo();
+    this._initializeTranslation();
 
   }
-  
+
   ionViewDidEnter() {
-    this._initializeTranslation();  
+    this._initializeTranslation();
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-  
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("addjob.title");
-      this.client = this._translate.instant("addjob.client");
-      this.project_earning = this._translate.instant("addjob.project_earning");
-      this.date_from = this._translate.instant("addjob.date_from");
-      this.date_to = this._translate.instant("addjob.date_to");
-      this.description = this._translate.instant("addjob.description");
-      this.operator_vehicle = this._translate.instant("addjob.operator_vehicle");
-      this.operator_name = this._translate.instant("addjob.operator_name");
-      this.vehicle = this._translate.instant("addjob.vehicle");
-      this.submit = this._translate.instant("addjob.submit");
-      this.add = this._translate.instant("addjob.add");
-      this.back = this._translate.instant("addjob.back");
-      this.addjobmsgtitle = this._translate.instant("addjob.addjobmsgtitle");
-      this.addjobmsg = this._translate.instant("addjob.addjobmsg");
-      this.update = this._translate.instant("addjob.update");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("addjob.title");
+    this.client = this._translate.instant("addjob.client");
+    this.project_earning = this._translate.instant("addjob.project_earning");
+    this.date_from = this._translate.instant("addjob.date_from");
+    this.date_to = this._translate.instant("addjob.date_to");
+    this.description = this._translate.instant("addjob.description");
+    this.operator_vehicle = this._translate.instant("addjob.operator_vehicle");
+    this.operator_name = this._translate.instant("addjob.operator_name");
+    this.vehicle = this._translate.instant("addjob.vehicle");
+    this.submit = this._translate.instant("addjob.submit");
+    this.add = this._translate.instant("addjob.add");
+    this.back = this._translate.instant("addjob.back");
+    this.addjobmsgtitle = this._translate.instant("addjob.addjobmsgtitle");
+    this.addjobmsg = this._translate.instant("addjob.addjobmsg");
+    this.update = this._translate.instant("addjob.update");
   }
 
-  getJobInfo(){
+  getJobInfo() {
     this.appprov.getJobInfo(this.access_token, this.jid).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -163,69 +168,69 @@ export class EditjobPage {
   }
 
   /*Operator & vehicle pay*/
-  initOpVehPay(): FormGroup{
-    this.counter ++;
+  initOpVehPay(): FormGroup {
+    this.counter++;
     this.getOperators(this.access_token);
     return this._FB.group({
-      Opname: ['',Validators.required],
-      Vehtype: ['',Validators.required],
+      Opname: ['', Validators.required],
+      Vehtype: ['', Validators.required],
     });
   }
 
-  addNewInputField():void{
-    if(this.form.valid){
+  addNewInputField(): void {
+    if (this.form.valid) {
       this.UpdateSelectedOpVeh(this.form.value.OpVehPay);
       const control = <FormArray>this.form.controls.OpVehPay;
       control.push(this.initOpVehPay());
-    }else{
+    } else {
       console.log('Nope');
     }
   }
 
-  removeInputField(i: number):void{
+  removeInputField(i: number): void {
     const control = <FormArray>this.form.controls.OpVehPay;
     control.removeAt(i);
   }
 
-  manage(val:any):void{
+  manage(val: any): void {
     let result: any;
     console.log(val);
     // console.log(val.OpVehPay)
-    this.appprov.updateJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName, this.jid)
-    .then(res => {
-      console.log(res);
-      result = res;
-      let operatorjobs = val.OpVehPay;
-      let names = [];
-      let vehicles = [];
-      for (let i=0; i<operatorjobs.length; i++){
-        names[i] = operatorjobs[i].Opname;
-        vehicles[i] = operatorjobs[i].Vehtype;
-      }
-      this.appprov.updateOperatorJob(this.access_token, result.jid,names, vehicles).then(res => {
-        this.appprov.presentAlert('Sucess!', 'Job Has been sucessfully updated!');
-        this.viewctrl.dismiss('1');
-      },err => {
+    this.appprov.updateJob(this.access_token, val.PayOut, val.DateFrom.toString(), val.DateTo.toString(), val.Loc, val.Desc, val.ClientName, this.jid)
+      .then(res => {
+        console.log(res);
+        result = res;
+        let operatorjobs = val.OpVehPay;
+        let names = [];
+        let vehicles = [];
+        for (let i = 0; i < operatorjobs.length; i++) {
+          names[i] = operatorjobs[i].Opname;
+          vehicles[i] = operatorjobs[i].Vehtype;
+        }
+        this.appprov.updateOperatorJob(this.access_token, result.jid, names, vehicles).then(res => {
+          this.appprov.presentAlert('Sucess!', 'Job Has been sucessfully updated!');
+          this.viewctrl.dismiss('1');
+        }, err => {
+          console.log(err);
+        })
+      }, err => {
         console.log(err);
       })
-    },err => {
-      console.log(err);
-    })
   }
 
-  getEmail(){
+  getEmail() {
     this.appprov.getemail().then((res) => {
       this.UsrEmail = res;
       this.getOperators(res.toString());
       console.log("Email is: " + this.UsrEmail);
-    }, err =>{
+    }, err => {
       console.log(err);
     });
   }
 
-  getOperators(email: string){
+  getOperators(email: string) {
     this.OpTD[this.counter] = [];
-    this.appprov.getOperatorNames(this.access_token,this.date_from_,this.date_to_).then((res) => {
+    this.appprov.getOperatorNames(this.access_token, this.date_from_, this.date_to_).then((res) => {
       console.log("no error");
       this.OpList = res;
       console.log(this.OpList);
@@ -235,14 +240,14 @@ export class EditjobPage {
       console.log(this.opemail);
 
       let i = this.opemail.length;
-      while(i--){
-        if(this.selectedOp.indexOf(this.opemail[i]) > -1){
-          this.opemail.splice(i,1);
-          this.opname.splice(i,1);
+      while (i--) {
+        if (this.selectedOp.indexOf(this.opemail[i]) > -1) {
+          this.opemail.splice(i, 1);
+          this.opname.splice(i, 1);
         }
       }
 
-      for(let i=0;i<this.opemail.length;i++){
+      for (let i = 0; i < this.opemail.length; i++) {
         this.OpTD[this.counter][i] = {
           email: this.opemail[i],
           name: this.opname[i]
@@ -251,15 +256,15 @@ export class EditjobPage {
 
 
 
-    },(err) => {
+    }, (err) => {
       console.log(err);
     });
   }
 
-  getVehicles(email:string){
+  getVehicles(email: string) {
     this.VehicleTD[this.counter] = [];
 
-    this.appprov.getOperatorVehicles(this.access_token,this.date_from_,this.date_to_).then((res) => {
+    this.appprov.getOperatorVehicles(this.access_token, this.date_from_, this.date_to_).then((res) => {
       console.log('1');
       console.log(JSON.stringify(res));
       this.DispSno = [];
@@ -270,7 +275,7 @@ export class EditjobPage {
 
       let i = this.vehsno.length;
       console.log('2');
-      for (let k = 0; k<i;k++){
+      for (let k = 0; k < i; k++) {
         this.DispSno.push(this.vehsno[k]);
         let concat = this.vehsno[k].toString() + '==**8**-' + this.vehModel[k].toString();
         this.vehsno[k] = concat;
@@ -286,39 +291,39 @@ export class EditjobPage {
 
       console.log('4');
       console.log(this.vehsno.length);
-      for(let i=0;i<this.vehsno.length;i++){
+      for (let i = 0; i < this.vehsno.length; i++) {
         this.VehicleTD[this.counter][i] = {
-          sno:this.vehsno[i],
-          vtype:this.vehtype[i],
-          dissno:this.DispSno[i]
-          
+          sno: this.vehsno[i],
+          vtype: this.vehtype[i],
+          dissno: this.DispSno[i]
+
         }
         console.log('Vehicle TD -----');
         console.log(JSON.stringify(this.VehicleTD));
       }
-    },(err) => {
+    }, (err) => {
       console.log(err);
     });
   }
 
-  UpdateSelectedOpVeh(Selected){
+  UpdateSelectedOpVeh(Selected) {
 
-    for(let i=0; i < Selected.length;i++){
-      if(this.selectedOp.indexOf(Selected[i].Opname) < 0){
+    for (let i = 0; i < Selected.length; i++) {
+      if (this.selectedOp.indexOf(Selected[i].Opname) < 0) {
         this.selectedOp.push(Selected[i].Opname);
       }
-      if(this.selectedVeh.indexOf(Selected[i].Vehtype) < 0){
+      if (this.selectedVeh.indexOf(Selected[i].Vehtype) < 0) {
         this.selectedVeh.push(Selected[i].Vehtype);
       }
     }
 
   }
 
-  test(event){
+  test(event) {
     this.getVehicles(event);
   }
 
-  close(){
+  close() {
     this.viewctrl.dismiss('1');
   }
 

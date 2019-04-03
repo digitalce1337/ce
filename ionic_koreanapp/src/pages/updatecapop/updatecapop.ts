@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { AppProvider } from '../../providers/app/app';
 import { TranslateService } from '@ngx-translate/core';
 import { apiKey } from '../../app/apiurls/serverurls.js';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the UpdatecapopPage page.
@@ -18,7 +19,7 @@ import { apiKey } from '../../app/apiurls/serverurls.js';
   selector: 'page-updatecapop',
   templateUrl: 'updatecapop.html',
 })
-export class UpdatecapopPage {
+export class UpdatecapopPage extends BasePage {
 
   public language: string;
   public skill_sets: string;
@@ -28,7 +29,7 @@ export class UpdatecapopPage {
     vehicle_url: string,
     vehicle_type: string
   }>;
-  access_token: string;
+  // access_token: string;
 
   capabilities: any[];
 
@@ -39,6 +40,7 @@ export class UpdatecapopPage {
     public viewCtrl: ViewController,
     public _translate: TranslateService) {
 
+    super(appprov);
     storage.ready().then(() => {
     });
 
@@ -51,9 +53,9 @@ export class UpdatecapopPage {
       else {
         //the url to display the image icon of the vehicles is the public DNS of AWS instance
         var vehurl = [apiKey + 'static/vehicles/compactor.png',
-                      apiKey + 'static/vehicles/Excavator.png',
-                      apiKey + 'static/vehicles/loader.png',
-                      apiKey + 'static/vehicles/truck.png'];
+        apiKey + 'static/vehicles/Excavator.png',
+        apiKey + 'static/vehicles/loader.png',
+        apiKey + 'static/vehicles/truck.png'];
         var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
         console.log("Got access token");
         this.access_token = val.toString();

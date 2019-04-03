@@ -17,6 +17,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { AppProvider } from '../../providers/app/app';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the LoginPage page.
@@ -30,7 +31,7 @@ import { AppProvider } from '../../providers/app/app';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage extends BasePage{
 
   @ViewChild('email') email;
   @ViewChild('password') password;
@@ -44,7 +45,6 @@ export class LoginPage {
 
   Role: String;
   loading: any;
-  access_token: string;
   isLoggedIn: boolean = false;
 
   provider = {
@@ -59,6 +59,9 @@ export class LoginPage {
   // }
 
   constructor(private alertCtrl: AlertController, private fb: Facebook, public navCtrl: NavController, public loadingCtrl: LoadingController, private storage: Storage, public appprov: AppProvider, public navParams: NavParams, public _translate: TranslateService) {
+    
+    super(appprov);
+
     storage.ready().then(() => {
       storage.get('access_token').then((val) => {
         this.showLoader();
@@ -203,6 +206,7 @@ export class LoginPage {
                 console.log(checkUser);
 
                 if (checkUser == 'false') {
+                  //for profile_url, it's not end with jpg or png, but you could open it in brower
                   this.appprov.updateAccessToken(email, this.access_token, profile_url).then((res) => {
                     let update = JSON.stringify(res);
                     update = JSON.parse(update);

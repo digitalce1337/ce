@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, AlertController, Alert } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController, Alert, App } from 'ionic-angular';
 import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { AddjobPage } from '../addjob/addjob';
@@ -8,12 +8,13 @@ import { JobinfoPage } from '../../pages/jobinfo/jobinfo';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 @Component({
   selector: 'page-Jobs',
   templateUrl: 'jobs.html'
 })
-export class JobsPage {
+export class JobsPage extends BasePage{
 
   public language: string;
   public title: string;
@@ -22,37 +23,39 @@ export class JobsPage {
   public upcomming: string;
   public add_job: string;
 
-  private access_token: string;
-  
+  // private access_token: string;
+
   public image: any;
   public base64Image: string;
 
   pastJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string}>;
+    payout: string
+  }>;
 
   pastJid: string[];
   pastTitle: string[];
   past_date_from: string[];
   past_date_to: string[];
   past_description: string[];
-  past_location : string[];
+  past_location: string[];
   past_payout: string[];
   past: any;
 
   ongoingJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string}>;
+    payout: string
+  }>;
 
   ongoingJid: string[];
   ongoingTitle: string[];
@@ -66,12 +69,13 @@ export class JobsPage {
   upcomingJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string}>;
-    
+    payout: string
+  }>;
+
   upcomingJid: string[];
   upcomingTitle: string[];
   upcoming_date_from: string[];
@@ -81,36 +85,39 @@ export class JobsPage {
   upcoming_payout: string[];
   upcoming: any;
   job: any;
-  
-  constructor(public navCtrl: NavController, 
+
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public appprov: AppProvider,
     private storage: Storage,
-    public modalCtrl:ModalController,
+    public modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private camera: Camera,
     private androidPermissions: AndroidPermissions,
     public _translate: TranslateService) {
-      storage.ready().then(() => {
-      });
-      storage.get('access_token').then((val) => {
-        if (val == null){
-          console.log("No acccess token");
-          this.navCtrl.setRoot(LoginPage);
-        }
-        else{
-          console.log("Got access token");
-          this.access_token = val.toString();
-          this.job = "Ongoing";
-          this.retrievePastJobs();
-          this.retrieveOngoingJobs();
-          this.retrieveUpcomingJobs();
-          this._initializeTranslation();
-        }
-      });
+      super(appprov);
+    // this.access_token = appprov.access_token;
+
+    storage.ready().then(() => {
+    });
+    storage.get('access_token').then((val) => {
+      if (val == null) {
+        console.log("No acccess token");
+        this.navCtrl.setRoot(LoginPage);
+      }
+      else {
+        console.log("Got access token");
+        // this.access_token = val.toString();
+        this.job = "Ongoing";
+        this.retrievePastJobs();
+        this.retrieveOngoingJobs();
+        this.retrieveUpcomingJobs();
+        this._initializeTranslation();
+      }
+    });
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     console.log("this is jobs page");
     this.retrievePastJobs();
     this.retrieveOngoingJobs();
@@ -118,25 +125,25 @@ export class JobsPage {
     this._initializeTranslation();
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("jobstx.title");
-      this.history =  this._translate.instant("jobstx.history");
-      this.txongoing =  this._translate.instant("jobstx.ongoing");
-      this.upcomming =  this._translate.instant("jobstx.upcomming");
-      this.add_job =  this._translate.instant("jobstx.add_job");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("jobstx.title");
+    this.history = this._translate.instant("jobstx.history");
+    this.txongoing = this._translate.instant("jobstx.ongoing");
+    this.upcomming = this._translate.instant("jobstx.upcomming");
+    this.add_job = this._translate.instant("jobstx.add_job");
   }
 
 
-  retrievePastJobs(){
+  retrievePastJobs() {
     this.appprov.retrievePastJobs(this.access_token).then((res) => {
       this.past = res;
       this.pastJid = this.past.jid;
@@ -147,14 +154,14 @@ export class JobsPage {
       this.past_location = this.past.location;
       this.past_payout = this.past.payout;
       this.pastJobs = [];
-      try{
-        for(let i = 0; i < this.pastTitle.length; i++) {
+      try {
+        for (let i = 0; i < this.pastTitle.length; i++) {
           this.pastJobs.push({
             jid: this.pastJid[i],
             title: this.pastTitle[i],
             description: this.past_description[i],
-            date_from: this.past_date_from[i].substring(0,10),
-            date_to: this.past_date_to[i].substring(0,10),
+            date_from: this.past_date_from[i].substring(0, 10),
+            date_to: this.past_date_to[i].substring(0, 10),
             location: this.past_location[i],
             payout: this.past_payout[i]
           });
@@ -164,14 +171,14 @@ export class JobsPage {
         console.log("Past job cannot retrieve length");
       }
       console.log("History job pushed");
-      
-    }, err=>{
+
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveOngoingJobs(){
-    var totalPayout= 0;
+  retrieveOngoingJobs() {
+    var totalPayout = 0;
 
     this.appprov.retrieveOngoingJobs(this.access_token).then((res) => {
       this.ongoing = res;
@@ -184,18 +191,18 @@ export class JobsPage {
       this.ongoing_payout = this.ongoing.payout;
       this.ongoingJobs = [];
 
-      for(let i = 0; i < this.ongoingTitle.length; i++) {
-        totalPayout += parseInt(this.ongoing.payout[i],10);
+      for (let i = 0; i < this.ongoingTitle.length; i++) {
+        totalPayout += parseInt(this.ongoing.payout[i], 10);
       }
 
-      try{
-        for(let i = 0; i < this.ongoingTitle.length; i++) {
+      try {
+        for (let i = 0; i < this.ongoingTitle.length; i++) {
           this.ongoingJobs.push({
             jid: this.ongoingJid[i],
             title: this.ongoingTitle[i],
             description: this.ongoing_description[i],
-            date_from: this.ongoing_date_from[i].substring(0,10),
-            date_to: this.ongoing_date_to[i].substring(0,10),
+            date_from: this.ongoing_date_from[i].substring(0, 10),
+            date_to: this.ongoing_date_to[i].substring(0, 10),
             location: this.ongoing_location[i],
             payout: this.ongoing_payout[i]
           });
@@ -205,14 +212,14 @@ export class JobsPage {
         console.log("Ongoing job cannot retrieve length");
       }
       console.log("Ongoing jobs pushed");
-      console.log("Total Ongoing Payout: "+ totalPayout);
-    }, err=>{
+      console.log("Total Ongoing Payout: " + totalPayout);
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveUpcomingJobs(){
-    var totalPayout= 0;
+  retrieveUpcomingJobs() {
+    var totalPayout = 0;
 
     this.appprov.retrieveUpcomingJobs(this.access_token).then((res) => {
       this.upcoming = res;
@@ -225,18 +232,18 @@ export class JobsPage {
       this.upcoming_payout = this.upcoming.payout;
       this.upcomingJobs = [];
 
-      for(let i = 0; i < this.upcomingTitle.length; i++) {
-        totalPayout += parseInt(this.upcoming.payout[i],10);
+      for (let i = 0; i < this.upcomingTitle.length; i++) {
+        totalPayout += parseInt(this.upcoming.payout[i], 10);
       }
 
-      try{
-        for(let i = 0; i < this.upcomingTitle.length; i++) {
+      try {
+        for (let i = 0; i < this.upcomingTitle.length; i++) {
           this.upcomingJobs.push({
             jid: this.upcomingJid[i],
             title: this.upcomingTitle[i],
             description: this.upcoming_description[i],
-            date_from: this.upcoming_date_from[i].substring(0,10),
-            date_to: this.upcoming_date_to[i].substring(0,10),
+            date_from: this.upcoming_date_from[i].substring(0, 10),
+            date_to: this.upcoming_date_to[i].substring(0, 10),
             location: this.upcoming_location[i],
             payout: this.upcoming_payout[i]
           });
@@ -246,77 +253,77 @@ export class JobsPage {
         console.log("Upcoming Job cannot retrieve length");
       }
       console.log("Upcoming job pushed");
-      console.log("Total Upcoming Payout: "+ totalPayout);
-    }, err=>{
+      console.log("Total Upcoming Payout: " + totalPayout);
+    }, err => {
       console.log(err);
     });
   }
 
- AddJob(){
-    this.navCtrl.push(AddjobPage, {'access_token':this.access_token});
+  AddJob() {
+    this.navCtrl.push(AddjobPage, { 'access_token': this.access_token });
   }
 
-  viewJob(event, jid){
+  viewJob(event, jid) {
     console.log(jid);
-    this.navCtrl.push(JobinfoPage, {'jid':jid});
+    this.navCtrl.push(JobinfoPage, { 'jid': jid });
   }
 
 
-  deletePhoto(index){
+  deletePhoto(index) {
     let confirm = this.alertCtrl.create({
-      title:"Sure you want?",
-      message:"",
-      buttons:[{
-        text:"No",
-        handler:() =>{
+      title: "Sure you want?",
+      message: "",
+      buttons: [{
+        text: "No",
+        handler: () => {
           console.log("canceled");
         }
       },
-    {
-      text:"Yes",
-      handler: () => {
-        console.log("Agree clicked");
-        this.image.splice(index, 1);
-      }
-    }]
+      {
+        text: "Yes",
+        handler: () => {
+          console.log("Agree clicked");
+          this.image.splice(index, 1);
+        }
+      }]
     });
     confirm.present();
   }
 
-  takePhoto(){
+  takePhoto() {
     this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA).then(res => {
       this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(res => {
         this.androidCamera();
+      })
     })
-  })
-}
-androidCamera(){
-  this.image = 'im an here';
-  const options: CameraOptions = {
-    quality: 50,
-    targetHeight: 320,
-    targetWidth: 320,
-    destinationType:this.camera.DestinationType.DATA_URL,
-    encodingType:this.camera.EncodingType.JPEG,
-    mediaType:this.camera.MediaType.PICTURE,
-    correctOrientation: true,
-    saveToPhotoAlbum: true
   }
-  this.takePhoto2(options); 
-}
+  androidCamera() {
+    this.image = 'im an here';
+    const options: CameraOptions = {
+      quality: 50,
+      targetHeight: 320,
+      targetWidth: 320,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
+    }
+    this.takePhoto2(options);
+  }
 
-async takePhoto2(options){
-  this.image = 'im an here2';
-  try{
-    this.camera.getPicture(options).then((img) =>{
-      this.image = 'im an here3';
-      this.image = "data:image/jpeg;base64," + img;
-      console.log(this.image);
-    });
+  async takePhoto2(options) {
+    this.image = 'im an here2';
+    try {
+      this.camera.getPicture(options).then((img) => {
+        this.image = 'im an here3';
+        this.image = "data:image/jpeg;base64," + img;
+        console.log(this.image);
+      });
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
-  catch(e){
-    console.log(e);
-  }
-}
 
 }

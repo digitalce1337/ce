@@ -12,6 +12,7 @@ import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
 import { OtpOperatorPage } from '../otp-operator/otp-operator';
 import { OperatorhomePage } from '../operatorhome/operatorhome';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 declare var Kakao: any;
 

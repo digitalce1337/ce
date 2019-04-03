@@ -6,6 +6,7 @@ import { LoginPage } from '../../pages/login/login';
 import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
 import { TranslateService } from '@ngx-translate/core';
 import { apiKey } from '../../app/apiurls/serverurls.js';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the OtpOperatorPage page.
@@ -19,7 +20,7 @@ import { apiKey } from '../../app/apiurls/serverurls.js';
   selector: 'page-otp-operator',
   templateUrl: 'otp-operator.html',
 })
-export class OtpOperatorPage {
+export class OtpOperatorPage extends BasePage {
 
   public language: string;
   public title: string;
@@ -35,7 +36,7 @@ export class OtpOperatorPage {
   otp: any = ' ';
   PhoneNo: any;
   Owner: any;
-  access_token: any;
+  // access_token: any;
   capabilities: any[];
 
   vehicles: Array<{
@@ -47,6 +48,9 @@ export class OtpOperatorPage {
     public appprov: AppProvider,
     public storage: Storage,
     public _translate: TranslateService) {
+      
+    super(appprov);
+
     storage.ready().then(() => {
     });
 
@@ -59,9 +63,9 @@ export class OtpOperatorPage {
       else {
         //the url to display the image icon of the vehicles is the public DNS of AWS instance
         var vehurl = [apiKey + 'static/vehicles/compactor.png',
-                      apiKey + 'static/vehicles/Excavator.png',
-                      apiKey + 'static/vehicles/loader.png',
-                      apiKey + 'static/vehicles/truck.png'];
+        apiKey + 'static/vehicles/Excavator.png',
+        apiKey + 'static/vehicles/loader.png',
+        apiKey + 'static/vehicles/truck.png'];
         var vehtype = ['Compactor', 'Excavator', 'Loader', 'Truck'];
         console.log("Got access token");
         this.access_token = val.toString();

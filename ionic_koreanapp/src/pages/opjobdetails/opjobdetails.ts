@@ -10,6 +10,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import {FilePath } from '@ionic-native/file-path';
 import { Geolocation } from '@ionic-native/geolocation';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the OpjobdetailsPage page.
@@ -22,7 +23,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-opjobdetails',
   templateUrl: 'opjobdetails.html',
 })
-export class OpjobdetailsPage {
+export class OpjobdetailsPage extends BasePage{
 
   public language: string;
   public take_photo: string;
@@ -40,7 +41,7 @@ export class OpjobdetailsPage {
   public reportmsgtitle: string;
   public reportmsg: string;
 
-  access_token: any;
+  // access_token: any;
   jid: any;
   image: any;
   lastImage:string = null;
@@ -70,7 +71,8 @@ export class OpjobdetailsPage {
     public loadingCtrl: LoadingController,
     public gloc:Geolocation,
     public _translate: TranslateService) {
-
+      super(appprov);
+      
       storage.ready().then(() => {
       });
       storage.get('access_token').then((val) => {

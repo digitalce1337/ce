@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FleetInfoPage } from '../fleet-info/fleet-info';
-import {AddvehiclePage } from '../addvehicle/addvehicle';
+import { AddvehiclePage } from "../addvehicle/addvehicle";
 import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../../pages/login/login';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 @Component({
   selector: 'page-Fleets',
   templateUrl: 'fleets.html'
 })
-export class FleetsPage {
+export class FleetsPage extends BasePage{
 
   public language: string;
   public title: string; 
@@ -36,13 +37,15 @@ export class FleetsPage {
   UsrEmail:any;
   fleets: any;
 
-  private access_token: string;
+  // private access_token: string;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private storage: Storage,
     public appprov: AppProvider,
     public _translate: TranslateService) {
+
+      super(appprov);
       storage.ready().then(() => {
       });
       storage.get('access_token').then((val) => {
@@ -52,7 +55,7 @@ export class FleetsPage {
         }
         else{
           console.log("Got access token");               
-          this.access_token = val.toString();          
+          // this.access_token = val.toString();          
           this.getFleetin();
           this._initializeTranslation();
         }

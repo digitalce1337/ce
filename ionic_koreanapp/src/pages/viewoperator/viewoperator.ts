@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, AlertController, Alert, ViewController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AppProvider } from '../../providers/app/app';
@@ -6,6 +6,7 @@ import { LoginPage } from '../../pages/login/login';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { ToggleGesture } from 'ionic-angular/umd/components/toggle/toggle-gesture';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the ViewoperatorPage page.
@@ -13,13 +14,13 @@ import { ToggleGesture } from 'ionic-angular/umd/components/toggle/toggle-gestur
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
- 
+
 //@IonicPage()
 @Component({
   selector: 'page-viewoperator',
   templateUrl: 'viewoperator.html',
 })
-export class ViewoperatorPage {
+export class ViewoperatorPage extends BasePage {
 
   public language: string;
   public txtoday: string;
@@ -35,13 +36,13 @@ export class ViewoperatorPage {
 
   email: string;
   name: string;
-  PhotoUrl:string;
+  PhotoUrl: string;
 
   vehicleslist: string;
 
   vehicles: Array<{
-    vehicle_type:string,
-    vehicle_img:string,
+    vehicle_type: string,
+    vehicle_img: string,
   }>;
 
   public vehicle_type: string[];
@@ -58,42 +59,45 @@ export class ViewoperatorPage {
 
   eventSource;
   viewTitle;
-  isToday:boolean;
+  isToday: boolean;
   calendar = {
     mode: 'month',
     currentDate: new Date()
   }
 
-  private access_token: string;
+  //private access_token: string;
 
   owner_job: string[];
   operator_job: string[];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public appprov:AppProvider,
+    public appprov: AppProvider,
     private storage: Storage,
     private view: ViewController,
     private alertCtrl: AlertController,
     public _translate: TranslateService) {
-      storage.ready().then(() => {
-      });
-      storage.get('access_token').then((val) => {
-        if (val == null){
-          console.log("No acccess token");
-          this.navCtrl.setRoot(LoginPage);
-        }
-        else{
-          console.log("Got access token");
-          this.access_token = val.toString();
-          this.getOperatorDetails(this.email);
-          // this.getChartData(this.email);
-          this.getOperatorUtil(this.email);
-          this.getOperatorSchedule(this.email);
-          this._initializeTranslation();
-        }
-      });
-      this.email = navParams.get('email');
+
+    super(appprov);
+
+    storage.ready().then(() => {
+    });
+    storage.get('access_token').then((val) => {
+      if (val == null) {
+        console.log("No acccess token");
+        this.navCtrl.setRoot(LoginPage);
+      }
+      else {
+        console.log("Got access token");
+        this.access_token = val.toString();
+        this.getOperatorDetails(this.email);
+        // this.getChartData(this.email);
+        this.getOperatorUtil(this.email);
+        this.getOperatorSchedule(this.email);
+        this._initializeTranslation();
+      }
+    });
+    this.email = navParams.get('email');
 
   }
 
@@ -107,30 +111,30 @@ export class ViewoperatorPage {
     // var job = {date_from:["2018-09-20", "2018-09-30","2018-09-12","2018-10-12"]}
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.txtoday =  this._translate.instant("viewoperator.txtoday");
-      this.delete_contact =  this._translate.instant("viewoperator.delete_contact");
-      this.assigned =  this._translate.instant("viewoperator.assigned");
-      this.job_count =  this._translate.instant("viewoperator.job_count");
-      this.week =  this._translate.instant("viewoperator.week");
-      this.month =  this._translate.instant("viewoperator.month");
-      this.year =  this._translate.instant("viewoperator.year");
-      this.deletemsgtitle = this._translate.instant("viewoperator.deletemsgtitle");
-      this.deletemsg = this._translate.instant("viewoperator.deletemsg");
-      this.confirm = this._translate.instant("viewoperator.confirm");
+
+  private _initializeTranslation(): void {
+    this.txtoday = this._translate.instant("viewoperator.txtoday");
+    this.delete_contact = this._translate.instant("viewoperator.delete_contact");
+    this.assigned = this._translate.instant("viewoperator.assigned");
+    this.job_count = this._translate.instant("viewoperator.job_count");
+    this.week = this._translate.instant("viewoperator.week");
+    this.month = this._translate.instant("viewoperator.month");
+    this.year = this._translate.instant("viewoperator.year");
+    this.deletemsgtitle = this._translate.instant("viewoperator.deletemsgtitle");
+    this.deletemsg = this._translate.instant("viewoperator.deletemsg");
+    this.confirm = this._translate.instant("viewoperator.confirm");
   }
 
 
-  getOperatorSchedule(email){
+  getOperatorSchedule(email) {
     this.appprov.getOperatorSchedule(this.access_token, email).then((res) => {
       console.log(res);
       let data = JSON.stringify(res);
@@ -139,17 +143,17 @@ export class ViewoperatorPage {
       let job_datefrom = data['job_datefrom'];
       let job_dateto = data['job_dateto'];
       console.log(job_dateto);
-      let job = {'job_desc':job_desc, 'job_dateto': job_dateto, 'job_datefrom':job_datefrom}
+      let job = { 'job_desc': job_desc, 'job_dateto': job_dateto, 'job_datefrom': job_datefrom }
       console.log(job);
       this.loadEvents(job);
       this.plotSchedule(job);
-    }, err =>{
+    }, err => {
       console.log(err);
     });
   }
 
-  getOperatorDetails(email){
-    this.appprov.getOperatorDetails(email, this.access_token).then((res) =>{
+  getOperatorDetails(email) {
+    this.appprov.getOperatorDetails(email, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       this.name = data['name'];
@@ -157,69 +161,67 @@ export class ViewoperatorPage {
       this.vehicle_type = data['vehicle_type'];
       this.PhotoUrl = data['profile_image_url'];
       this.vehicles = [];
-      for (let i=0; i< this.vehicle_img.length; i++){
+      for (let i = 0; i < this.vehicle_img.length; i++) {
         this.vehicles.push({
           vehicle_type: this.vehicle_type[i],
           vehicle_img: this.vehicle_img[i],
         })
       }
 
-    }, err =>{
+    }, err => {
       console.log(err);
     });
   }
-  
-//comment this block sn 26
+
+  //comment this block sn 26
   //TODAY chart
-  getJobStats(chartData){
-    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  getJobStats(chartData) {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
     var chart_DataPack = chartData;
-    var dataPack1 = ['7','14','14','4','22','20','15'];
-    for(let i=0; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 - i)%12]);
+    var dataPack1 = ['7', '14', '14', '4', '22', '20', '15'];
+    for (let i = 0; i < month_range; i++) {
+      labels_month.push(months[(month + 12 - i) % 12]);
     }
     labels_month.reverse();
-    for(let i=1; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 + i)%12]);
+    for (let i = 1; i < month_range; i++) {
+      labels_month.push(months[(month + 12 + i) % 12]);
     }
     this.barOpChart = new Chart(this.barOpCanvas.nativeElement, {
       type: 'bar',
-      data:{
+      data: {
         labels: labels_month,
         datasets: [{
           label: 'Statistics',
           data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
-          borderWidth:1
+          borderWidth: 1
         }]
       },
-      options:{
+      options: {
         scales: {
           xAxes: [{
-            gridLines: {display:false},          
+            gridLines: { display: false },
           }],
           yAxes: [{
-            ticks:{
-            min: 0,
-            max: 100,
-            gridLines: {display:false}, 
-            callback: function(value){return value + "%"}
-          },
-        scaleLabel:{
-          display:true,
-          labelString: "Days"
-        }
+            ticks: {
+              min: 0,
+              max: 100,
+              gridLines: { display: false },
+              callback: function (value) { return value + "%" }
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Days"
+            }
           }],
         },
-        legend: {display:false}
+        legend: { display: false }
       }
-    })  
+    })
     // if (this.owner_job[0] == '0'){
     //   this.owner_job[0] = '2';
     // }
@@ -289,7 +291,7 @@ export class ViewoperatorPage {
   //   });
   // }
   //comment this blok sn 26
-    //YEAR chart
+  //YEAR chart
   // getJobStats4(){
   //   if (this.owner_job[3] == '0'){
   //     this.owner_job[3] = '2';
@@ -340,56 +342,56 @@ export class ViewoperatorPage {
   //   });
   // }
 
-  getOperatorUtil(email){
+  getOperatorUtil(email) {
     this.appprov.getOperatorUtil(email, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
-      let chartData = data['chartData']                
-      this.getJobStats(chartData);              
-    }, err=>{
+      let chartData = data['chartData']
+      this.getJobStats(chartData);
+    }, err => {
       console.log(err);
     });
   }
 
 
-  loadEvents(job){
+  loadEvents(job) {
     //var job = {jid:["001", "002"], date_from:["2018-10-10", "2018-10-12"], date_to:["2018-10-20","2018-10-22"]}
     this.eventSource = this.plotSchedule(job);
   }
-  onViewTitleChanged(title){
+  onViewTitleChanged(title) {
     this.viewTitle = title;
   }
-  onEventSelected(event){
-    console.log("Event selected:" + event.startTime + '-' + event.endTime + "," +event.title);
+  onEventSelected(event) {
+    console.log("Event selected:" + event.startTime + '-' + event.endTime + "," + event.title);
   }
-  changeMode(mode){
+  changeMode(mode) {
     this.calendar.mode = mode;
   }
-  today(){
+  today() {
     this.calendar.currentDate = new Date();
   }
-  onTimeSelected(ev){
-    console.log("Selected time: " + ev.selectedTime + ", hasEvents: " + (ev.events !== undefined && ev.events.length !==0) + ", disabled: " + ev.disabled);
+  onTimeSelected(ev) {
+    console.log("Selected time: " + ev.selectedTime + ", hasEvents: " + (ev.events !== undefined && ev.events.length !== 0) + ", disabled: " + ev.disabled);
   }
-  onCurrentDateChanged(event:Date) {
+  onCurrentDateChanged(event: Date) {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
   }
-  
-  plotSchedule(jobs){
+
+  plotSchedule(jobs) {
     var job = [];
     var dates_from = jobs.job_datefrom;
     var dates_to = jobs.job_dateto;
     var jids = jobs.job_desc;
     var today = new Date()
-    for (let i=0; i<dates_from.length; i++){
+    for (let i = 0; i < dates_from.length; i++) {
       // var temp = parseInt(dates_to[i].substring(8,10), 10) + 1;
       // dates_to[i] = temp+dates_to[i].substring(5,7)+dates_to[i].substring(0,4);
       // var d = dates_from[i].substring(4,8)+"/"+dates_from[i].substring(0,2)+"/"+dates_from[i].substring(2,4);
-      var start_day = new Date(Date.UTC(dates_from[i].substring(0,4), dates_from[i].substring(5,7)-1, parseInt(dates_from[i].substring(8,10), 10)));
-      var end_day = new Date(Date.UTC(dates_to[i].substring(0,4), dates_to[i].substring(5,7)-1, parseInt(dates_to[i].substring(8,10),10)+1));
+      var start_day = new Date(Date.UTC(dates_from[i].substring(0, 4), dates_from[i].substring(5, 7) - 1, parseInt(dates_from[i].substring(8, 10), 10)));
+      var end_day = new Date(Date.UTC(dates_to[i].substring(0, 4), dates_to[i].substring(5, 7) - 1, parseInt(dates_to[i].substring(8, 10), 10) + 1));
       console.log("pushing job");
       job.push({
         title: jids[i],
@@ -400,18 +402,18 @@ export class ViewoperatorPage {
     }
     return job;
   }
-  
+
   onRangeChanged(ev) {
     console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
-  markDisabled = (date:Date) => {
+  markDisabled = (date: Date) => {
     var current = new Date();
     current.setHours(0, 0, 0);
     return date < current;
   };
-  
 
-  deleteOperator(){
+
+  deleteOperator() {
     console.log("Deleting Contact");
     let alert = this.alertCtrl.create({
       title: this.deletemsgtitle,
@@ -421,11 +423,11 @@ export class ViewoperatorPage {
           text: this.confirm,
           handler: () => {
             console.log('Deleting');
-            this.appprov.deleteOperator(this.email,this.access_token).then((res) =>{
+            this.appprov.deleteOperator(this.email, this.access_token).then((res) => {
               let data = JSON.stringify(res);
               data = JSON.parse(data);
               console.log(data['result']);
-            }, err =>{
+            }, err => {
               console.log(err);
             });
             //this.navCtrl.pop();
@@ -433,20 +435,19 @@ export class ViewoperatorPage {
           }
         },
         {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () =>{
-          console.log("Canceled");
-        }
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log("Canceled");
+          }
         }
       ]
     });
     alert.present();
   }
 
-  closeModal(){
+  closeModal() {
     console.log("closing modal");
     this.view.dismiss();
   }
-  }
-  
+}

@@ -30,7 +30,7 @@ import { RegisterPage } from '../pages/register/register';
 import { JobsPage } from '../pages/jobs/jobs';
 import { JoblistsPage } from '../pages/joblists/joblists'
 import { FleetInfoPage } from '../pages/fleet-info/fleet-info';
-import { AddvehiclePage } from '../pages/addvehicle/addvehicle';
+import { AddvehiclePage } from "../pages/addvehicle/addvehicle";
 import { AddjobPage } from '../pages/addjob/addjob';
 import { ViewoperatorPage } from '../pages/viewoperator/viewoperator';
 import { JobinfoPage } from '../pages/jobinfo/jobinfo';

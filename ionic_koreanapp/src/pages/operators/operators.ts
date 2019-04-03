@@ -12,12 +12,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Platform } from 'ionic-angular';
+import { BasePage } from '../base-page/basepage';
 
 @Component({
   selector: 'page-operators',
   templateUrl: 'operators.html'
 })
-export class OperatorsPage {
+export class OperatorsPage extends BasePage {
 
   public language: string;
   public title: string;
@@ -28,7 +29,7 @@ export class OperatorsPage {
   public downloadappmsg1: string;
   public downloadappmsg2: string;
 
-  private access_token: string;
+  // private access_token: string;
   public UsrEmail: any;
   loading: any;
 
@@ -63,6 +64,8 @@ export class OperatorsPage {
     public _translate: TranslateService,
     private socialSharing: SocialSharing,
     private platform: Platform) {
+      
+    super(appprov);
     storage.ready().then(() => {
     });
     storage.get('access_token').then((val) => {
@@ -71,9 +74,9 @@ export class OperatorsPage {
         this.navCtrl.push(LoginPage);
       }
       else {
-        console.log("Got access token");           
-        this.access_token = val.toString();        
-        this.getOperatorList(this.access_token);        
+        console.log("Got access token");
+        this.access_token = val.toString();
+        this.getOperatorList(this.access_token);
         this._initializeTranslation();
       }
     });

@@ -9,6 +9,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { OpjobdetailsPage } from '../opjobdetails/opjobdetails';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
+import { SUPER_EXPR } from '@angular/compiler/src/output/output_ast';
 
 /**
  * Generated class for the OperatorjobPage page.
@@ -22,7 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-operatorjob',
   templateUrl: 'operatorjob.html',
 })
-export class OperatorjobPage {
+export class OperatorjobPage extends BasePage {
 
   public language: string;
   public title: string;
@@ -30,40 +32,39 @@ export class OperatorjobPage {
   public txongoing: string;
   public upcomming: string;
 
-  private access_token: string;
+  // private access_token: string;
 
-  
   public image: any;
   public base64Image: string;
 
   pastJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string
-     }>;
+    payout: string
+  }>;
 
   pastJid: string[];
   pastTitle: string[];
   past_date_from: string[];
   past_date_to: string[];
   past_description: string[];
-  past_location : string[];
+  past_location: string[];
   past_payout: string[];
   past: any;
 
   ongoingJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string
-    }>;
+    payout: string
+  }>;
 
   ongoingJid: string[];
   ongoingTitle: string[];
@@ -77,13 +78,13 @@ export class OperatorjobPage {
   upcomingJobs: Array<{
     jid: string,
     title: string,
-    date_from: string, 
-    date_to:string,
-    description: string, 
+    date_from: string,
+    date_to: string,
+    description: string,
     location: string,
-    payout:string
+    payout: string
   }>;
-    
+
   upcomingJid: string[];
   upcomingTitle: string[];
   upcoming_date_from: string[];
@@ -95,25 +96,25 @@ export class OperatorjobPage {
   job: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public appprov: AppProvider,
     private storage: Storage,
-    public modalCtrl:ModalController,
+    public modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private camera: Camera,
     private androidPermissions: AndroidPermissions,
     public _translate: TranslateService
   ) {
-
+    super(appprov);
     storage.ready().then(() => {
     });
     storage.get('access_token').then((val) => {
-      if (val == null){
+      if (val == null) {
         console.log("No acccess token");
         this.navCtrl.push(LoginPage);
       }
-      else{
+      else {
         console.log("Got access token");
         this.access_token = val.toString();
         this.job = "Ongoing";
@@ -124,7 +125,7 @@ export class OperatorjobPage {
       }
     });
   }
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     console.log("this is jobs page");
     this.retrievePastJobs();
     this.retrieveOngoingJobs();
@@ -132,24 +133,24 @@ export class OperatorjobPage {
     this._initializeTranslation();
   }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
+
+  private _translateLanguage(): void {
     this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("operatorjob.title");
-      this.history =  this._translate.instant("operatorjob.history");
-      this.txongoing =  this._translate.instant("operatorjob.txongoing");
-      this.upcomming =  this._translate.instant("operatorjob.upcomming");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("operatorjob.title");
+    this.history = this._translate.instant("operatorjob.history");
+    this.txongoing = this._translate.instant("operatorjob.txongoing");
+    this.upcomming = this._translate.instant("operatorjob.upcomming");
   }
 
-  retrievePastJobs(){
-    var totalPayout= 0;
+  retrievePastJobs() {
+    var totalPayout = 0;
 
     this.appprov.retrievePastJobsOps(this.access_token).then((res) => {
       this.past = res;
@@ -158,44 +159,44 @@ export class OperatorjobPage {
       this.past_description = this.past.description;
       this.past_date_from = this.past.date_from;
       this.past_date_to = this.past.date_to;
-      this.past_location = this.past.location;  
+      this.past_location = this.past.location;
       this.past_payout = this.past.payout;
       this.pastJobs = [];
 
-      for(let i = 0; i < this.pastTitle.length; i++) {
-        totalPayout += parseInt(this.past.payout[i],10);
+      for (let i = 0; i < this.pastTitle.length; i++) {
+        totalPayout += parseInt(this.past.payout[i], 10);
       }
-      
-      try{
-        for(let i = 0; i < this.pastTitle.length; i++) {
+
+      try {
+        for (let i = 0; i < this.pastTitle.length; i++) {
           this.pastJobs.push({
             jid: this.pastJid[i],
             title: this.pastTitle[i],
-            description: this.past_description[i], 
-            date_from: this.past_date_from[i].substring(0,10),
-            date_to: this.past_date_to[i].substring(0,10),
+            description: this.past_description[i],
+            date_from: this.past_date_from[i].substring(0, 10),
+            date_to: this.past_date_to[i].substring(0, 10),
             location: this.past_location[i],
-            payout: this.past_payout[i]  
+            payout: this.past_payout[i]
 
           });
         }
-        
+
       }
       catch{
         console.log("Past job cannot retrieve length");
       }
-      console.log("pastTitle: "+ this.pastTitle);
-      console.log("pastPayout: "+ this.past_payout);
-      console.log("1st Payout: "+ this.past_payout[0]+" 2ndPayout: "+ this.past_payout[1]);
-      console.log("Get the total pastPayout: "+ totalPayout);
+      console.log("pastTitle: " + this.pastTitle);
+      console.log("pastPayout: " + this.past_payout);
+      console.log("1st Payout: " + this.past_payout[0] + " 2ndPayout: " + this.past_payout[1]);
+      console.log("Get the total pastPayout: " + totalPayout);
       console.log("History job pushed");
-      
-    }, err=>{
+
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveOngoingJobs(){
+  retrieveOngoingJobs() {
     this.appprov.retrieveOngoingJobsOps(this.access_token).then((res) => {
       this.ongoing = res;
       this.ongoingJid = this.ongoing.jid;
@@ -206,14 +207,14 @@ export class OperatorjobPage {
       this.ongoing_location = this.ongoing.location;
       this.ongoing_payout = this.ongoing.payout;
       this.ongoingJobs = [];
-      try{
-        for(let i = 0; i < this.ongoingTitle.length; i++) {
+      try {
+        for (let i = 0; i < this.ongoingTitle.length; i++) {
           this.ongoingJobs.push({
             jid: this.ongoingJid[i],
             title: this.ongoingTitle[i],
             description: this.ongoing_description[i],
-            date_from: this.ongoing_date_from[i].substring(0,10),
-            date_to: this.ongoing_date_to[i].substring(0,10),
+            date_from: this.ongoing_date_from[i].substring(0, 10),
+            date_to: this.ongoing_date_to[i].substring(0, 10),
             location: this.ongoing_location[i],
             payout: this.ongoing_payout[i]
           });
@@ -223,13 +224,13 @@ export class OperatorjobPage {
         console.log("Ongoing job cannot retrieve length");
       }
       console.log("Ongoing jobs pushed");
-      
-    }, err=>{
+
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveUpcomingJobs(){
+  retrieveUpcomingJobs() {
     this.appprov.retrieveUpcomingJobsOps(this.access_token).then((res) => {
       this.upcoming = res;
       this.upcomingJid = this.upcoming.jid;
@@ -240,14 +241,14 @@ export class OperatorjobPage {
       this.upcoming_location = this.upcoming.location;
       this.upcoming_payout = this.upcoming.payout;
       this.upcomingJobs = [];
-      try{
-        for(let i = 0; i < this.upcomingTitle.length; i++) {
+      try {
+        for (let i = 0; i < this.upcomingTitle.length; i++) {
           this.upcomingJobs.push({
             jid: this.upcomingJid[i],
             title: this.upcomingTitle[i],
             description: this.upcoming_description[i],
-            date_from: this.upcoming_date_from[i].substring(0,10), 
-            date_to: this.upcoming_date_to[i].substring(0,10),
+            date_from: this.upcoming_date_from[i].substring(0, 10),
+            date_to: this.upcoming_date_to[i].substring(0, 10),
             location: this.upcoming_location[i],
             payout: this.upcoming_payout[i]
           });
@@ -257,16 +258,16 @@ export class OperatorjobPage {
         console.log("Upcoming Job cannot retrieve length");
       }
       console.log("Upcoming job pushed");
-    }, err=>{
+    }, err => {
       console.log(err);
     });
   }
 
-  viewJob($event, jid,title){
-//    console.log("hi");
+  viewJob($event, jid, title) {
+    //    console.log("hi");
     this.navCtrl.push(OpjobdetailsPage, {
       Jid: jid,
-      JTitle:title
+      JTitle: title
     });
   }
 
