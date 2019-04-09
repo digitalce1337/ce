@@ -3142,7 +3142,7 @@ def getOperatorJoblist(request):
 
 def getOperatorUtil(request):
     operator_email = request.GET['email']
-    access_token = request.GET['access_token']
+    # access_token = request.GET['access_token']
 
     getTotalDays_list =[]
     getMonth_list=[]
@@ -3231,6 +3231,82 @@ def getOperatorUtil(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
+def getOperatorHomePageUtil(request):
+    access_token = request.GET['access_token']
+    getTotalDays_list =[]
+    getMonth_list=[]
+    getYear_list =[]
+    cur_date = datetime.datetime.now(tz=timezone.utc)
+    cur_month = cur_date.month
+    cur_year = cur_date.year
+
+    try:
+        owner = User.objects.get(access_token=access_token)
+        operator_email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        with connection.cursor() as cursor:
+            first_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE operator = \'%s\' AND job_year =\'%s\' GROUP BY job_month,job_year ORDER BY Job_Year ASC, Job_month ASC" % (operator_email,cur_year)
+            cursor.execute(first_query)
+            res = dictfetchall(cursor)
+            totalWorkDays = [r['totalWorkDays'] for r in res]
+            the_month=[r['job_month'] for r in res]
+            the_year=[r['job_year'] for r in res]
+            getTotalDays_list.append(totalWorkDays)
+            getMonth_list.append(the_month)
+            getYear_list.append(the_year)
+            totalDay_ChartList = getTotalDays_list[0]
+            month_ChartList = getMonth_list[0]
+            year_ChartList = getYear_list[0]
+
+        months_ToUse =[]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        chartData =[]
+
+        for i in range (cur_month-4,cur_month+3):
+                months_ToUse.append(months[i])
+        # print("Value:",months_ToUse)
+
+        for x in months_ToUse:
+            if x in month_ChartList:
+                ofIndex = month_ChartList.index(x)
+                chartData.append(totalDay_ChartList[ofIndex])
+            else:
+                chartData.append(0)
+        # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            dataPercent = (chartData[i]/ maxdays[i]) * 100
+            percentMonth.append(round(dataPercent))
+
+        json_obj = {
+            'operatorEmail' : operator_email,
+            'chartData': percentMonth,
+            'vehicle_month': months_ToUse
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'vehicle_totalWorkDays': 'N/A',
+            'vehicle_month': 'N/A',
+            'vehicle_year': 'N/A',
+            'chartData': 'N/A'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 def getHomeFleetChart(request):
     access_token= request.GET['access_token']
@@ -3432,44 +3508,57 @@ def getHomeOperatorChart(request):
 
 # usr.email = %s",[email])
 def getMonthlyPay(request):
+    access_token= request.GET['access_token']
     expected_list = []
     total_list = []
     cur_date = datetime.datetime.now(tz=timezone.utc)
     cur_month = cur_date.month
-    email = request.GET['email']
+    try:
+        owner = User.objects.get(access_token=access_token)
+        email = owner.email
+        print("The owner_email is:",email)        
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'fail'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
     # print("get data")
-    with connection.cursor() as cursor:
-        months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        for i in months:
-            if i < 8:
-                # cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
-                first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\'" % (
-                (months[cur_month - 4 + i - 1]), str(email))
-                cursor.execute(first_query)
-                res = dictfetchall(cursor)
-                expected = [r['SUM(payout)'] for r in res]
-                expected_list.append(expected)
+    try:
+        with connection.cursor() as cursor:
+            months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            for i in months:
+                if i < 8:
+                    cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
+                    first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\'" % (
+                    (months[cur_month - 4 + i - 1]), str(email))
+                    cursor.execute(first_query)
+                    res = dictfetchall(cursor)
+                    expected = [r['SUM(payout)'] for r in res]
+                    expected_list.append(expected)
 
-                sec_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE completed = 1 AND MONTH(date_to)=\'%s\' AND email =\'%s\'" % (
-                (months[cur_month - 4 + i - 1]), str(email))
-                cursor.execute(sec_query)
-                res = dictfetchall(cursor)
-                total = [r['SUM(payout)'] for r in res]
-                total_list.append(total)
-
-        try:
+                    sec_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE completed = 1 AND MONTH(date_to)=\'%s\' AND email =\'%s\'" % (
+                    (months[cur_month - 4 + i - 1]), str(email))
+                    cursor.execute(sec_query)
+                    res = dictfetchall(cursor)
+                    total = [r['SUM(payout)'] for r in res]
+                    total_list.append(total)
             expect = expected_list
             received = total_list
             JsonObj = {
                 "Expected": expect,
                 "Received": received
             }
-        except:
-            JsonObj = {
-                "Expected": 'Nil',
-                "Received": 'Nil'
-            }
-        cursor.close()
+            print(JsonObj)
+            return JsonResponse(JsonObj)
+    except Exception as e:
+        print(e)
+        JsonObj = {
+            "Expected": 'Nil',
+            "Received": 'Nil'
+        }
+        # cursor.close()
         print(JsonObj)
         return JsonResponse(JsonObj)
 
