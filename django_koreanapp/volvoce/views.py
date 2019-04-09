@@ -377,7 +377,7 @@ def getEmail(request):
 # 		return HttpResponse(e)
 
 def getOperatorList(request):
-    # email = request.GET['email']
+    email = request.GET['email']
     access_token = request.GET['access_token']
     operatorlist = []
     operatordetails_profileurl = []
@@ -391,8 +391,6 @@ def getOperatorList(request):
     try:
         owner = User.objects.get(access_token=access_token)
         owner_email = owner.email
-        # Temporary to check if email is really owner email and no need to pass in email
-        email = owner_email
     except:
         json_obj = {
             'result': 'false'
@@ -403,9 +401,12 @@ def getOperatorList(request):
         operators = OperatorList.objects.filter(ownerEmail=owner_email, is_delete=0)
         for operator in operators:
             if operator.operatorEmail == owner_email:
+                #Not to display yourself in the OperatorList
                 continue
             else:
+                #Add all operators email that are link to current owner
                 operatordetails_email.append(operator.operatorEmail)
+
         for email in operatordetails_email:
             user = User.objects.get(email=email)
             operatorlist.append(user.email)
@@ -413,7 +414,33 @@ def getOperatorList(request):
             operatordetails_name.append(user.name)
             operatordetails_role.append(user.role)
             temp = []
+    #     json_obj = {
+    #         'result': 'true',
+    #         'operatorlist': operatorlist,
+    #         'operatordetails_profileurl': operatordetails_profileurl,
+    #         'operatordetails_name': operatordetails_name,
+    #         'operatordetails_role': operatordetails_role,
+    #         'operatordetails_status': operatordetails_status,
+    #         'operatordetails_vehicles': operatordetails_vehicles
+    #     }
+    #     print(json_obj)
+    #     return JsonResponse(json_obj)
+    # except Exception as e:
+    #     json_obj = {
+    #         'result': 'false',
+    #         'owner_email' : owner_email,
+    #         'operatordetails_email': operatordetails_email,
+    #         'operatorlist': operatorlist,
+    #         'operatordetails_profileurl': operatordetails_profileurl,
+    #         'operatordetails_name': operatordetails_name,
+    #         'operatordetails_status': operatordetails_status,
+    #         'operatordetails_role': operatordetails_role,
+    #         'operatordetails_vehicles': operatordetails_vehicles
+    #     }
+    #     print(e)
+    #     return JsonResponse(json_obj)
             try:
+                #email is from the list of operators
                 vehiclelist = OperatorVehicle.objects.filter(opEmail=email)
                 for vehicle in vehiclelist:
                     vtype = vehicle.vtype
@@ -449,22 +476,117 @@ def getOperatorList(request):
                 status = datetime.datetime.strftime(status, '%Y-%m-%d')
             operatordetails_status.append(status)
         json_obj = {
+            'result': 'true',
             'operatorlist': operatorlist,
             'operatordetails_profileurl': operatordetails_profileurl,
             'operatordetails_name': operatordetails_name,
-            'operatordetails_status': operatordetails_status,
             'operatordetails_role': operatordetails_role,
-            'operatordetails_vehicles': operatordetails_vehicles
+            'operatordetails_vehicles': operatordetails_vehicles,
+            'operatordetails_status': operatordetails_status
         }
         print(json_obj)
         return JsonResponse(json_obj)
     except Exception as e:
         json_obj = {
-            'result': 'false'
+            'result': 'false',
+            'owner_email' : owner_email,
+            'operatorlist': operatorlist,
+            'operatordetails_profileurl': operatordetails_profileurl,
+            'operatordetails_email': operatordetails_email,
+            'operatordetails_name': operatordetails_name,
+            'operatordetails_status': operatordetails_status,
+            'operatordetails_role': operatordetails_role,
+            'operatordetails_vehicles': operatordetails_vehicles
         }
         print(e)
         return JsonResponse(json_obj)
 
+# def getOperatorList_copybackup(request):
+#     email = request.GET['email']
+#     access_token = request.GET['access_token']
+#     operatorlist = []
+#     operatordetails_profileurl = []
+#     operatordetails_email = []
+#     operatordetails_name = []
+#     operatordetails_status = []
+#     operatordetails_vehicles = []
+#     operatordetails_datefrom = []
+#     operatordetails_dateto = []
+#     operatordetails_role = []
+#     try:
+#         owner = User.objects.get(access_token=access_token)
+#         owner_email = owner.email
+#     except:
+#         json_obj = {
+#             'result': 'false'
+#         }
+#         print(json_obj)
+#         return JsonResponse(json_obj)
+#     try:
+#         operators = OperatorList.objects.filter(ownerEmail=owner_email, is_delete=0)
+#         for operator in operators:
+#             if operator.operatorEmail == owner_email:
+#                 continue
+#             else:
+#                 operatordetails_email.append(operator.operatorEmail)
+#         for email in operatordetails_email:
+#             user = User.objects.get(email=email)
+#             operatorlist.append(user.email)
+#             operatordetails_profileurl.append(user.profile_image_url)
+#             operatordetails_name.append(user.name)
+#             operatordetails_role.append(user.role)
+#             temp = []
+#             try:
+#                 vehiclelist = OperatorVehicle.objects.filter(opEmail=email)
+#                 for vehicle in vehiclelist:
+#                     vtype = vehicle.vtype
+#                     veh = Vehicle.objects.get(Vtype=vtype)
+#                     url = veh.ImgUrl
+#                     temp.append(url)
+#             except:
+#                 print("vehicle list exception")
+#             operatordetails_vehicles.append(temp)
+#             status = '1'
+#             try:
+#                 operator_jobs = OperatorJob.objects.filter(email=email)
+#                 for job in operator_jobs:
+#                     jid = job.JID
+#                     job_info = JobList.objects.get(JID=jid)
+#                     date_from = job_info.date_from
+#                     date_to = job_info.date_to
+#                     today = timezone.now()
+#                     today = str(today)[:10]
+#                     today = datetime.datetime.strptime(today, '%Y-%m-%d')
+#                     date_from = datetime.datetime.strptime(date_from, '%Y-%m-%d')
+#                     date_to = datetime.datetime.strptime(date_to, '%Y-%m-%d')
+#                     if date_from < today < date_to:
+#                         status = date_to
+#                     try:
+#                         if status <= date_to < date_to:
+#                             status = date_to
+#                     except:
+#                         print('status side exception')
+#             except:
+#                 print('job exception')
+#             if status != '1':
+#                 status = datetime.datetime.strftime(status, '%Y-%m-%d')
+#             operatordetails_status.append(status)
+#         json_obj = {
+#             'operatorlist': operatorlist,
+#             'operatordetails_profileurl': operatordetails_profileurl,
+#             'operatordetails_name': operatordetails_name,
+#             'operatordetails_status': operatordetails_status,
+#             'operatordetails_role': operatordetails_role,
+#             'operatordetails_vehicles': operatordetails_vehicles
+#         }
+#         print(json_obj)
+#         return JsonResponse(json_obj)
+#     except Exception as e:
+#         json_obj = {
+#             'result': 'false'
+#         }
+#         print(e)
+#         return JsonResponse(json_obj)
 
 # def getVehicleUrl(request):
 # 	access_token = request.GET['access_token']

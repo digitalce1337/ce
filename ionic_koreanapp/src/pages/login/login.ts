@@ -190,7 +190,10 @@ export class LoginPage {
         this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
           profile => {
             let email = profile['email'];
-            let profile_url = profile['picture']['data']['url'];
+            // Get profile picture from url
+            // let profile_url = profile['picture']['data']['url'];
+            // Set profile_url as empty default
+            let profile_url = 'assets/imgs/blank_profile.png';
             let name = profile['name'];
 
             if (email != null && email != "") {
