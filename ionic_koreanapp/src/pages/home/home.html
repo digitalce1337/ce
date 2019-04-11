@@ -1,40 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ title }}</ion-title>
-  </ion-navbar>
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <ion-navbar>
+        <button ion-button menuToggle right>
+          <ion-icon name="contact"></ion-icon>
+        </button>
+        <ion-title><h3> {{ welcome }}, {{Uname}} </h3></ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-3>
-        <ion-avatar>
-          <img [src] = "uimg">
-        </ion-avatar>
-      </ion-col>
-      <ion-col col-2></ion-col>
-      <ion-col col-7> 
-        <h3> {{ welcome }}, {{Uname}} </h3>
-          <b style="font-size:1.2em">{{Ucompany}},</b>
-          <br><b style="font-size:1.2em">{{Ucompanyadd}}</b>
-      </ion-col>          
-    </ion-row>
-    
-    <ion-row>
-      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>
-    </ion-row>
-      
-    <ion-item>
-      <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>
-        <ion-option value="en">English</ion-option>
-        <ion-option value="kr">한국어</ion-option>
-      </ion-select>
-    </ion-item>
-
-  </ion-grid>
-  <h2> {{ forecast }}</h2>
+  <!-- <h2> {{ forecast }}</h2> -->
   <u>{{ fleet }} {{ displaydate }}</u>
   
   <ion-grid>
