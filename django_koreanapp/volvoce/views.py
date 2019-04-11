@@ -377,7 +377,7 @@ def getEmail(request):
 # 		return HttpResponse(e)
 
 def getOperatorList(request):
-    # email = request.GET['email']
+    email = request.GET['email']
     access_token = request.GET['access_token']
     operatorlist = []
     operatordetails_profileurl = []
@@ -391,8 +391,6 @@ def getOperatorList(request):
     try:
         owner = User.objects.get(access_token=access_token)
         owner_email = owner.email
-        # Temporary to check if email is really owner email and no need to pass in email
-        email = owner_email
     except:
         json_obj = {
             'result': 'false'
@@ -403,9 +401,12 @@ def getOperatorList(request):
         operators = OperatorList.objects.filter(ownerEmail=owner_email, is_delete=0)
         for operator in operators:
             if operator.operatorEmail == owner_email:
+                #Not to display yourself in the OperatorList
                 continue
             else:
+                #Add all operators email that are link to current owner
                 operatordetails_email.append(operator.operatorEmail)
+
         for email in operatordetails_email:
             user = User.objects.get(email=email)
             operatorlist.append(user.email)
@@ -413,7 +414,33 @@ def getOperatorList(request):
             operatordetails_name.append(user.name)
             operatordetails_role.append(user.role)
             temp = []
+    #     json_obj = {
+    #         'result': 'true',
+    #         'operatorlist': operatorlist,
+    #         'operatordetails_profileurl': operatordetails_profileurl,
+    #         'operatordetails_name': operatordetails_name,
+    #         'operatordetails_role': operatordetails_role,
+    #         'operatordetails_status': operatordetails_status,
+    #         'operatordetails_vehicles': operatordetails_vehicles
+    #     }
+    #     print(json_obj)
+    #     return JsonResponse(json_obj)
+    # except Exception as e:
+    #     json_obj = {
+    #         'result': 'false',
+    #         'owner_email' : owner_email,
+    #         'operatordetails_email': operatordetails_email,
+    #         'operatorlist': operatorlist,
+    #         'operatordetails_profileurl': operatordetails_profileurl,
+    #         'operatordetails_name': operatordetails_name,
+    #         'operatordetails_status': operatordetails_status,
+    #         'operatordetails_role': operatordetails_role,
+    #         'operatordetails_vehicles': operatordetails_vehicles
+    #     }
+    #     print(e)
+    #     return JsonResponse(json_obj)
             try:
+                #email is from the list of operators
                 vehiclelist = OperatorVehicle.objects.filter(opEmail=email)
                 for vehicle in vehiclelist:
                     vtype = vehicle.vtype
@@ -449,22 +476,117 @@ def getOperatorList(request):
                 status = datetime.datetime.strftime(status, '%Y-%m-%d')
             operatordetails_status.append(status)
         json_obj = {
+            'result': 'true',
             'operatorlist': operatorlist,
             'operatordetails_profileurl': operatordetails_profileurl,
             'operatordetails_name': operatordetails_name,
-            'operatordetails_status': operatordetails_status,
             'operatordetails_role': operatordetails_role,
-            'operatordetails_vehicles': operatordetails_vehicles
+            'operatordetails_vehicles': operatordetails_vehicles,
+            'operatordetails_status': operatordetails_status
         }
         print(json_obj)
         return JsonResponse(json_obj)
     except Exception as e:
         json_obj = {
-            'result': 'false'
+            'result': 'false',
+            'owner_email' : owner_email,
+            'operatorlist': operatorlist,
+            'operatordetails_profileurl': operatordetails_profileurl,
+            'operatordetails_email': operatordetails_email,
+            'operatordetails_name': operatordetails_name,
+            'operatordetails_status': operatordetails_status,
+            'operatordetails_role': operatordetails_role,
+            'operatordetails_vehicles': operatordetails_vehicles
         }
         print(e)
         return JsonResponse(json_obj)
 
+# def getOperatorList_copybackup(request):
+#     email = request.GET['email']
+#     access_token = request.GET['access_token']
+#     operatorlist = []
+#     operatordetails_profileurl = []
+#     operatordetails_email = []
+#     operatordetails_name = []
+#     operatordetails_status = []
+#     operatordetails_vehicles = []
+#     operatordetails_datefrom = []
+#     operatordetails_dateto = []
+#     operatordetails_role = []
+#     try:
+#         owner = User.objects.get(access_token=access_token)
+#         owner_email = owner.email
+#     except:
+#         json_obj = {
+#             'result': 'false'
+#         }
+#         print(json_obj)
+#         return JsonResponse(json_obj)
+#     try:
+#         operators = OperatorList.objects.filter(ownerEmail=owner_email, is_delete=0)
+#         for operator in operators:
+#             if operator.operatorEmail == owner_email:
+#                 continue
+#             else:
+#                 operatordetails_email.append(operator.operatorEmail)
+#         for email in operatordetails_email:
+#             user = User.objects.get(email=email)
+#             operatorlist.append(user.email)
+#             operatordetails_profileurl.append(user.profile_image_url)
+#             operatordetails_name.append(user.name)
+#             operatordetails_role.append(user.role)
+#             temp = []
+#             try:
+#                 vehiclelist = OperatorVehicle.objects.filter(opEmail=email)
+#                 for vehicle in vehiclelist:
+#                     vtype = vehicle.vtype
+#                     veh = Vehicle.objects.get(Vtype=vtype)
+#                     url = veh.ImgUrl
+#                     temp.append(url)
+#             except:
+#                 print("vehicle list exception")
+#             operatordetails_vehicles.append(temp)
+#             status = '1'
+#             try:
+#                 operator_jobs = OperatorJob.objects.filter(email=email)
+#                 for job in operator_jobs:
+#                     jid = job.JID
+#                     job_info = JobList.objects.get(JID=jid)
+#                     date_from = job_info.date_from
+#                     date_to = job_info.date_to
+#                     today = timezone.now()
+#                     today = str(today)[:10]
+#                     today = datetime.datetime.strptime(today, '%Y-%m-%d')
+#                     date_from = datetime.datetime.strptime(date_from, '%Y-%m-%d')
+#                     date_to = datetime.datetime.strptime(date_to, '%Y-%m-%d')
+#                     if date_from < today < date_to:
+#                         status = date_to
+#                     try:
+#                         if status <= date_to < date_to:
+#                             status = date_to
+#                     except:
+#                         print('status side exception')
+#             except:
+#                 print('job exception')
+#             if status != '1':
+#                 status = datetime.datetime.strftime(status, '%Y-%m-%d')
+#             operatordetails_status.append(status)
+#         json_obj = {
+#             'operatorlist': operatorlist,
+#             'operatordetails_profileurl': operatordetails_profileurl,
+#             'operatordetails_name': operatordetails_name,
+#             'operatordetails_status': operatordetails_status,
+#             'operatordetails_role': operatordetails_role,
+#             'operatordetails_vehicles': operatordetails_vehicles
+#         }
+#         print(json_obj)
+#         return JsonResponse(json_obj)
+#     except Exception as e:
+#         json_obj = {
+#             'result': 'false'
+#         }
+#         print(e)
+#         return JsonResponse(json_obj)
 
 # def getVehicleUrl(request):
 # 	access_token = request.GET['access_token']
@@ -3020,7 +3142,7 @@ def getOperatorJoblist(request):
 
 def getOperatorUtil(request):
     operator_email = request.GET['email']
-    access_token = request.GET['access_token']
+    # access_token = request.GET['access_token']
 
     getTotalDays_list =[]
     getMonth_list=[]
@@ -3109,6 +3231,82 @@ def getOperatorUtil(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
+def getOperatorHomePageUtil(request):
+    access_token = request.GET['access_token']
+    getTotalDays_list =[]
+    getMonth_list=[]
+    getYear_list =[]
+    cur_date = datetime.datetime.now(tz=timezone.utc)
+    cur_month = cur_date.month
+    cur_year = cur_date.year
+
+    try:
+        owner = User.objects.get(access_token=access_token)
+        operator_email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        with connection.cursor() as cursor:
+            first_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE operator = \'%s\' AND job_year =\'%s\' GROUP BY job_month,job_year ORDER BY Job_Year ASC, Job_month ASC" % (operator_email,cur_year)
+            cursor.execute(first_query)
+            res = dictfetchall(cursor)
+            totalWorkDays = [r['totalWorkDays'] for r in res]
+            the_month=[r['job_month'] for r in res]
+            the_year=[r['job_year'] for r in res]
+            getTotalDays_list.append(totalWorkDays)
+            getMonth_list.append(the_month)
+            getYear_list.append(the_year)
+            totalDay_ChartList = getTotalDays_list[0]
+            month_ChartList = getMonth_list[0]
+            year_ChartList = getYear_list[0]
+
+        months_ToUse =[]
+        months = [1,2,3,4,5,6,7,8,9,10,11,12]
+        chartData =[]
+
+        for i in range (cur_month-4,cur_month+3):
+                months_ToUse.append(months[i])
+        # print("Value:",months_ToUse)
+
+        for x in months_ToUse:
+            if x in month_ChartList:
+                ofIndex = month_ChartList.index(x)
+                chartData.append(totalDay_ChartList[ofIndex])
+            else:
+                chartData.append(0)
+        # print("Final data to return:", chartData)
+        empt_list =[]
+        maxdays =[]
+        for i in range (len(months_ToUse)):
+            empt_list.append(i)
+            maxdays.append(calendar.monthrange(cur_year,months_ToUse[i])[1])
+        percentMonth = []
+        for i in range(len(chartData)):
+            dataPercent = (chartData[i]/ maxdays[i]) * 100
+            percentMonth.append(round(dataPercent))
+
+        json_obj = {
+            'operatorEmail' : operator_email,
+            'chartData': percentMonth,
+            'vehicle_month': months_ToUse
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'vehicle_totalWorkDays': 'N/A',
+            'vehicle_month': 'N/A',
+            'vehicle_year': 'N/A',
+            'chartData': 'N/A'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 def getHomeFleetChart(request):
     access_token= request.GET['access_token']
@@ -3310,44 +3508,57 @@ def getHomeOperatorChart(request):
 
 # usr.email = %s",[email])
 def getMonthlyPay(request):
+    access_token= request.GET['access_token']
     expected_list = []
     total_list = []
     cur_date = datetime.datetime.now(tz=timezone.utc)
     cur_month = cur_date.month
-    email = request.GET['email']
+    try:
+        owner = User.objects.get(access_token=access_token)
+        email = owner.email
+        print("The owner_email is:",email)        
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'fail'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
     # print("get data")
-    with connection.cursor() as cursor:
-        months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        for i in months:
-            if i < 8:
-                # cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
-                first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\'" % (
-                (months[cur_month - 4 + i - 1]), str(email))
-                cursor.execute(first_query)
-                res = dictfetchall(cursor)
-                expected = [r['SUM(payout)'] for r in res]
-                expected_list.append(expected)
+    try:
+        with connection.cursor() as cursor:
+            months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            for i in months:
+                if i < 8:
+                    cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
+                    first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\'" % (
+                    (months[cur_month - 4 + i - 1]), str(email))
+                    cursor.execute(first_query)
+                    res = dictfetchall(cursor)
+                    expected = [r['SUM(payout)'] for r in res]
+                    expected_list.append(expected)
 
-                sec_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE completed = 1 AND MONTH(date_to)=\'%s\' AND email =\'%s\'" % (
-                (months[cur_month - 4 + i - 1]), str(email))
-                cursor.execute(sec_query)
-                res = dictfetchall(cursor)
-                total = [r['SUM(payout)'] for r in res]
-                total_list.append(total)
-
-        try:
+                    sec_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE completed = 1 AND MONTH(date_to)=\'%s\' AND email =\'%s\'" % (
+                    (months[cur_month - 4 + i - 1]), str(email))
+                    cursor.execute(sec_query)
+                    res = dictfetchall(cursor)
+                    total = [r['SUM(payout)'] for r in res]
+                    total_list.append(total)
             expect = expected_list
             received = total_list
             JsonObj = {
                 "Expected": expect,
                 "Received": received
             }
-        except:
-            JsonObj = {
-                "Expected": 'Nil',
-                "Received": 'Nil'
-            }
-        cursor.close()
+            print(JsonObj)
+            return JsonResponse(JsonObj)
+    except Exception as e:
+        print(e)
+        JsonObj = {
+            "Expected": 'Nil',
+            "Received": 'Nil'
+        }
+        # cursor.close()
         print(JsonObj)
         return JsonResponse(JsonObj)
 

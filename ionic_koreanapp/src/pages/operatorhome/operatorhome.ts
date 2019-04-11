@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BasePage } from '../base-page/basepage';
 
 
+
 /**
  * Generated class for the OperatorhomePage page.
  *
@@ -87,6 +88,7 @@ export class OperatorhomePage extends BasePage{
         this.getUserInfo();
         this.getOperatorJoblist();
         this.getCapabilities();
+        this.getOperatorHomePageUtil()
         this._initializeTranslation();
       }
     });
@@ -172,8 +174,8 @@ export class OperatorhomePage extends BasePage{
       console.log(job);
       this.loadEvents(job);
       this.plotSchedule(job);
-      this.getJobStats({ 'date_from': job_datefrom });
-    }, err => {
+      // this.getJobStats({'date_from':job_datefrom});
+    }, err =>{
       console.log(err);
     });
   }
@@ -204,9 +206,9 @@ export class OperatorhomePage extends BasePage{
     return job;
   }
 
-  SwithProfile() {
+  SwitchProfile(){
     this.storage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
   getCapabilities() {
@@ -231,53 +233,119 @@ export class OperatorhomePage extends BasePage{
     popover.onDidDismiss(() => this.getCapabilities());
   }
 
-  getJobStats(jobs) {
-    //add label x-axis
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  getOperatorHomePageUtil(){
+    this.appprov.getOperatorHomePageUtil(this.access_token).then((res) => {
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);
+      let chartData = data['chartData']                
+      this.getJobStats(chartData);              
+    }, err=>{
+      console.log(err);
+    });
+  }
+  
+  getJobStats(chartData){
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
 
-    for (let i = 0; i < month_range; i++) {
-      labels_month.push(months[(month + 12 - i) % 12]);
+    var chart_DataPack = chartData;
+    var dataPack1 = ['7','14','14','4','22','20','15'];
+    for(let i=0; i<month_range; i++)
+    {
+      labels_month.push(months[(month+12 - i)%12]);
     }
     labels_month.reverse();
     for (let i = 1; i < month_range; i++) {
       labels_month.push(months[(month + 12 + i) % 12]);
     }
-    /*
-    //Old codes
-    var labels_end = month-6;
-    for (let i = 0; i<6; i++){
-      labels_month.push(months[month-5+i]);
-    }
-    */
-
-    // add data y-axis
-    var date_from = jobs.date_from;
-    var data_y = [0, 0, 0, 0, 0, 0];
-    for (let j = 0; j < date_from.length; j++) {
-      var temp = parseInt(date_from[j].substring(5, 7), 10);
-      for (let p = 0; p < 6; p++) {
-        if ((temp - 1) == (month - p)) {
-          data_y[5 - p] += 1;
-        }
-      }
-    }
+    
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
         labels: labels_month,
         datasets: [{
-          label: "Job Statistics",
-          data: data_y,
+          label: 'Statistics',
+          data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           borderColor: "rbga(0, 110, 255, 1)",
           borderWidth: 1
         }]
+      },
+      options:{
+        scales: {
+          xAxes: [{
+            gridLines: {display:false},          
+          }],
+          yAxes: [{
+            ticks:{
+            min: 0,
+            max: 100,
+            gridLines: {display:false}, 
+            callback: function(value){return value + "%"}
+          },
+        scaleLabel:{
+          display:true,
+          labelString: "Days"
+        }
+          }],
+        },
+        legend: {display:false}
       }
-    })
+    }) 
   }
 
-}//class OperatorhomePage
+  // getJobStats(jobs){
+  //   //add label x-axis
+  //   var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  //   var today = new Date();
+  //   var month = today.getUTCMonth();
+  //   var labels_month = [];
+  //   var month_range = 4;
+
+  //   for(let i=0; i<month_range; i++)
+  //   {
+  //     labels_month.push(months[(month+12 - i)%12]);
+  //   }
+  //   labels_month.reverse();
+  //   for(let i=1; i<month_range; i++)
+  //   {
+  //     labels_month.push(months[(month+12 + i)%12]);
+  //   }
+  //   /*
+  //   //Old codes
+  //   var labels_end = month-6;
+  //   for (let i = 0; i<6; i++){
+  //     labels_month.push(months[month-5+i]);
+  //   }
+  //   */
+
+  //   // add data y-axis
+  //   var date_from = jobs.date_from;
+  //   var data_y = [0, 0, 0, 0, 0, 0];
+  //   for (let j =0; j<date_from.length; j++){
+  //     var temp = parseInt(date_from[j].substring(5,7), 10);
+  //     for (let p=0; p<6; p++){
+  //       if ((temp-1) == (month-p)){
+  //         data_y[5-p] += 1;
+  //       }
+  //     }
+  //   }
+  //   this.barChart = new Chart(this.barCanvas.nativeElement, {
+  //     type: 'bar',
+  //     data:{
+  //       labels: labels_month,
+  //       datasets: [{
+  //         label: "Job Statistics",
+  //         data: data_y,
+  //         backgroundColor: "rgba(0, 110,255, 0.2)",
+  //         borderColor: "rbga(0, 110, 255, 1)",
+  //         borderWidth:1
+  //       }]
+  //     }
+  //   })
+  // }
+}
+//class OperatorhomePage

@@ -106,7 +106,7 @@ export class HomePage extends BasePage{
             this.getUserInfo();
             this.getEmailPay();
             // this.getTestFn();
-            // this.getMonthlyPay();
+            this.getMonthlyPay();
             this.getVehicleStatus('');
             this.getOwnerJoblist();            
             this.getHomeFleetChart();
@@ -130,6 +130,7 @@ export class HomePage extends BasePage{
     this.getEmailPay();
     // this.getVehicleStatus('');
     // this.getOwnerJoblist();
+    this.getMonthlyPay();
     this.getHomeFleetChart();    
     this.getHomeOperatorChart();
     // this._initializeTranslation();
@@ -180,15 +181,17 @@ presentAlert(title,msg){
 getEmailPay(){
   this.appprov.getemail().then((res) => {
     this.UsrEmail = res;
-    this.getMonthlyPay(res);
+    // this.getMonthlyPay(res);
     // this.getFleetData(res);
   }, err =>{
     console.log(err);
   });
 }
 
-getMonthlyPay(email){ 
-  this.appprov.getMonthlyPay(email).then((res) =>{
+getMonthlyPay(){ 
+  // getMonthlyPay(email){ 
+  this.appprov.getMonthlyPay(this.access_token).then((res) =>{
+  // this.appprov.getMonthlyPay(email).then((res) =>{
     let data = JSON.stringify(res);
     data = JSON.parse(data);
     let chartExpectedMoney = data['Expected'];

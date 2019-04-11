@@ -95,23 +95,23 @@ class Reporting(models.Model):
 	def __unicode(self):
 		return self
 
-class VehicleIndividualData(models.Model):
-	JID = models.CharField(max_length=100)
-	email = models.CharField(max_length=100)
-	vehicle_serial_no = models.CharField(max_length=100)
-	date_from = models.DateTimeField()
-	date_to = models.DateTimeField()
-	month = models.CharField(max_length=100)
-	year = models.CharField(max_length=100)
-	date = models.CharField(max_length=100)
-
-	def __unicode__(self):
-		return self
+# class VehicleIndividualData(models.Model):
+# 	JID = models.CharField(max_length=100)
+# 	email = models.CharField(max_length=100)
+# 	vehicle_serial_no = models.CharField(max_length=100)
+# 	date_from = models.DateTimeField()
+# 	date_to = models.DateTimeField()
+# 	month = models.CharField(max_length=100)
+# 	year = models.CharField(max_length=100)
+# 	date = models.CharField(max_length=100)
+#
+# 	def __unicode__(self):
+# 		return self
 
 class fullJobDetails(models.Model):
-	Job_date = models.CharField(max_length=100)
-	Job_month = models.CharField(max_length=100)
-	Job_year = models.CharField(max_length=100)
+	Job_date = models.IntegerField()
+	Job_month = models.IntegerField()
+	Job_year = models.IntegerField()
 	owner = models.CharField(max_length=100)
 	jid = models.CharField(max_length=100)
 	operator = models.CharField(max_length=100)

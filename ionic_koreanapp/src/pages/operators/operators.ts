@@ -74,15 +74,17 @@ export class OperatorsPage extends BasePage {
         this.navCtrl.push(LoginPage);
       }
       else {
-        console.log("Got access token");
-        this.access_token = val.toString();
-        this.getOperatorList(this.access_token);
+        console.log("Got access token");           
+        this.access_token = val.toString();     
+        this.getEmail(this.access_token)   
+        // this.getOperatorList(this.access_token);        
         this._initializeTranslation();
       }
     });
   }
 
   ionViewDidEnter() {
+    this.getEmail(this.access_token);
     this._initializeTranslation();
   }
   public changeLanguage(): void {
@@ -108,8 +110,7 @@ export class OperatorsPage extends BasePage {
   getEmail(access_token) {
     this.appprov.getEmail(access_token).then((res) => {
       this.UsrEmail = res;
-      console.log("Result of EMAIL from res getEmail:"+res);
-      //      this.getOperatorList(this.UsrEmail);
+      this.getOperatorList(this.UsrEmail);
     }, err => {
       console.log(err);
     });
@@ -117,9 +118,8 @@ export class OperatorsPage extends BasePage {
 
   getOperatorList(email) {
     email = JSON.stringify(email);
-    email = JSON.parse(email).email;    
-    // this.appprov.getOperatorList(this.access_token, email).then((res) => {
-    this.appprov.getOperatorList(this.access_token,).then((res) => {
+    email = JSON.parse(email).email;
+    this.appprov.getOperatorList(this.access_token, email).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -133,7 +133,9 @@ export class OperatorsPage extends BasePage {
       this.operatordetails_busydate = data['operatordetails_role'];
       this.operators = [];
       console.log("fist checkpoint");
-      for (let i = 0; i < this.operatordetails_profileurl.length; i++) {
+      console.log(this.operatordetails_name.length);
+      // for (let i = 0; i < this.operatordetails_profileurl.length; i++) {
+      for (let i = 0; i < this.operatordetails_name.length; i++) {
         if (this.operatordetails_status[i] == "1") {
           this.operatordetails_status[i] = "assets/imgs/greencircle.jpg";
           this.operatordetails_busydate[i] = this.available;
@@ -189,7 +191,7 @@ export class OperatorsPage extends BasePage {
     myModal.onDidDismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
-      this.getOperatorList(this.access_token);
+      // this.getOperatorList(this.access_token);
     });
   }
 
@@ -206,7 +208,7 @@ export class OperatorsPage extends BasePage {
     myModal.onDidDismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
-      this.getOperatorList(this.access_token);
+      // this.getOperatorList(this.access_token);
     });
   }
 
@@ -301,7 +303,8 @@ export class OperatorsPage extends BasePage {
               console.log(res);
               // Share via email
               this.socialSharing.shareViaEmail(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2 + " " +
-                'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, ['recipient@example.org'])
+                'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, [''])
+                // 'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, ['recipient@example.org'])
                 .then(
                   res => {
                     console.log("ShareViaEmail status: " + res);

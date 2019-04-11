@@ -18,9 +18,9 @@ export class TabsPage {
   public fleets: string;
 
   tab1Root = HomePage;
-  tab2Root = FleetsPage;
-  tab3Root = OperatorsPage;
-  tab4Root = JobsPage;
+  tab2Root = JobsPage;
+  tab3Root = FleetsPage;
+  tab4Root = OperatorsPage;
 
   constructor(public _translate: TranslateService) {
     this._initializeTranslation();

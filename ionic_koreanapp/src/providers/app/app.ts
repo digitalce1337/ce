@@ -95,12 +95,11 @@ constructor(public http: HttpClient,
     })
   }
 
-  // public getOperatorList(access_token, email){
-  public getOperatorList(access_token){
+  public getOperatorList(access_token, email){
     return new Promise(resolve=>{
-      // this.http.get(apiKey+'getOperatorList?email='+ email+'&access_token='+access_token).subscribe(res =>{
-      this.http.get(apiKey+'getOperatorList?access_token='+access_token).subscribe(res =>{
-        resolve(res);        
+      this.http.get(apiKey+'getOperatorList?email='+ email+'&access_token='+access_token).subscribe(res =>{
+        resolve(res);
+        console.log("Check here next line");
         console.log("access token: "+ access_token);
       }, (err) =>{
         console.log(err);
@@ -173,6 +172,18 @@ constructor(public http: HttpClient,
     console.log("Getting Chart Information");
     return new Promise(resolve => {
       this.http.get(apiKey + 'getChartData?email='+email+'&access_token='+access_token).subscribe((res) => {
+        resolve(res);
+        console.log("Chart data fetched");
+      }, err => {
+        console.log(err);
+      })
+    });
+  }
+
+  public getOperatorHomePageUtil(access_token){
+    console.log("Getting HomeOperator Util");
+    return new Promise(resolve => {
+      this.http.get(apiKey + 'getOperatorHomePageUtil?access_token='+access_token).subscribe((res) => {
         resolve(res);
         console.log("Chart data fetched");
       }, err => {
@@ -811,9 +822,9 @@ public GetCurrentLoc(){
     });
 }
 
-public getMonthlyPay(email){
+public getMonthlyPay(access_token){
   return new Promise(resolve =>{
-    this.http.get(apiKey+'getMonthlyPay?email=' + email).subscribe(res =>{
+    this.http.get(apiKey+'getMonthlyPay?access_token=' + access_token).subscribe(res =>{
       resolve(res);
       console.log(res);
       console.log('Monthly pay for chart recieved');

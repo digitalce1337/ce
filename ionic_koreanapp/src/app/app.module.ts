@@ -51,6 +51,7 @@ import { KakaoCordovaSDK } from 'kakao-sdk';
 
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { ProfilePage } from '../pages/profile/profile';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -80,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OpjobdetailsPage,
     EditjobPage,
     OtpOperatorPage,
-    UpdatecapopPage
+    UpdatecapopPage,
+    ProfilePage
   ],
   /*
      importing browser module for making use of browser APs
@@ -127,7 +129,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OpjobdetailsPage,
     EditjobPage,
     OtpOperatorPage,
-    UpdatecapopPage
+    UpdatecapopPage,
+    ProfilePage
   ],
 
   /*user service to be provided in the ionic*/
