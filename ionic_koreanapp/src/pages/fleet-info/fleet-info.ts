@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../../pages/login/login';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
-
+import { BasePage } from '../base-page/basepage';
 /**
  * Generated class for the FleetInfoPage page.
  *
@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-fleet-info',
   templateUrl: 'fleet-info.html',
 })
-export class FleetInfoPage { 
+export class FleetInfoPage extends BasePage{ 
 
   public language: string;
   public title: string;
@@ -73,7 +73,7 @@ export class FleetInfoPage {
 
   SelectedVeh: any;
 
-  private access_token: string;
+  // private access_token: string;
 
   public todaydate: any;
 
@@ -84,6 +84,9 @@ export class FleetInfoPage {
     public popoverCtrl:PopoverController,
     public modalCtrl:ModalController,
     public _translate: TranslateService) {
+
+      super(appprov);
+
       storage.ready().then(() => {
       });
       storage.get('access_token').then((val) => {
@@ -93,7 +96,7 @@ export class FleetInfoPage {
         }
         else{
           console.log("Got access token");
-          this.access_token = val.toString();
+          // this.access_token = val.toString();
           this.SelectedVeh = navParams.get('item');
           console.log(this.SelectedVeh);
           this.todaydate = new Date();

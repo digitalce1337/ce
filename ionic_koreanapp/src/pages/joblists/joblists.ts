@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the JoblistsPage page.
@@ -13,13 +14,14 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
   selector: 'page-joblists',
   templateUrl: 'joblists.html',
 })
-export class JoblistsPage {
+export class JoblistsPage{
   mode:string;
 
   public jobs: any [][];
   public data: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
+    
     this.mode = navParams.get('mode');
     if(this.mode == "Today"){
       console.log("This is todya tab");    

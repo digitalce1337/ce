@@ -10,12 +10,13 @@ import { Storage } from '@ionic/storage';
 import { Chart } from 'chart.js';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 }) 
-export class HomePage {
+export class HomePage extends BasePage{
 
   public title: string;
   public welcome: string;
@@ -78,7 +79,7 @@ export class HomePage {
   public Ucompany: any;
   public Ucompanyadd: any;
 
-  private access_token:string;
+  // private access_token:string;
 
   public displaydate: any;
 
@@ -91,6 +92,8 @@ export class HomePage {
     private storage: Storage,
     public kakao: KakaoCordovaSDK,
     public _translate: TranslateService) {
+      super(appprov);
+
       storage.ready().then(() => {
         storage.get('access_token').then((val) => {
           if (val == null){
@@ -99,7 +102,7 @@ export class HomePage {
           }
           else{
             console.log("Got access token");                   
-            this.access_token = val.toString();            
+            // this.access_token = val.toString();            
             this.getUserInfo();
             this.getEmailPay();
             // this.getTestFn();

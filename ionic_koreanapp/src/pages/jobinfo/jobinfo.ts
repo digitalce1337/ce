@@ -9,6 +9,7 @@ import { EditjobPage } from '../../pages/editjob/editjob';
 import { Geolocation } from '@ionic-native/geolocation';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the JobinfoPage page.
@@ -23,7 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'jobinfo.html',
 })
 
-export class JobinfoPage {
+export class JobinfoPage extends BasePage{
 
   public language: string;
   public txtitle: string;
@@ -39,7 +40,7 @@ export class JobinfoPage {
   public photos: any = [];
   public base64Image: string;
 
-  private access_token: string;
+  // private access_token: string;
 
   jid: string;
   payout: string;
@@ -94,6 +95,8 @@ export class JobinfoPage {
     public gloc:Geolocation,
     public iab: InAppBrowser,
     public _translate: TranslateService) {
+      super(appprov);
+
       storage.ready().then(() => {
       });
       storage.get('access_token').then((val) => {

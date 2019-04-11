@@ -6,7 +6,7 @@ import { HomePage } from '../../pages/home/home';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { AppProvider } from '../../providers/app/app';
 import { TranslateService } from '@ngx-translate/core';
-
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the CreatecompanyPage page.
@@ -20,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-createcompany',
   templateUrl: 'createcompany.html',
 })
-export class CreatecompanyPage {
+export class CreatecompanyPage extends BasePage {
 
   public language: string;
   public title: string;
@@ -30,7 +30,7 @@ export class CreatecompanyPage {
   public working_days: string;
   public continue: string;
 
-  private access_token: string;
+  // private access_token: string;
   companynameField: string = "";
   companyaddField: string = "";
   phonenoField: string = "";
@@ -42,6 +42,8 @@ export class CreatecompanyPage {
     private alertCtrl: AlertController,
     private storage: Storage,
     public _translate: TranslateService) {
+
+    super(appprov);
     storage.ready().then(() => {
     });
     // storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q').then(() =>{

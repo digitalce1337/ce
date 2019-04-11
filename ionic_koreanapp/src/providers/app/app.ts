@@ -20,13 +20,22 @@ export class AppProvider {
 
   public email: any;
 
-  constructor(public http: HttpClient, 
-    private store:Storage,
-    public alertCtrl:AlertController,
-    public filetransfer:FileTransfer,
+  public access_token: string;
+
+constructor(public http: HttpClient,
+    private store: Storage,
+    public alertCtrl: AlertController,
+    public filetransfer: FileTransfer,
     public kakao: KakaoCordovaSDK,
-    public gloc: Geolocation) {
-    
+    public gloc: Geolocation,
+    private storage: Storage) {
+
+    storage.get('access_token').then((val) => {
+      if (val != null) {
+        console.log("--AppProvider Got access token");
+        this.access_token = val.toString();
+      }
+    });
   }
 
   public setemail(email){

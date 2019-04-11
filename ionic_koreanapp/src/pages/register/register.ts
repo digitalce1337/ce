@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 // import { AngularFireAuth } from 'angularfire2/auth';
 
 import { LoginPage } from '../login/login';
+import { BasePage } from '../base-page/basepage';
 
 /**
  * Generated class for the RegisterPage page.
@@ -17,7 +18,7 @@ import { LoginPage } from '../login/login';
   selector: 'page-register',
   templateUrl: 'register.html',
 })
-export class RegisterPage {
+export class RegisterPage{
 
   // constructor(private alertCtrl: AlertController, private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   constructor(private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
