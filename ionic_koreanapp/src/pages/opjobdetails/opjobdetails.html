@@ -7,12 +7,15 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding>  
 
   <ion-grid>
     <ion-row justify-content:center>
       <ion-col>
-          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em">
+          <!-- <img src = "assets/imgs/Komatsu.png" style="width:26em;height:26em"> -->
+          <img src = "{{pathForImage(lastImage)}}" style="width:26em;height:26em"
+          onError="this.src='assets/imgs/addCamera.jpg';">
+          <!-- onError="{{pathForImage(image)}}" style="width:26em;height:26em"> -->
       </ion-col>
     </ion-row>
     <ion-row>
@@ -25,7 +28,8 @@
 
     <ion-row>
       <ion-col>
-          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults">
+          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Actions needed">
+          <!-- <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults"> -->
             <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>
           </ion-select>
       </ion-col>
@@ -33,7 +37,8 @@
 
     <ion-row>
       <ion-col>
-        <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea>
+        <ion-textarea rows="5" maxLength="1000" placeholder="Memo" [(ngModel)]="Desc"></ion-textarea>
+        <!-- <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea> -->
       </ion-col>
     </ion-row>
 

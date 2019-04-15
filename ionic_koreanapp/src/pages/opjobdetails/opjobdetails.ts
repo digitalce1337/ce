@@ -10,6 +10,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import {FilePath } from '@ionic-native/file-path';
 import { Geolocation } from '@ionic-native/geolocation';
 import { TranslateService } from '@ngx-translate/core';
+import { apiKey } from '../../app/apiurls/serverurls.js';
 
 /**
  * Generated class for the OpjobdetailsPage page.
@@ -79,7 +80,8 @@ export class OpjobdetailsPage {
           this.navCtrl.push(LoginPage);
         }
         else{
-          this.image = 'http://localhost:8000/static/vehicles/Others.png';
+          this.image = apiKey + 'static/vehicles/Others.png';          
+          // this.image = 'http://localhost:8000/static/vehicles/Others.png';
           console.log("Got access token");
           this.access_token = val.toString();
           this.jid = navParams.get('Jid');
@@ -228,8 +230,9 @@ public pathForImage(img){
 }
 
 public UploadImg(){
-  this.showLoader();
+  // this.showLoader();
   if(this.lastImage != null && this.Desc != null){
+    this.showLoader();
     console.log('Upload Image entered!');
     var targetPath = this.file.dataDirectory + this.lastImage;
     var filename = this.lastImage;
