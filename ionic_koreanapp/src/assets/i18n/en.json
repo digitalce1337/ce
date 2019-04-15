@@ -170,7 +170,7 @@
         "continue" : "Continue",
         "skill_sets": "Skill Sets",
         "errormsgtitle": "Error!",
-        "errormsg": "Pleasee enter phone number!",
+        "errormsg": "Please enter phone number!",
         "invite_error": "-Invalid Invitation Code-"
     },
 
@@ -195,7 +195,7 @@
         "selectgallery": "Select Image from gallery",
         "txcamera": "Camera",
         "txfaults": "Faults",
-        "txfilter": "Filter Changed",
+        "txfilter": "Filter Change",
         "txoil": "Oil Change",
         "txdiscs": "Replace brake discs / pads",
         "description": "Description",

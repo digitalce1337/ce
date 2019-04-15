@@ -23,8 +23,6 @@ import pytz
 import random
 from collections import namedtuple
 
-import calendar
-import numpy as np
 
 # for fleet chart
 import calendar
@@ -3239,7 +3237,6 @@ def getOperatorHomePageUtil(request):
     cur_date = datetime.datetime.now(tz=timezone.utc)
     cur_month = cur_date.month
     cur_year = cur_date.year
-
     try:
         owner = User.objects.get(access_token=access_token)
         operator_email = owner.email

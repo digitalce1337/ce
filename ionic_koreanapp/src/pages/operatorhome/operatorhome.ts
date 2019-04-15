@@ -12,6 +12,7 @@ import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
 
 
+
 /**
  * Generated class for the OperatorhomePage page.
  *
@@ -201,9 +202,9 @@ export class OperatorhomePage {
     return job;
   }
 
-  SwithProfile(){
+  SwitchProfile(){
     this.storage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
   getCapabilities(){

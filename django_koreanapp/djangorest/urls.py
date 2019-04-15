@@ -35,6 +35,7 @@ urlpatterns = [
     #url(r'^', include(router.urls)),
     # New url to be linked for extraction of data from charts
 	#Adding of new methods to try for charts
+    url(r'^getOperatorHomePageUtil', getOperatorHomePageUtil, name = 'getOperatorHomePageUtil'),
     url(r'^getMonthlyPay',getMonthlyPay, name="getMonthlyPay"),
     url(r'^getHomeFleetChart', getHomeFleetChart, name = 'getHomeFleetChart'),
 	url(r'^getHomeOperatorChart', getHomeOperatorChart, name = 'getHomeOperatorChart'),

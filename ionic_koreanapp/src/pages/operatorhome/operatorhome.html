@@ -1,14 +1,23 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>{{ title }}</ion-title>
   </ion-navbar>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</ion-header> -->
+
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle right>
+          <ion-icon name="contact"></ion-icon>
+        </button>
+        <ion-title><h3> {{ welcome }}, {{Uname}} </h3></ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-3>
         <ion-avatar>
           <img [src] = "uimg">
@@ -20,11 +29,11 @@
           <b style="font-size:1.1em">{{Uemail}}</b>
           <br><b style="font-size:1em">{{Unum}}</b>
       </ion-col>          
-    </ion-row>
+    </ion-row> -->
 
-    <ion-row>
-      <ion-col><a href="#" (click)="SwithProfile()">Switch Profile (Developement only)</a></ion-col>
-    </ion-row>
+    <!-- <ion-row>
+      <ion-col><a href="#" (click)="SwitchProfile()">Switch Profile (Developement only)</a></ion-col>
+    </ion-row> -->
 
     <ion-row>
       <ion-col><h3>{{ skill_sets }}&nbsp;  <ion-icon name="create" (click)="showCap($event)"></ion-icon></h3></ion-col>
