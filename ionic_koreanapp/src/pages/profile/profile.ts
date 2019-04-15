@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, NavParams, Tab } from 'ionic-angular';
+import { NavController, AlertController, NavParams, Tab, LoadingController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
 
@@ -11,6 +11,7 @@ import { Chart } from 'chart.js';
 import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { HomePage } from '../home/home';
+import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
 // import { Component, ViewChild } from '@angular/core';
 // import { NavController, AlertController, NavParams, Tab } from 'ionic-angular';
 // import { TabsPage } from '../tabs/tabs';
@@ -46,30 +47,41 @@ export class ProfilePage {
   public Ucompanyadd: any;
 
   private access_token:string;
+  loading: any;
 
+  Role: any;
 
   constructor(public navCtrl: NavController, 
     public http: Http, 
     public authService:AuthProvider,
     public alertCtrl:AlertController,
     public navParams:NavParams,
+    public loadingCtrl: LoadingController,
     public appprov:AppProvider,
     private storage: Storage,
     public kakao: KakaoCordovaSDK,
     public _translate: TranslateService) {
       storage.ready().then(() => {
         storage.get('access_token').then((val) => {
-          if (val == null){
-            console.log("No acccess token");
-            this.navCtrl.setRoot(LoginPage);
-          }
-          else{
-            console.log("Got access token");
-            this.access_token = val.toString();
-            this.getUserInfo();
-
-            this._initializeTranslation();     
-          }
+          this.access_token = val.toString();
+          this.appprov.checkRole(this.access_token).then((res) => {
+            let data = JSON.stringify(res);
+            data = JSON.parse(data);
+            // this.loading.dismiss();
+            if (data['result'] == "1") {
+              this.Role = 1;
+              // this.navCtrl.setRoot(TabsPage, storage);
+            }
+            else if (data['result'] == "0") {
+              this.Role = 0;
+              // this.navCtrl.setRoot(OperatorstabsPage, storage);
+            }
+            else {
+              console.log("Not in database");
+            }
+          }, err => {
+            console.log(err);
+          });
         });//storage.get('access_token').then((val)
       });//storage.ready().then(()
 
@@ -113,7 +125,14 @@ private _initializeTranslation(): void{
 }
 
 popToHome(){
-  this.navCtrl.setRoot(TabsPage);
+  if(this.Role == 1){
+    this.navCtrl.setRoot(TabsPage);  
+  }
+  else {
+    this.navCtrl.setRoot(OperatorstabsPage);
+  }
+
+  // this.navCtrl.setRoot(TabsPage);
 }
 
 getUserInfo(){

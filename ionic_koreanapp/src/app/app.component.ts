@@ -14,6 +14,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { ProfilePage } from '../pages/profile/profile';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../pages/home/home';
+import { AppProvider } from '../providers/app/app';
 
 export interface PageInterface {
   title:string;
@@ -36,10 +37,13 @@ export class MyApp {
   pages:PageInterface[] = [
     {title: 'Profile', pageName: ProfilePage, icon: 'person'}
   ]
+  access_token: string;
+  Role: any;
 
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     public authService: AuthProvider,
+    public appprov: AppProvider,
     splashScreen: SplashScreen,
     private storage: Storage,
     public kakao: KakaoCordovaSDK,
@@ -61,18 +65,46 @@ export class MyApp {
       else{
         this.rootPage = TabsPage;
       }
+      // if(res === ''){
+      //   this.pages;
+      //   this.rootPage = LoginPage;
+      // }
+      // else{
+        // this.rootPage = TabsPage;
+
+        // this.rootPage = OperatorstabsPage;
+      // }
     });
 
     storage.ready().then(() => {
       storage.get('access_token').then((val) => {
-        if (val == null){
-          console.log("No acccess token");
-          this.nav.setRoot(LoginPage);
-        }
-        else{
-          console.log("Got access token");
-          // this.access_token = val.toString();    
-        }
+        // if (val == null){
+        //   console.log("No acccess token");
+        //   this.nav.setRoot(LoginPage);
+        // }
+        // else{
+        //   console.log("Got access token");
+        //   // this.access_token = val.toString();    
+        // }
+        this.access_token = val.toString();
+        this.appprov.checkRole(this.access_token).then((res) => {
+          let data = JSON.stringify(res);
+          data = JSON.parse(data);
+          // this.loading.dismiss();
+          if (data['result'] == "1") {
+            this.Role = 1;
+            // this.navCtrl.setRoot(TabsPage, storage);
+          }
+          else if (data['result'] == "0") {
+            this.Role = 0;
+            // this.navCtrl.setRoot(OperatorstabsPage, storage);
+          }
+          else {
+            console.log("Not in database");
+          }
+        }, err => {
+          console.log(err);
+        });
       });
     });
 
@@ -119,12 +151,21 @@ export class MyApp {
   //   }
   // }
 
+  checkRole() {
+    if(this.Role == 1) {
+      this.toggleProfile();
+    }
+    else {
+      return;
+    }
+  }
+
   toggleProfile(){
     if(this.toggleButton == true){
-      console.log('Clicked');
+      // console.log('Clicked');
       // this.storage.clear();
       this.nav.setRoot(OperatorstabsPage);
-      console.log('yes');
+      // console.log('yes');
       // this.toggleButton = false;
     }
     else{
