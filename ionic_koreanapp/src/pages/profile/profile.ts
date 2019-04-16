@@ -120,19 +120,19 @@ private _translateLanguage() : void{
 private _initializeTranslation(): void{
   setTimeout(()=>{
     this.title =  this._translate.instant("home.title");
-    this.welcome = this._translate.instant("home.welcome");
-    this.forecast = this._translate.instant("home.forecast");
-    this.fleet = this._translate.instant("home.fleet");
-    this.jobstats = this._translate.instant("home.jobstats");
+    // this.welcome = this._translate.instant("home.welcome");
+    // this.forecast = this._translate.instant("home.forecast");
+    // this.fleet = this._translate.instant("home.fleet");
+    // this.jobstats = this._translate.instant("home.jobstats");
   }, 200);
 }
 
 popToHome(){
   if(this.Role == 1){
-    this.navCtrl.setRoot(TabsPage);  
+    this.navCtrl.push(TabsPage);  
   }
   else {
-    this.navCtrl.setRoot(OperatorstabsPage);
+    this.navCtrl.push(OperatorstabsPage);
   }
 
   // this.navCtrl.setRoot(TabsPage);

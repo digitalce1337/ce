@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AppProvider } from '../../providers/app/app';
 import { TranslateService } from '@ngx-translate/core';
+import { TabsPage } from '../tabs/tabs';
+import { FleetsPage } from '../fleets/fleets';
  
 /**
  * Generated class for the AddvehiclePage page.
@@ -41,8 +43,11 @@ export class AddvehiclePage {
   public Description: any;
   public UsrEmail: any;
 
+  buttonOpt: boolean;
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
+    private alertCtrl: AlertController,
     public appprov:AppProvider,
     public _translate: TranslateService) {
       this.getEmail();
@@ -94,11 +99,12 @@ export class AddvehiclePage {
                           this.SelManu,
                           this.Description,
                           this.SelVeh).then((res) => {
-                            this.appprov.presentAlert('Success!','Vehicle Successfully Added');
+                            // this.appprov.presentAlert('Success!','Vehicle Successfully Added');
                             this.SerialNo = '';
                             this.ModelNo = '';
-                            this
+                            this.PurchaseDate;
                             this.Description = '';
+                            this.promptUser();
                           },err=>{
                             console.log(err);
                           })
@@ -135,4 +141,42 @@ export class AddvehiclePage {
       console.log(err);
     });
   }
+
+  promptUser() {
+    let alert = this.alertCtrl.create({
+      title: 'Success!',
+      message: 'Vehicle Successfully Added. Do you want to continue adding vehicle?',
+      buttons: [
+      {
+        text: 'No',
+        role: 'no',
+        handler: () => {
+          this.buttonOpt = true;
+          this.popBack();
+          // console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Yes',
+        role: 'yes',
+        handler: () => {
+          this.buttonOpt = false;
+          this.popBack();
+          // console.log('Buy clicked');
+        }
+      }
+    ]
+  });
+  alert.present();
+  }
+
+  popBack(){
+    if(this.buttonOpt == true) {
+      this.navCtrl.setRoot(FleetsPage);
+    }
+    else {
+      return;
+    }
+  }
+
 }
