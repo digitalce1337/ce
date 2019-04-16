@@ -157,6 +157,8 @@ export class EditjobPage {
       this.date_from_ = data['date_from'];
       this.date_to_ = data['date_to'];
       this.description_ = data['description'];
+      this.getOperators();
+      this.getVehicles();
     }, err => {
       console.log(err);
     });
@@ -165,7 +167,8 @@ export class EditjobPage {
   /*Operator & vehicle pay*/
   initOpVehPay(): FormGroup{
     this.counter ++;
-    this.getOperators(this.access_token);
+    // this.getOperators();
+    // this.getOperators(this.access_token);
     return this._FB.group({
       Opname: ['',Validators.required],
       Vehtype: ['',Validators.required],
@@ -216,15 +219,19 @@ export class EditjobPage {
   getEmail(){
     this.appprov.getemail().then((res) => {
       this.UsrEmail = res;
-      this.getOperators(res.toString());
+      // this.getOperators(res.toString());
       console.log("Email is: " + this.UsrEmail);
     }, err =>{
       console.log(err);
     });
   }
 
-  getOperators(email: string){
-    this.OpTD[this.counter] = [];
+  // getOperators(email: string){
+  getOperators(){
+    this.OpTD[this.counter] = [];    
+    this.date_from_ = this.date_from_.substring(0,10);
+    this.date_to_ = this.date_to_.substring(0,10);
+    console.log("Prior to calling server, show me values:",this.access_token,this.date_from_,this.date_to_);
     this.appprov.getOperatorNames(this.access_token,this.date_from_,this.date_to_).then((res) => {
       console.log("no error");
       this.OpList = res;
@@ -256,9 +263,10 @@ export class EditjobPage {
     });
   }
 
-  getVehicles(email:string){
+  // getVehicles(email:string){
+  getVehicles(){
     this.VehicleTD[this.counter] = [];
-
+    console.log("Prior to calling server, show me values:",this.access_token,this.date_from_,this.date_to_);
     this.appprov.getOperatorVehicles(this.access_token,this.date_from_,this.date_to_).then((res) => {
       console.log('1');
       console.log(JSON.stringify(res));
@@ -315,7 +323,8 @@ export class EditjobPage {
   }
 
   test(event){
-    this.getVehicles(event);
+    // this.getVehicles(event);
+    this.getVehicles();
   }
 
   close(){
