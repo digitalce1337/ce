@@ -18,18 +18,18 @@
 
     </ion-list>
 
-    <ion-item-divider *ngIf="Role" [(ngModel)]="toggleButton">
+    <!-- <ion-item-divider> -->
       <!-- <ion-title>
           <b style="font-size:0.8em">Switch Profile Role</b>
       </ion-title> -->
-    </ion-item-divider>
+    <!-- </ion-item-divider> -->
 
 
     <ion-list lines="full">
       <ion-item>
         <!-- <ion-title><b style="font-size:0.8em">Switch Profile Role</b></ion-title> -->
         <!-- <ion-label *ngIf="Role == 1" style="font-size:1.0em">Switch Profile Role</ion-label> -->
-        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="toggleButton">Operator Mode On</ion-label>
+        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="toggleButton">Operator On</ion-label>
         <!-- <ion-label>Switch!!!</ion-label> -->
         <!-- <ion-toggle [(ngModel)]="toggleProfile"></ion-toggle> -->
         <!-- <ion-toggle [(ngModel)]="Role" (ionChange)="toggleProfile()"></ion-toggle> -->

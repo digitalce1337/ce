@@ -45,6 +45,7 @@ export class ProfilePage {
   public uimg:any; 
   public Ucompany: any;
   public Ucompanyadd: any;
+  public Unumber: any;
 
   private access_token:string;
   loading: any;
@@ -64,6 +65,7 @@ export class ProfilePage {
       storage.ready().then(() => {
         storage.get('access_token').then((val) => {
           this.access_token = val.toString();
+          this.getUserInfo();
           this.appprov.checkRole(this.access_token).then((res) => {
             let data = JSON.stringify(res);
             data = JSON.parse(data);
@@ -95,6 +97,7 @@ export class ProfilePage {
   */
 
   ionViewDidEnter(){
+    this.getUserInfo();
     this._initializeTranslation();
   }
 
@@ -145,6 +148,7 @@ getUserInfo(){
     this.uimg = this.userinfo.profile_image_url;
     this.Ucompany = this.userinfo.company_name;
     this.Ucompanyadd = this.userinfo.company_add;
+    this.Unumber = this.userinfo.phone_no;
     this.appprov.setemail(this.userinfo.email);
   }, (err) => {
     console.log(err);

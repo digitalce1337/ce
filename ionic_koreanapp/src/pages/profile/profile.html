@@ -21,12 +21,7 @@
 
   <ion-navbar>
 
-    <!-- <ion-buttons start>
-      <button ion-button menuToggle right>
-        <ion-icon name="settings"></ion-icon>
-      </button>
-    </ion-buttons> -->
-      <ion-title>Profile</ion-title>
+    <ion-title>Profile</ion-title>
 
     <ion-buttons end>
       <button ion-button left icon-only (click)="popToHome()">
@@ -38,21 +33,35 @@
 
 </ion-header>
 
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header> -->
-
-
 <ion-content padding>
-  this is profile page!
-  <ion-item>
-    <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder=language>
+
+  <ion-grid>
+    <ion-label>Company Name:</ion-label>
+    <b>{{ Ucompany }}</b>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-label>Company Address:</ion-label>
+    <b>{{ Ucompanyadd }}</b>
+  </ion-grid>
+
+  <ion-grid>
+      <ion-label>Email:</ion-label>
+      <b>{{ Uemail }}</b>
+  </ion-grid>
+  
+  <ion-grid>
+      <ion-label>Phone Number:</ion-label>
+      <b>{{ Unumber }}</b>
+  </ion-grid>
+
+  <br>
+  
+  <ion-grid>
+    Change Language:
+    <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder="Language">
       <ion-option value="en">English</ion-option>
       <ion-option value="kr">한국어</ion-option>
     </ion-select>
-  </ion-item>
+  </ion-grid>
 </ion-content>
