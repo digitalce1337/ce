@@ -18,7 +18,7 @@
 
     </ion-list>
 
-    <ion-item-divider>
+    <ion-item-divider *ngIf="Role" [(ngModel)]="toggleButton">
       <!-- <ion-title>
           <b style="font-size:0.8em">Switch Profile Role</b>
       </ion-title> -->

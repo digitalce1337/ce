@@ -1,6 +1,6 @@
 //AWS - Public DNS
 //export const apiKey = 'http://18.222.185.105/'
-export const apiKey = 'http://3.17.29.231/'
+export const apiKey = 'http://18.222.91.54/'
 
 //Huawei Router IPv4 address
 // export const apiKey = 'http://192.168.8.100:8000/'
