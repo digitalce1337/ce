@@ -126,7 +126,7 @@ export class HomePage {
     // this.getUserInfo();
     this.getEmailPay();
     // this.getVehicleStatus('');
-    // this.getOwnerJoblist();
+    this.getOwnerJoblist();
     this.getMonthlyPay();
     this.getHomeFleetChart();    
     this.getHomeOperatorChart();
