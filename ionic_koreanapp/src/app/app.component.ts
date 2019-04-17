@@ -37,6 +37,7 @@ export class MyApp {
   pages:PageInterface[] = [
     {title: 'Profile', pageName: ProfilePage, icon: 'person'}
   ]
+
   access_token: string;
   Role: any;
 
@@ -93,11 +94,9 @@ export class MyApp {
           // this.loading.dismiss();
           if (data['result'] == "1") {
             this.Role = 1;
-            // this.navCtrl.setRoot(TabsPage, storage);
           }
           else if (data['result'] == "0") {
             this.Role = 0;
-            // this.navCtrl.setRoot(OperatorstabsPage, storage);
           }
           else {
             console.log("Not in database");
@@ -123,33 +122,21 @@ export class MyApp {
   }
 
   openPage(page: PageInterface){
-    let params = {};
+    // let params = {};
 
-    if(page.index){
-      params = {tabIndex: page.index};
-    }
+    // if(page.index){
+    //   params = {tabIndex: page.index};
+    // }
 
-    if(this.nav.getActiveChildNav() && page.index != undefined){
-      this.nav.getActiveChildNav().select(page.index);
-    } 
-    else {
-      this.nav.setRoot(page.pageName, params);
-    }
+    // if(this.nav.getActiveChildNav() && page.index != undefined){
+    //   this.nav.getActiveChildNav().select(page.index);
+    // } 
+    // else {
+      // this.nav.setRoot(page.pageName, params);
+      // this.nav.setRoot(page.pageName);
+      this.nav.push(page.pageName);
+    // }
   }
-
-  // isActive(page: PageInterface){
-  //   let childNav = this.nav.getActiveChildNav();
-  //   // case for tabs
-  //   if(childNav){
-  //     if(childNav.getSelected() && childNav.getSelected().root == page.pageComponent){
-  //       return 'primary';
-  //     }
-  //     return;
-  //   }
-  //   if(this.nav.getActive() && this.nav.getActive().name == page.pageName){
-  //     return 'primary';
-  //   }
-  // }
 
   checkRole() {
     if(this.Role == 1) {
@@ -162,18 +149,11 @@ export class MyApp {
 
   toggleProfile(){
     if(this.toggleButton == true){
-      // console.log('Clicked');
-      // this.storage.clear();
       this.nav.setRoot(OperatorstabsPage);
-      // console.log('yes');
-      // this.toggleButton = false;
     }
     else{
-      // this.storage.clear();
-      // this.nav.setRoot(HomePage);
       this.nav.setRoot(TabsPage);
     }
-    // this.toggleButton = false;
   }
 
 }

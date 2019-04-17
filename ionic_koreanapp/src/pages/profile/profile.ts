@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, NavParams, Tab, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, Tab, LoadingController, ViewController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { LoginPage } from '../login/login';
 
@@ -12,6 +12,7 @@ import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { HomePage } from '../home/home';
 import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
+import { MyApp } from '../../app/app.component';
 // import { Component, ViewChild } from '@angular/core';
 // import { NavController, AlertController, NavParams, Tab } from 'ionic-angular';
 // import { TabsPage } from '../tabs/tabs';
@@ -29,11 +30,17 @@ import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+
   public title: string;
   public welcome: string;
   public forecast: string;
   public fleet: string;
   public jobstats: string;
+
+  public companyName: string;
+  public companyAdd: string;
+  public email: string;
+  public phone_no: string;
   public language: string;
 
   public result: any;
@@ -45,17 +52,21 @@ export class ProfilePage {
   public uimg:any; 
   public Ucompany: any;
   public Ucompanyadd: any;
-  public Unumber: any;
+  public Unum: any;
+  
+  profile: any;
 
   private access_token:string;
   loading: any;
 
   Role: any;
+  toggled:boolean = true;
 
   constructor(public navCtrl: NavController, 
     public http: Http, 
     public authService:AuthProvider,
     public alertCtrl:AlertController,
+    private view: ViewController,
     public navParams:NavParams,
     public loadingCtrl: LoadingController,
     public appprov:AppProvider,
@@ -66,17 +77,16 @@ export class ProfilePage {
         storage.get('access_token').then((val) => {
           this.access_token = val.toString();
           this.getUserInfo();
+          this._initializeTranslation(); 
           this.appprov.checkRole(this.access_token).then((res) => {
             let data = JSON.stringify(res);
             data = JSON.parse(data);
             // this.loading.dismiss();
             if (data['result'] == "1") {
               this.Role = 1;
-              // this.navCtrl.setRoot(TabsPage, storage);
             }
             else if (data['result'] == "0") {
               this.Role = 0;
-              // this.navCtrl.setRoot(OperatorstabsPage, storage);
             }
             else {
               console.log("Not in database");
@@ -84,11 +94,8 @@ export class ProfilePage {
           }, err => {
             console.log(err);
           });
-        });//storage.get('access_token').then((val)
-      });//storage.ready().then(()
-
-      //storage.set('access_token', 'LgiiqQDpq2jI_tJTVLxFSd9yJM7agvjomsd2oAopdtYAAAFmFHth7Q');
-      //storage.clear();
+        });// end of storage.get('access_token').then((val)
+      });//end of storage.ready().then(()
 
   }// constructor
   
@@ -97,7 +104,7 @@ export class ProfilePage {
   */
 
   ionViewDidEnter(){
-    this.getUserInfo();
+    // this.getUserInfo();
     this._initializeTranslation();
   }
 
@@ -120,22 +127,30 @@ private _translateLanguage() : void{
 private _initializeTranslation(): void{
   setTimeout(()=>{
     this.title =  this._translate.instant("home.title");
-    // this.welcome = this._translate.instant("home.welcome");
-    // this.forecast = this._translate.instant("home.forecast");
-    // this.fleet = this._translate.instant("home.fleet");
-    // this.jobstats = this._translate.instant("home.jobstats");
+    this.welcome = this._translate.instant("home.welcome");
+    this.forecast = this._translate.instant("home.forecast");
+    this.fleet = this._translate.instant("home.fleet");
+    this.jobstats = this._translate.instant("home.jobstats");
   }, 200);
+  // this.title =  this._translate.instant("home.title");
+    // this.title =  this._translate.instant("profile.title");
+    // this.companyName = this._translate.instant("profile.companyName");
+    // this.companyAdd = this._translate.instant("profile.companyAdd");
+    // this.email = this._translate.instant("profile.email");
+    // this.phone_no = this._translate.instant("profile.phone_no");
 }
 
 popToHome(){
-  if(this.Role == 1){
-    this.navCtrl.push(TabsPage);  
-  }
-  else {
-    this.navCtrl.push(OperatorstabsPage);
-  }
-
-  // this.navCtrl.setRoot(TabsPage);
+  // this.navCtrl.getPrevious();
+  // if(this.Role == 1){
+  //   if(this.toggled == true){
+  //     this.navCtrl.push(OperatorstabsPage);
+  //   }
+  //   this.navCtrl.push(TabsPage);  
+  // }
+  // else {
+  //   this.navCtrl.push(OperatorstabsPage);
+  // }
 }
 
 getUserInfo(){
@@ -148,7 +163,7 @@ getUserInfo(){
     this.uimg = this.userinfo.profile_image_url;
     this.Ucompany = this.userinfo.company_name;
     this.Ucompanyadd = this.userinfo.company_add;
-    this.Unumber = this.userinfo.phone_no;
+    this.Unum = this.userinfo.phone_no;
     this.appprov.setemail(this.userinfo.email);
   }, (err) => {
     console.log(err);
@@ -156,13 +171,3 @@ getUserInfo(){
 }
 
 }//ProfilePage
-
-// constructor(public navCtrl: NavController, public navParams: NavParams) {
-// }
-// ionViewDidLoad() {
-//   console.log('ionViewDidLoad ProfilePage');
-// }
-// ionViewDidEnter(){
-//   console.log("entered profile page"); 
-  
-// }
