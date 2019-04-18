@@ -134,7 +134,8 @@ export class MyApp {
     // else {
       // this.nav.setRoot(page.pageName, params);
       // this.nav.setRoot(page.pageName);
-      this.nav.push(page.pageName);
+      // this.nav.push(page.pageName, {toggled: this.toggleButton});
+      this.nav.setRoot(page.pageName, {toggled: this.toggleButton});
     // }
   }
 

@@ -60,7 +60,7 @@ export class ProfilePage {
   loading: any;
 
   Role: any;
-  toggled:boolean = true;
+  toggled: any;
 
   constructor(public navCtrl: NavController, 
     public http: Http, 
@@ -73,6 +73,7 @@ export class ProfilePage {
     private storage: Storage,
     public kakao: KakaoCordovaSDK,
     public _translate: TranslateService) {
+      this.toggled = navParams.data.toggled;
       storage.ready().then(() => {
         storage.get('access_token').then((val) => {
           this.access_token = val.toString();
@@ -141,16 +142,15 @@ private _initializeTranslation(): void{
 }
 
 popToHome(){
-  // this.navCtrl.getPrevious();
-  // if(this.Role == 1){
-  //   if(this.toggled == true){
-  //     this.navCtrl.push(OperatorstabsPage);
-  //   }
-  //   this.navCtrl.push(TabsPage);  
-  // }
-  // else {
-  //   this.navCtrl.push(OperatorstabsPage);
-  // }
+  if(this.Role == 1 && this.toggled == true) {
+    this.navCtrl.push(OperatorstabsPage);  
+  }
+  else if(this.Role ==1 && this.toggled == false) {
+    this.navCtrl.push(TabsPage)
+  }
+  else {
+    this.navCtrl.push(OperatorstabsPage);
+  }
 }
 
 getUserInfo(){

@@ -11,18 +11,17 @@
 
     <ion-title>Profile</ion-title>
 
-    <!-- <ion-buttons end>
+    <ion-buttons end>
       <button ion-button left icon-only (click)="popToHome()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
-    </ion-buttons> -->
+    </ion-buttons>
 
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-
   <ion-grid *ngIf="Role" [(ngModel)]="Role">
     <ion-label>Company Name:</ion-label>
     <!-- <ion-label>{{ companyName }}:</ion-label> -->
