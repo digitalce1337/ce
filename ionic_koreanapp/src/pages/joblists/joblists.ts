@@ -22,7 +22,7 @@ export class JoblistsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
     this.mode = navParams.get('mode');
     if(this.mode == "Today"){
-      console.log("This is todya tab");    
+      console.log("This is today tab");    
       // this.data = [
       //   {name: 'Sambo E&C', location:'Seoul', payout: '1m', opvehcost: [
       //     {opname: 'Dr Strange', vehtype: 'custom-shovel', oppay: '7000', opimg:'../assets/imgs/strange.jpeg'},

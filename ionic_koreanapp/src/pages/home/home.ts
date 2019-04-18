@@ -538,7 +538,7 @@ getOperatorUsage(chartData){
         label: 'Statistics',
         data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
-        borderColor: "rbga(0, 110, 255, 1)",
+        // borderColor: "rbga(0, 110, 255, 1)",
         borderWidth:1
       }]
     },
