@@ -2060,7 +2060,7 @@ def updateOperatorJob(request):
                                                      vehicle_model_no=model_no, pay_received='0')
             operatorjob.save()
         json_obj = {
-            'result': 'true',
+            'result': 'true'
         }
         print(json_obj)
         return JsonResponse(json_obj)
@@ -2072,6 +2072,24 @@ def updateOperatorJob(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
+def deletefullJobDetails(request):
+    jid = request.GET['jid']
+    try:
+        fullJobDetails.objects.filter(jid=jid).delete()
+        # to_be_updated = fullJobDetails.objects.filter(jid=jid).delete()
+        # fullJobDetails.objects.filter(JID=jid).delete()
+        json_obj = {
+            'result': 'deleted'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 # def getVehicleStatus(request):
 #     email = request.GET['email']
