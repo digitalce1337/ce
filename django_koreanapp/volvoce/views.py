@@ -1519,9 +1519,6 @@ def retrieveUpcomingJobs(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
-
-
-
 def addJob(request):
     access_token = request.GET['access_token']
     payout = request.GET['payout']
@@ -2075,18 +2072,18 @@ def updateOperatorJob(request):
 def deletefullJobDetails(request):
     jid = request.GET['jid']
     try:
-        fullJobDetails.objects.filter(jid=jid).delete()
-        # to_be_updated = fullJobDetails.objects.filter(jid=jid).delete()
-        # fullJobDetails.objects.filter(JID=jid).delete()
-        json_obj = {
-            'result': 'deleted'
-        }
-        print(json_obj)
-        return JsonResponse(json_obj)
+        with connection.cursor() as cursor:
+            select_query = "DELETE FROM volvoce.volvoce_fulljobdetails where jid=\'%s\';" % (str(jid))
+            cursor.execute(select_query)
+            json_obj = {
+                'result': 'Deleted'
+            }
+            print(json_obj)
+            return JsonResponse(json_obj)
     except Exception as e:
         print(e)
         json_obj = {
-            'result': 'false'
+            'result': 'Fail to delete'
         }
         print(json_obj)
         return JsonResponse(json_obj)
