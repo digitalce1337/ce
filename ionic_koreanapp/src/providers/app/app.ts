@@ -649,6 +649,7 @@ public checkRole(access_token){
       resolve(res);
       console.log("Role returned");
     }, err=> {
+      console.log('Something went wrong with checkRole')
       console.log(err);
     })
   })
@@ -724,6 +725,18 @@ public getJobInfo(access_token, jid){
       console.log("Job information retrieved");
     }, err=> {
       console.log(err);
+    })
+  })
+}
+
+public deletefullJobDetails(jid){
+  console.log("deletefullJobDetails");
+  return new Promise(resolve => {
+  this.http.get(apiKey+'deletefullJobDetails?jid='+jid).subscribe((res) => {
+    resolve(res);
+    console.log("Deleted rows from fullJobDetails");
+  }, err => {
+    console.log(err);
     })
   })
 }

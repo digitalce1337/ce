@@ -28,7 +28,7 @@
 
     <ion-row>
       <ion-col>
-          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Actions needed">
+          <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Actions needed for machine">
           <!-- <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Faults"> -->
             <ion-option *ngFor="let fault of faultOpt">{{fault}}</ion-option>
           </ion-select>

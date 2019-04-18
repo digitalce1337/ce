@@ -60,14 +60,14 @@ export class LoginPage {
 
   constructor(private alertCtrl: AlertController, private fb: Facebook, public navCtrl: NavController, public loadingCtrl: LoadingController, private storage: Storage, public appprov: AppProvider, public navParams: NavParams, public _translate: TranslateService) {
     storage.ready().then(() => {
-      storage.get('access_token').then((val) => {
+      storage.get('access_token').then((val) => {        
         this.showLoader();
         if (val !== null) {
           console.log("Got access token");
-          this.access_token = val.toString();
+          this.access_token = val.toString();          
           this.appprov.checkRole(this.access_token).then((res) => {
             let data = JSON.stringify(res);
-            data = JSON.parse(data);
+            data = JSON.parse(data);            
             this.loading.dismiss();
             if (data['result'] == "1") {
               this.navCtrl.setRoot(TabsPage, storage);
@@ -251,7 +251,8 @@ export class LoginPage {
         this.showAlert(res.status);
       }
     }).catch(e => {
-      console.log('Error logging into Facebook', e)
+      console.log('Error logging into Facebook', e);
+      console.log('Display value for isLoggedIn',this.isLoggedIn);
     });
 
     this.loading.dismiss();
@@ -317,8 +318,7 @@ export class LoginPage {
   }
 
   logout() {
-    this.fb.logout()
-      .then(res => this.isLoggedIn = false)
+    this.fb.logout().then(res =>{this.isLoggedIn = false}) 
       .catch(e => console.log('Error logout from Facebook', e));
   }
 }
