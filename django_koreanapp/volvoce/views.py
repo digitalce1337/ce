@@ -2069,11 +2069,11 @@ def updateOperatorJob(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
-def deletefullJobDetails(request):
+def deleteJob(request):
     jid = request.GET['jid']
     try:
         with connection.cursor() as cursor:
-            select_query = "DELETE FROM volvoce.volvoce_fulljobdetails where jid=\'%s\';" % (str(jid))
+            select_query = "DELETE FROM volvoce.volvoce_fulljobdetails where jid=\'%s\';" % (jid)
             cursor.execute(select_query)
             json_obj = {
                 'result': 'Deleted'

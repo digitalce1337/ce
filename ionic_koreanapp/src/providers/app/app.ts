@@ -729,10 +729,22 @@ public getJobInfo(access_token, jid){
   })
 }
 
-public deletefullJobDetails(jid){
+public aple(access_token,jid){
   console.log("deletefullJobDetails");
   return new Promise(resolve => {
-  this.http.get(apiKey+'deletefullJobDetails?jid='+jid).subscribe((res) => {
+  this.http.get(apiKey+'hello?access_token='+access_token+'&jid='+jid).subscribe((res) => {
+    resolve(res);
+    console.log("hello back from server");
+  }, err => {
+    console.log(err);
+    })
+  })
+}
+
+public deleteJob(access_token,jid){
+  console.log("deletefullJobDetails");
+  return new Promise(resolve => {
+  this.http.get(apiKey+'deleteJob?access_token='+access_token+'&jid='+jid).subscribe((res) => {
     resolve(res);
     console.log("Deleted rows from fullJobDetails");
   }, err => {
