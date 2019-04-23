@@ -204,25 +204,36 @@ export class EditjobPage {
       for (let i=0; i<operatorjobs.length; i++){
         names[i] = operatorjobs[i].Opname;
         vehicles[i] = operatorjobs[i].Vehtype;
-      }            
+      }
+      // this.appprov.aple(this.access_token,result.jid).then(res=>{
+      this.appprov.deleteJob(this.access_token,result.jid).then(res=>{      
+        console.log('Delete Success:'+res);
+      //   this.appprov.presentAlert('Success!', 'Job Has been successfully updated!');
+        // this.viewctrl.dismiss('1');
+      }, err=>{console.log('Delete Failed error:'+err)})
+      this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles).then(res=>{        
+        console.log('Add Success:'+res);
+      }, err=>{console.log('Add Failed error:'+err)})
       // add deletefullJobDetails with catch error
-      this.appprov.deletefullJobDetails(result.jid).then(res=>{
-        console.log(res);                        
-      // add newfullJobDetails with catch error  
-      this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles).then(res=>{
-        console.log(res);      
+      // this.appprov.deletefullJobDetails(this.access_token,result.jid).then(res=>{
+      //   console.log(res);                        
+      // // add newfullJobDetails with catch error  
+      // this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles).then(res=>{
+      //   console.log(res);      
+      //below here
       this.appprov.updateOperatorJob(this.access_token, result.jid,names, vehicles).then(res => {
-        this.appprov.presentAlert('Sucess!', 'Job Has been sucessfully updated!');
+        this.appprov.presentAlert('Success!', 'Job has been successfully updated!');
         this.viewctrl.dismiss('1');
       },err => {
         console.log(err);
       })
-      },err => {
-        console.log(err);
-      })
-    },err => {
-      console.log(err);
-    })
+      //above here
+    //   },err => {
+    //     console.log(err);
+    //   })
+    // },err => {
+    //   console.log(err);
+    // })
     },err => {
       console.log(err);
     })

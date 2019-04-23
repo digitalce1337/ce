@@ -10,9 +10,12 @@
 <ion-content padding>
     <ion-list>
       <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">
-        <ion-thumbnail item-start>
+        <ion-avatar item-start>
             <img [src] =vehicle.img>
-        </ion-thumbnail>
+        </ion-avatar>
+        <!-- <ion-thumbnail item-start>
+          <img [src] =vehicle.img>
+      </ion-thumbnail> -->
         <h2>{{vehicle.Modelno}}</h2>
         <p>{{vehicle.Desc}}</p>
       </button>

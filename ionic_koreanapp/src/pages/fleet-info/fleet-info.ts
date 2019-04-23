@@ -314,7 +314,7 @@ export class FleetInfoPage {
       data:{
         labels: labels_month,
         datasets: [{
-          label: 'Statistics',
+          label: '%',
           data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           borderWidth:1
@@ -334,7 +334,7 @@ export class FleetInfoPage {
           },
         scaleLabel:{
           display:true,
-          labelString: "Days"
+          // labelString: "Days"
         }
           }],
         },

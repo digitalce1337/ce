@@ -231,7 +231,8 @@ public pathForImage(img){
 
 public UploadImg(){
   // this.showLoader();
-  if(this.lastImage != null && this.Desc != null){
+  if(this.lastImage != null || this.Desc != null){
+  // if(this.lastImage != null && this.Desc != null){
     this.showLoader();
     console.log('Upload Image entered!');
     var targetPath = this.file.dataDirectory + this.lastImage;

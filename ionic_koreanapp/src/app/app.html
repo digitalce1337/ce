@@ -20,7 +20,7 @@
 
     <ion-list lines="full">
       <ion-item>
-        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="toggleButton">Operator On</ion-label>
+        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="Role">Operator On</ion-label>
         <ion-toggle *ngIf="Role" [(ngModel)]="toggleButton" (ionChange)="toggleProfile()"></ion-toggle>
       </ion-item>
     </ion-list>

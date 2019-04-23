@@ -170,7 +170,6 @@ export class ViewoperatorPage {
   }
   
 //comment this block sn 26
-  //TODAY chart
   getJobStats(chartData){
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var today = new Date();
@@ -193,7 +192,7 @@ export class ViewoperatorPage {
       data:{
         labels: labels_month,
         datasets: [{
-          label: 'Statistics',
+          label: '%',
           data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           borderWidth:1
@@ -213,35 +212,14 @@ export class ViewoperatorPage {
           },
         scaleLabel:{
           display:true,
-          labelString: "Days"
+          // labelString: "Days"
         }
           }],
         },
         legend: {display:false}
       }
     })  
-    // if (this.owner_job[0] == '0'){
-    //   this.owner_job[0] = '2';
-    // }
-    // if (this.operator_job[0] == '0'){
-    //   this.owner_job[0] = (parseInt(this.owner_job[0])+ 1).toString();
-    // }
-    // // console.log (this.owner_job[0]);
-    // // console.log(this.operator_job[0]);
-    // this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-    //   type: 'doughnut',
-    //   data:{
-    //     labels: [this.assigned, this.job_count],
-    //     datasets: [{
-    //       label: "Operator Utilization",
-    //       // data: [this.operator_job[0], parseInt(this.owner_job[0])-1],
-    //       data: ['5', '10'],
-    //       backgroundColor: ["rgba(0, 110,255, 0.2)", "rgba(255,0,0,0.2)"],
-    //       borderColor: "rbga(0, 110, 255, 1)",
-    //       borderWidth:1
-    //     }]
-    //   }
-    // });
+    
   }
 
   // getJobStats2(){

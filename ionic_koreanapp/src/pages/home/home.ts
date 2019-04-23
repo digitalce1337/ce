@@ -409,7 +409,7 @@ getEarnings(chartExpectedMoney,chartReceivedMoney)
         borderWidth:1
       },
       {
-        label: 'Received',
+        label: 'Earned',
         data: totalData,
         // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
         // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
@@ -483,7 +483,7 @@ getFleetUsage(chartData){
     data:{
       labels: labels_month,
       datasets: [{
-        label: 'Statistics',
+        label: '%',
         data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
         // borderColor: "rbga(0, 110, 255, 1)",
@@ -492,16 +492,20 @@ getFleetUsage(chartData){
     },
     options:{
       scales: {
+        xAxes: [{
+          gridLines: {display:false},
+        }],
         yAxes: [{
           ticks:{
           min: 0,
           max: 100,
+          gridLines: {display:false},
           callback: function(value){ return value + "%"}
         },
       scaleLabel:{display:true}
         }],
       },
-      legend: {display:true}
+      legend: {display:false}
     }
   })
 }
@@ -535,7 +539,7 @@ getOperatorUsage(chartData){
     data:{
       labels: labels_month,
       datasets: [{
-        label: 'Statistics',
+        label: '%',
         data: chartData_Pack,
         backgroundColor: "rgba(0, 110,255, 0.2)",
         // borderColor: "rbga(0, 110, 255, 1)",
@@ -544,16 +548,20 @@ getOperatorUsage(chartData){
     },
     options:{
       scales: {
+        xAxes: [{
+          gridLines: {display:false},
+        }],
         yAxes: [{
           ticks:{
           min: 0,
           max: 100,
+          gridLines: {display:false},
           callback: function(value){ return value + "%"}
         },
       scaleLabel:{display:true}
         }],
       },
-      legend: {display:true}
+      legend: {display:false}
     }
   })
 }
