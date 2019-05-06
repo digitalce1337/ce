@@ -458,12 +458,9 @@ def getOperatorList(request):
                     date_to = job_info.date_to
                     today = timezone.now()
                     today = str(today)[:10]
-                    # today = datetime.datetime.strptime(today, '%Y-%m-%d')
-                    today = datetime.datetime.strptime(today, '%d-%m-%Y')
-                    # date_from = datetime.datetime.strptime(date_from, '%Y-%m-%d')
-                    date_from = datetime.datetime.strptime(date_from, '%d-%m-%Y')
-                    # date_to = datetime.datetime.strptime(date_to, '%Y-%m-%d')
-                    date_to = datetime.datetime.strptime(date_to, '%d-%m-%Y')
+                    today = datetime.datetime.strptime(today, '%Y-%m-%d')
+                    date_from = datetime.datetime.strptime(date_from, '%Y-%m-%d')
+                    date_to = datetime.datetime.strptime(date_to, '%Y-%m-%d')
                     if date_from < today < date_to:
                         status = date_to
                     try:
@@ -474,8 +471,7 @@ def getOperatorList(request):
             except:
                 print('job exception')
             if status != '1':
-                # status = datetime.datetime.strftime(status, '%Y-%m-%d')
-                status = datetime.datetime.strftime(status, '%d-%m-%Y')
+                status = datetime.datetime.strftime(status, '%Y-%m-%d')
             operatordetails_status.append(status)
         json_obj = {
             'result': 'true',
@@ -1581,14 +1577,12 @@ def addJobDetails(request):
     owner = User.objects.get(access_token=access_token)
     owner_email = owner.email
 
-    # date_time_obj = datetime.datetime.strptime(date_from, '%Y-%m-%d').date()
-    date_time_obj = datetime.datetime.strptime(date_from, '%d-%m-%Y').date()
+    date_time_obj = datetime.datetime.strptime(date_from, '%Y-%m-%d').date()
     start_day = date_time_obj.day
     start_month = date_time_obj.month
     start_year = date_time_obj.year
 
-    # date_time_obj2 = datetime.datetime.strptime(date_to, '%Y-%m-%d').date()
-    date_time_obj2 = datetime.datetime.strptime(date_to, '%d-%m-%Y').date()
+    date_time_obj2 = datetime.datetime.strptime(date_to, '%Y-%m-%d').date()
     end_day = date_time_obj2.day
     end_month = date_time_obj2.month
     end_year = date_time_obj2.year
@@ -1949,10 +1943,8 @@ def getOperatorNames(request):
             for i in user_job:
                 job_date = JobList.objects.get(JID=i.JID)
                 Range = namedtuple('Range', ['start', 'end'])
-                # r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
-                #            end = datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
-                r1 = Range(start=datetime.datetime.strptime(date_from, '%d-%m-%Y').date(),
-                           end=datetime.datetime.strptime(date_to, '%d-%m-%Y').date())
+                r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
+                           end=datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
                 r2 = Range(start=job_date.date_from.date(), end=job_date.date_to.date())
                 latest_start = max(r1.start, r2.start)
                 earliest_end = min(r1.end, r2.end)
@@ -3009,10 +3001,8 @@ def getOperatorVehicles(request):
             vehicle_maintenances = Maintenance.objects.filter(serial_no=vehicle.serial_no, model_no=vehicle.model_no)
             for maintenance in vehicle_maintenances:
                 Range = namedtuple('Range', ['start', 'end'])
-                # r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
-                           # end=datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
-                r1 = Range(start=datetime.datetime.strptime(date_from, '%d-%m-%Y').date(),
-                           end=datetime.datetime.strptime(date_to, '%d-%m-%Y').date())
+                r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
+                           end=datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
                 r2 = Range(start=maintenance.date_from, end=maintenance.date_to)
                 latest_start = max(r1.start, r2.start)
                 earliest_end = min(r1.end, r2.end)
@@ -3027,10 +3017,8 @@ def getOperatorVehicles(request):
                 job_id = veh.JID
                 job = JobList.objects.get(JID=job_id)
                 Range = namedtuple('Range', ['start', 'end'])
-                # r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
-                           # end=datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
-                r1 = Range(start=datetime.datetime.strptime(date_from, '%d-%m-%Y').date(),
-                           end=datetime.datetime.strptime(date_to, '%d-%m-%Y').date())
+                r1 = Range(start=datetime.datetime.strptime(date_from, '%Y-%m-%d').date(),
+                           end=datetime.datetime.strptime(date_to, '%Y-%m-%d').date())
                 r2 = Range(start=job.date_from.date(), end=job.date_to.date())
                 latest_start = max(r1.start, r2.start)
                 earliest_end = min(r1.end, r2.end)
