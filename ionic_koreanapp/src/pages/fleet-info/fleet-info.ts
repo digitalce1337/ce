@@ -39,6 +39,10 @@ export class FleetInfoPage {
   public total_no_job: string;
   public assigned: string;
 
+  date_day:string;
+  date_mth:string;
+  date_yr:string;
+
   @ViewChild('barVehCanvas') barVehCanvas;
   barVehChart: any;
   @ViewChild('doughnutCanvas2') doughnutCanvas2;
@@ -155,6 +159,10 @@ export class FleetInfoPage {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       this.vehicle.purchase_date = data['purchase_date'];
+      // this.date_yr = this.vehicle.purchase_date.substring(0,4);
+      // this.date_mth = this.vehicle.purchase_date.substring(5,7);
+      // this.date_day = this.vehicle.purchase_date.substring(8,10);
+      // this.vehicle.purchase_date = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
       }, err=>{
       console.log(err);
     });

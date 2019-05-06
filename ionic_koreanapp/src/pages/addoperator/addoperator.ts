@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
 import { LoginPage } from '../../pages/login/login';
-import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
+// import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -56,7 +56,7 @@ export class AddoperatorPage {
     public http: HttpClient, 
     private iab: InAppBrowser, 
     private storage: Storage, 
-    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    // public _kakaoCordovaSDK: KakaoCordovaSDK,
     public loadingCtrl: LoadingController,
     public _translate: TranslateService) {
     storage.ready().then(() => {

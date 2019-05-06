@@ -300,8 +300,10 @@ public InsertReport(){
 
       if(i == (this.faultOpt.length - 1)){
         this.faultsSelected += this.faultOpt[i] + ':0';
+        // this.faultsSelected += this.faultOpt[i];
       }else{
         this.faultsSelected += this.faultOpt[i] + ':0,';
+        // this.faultsSelected += this.faultOpt[i];
       }
 
     }else{
@@ -309,14 +311,18 @@ public InsertReport(){
       if(this.faults.indexOf(this.faultOpt[i]) > -1){
         if(i == (this.faultOpt.length - 1)){
           this.faultsSelected += this.faultOpt[i] + ':1';
+          // this.faultsSelected += this.faultOpt[i];
         }else{
           this.faultsSelected += this.faultOpt[i] + ':1,';
+          // this.faultsSelected += this.faultOpt[i];
         }
       }else{
         if(i == (this.faultOpt.length - 1)){
           this.faultsSelected += this.faultOpt[i] + ':0';
+          // this.faultsSelected += this.faultOpt[i];
         }else{
           this.faultsSelected += this.faultOpt[i] + ':0,';
+          // this.faultsSelected += this.faultOpt[i];
         }
       }
 

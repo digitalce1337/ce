@@ -18,9 +18,9 @@
 
     </ion-list>
 
-    <ion-list lines="full">
-      <ion-item>
-        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="Role">Operator On</ion-label>
+    <ion-list>
+      <ion-item >
+        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="Role">Operator Mode</ion-label>
         <ion-toggle *ngIf="Role" [(ngModel)]="toggleButton" (ionChange)="toggleProfile()"></ion-toggle>
       </ion-item>
     </ion-list>

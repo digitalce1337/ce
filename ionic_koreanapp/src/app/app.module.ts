@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, MenuClose, IonicPageModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { Camera } from '@ionic-native/camera';
@@ -25,7 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 
 import { LoginPage } from '../pages/login/login';
-import { LoginKkPage } from '../pages/login-kk/login-kk';
+// import { LoginKkPage } from '../pages/login-kk/login-kk';
 import { RegisterPage } from '../pages/register/register';
 import { JobsPage } from '../pages/jobs/jobs';
 import { JoblistsPage } from '../pages/joblists/joblists'
@@ -47,11 +47,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-import { KakaoCordovaSDK } from 'kakao-sdk';
+// import { KakaoCordovaSDK } from 'kakao-sdk';
 
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { ProfilePage } from '../pages/profile/profile';
+import { AddjobPageModule } from '../pages/addjob/addjob.module';
+import { CreatecompanyPageModule } from '../pages/createcompany/createcompany.module';
+import { EditjobPageModule } from '../pages/editjob/editjob.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -66,7 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsPage,
     OperatorstabsPage,
     LoginPage,
-    LoginKkPage,
+    // LoginKkPage,
     RegisterPage,
     JobsPage,
     FleetInfoPage,
@@ -114,7 +117,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsPage,
     OperatorstabsPage,
     LoginPage,
-    LoginKkPage,
+    // LoginKkPage,
     RegisterPage,
     JobsPage,
     FleetInfoPage,
@@ -143,12 +146,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthProvider,
     AppProvider,
     InAppBrowser,
-    KakaoCordovaSDK,
+    // KakaoCordovaSDK,
     File,
     FileTransfer,
     FilePath,
     Facebook,
-    SocialSharing
+    SocialSharing,
+    MenuClose
   ]
 })
 export class AppModule { }

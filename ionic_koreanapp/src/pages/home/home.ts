@@ -8,7 +8,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { Chart } from 'chart.js';
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+// import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -89,7 +89,7 @@ export class HomePage {
     public navParams:NavParams,
     public appprov:AppProvider,
     private storage: Storage,
-    public kakao: KakaoCordovaSDK,
+    // public kakao: KakaoCordovaSDK,
     public _translate: TranslateService) {
       storage.ready().then(() => {
         storage.get('access_token').then((val) => {
@@ -469,6 +469,7 @@ getFleetUsage(chartData){
   var month_range = 4;
   var chartData_Pack = chartData;
   var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
+  
   for(let i=0; i<month_range; i++)
   {
     labels_month.push(months[(month+12 - i)%12]);

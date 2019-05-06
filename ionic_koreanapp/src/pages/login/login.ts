@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 // import { AngularFireAuth } from 'angularfire2/auth';
 // import firebase from 'firebase';
 
-import { LoginKkPage } from '../login-kk/login-kk';
+// import { LoginKkPage } from '../login-kk/login-kk';
 import { TabsPage } from '../tabs/tabs';
 import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
 import { RegisterPage } from '../register/register';
@@ -254,7 +254,7 @@ export class LoginPage {
       console.log('Error logging into Facebook', e);
       console.log('Display value for isLoggedIn',this.isLoggedIn);
     });
-
+    this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
     this.loading.dismiss();
   }
 
@@ -314,7 +314,7 @@ export class LoginPage {
     //     var errorMessage = error.message;
     //   });
     // });
-    this.navCtrl.push(LoginKkPage);
+    // this.navCtrl.push(LoginKkPage);
   }
 
   logout() {

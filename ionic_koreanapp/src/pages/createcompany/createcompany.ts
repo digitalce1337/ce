@@ -27,14 +27,16 @@ export class CreatecompanyPage {
   public company_name: string;
   public company_address: string;
   public phone_no: string;
-  public working_days: string;
+  // public working_days: string;
+  public working_days: string = '30';
   public continue: string;
 
   private access_token: string;
   companynameField: string = "";
   companyaddField: string = "";
   phonenoField: string = "";
-  workingdaysField: string = "";
+  // workingdaysField: string = "";
+  workingdaysField: string = "30";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -105,7 +107,8 @@ export class CreatecompanyPage {
     let phone_no = this.phonenoField;
     let working_days = this.workingdaysField;
 
-    if (company_name == "" || company_add == "" || phone_no == "" || working_days == "") {
+    // if (company_name == "" || company_add == "" || phone_no == "" || working_days == "") {
+    if (company_name == "" || company_add == "" || phone_no == "") {
       let alert = this.alertCtrl.create({
         title: 'Empty Field(s)',
         subTitle: 'Please fill up all details before proceeding',

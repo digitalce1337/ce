@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 import { apiKey } from '../../app/apiurls/serverurls.js';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+// import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { Geolocation } from '@ionic-native/geolocation';
 import { resolveDefinition } from '@angular/core/src/view/util';
 import { stringify } from '@angular/core/src/util';
@@ -24,7 +24,7 @@ export class AppProvider {
     private store:Storage,
     public alertCtrl:AlertController,
     public filetransfer:FileTransfer,
-    public kakao: KakaoCordovaSDK,
+    // public kakao: KakaoCordovaSDK,
     public gloc: Geolocation) {
     
   }

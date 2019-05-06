@@ -7,7 +7,7 @@ import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { ViewoperatorPage } from '../../pages/viewoperator/viewoperator';
 import { LoginPage } from '../../pages/login/login';
-import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
+// import { KakaoCordovaSDK, KLCustomTemplate } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { Facebook } from '@ionic-native/facebook';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -57,7 +57,7 @@ export class OperatorsPage {
     public appprov: AppProvider,
     private modal: ModalController,
     private storage: Storage,
-    public _kakaoCordovaSDK: KakaoCordovaSDK,
+    // public _kakaoCordovaSDK: KakaoCordovaSDK,
     public facebookNative: Facebook,
     public loadingCtrl: LoadingController,
     public _translate: TranslateService,
@@ -209,80 +209,33 @@ export class OperatorsPage {
     });
   }
 
-  kkShare() {
-    this.showLoader();
-    var OTP: any;
-    this.appprov.MakeOTP(this.access_token).then((res: any) => {
-      console.log(res);
-      OTP = res.otp;
-      console.log('i am using this' + OTP);
+  // kkShare() {
+  //   this.showLoader();
+  //   var OTP: any;
+  //   this.appprov.MakeOTP(this.access_token).then((res: any) => {
+  //     console.log(res);
+  //     OTP = res.otp;
+  //     console.log('i am using this' + OTP);
 
-      console.log("Going to kakao invite api");
+  //     console.log("Going to kakao invite api");
 
-      let InviteTemplate: KLCustomTemplate = {
-        templateId: '13618',
-        title: this.downloadappmsgtitle,
-        description: this.downloadappmsg1 + ': ' + OTP + this.downloadappmsg2
-      };
-      this._kakaoCordovaSDK.sendLinkCustom(InviteTemplate).then(
-        res => {
-          console.log(res);
-        }, err => {
-          console.log(err);
-        }
-      )
+  //     let InviteTemplate: KLCustomTemplate = {
+  //       templateId: '13618',
+  //       title: this.downloadappmsgtitle,
+  //       description: this.downloadappmsg1 + ': ' + OTP + this.downloadappmsg2
+  //     };
+  //     this._kakaoCordovaSDK.sendLinkCustom(InviteTemplate).then(
+  //       res => {
+  //         console.log(res);
+  //       }, err => {
+  //         console.log(err);
+  //       }
+  //     )
 
-      this.loading.dismiss();
+  //     this.loading.dismiss();
 
-    })
-  }
-
-  fbShare() {
-    this.showLoader();
-    var OTP: any;
-    var appUrl = "http://play.google.com/store/apps/details?id=com.digitalce.digitalce";
-
-    if (this.platform.is('android')) {
-      appUrl = "http://play.google.com/store/apps/details?id=com.digitalce.digitalce";
-    }
-    else if (this.platform.is('ios')) {
-      appUrl = "";
-    }
-
-    this.appprov.MakeOTP(this.access_token).then((res: any) => {
-      console.log(res);
-      OTP = res.otp;
-      console.log('i am using this ' + OTP);
-
-      this.socialSharing.canShareVia("com.facebook.katana")
-        .then(
-          res => {
-            if (res == "OK") {
-              console.log("canShareVia, with response- " + res);
-              //"https://brigade-electronics.com/wp-content/uploads/2016/04/volvo-construction-equipment-791x500.jpg"
-              this.socialSharing.shareViaFacebookWithPasteMessageHint(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2,
-                null, appUrl, this.downloadappmsgtitle + " " + this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2)
-                .catch(ex => {
-                  console.log(ex);
-                })
-                .then(
-                  res => {
-                    console.log("shareViaFacebook: Success, with response- " + res);
-                  }, error => {
-                    console.log(error);
-                    this.loading.dismiss();
-                  }
-                );
-            }
-          }, error => {
-            console.log(error);
-            this.loading.dismiss();
-          }
-        );
-
-      this.loading.dismiss();
-    })
-  }
+  //   })
+  // }
 
   emailShare() {
     this.showLoader();

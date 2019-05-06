@@ -8,7 +8,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AppProvider } from '../../providers/app/app';
 import { Storage } from '@ionic/storage';
 import { Chart } from 'chart.js';
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+// import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { HomePage } from '../home/home';
 import { OperatorstabsPage } from '../operatorstabs/operatorstabs';
@@ -60,7 +60,7 @@ export class ProfilePage {
   loading: any;
 
   Role: any;
-  toggled: any;
+  toggled: boolean;
 
   constructor(public navCtrl: NavController, 
     public http: Http, 
@@ -71,7 +71,7 @@ export class ProfilePage {
     public loadingCtrl: LoadingController,
     public appprov:AppProvider,
     private storage: Storage,
-    public kakao: KakaoCordovaSDK,
+    // public kakao: KakaoCordovaSDK,
     public _translate: TranslateService) {
       this.toggled = navParams.data.toggled;
       storage.ready().then(() => {

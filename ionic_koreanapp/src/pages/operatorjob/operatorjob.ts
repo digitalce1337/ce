@@ -263,11 +263,17 @@ export class OperatorjobPage {
   }
 
   viewJob($event, jid,title){
-//    console.log("hi");
+   console.log("hi");
     this.navCtrl.push(OpjobdetailsPage, {
       Jid: jid,
       JTitle:title
     });
+    // if(jid == this.pastJid) {
+    //   this.navCtrl.push(OpjobdetailsPage, {
+    //   Jid: jid,
+    //   JTitle:title
+    // })
+    
   }
 
 }

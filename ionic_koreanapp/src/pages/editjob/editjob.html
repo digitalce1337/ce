@@ -33,12 +33,14 @@
  
   <ion-item>
       <ion-label stacked>{{ date_from }}</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>
+      <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime> -->
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>
   </ion-item>
 
   <ion-item>
       <ion-label stacked>{{ date_to }}</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>
+      <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime> -->
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>
   </ion-item>
 
   <ion-item>

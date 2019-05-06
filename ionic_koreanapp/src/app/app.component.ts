@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, MenuClose, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
@@ -9,7 +9,7 @@ import { OperatorstabsPage } from '../pages/operatorstabs/operatorstabs'
 import { LoginPage } from '../pages/login/login';
 import { TranslateService } from '@ngx-translate/core';
 
-import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
+// import { KakaoCordovaSDK, AuthTypes } from 'kakao-sdk';
 
 import { ProfilePage } from '../pages/profile/profile';
 import { Storage } from '@ionic/storage';
@@ -33,21 +33,26 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   toggleButton: boolean = false;
+  show: boolean = true;
 
   pages:PageInterface[] = [
     {title: 'Profile', pageName: ProfilePage, icon: 'person'}
   ]
 
   access_token: string;
-  Role: any;
+  // Role: any = 1;
+  // Role: any;
+  Role: boolean;
+  loading: any;
 
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     public authService: AuthProvider,
     public appprov: AppProvider,
     splashScreen: SplashScreen,
+    private menu: MenuClose,
     private storage: Storage,
-    public kakao: KakaoCordovaSDK,
+    // public kakao: KakaoCordovaSDK,
     private _translate : TranslateService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -66,37 +71,20 @@ export class MyApp {
       else{
         this.rootPage = TabsPage;
       }
-      // if(res === ''){
-      //   this.pages;
-      //   this.rootPage = LoginPage;
-      // }
-      // else{
-        // this.rootPage = TabsPage;
-
-        // this.rootPage = OperatorstabsPage;
-      // }
     });
 
     storage.ready().then(() => {
       storage.get('access_token').then((val) => {
-        // if (val == null){
-        //   console.log("No acccess token");
-        //   this.nav.setRoot(LoginPage);
-        // }
-        // else{
-        //   console.log("Got access token");
-        //   // this.access_token = val.toString();    
-        // }
         this.access_token = val.toString();
         this.appprov.checkRole(this.access_token).then((res) => {
           let data = JSON.stringify(res);
           data = JSON.parse(data);
           // this.loading.dismiss();
           if (data['result'] == "1") {
-            this.Role = 1;
+            this.Role = true;
           }
           else if (data['result'] == "0") {
-            this.Role = 0;
+            this.Role = false;
           }
           else {
             console.log("Not in database");
@@ -104,6 +92,7 @@ export class MyApp {
         }, err => {
           console.log(err);
         });
+        // this.loading.dismiss();
       });
     });
 
@@ -139,8 +128,8 @@ export class MyApp {
     // }
   }
 
-  checkRole() {
-    if(this.Role == 1) {
+  checkRole_() {
+    if(this.Role == true) {
       this.toggleProfile();
     }
     else {
@@ -151,9 +140,11 @@ export class MyApp {
   toggleProfile(){
     if(this.toggleButton == true){
       this.nav.setRoot(OperatorstabsPage);
+      this.menu.close();
     }
     else{
       this.nav.setRoot(TabsPage);
+      this.menu.close();
     }
   }
 

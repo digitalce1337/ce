@@ -79,9 +79,9 @@
         "available" : "Available",
         "busy": "Busy",
         "add_operator" : "Add Operator",
-        "downloadappmsgtitle": "Download DigitalCE and link with me",
-        "downloadappmsg1" : "Use this invitationcode",
-        "downloadappmsg2" : "to link up with me!"
+        "downloadappmsgtitle": "Download ConstructEQ and join me!",
+        "downloadappmsg1" : "Use this invitation code",
+        "downloadappmsg2" : "to join me!"
     },
 
     "viewoperator":{

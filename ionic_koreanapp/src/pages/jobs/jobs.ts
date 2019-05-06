@@ -82,6 +82,11 @@ export class JobsPage {
   upcoming: any;
   job: any;
   
+  date_day:string;
+  date_mth:string;
+  date_yr:string;
+  // tempDate:string[];
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public appprov: AppProvider,
@@ -168,6 +173,19 @@ export class JobsPage {
     }, err=>{
       console.log(err);
     });
+
+    
+    // this.date_yr = this.past_date_from.substring(0,4);
+    // this.date_yr = this.past.date_from.substring(0,4);
+    // this.date_mth =this.past.date_from.substring(5,7);
+    // this.date_day = this.past.date_from.substring(8,10);
+    // this.past.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+
+    // this.date_yr = this.past.date_to.substring(0,4);
+    // this.date_mth =this.past.date_to.substring(5,7);
+    // this.date_day = this.past.date_to.substring(8,10);
+    // this.past.date_to = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+    
   }
 
   retrieveOngoingJobs(){
@@ -179,6 +197,7 @@ export class JobsPage {
       this.ongoingTitle = this.ongoing.title;
       this.ongoing_description = this.ongoing.description;
       this.ongoing_date_from = this.ongoing.date_from;
+      // this.tempDate = this.ongoing.date_from;
       this.ongoing_date_to = this.ongoing.date_to;
       this.ongoing_location = this.ongoing.location;
       this.ongoing_payout = this.ongoing.payout;
@@ -187,7 +206,17 @@ export class JobsPage {
       for(let i = 0; i < this.ongoingTitle.length; i++) {
         totalPayout += parseInt(this.ongoing.payout[i],10);
       }
+      
+      // for(let i=0; i <3; i++)
+      // {
+      //   this.date_yr = this.tempDate[i].substring(0,4);
+      //   this.date_mth = this.tempDate[i].substring(5,7);
+      //   this.date_day = this.tempDate[i].substring(8,10);
+      //   this.ongoing_date_from[i] = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+      //   alert("ongoing date_from: " + this.ongoing_date_from[i]);
+      // }
 
+      
       try{
         for(let i = 0; i < this.ongoingTitle.length; i++) {
           this.ongoingJobs.push({
@@ -204,11 +233,37 @@ export class JobsPage {
       catch{
         console.log("Ongoing job cannot retrieve length");
       }
+      // for(let i=0; i <3; i++)
+      // {
+      //   this.date_yr = this.ongoing_date_from[i].substring(0,4);
+      //   this.date_mth = this.ongoing_date_from[i].substring(5,7);
+      //   this.date_day = this.ongoing_date_from[i].substring(8,10);
+      //   this.ongoing_date_from[i] = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+      //   alert("ongoing date_from: " + this.ongoing_date_from[i]);
+      // }
+      // this.ongoing_date_from = this.ongoing.date_from;
       console.log("Ongoing jobs pushed");
       console.log("Total Ongoing Payout: "+ totalPayout);
     }, err=>{
       console.log(err);
     });
+    // for(let i=0; i <3; i++)
+    // {
+    //   this.date_yr = this.ongoing_date_from[i].substring(0,4);
+    //   this.date_mth = this.ongoing_date_from[i].substring(5,7);
+    //   this.date_day = this.ongoing_date_from[i].substring(8,10);
+    //   this.ongoing_date_from[i] = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+    //   alert("ongoing date_from: " + this.ongoing_date_from[i]);
+    // }
+    // this.date_yr = this.ongoing.date_from.substring(0,4);
+    // this.date_mth =this.ongoing.date_from.substring(5,7);
+    // this.date_day = this.ongoing.date_from.substring(8,10);
+    // this.ongoing.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+
+    // this.date_yr = this.ongoing.date_from.substring(0,4);
+    // this.date_mth =this.ongoing.date_from.substring(5,7);
+    // this.date_day = this.ongoing.date_from.substring(8,10);
+    // this.ongoing.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
   }
 
   retrieveUpcomingJobs(){
@@ -250,6 +305,16 @@ export class JobsPage {
     }, err=>{
       console.log(err);
     });
+    
+    // this.date_yr = this.upcoming.date_from.substring(0,4);
+    // this.date_mth =this.upcoming.date_from.substring(5,7);
+    // this.date_day = this.upcoming.date_from.substring(8,10);
+    // this.upcoming.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+
+    // this.date_yr = this.upcoming.date_from.substring(0,4);
+    // this.date_mth =this.upcoming.date_from.substring(5,7);
+    // this.date_day = this.upcoming.date_from.substring(8,10);
+    // this.upcoming.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
   }
 
  AddJob(){
