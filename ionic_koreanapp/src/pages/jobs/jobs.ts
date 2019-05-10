@@ -20,6 +20,7 @@ export class JobsPage {
   public history: string;
   public txongoing: string;
   public upcomming: string;
+  public cancelled: string;
   public add_job: string;
 
   private access_token: string;

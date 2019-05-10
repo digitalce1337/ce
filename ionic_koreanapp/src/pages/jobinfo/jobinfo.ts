@@ -50,6 +50,8 @@ export class JobinfoPage {
   title: string;
   completed: string;
 
+  editShow: boolean =true;
+
   buttonDisabled: boolean=true;
   buttonColor: string;
 
@@ -235,14 +237,22 @@ export class JobinfoPage {
       if (this.completed == '1'){
         this.buttonDisabled = true;
         this.buttonColor = 'secondary';
+        this.editShow = false;
       }
       else{
         this.buttonDisabled = false;
         this.buttonColor = 'danger';
+        this.editShow = true;
       }
     }, err=>{
       console.log(err);
     });
+  }
+
+  editJob(){
+    console.log("editing");
+    // this.navCtrl.push(EditjobPage, {'jid':this.jid, 'access_token':this.access_token});
+    this.navCtrl.push(EditjobPage, {'access_token':this.access_token,'jid':this.jid });
   }
 
   completeJob(){
@@ -282,13 +292,6 @@ export class JobinfoPage {
       console.log(err);
     });
 
-  }
-
-  editJob(){
-    console.log("editing");
-    // this.navCtrl.push(EditjobPage, {'jid':this.jid, 'access_token':this.access_token});
-    this.navCtrl.push(EditjobPage, {'access_token':this.access_token,'jid':this.jid });
-    
   }
   
   onSelectChange(selectedValue: any){

@@ -73,7 +73,9 @@
         </ion-item-group>
       </section>
     </div>
-    <span ion-button float-right icon-right clear
+    <!-- <span ion-button float-right icon-right clear
+      (click)="addNewInputField()">{{ add }}</span> -->
+    <span ion-button float-end icon-end color="light"
       (click)="addNewInputField()">{{ add }}</span>
 
    <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>
