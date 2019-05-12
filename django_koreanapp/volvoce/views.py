@@ -195,7 +195,7 @@ def GetVehList(request):
     email = request.GET['email']
     with connection.cursor() as cursor:
         cursor.execute(
-            "SELECT vl.serial_no,vl.model_no,vl.purchase_date,vl.desc,vl.vehicle_type,vl.manufacturer,v.ImgUrl FROM volvoce.volvoce_vehiclelist as vl, volvoce.volvoce_vehicle as v where (vl.vehicle_type = v.Vtype and vl.email = %s and vl.is_delete=%s)",
+            "SELECT vl.serial_no,vl.model_no,vl.purchase_date,vl.desc,vl.vehicle_type,vl.manufacturer,v.ImgUrl FROM volvoce.volvoce_vehiclelist as vl, volvoce.volvoce_vehicle as v where (vl.vehicle_type = v.Vtype and vl.manufacturer = v.manufacturer and vl.email = %s and vl.is_delete=%s)",
             [email, '0'])
         res = dictfetchall(cursor)
         serialno = [s['serial_no'] for s in res]
@@ -2213,11 +2213,12 @@ def getVehicleStatus(request):
     vehicle_type = []
     vehicle_count = []
     ImgUrl = []
+    Supplier ='Volvo'
     try:
         for key, value in owner_vehicles_types.items():
             vehicle_type.append(key)
             vehicle_count.append(value)
-            ImgUrl.append(Vehicle.objects.get(Vtype=key).ImgUrl)
+            ImgUrl.append(Vehicle.objects.get(Vtype=key,manufacturer=Supplier).ImgUrl)
     except:
         print("Empty dictionary")
     json_obj = {
@@ -3357,7 +3358,7 @@ def getHomeFleetChart(request):
             month_ChartList = getMonth_list[0]
             year_ChartList = getYear_list[0]
 
-            second_query = "SELECT count(distinct serial_no) as totalVeh FROM volvoce.volvoce_vehiclelist WHERE email=\'%s\'" % (owner_email)
+            second_query = "SELECT count(distinct serial_no) as totalVeh FROM volvoce.volvoce_vehiclelist WHERE email=\'%s\' AND is_delete=\'%s\'" % (owner_email,'0')
             cursor.execute(second_query)
             res = dictfetchall(cursor)
             totalVeh = [r['totalVeh'] for r in res]

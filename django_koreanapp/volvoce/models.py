@@ -29,9 +29,9 @@ class VehicleList(models.Model):
 		return self
 
 class Vehicle(models.Model):
-	Vtype = models.CharField(max_length=100)
+	Vtype = models.CharField(blank=True,null=True,max_length=100)
 	ImgUrl = models.CharField(max_length=100)
-
+	manufacturer = models.CharField(max_length=100)
 	def __unicode__(self):
 		return self
 
