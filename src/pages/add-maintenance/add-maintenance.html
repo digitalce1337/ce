@@ -1,0 +1,59 @@
+<!--
+  Generated template for the AddMaintenancePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ title }} </ion-title>
+  </ion-navbar> 
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+    <ion-item>
+        <ion-label color="primary" stacked>{{ start_date }}</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+    <ion-item>
+        <ion-label color="primary" stacked>{{ end_date }}</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>
+    <ion-item>
+        <ion-label stacked>{{ location }}</ion-label>
+        <ion-input type="text" maxlength="200" [(ngModel)]="LocationField"></ion-input>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>{{ description }}</ion-label>
+          <ion-input type="text" maxlength="200" [(ngModel)]="DescriptionField"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+
+</ion-content>
+ 
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <button ion-button color = "primary" (click) = "addMaintenance()" float-center >{{ add }}</button>
+    <button ion-button color = "primary" (click) = "close()" float-center >{{ cancel }}</button>
+  </ion-toolbar>
+</ion-footer>

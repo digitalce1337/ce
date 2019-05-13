@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle right>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title><h3> {{ welcome }}, {{Uname}} </h3></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <h2> {{ forecast }}</h2> -->
+  <u>{{ fleet }} {{ displaydate }}</u>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let vehicle of vehicles">
+        <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">
+        <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">
+          {{vehicle.vehicle_count}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- <ion-buttons end>
+    <button ion-button [disabled]="isToday" (click)="today()">Today</button>
+    <button ion-button (click)="changeMode('month')">M</button>
+    <button ion-button (click)="changeMode('week')">W</button>
+    <button ion-button (click)="changeMode('day')">D</button>
+    <button ion-button (click)="loadEvents()">Load Events</button>
+  </ion-buttons> -->
+  <div padding>
+  <h3 align="center">{{viewTitle}}</h3>
+    <calendar [eventSource] = "eventSource"
+              [calendarMode] = "calendar.mode"
+              [currentDate] = "calendar.currentDate"
+              (onCurrentDateChanged) = "onCurrentDateChanged($event)"
+              (onEventSelected) = "onEventSelected($event)"
+              (onTitleChanged) = "onViewTitleChanged($event)"
+              (onTimeSelected) = "onTimeSelected($event)"
+              step="30">
+    </calendar>
+  </div> 
+ 
+  <!-- <ion-card>
+    <ion-card-header>
+      {{ jobstats }}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-card>
+      <ion-card-header>   
+             Earnings (MWon)       
+        </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvasEarnings></canvas>
+    </ion-card-content>
+  </ion-card>
+ 
+  <ion-card>
+    <ion-card-header>   
+           Fleet Usage %
+      </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvasFleetUsage></canvas>
+  </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>   
+           Operator Usage %
+      </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvasOperatorUsage></canvas>
+  </ion-card-content>
+  </ion-card> 
+
+</ion-content>

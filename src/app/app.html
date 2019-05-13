@@ -1,0 +1,33 @@
+<ion-menu [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Settings</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-content>
+
+    <ion-list lines="full">
+
+      <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+        <!-- <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon> -->
+        <ion-icon item-start [name]="p.icon"></ion-icon>
+        {{ p.title }}
+      </button>
+
+    </ion-list>
+
+    <ion-list>
+      <ion-item >
+        <ion-label style="font-size:1.0em" *ngIf="Role" [(ngModel)]="Role">Operator Mode</ion-label>
+        <ion-toggle *ngIf="Role" [(ngModel)]="toggleButton" (ionChange)="toggleProfile()"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>
+<ion-nav [root]="rootPage" #content></ion-nav>
+<!-- <ion-nav [root]="rootPage"></ion-nav> -->
+<!--ionic navigation controller. will connect to the file/page that links the nav which is ion-navbar-->

@@ -1,0 +1,146 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- This is for Job Management tab page -->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle right>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header> 
+
+<ion-content padding>
+    <div padding>
+      <ion-segment [(ngModel)]="job">
+        <ion-segment-button value="History">
+          {{ history }}
+        </ion-segment-button>
+        <ion-segment-button value="Ongoing">
+          {{ txongoing }}
+        </ion-segment-button>
+        <ion-segment-button value="Upcoming">
+          {{ upcomming }}
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    
+    <div [ngSwitch]="job">
+      <ion-list *ngSwitchCase="'History'">
+        <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">
+        <ion-grid>
+          <ion-item >
+            <ion-row class="bottomRow">
+              <ion-col col-2>
+                  <ion-avatar>
+                    <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+                  </ion-avatar>
+              </ion-col>
+              <ion-col col-10>
+                <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+                {{pastJob.location}} 
+                <br>
+                {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}}
+                <!-- <img src = 'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg' style="width:4rem; height:4rem">   
+                <br> -->
+                <h3>$ &nbsp; {{pastJob.payout}}</h3>
+              </ion-col>
+              <!-- <ion-col col-2>
+                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, pastJob.jid);">
+              </ion-col> -->
+            </ion-row>
+          </ion-item>    
+        </ion-grid>
+      </ion-card>
+      </ion-list>
+    
+      <ion-list *ngSwitchCase="'Ongoing'">
+        <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">
+        <ion-grid>
+          <ion-item>
+            <ion-row class="bottomRow">
+              <ion-col col-2>
+                  <ion-avatar>
+                    <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+                  </ion-avatar>
+              </ion-col>
+              <ion-col col-10>
+                <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+                {{ongoingJob.location}} 
+                <br>
+                {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}}
+                <!-- <img src = 'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg' style="width:4rem; height:4rem">   
+                <br> -->
+                <h3>$ &nbsp; {{ongoingJob.payout}}</h3>
+              </ion-col>
+              <!-- <ion-col col-2>
+                <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, ongoingJob.jid);">
+              </ion-col> -->
+            </ion-row>
+          </ion-item>    
+        </ion-grid>
+      </ion-card>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'Upcoming'">
+        <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">
+        <ion-grid>
+        <ion-item >
+          <ion-row class="bottomRow">
+            <ion-col col-2>
+                <ion-avatar>
+                  <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+                </ion-avatar>
+            </ion-col>
+            <ion-col col-10>
+              <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+              {{upcomingJob.location}} 
+              <br>
+              {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}}
+              <!-- <img src = 'http://k.kakaocdn.net/dn/bFslS5/btqo3xtP7zp/AKWJEbPeSH6Fok0EH02bk1/profile_110x110c.jpg' style="width:4rem; height:4rem">   
+              <br> -->
+              <h3>$ &nbsp; {{upcomingJob.payout}}</h3>
+            </ion-col>
+            <!-- <ion-col col-2>
+              <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewJob($event, upcomingJob.jid);">
+            </ion-col> -->
+          </ion-row>
+        </ion-item>    
+      </ion-grid>
+      </ion-card>
+    </ion-list>
+    </div>
+
+    <!-- <button ion-button full (click)="takePhoto()">
+      <ion-icon name="camera"></ion-icon>Take Photo
+    </button>
+   -->
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click) = "takePhoto()">Test Camera</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <img *ngIf="image" [src]="image" alt="">
+        </ion-col>
+      </ion-row>
+      </ion-grid> -->
+<!-- 
+    <ion-fab right bottom>
+      <button ion-fab color="light" (click) = "AddJob()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab> -->
+</ion-content>
+
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+      <button ion-button full (click)="AddJob()" > {{ add_job }}</button>
+    </ion-toolbar>
+  </ion-footer>

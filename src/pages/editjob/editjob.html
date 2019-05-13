@@ -1,0 +1,87 @@
+<!--
+  Generated template for the AddjobPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-title>{{ title }}</ion-title> 
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="form" (ngSubmit)="manage(form.value)">
+
+  <ion-item>
+      <ion-label stacked>{{ client }}</ion-label>
+      <ion-input type="text" formControlName ='ClientName' value= {{Client_Name}}></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label stacked>{{ project_earning }}</ion-label>
+      <ion-input type="number" formControlName ='PayOut' value= {{Earning}}></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label stacked>{{ location }}</ion-label>
+      <ion-input type="text" formControlName ='Loc' value = {{locatio}}></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+      <ion-label stacked>{{ date_from }}</ion-label>
+      <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime> -->
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+      <ion-label stacked>{{ date_to }}</ion-label>
+      <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime> -->
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+      <ion-label stacked>{{ description }}</ion-label>
+      <ion-input type="text" formControlName ='Desc' value={{description_}}></ion-input>
+  </ion-item>
+
+    <div formArrayName="OpVehPay" margin-bottom>
+      <section [formGroupName]="i" *ngFor="let opvp of form.controls.OpVehPay.controls; let i = index">
+        <ion-item-group>
+          <ion-item-divider color="light"> {{ operator_vehicle }} {{i+1}}           
+            <span float-right ion-button icon-left clear 
+            *ngIf="form.controls.OpVehPay.length > 1" (click)="removeInputField(i)">
+              <ion-icon name="close"></ion-icon>
+            </span></ion-item-divider>
+          <ion-item>
+            <ion-label floating>{{ operator_name }}:</ion-label>
+            <ion-select formControlName="Opname" (ionChange)="test($event)">
+              <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating>{{ vehicle }}:</ion-label>
+              <ion-select formControlName="Vehtype">
+                  <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>
+              </ion-select>
+          </ion-item>
+
+        </ion-item-group>
+      </section>
+    </div>
+    <span ion-button float-right icon-right clear
+      (click)="addNewInputField()">{{ add }}</span>
+
+   <button ion-button block [disabled]="!form.valid" style="visibility: hidden">{{ submit }}</button>
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+    <button ion-button full (click) = "manage(form.value)" [disabled]="!form.valid">{{ update }}</button>
+</ion-footer>

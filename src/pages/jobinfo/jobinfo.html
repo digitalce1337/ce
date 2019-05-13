@@ -1,0 +1,88 @@
+<!--
+  Generated template for the JobinfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ txtitle }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h2>{{title}}</h2>
+      </ion-col>
+      <ion-col>
+          <ion-icon name="create" (click)=editJob();></ion-icon>
+      </ion-col>
+      <ion-col>
+        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-7>
+        {{date_from}} - {{date_to}}
+      </ion-col>
+      <ion-col col-5>
+        $ &nbsp;{{payout}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      {{location}}
+    </ion-row>
+    <ion-row>
+      {{description}}
+    </ion-row>
+  </ion-grid>
+<br>
+
+  <ion-list>
+      <ion-grid>
+          <ion-item *ngFor="let jobOperator of jobOperators">
+            <ion-row class="bottomRow">
+              <ion-col col-3>
+                  <ion-avatar>
+                    <img [src] = jobOperator.profile_url >
+                  </ion-avatar>
+              </ion-col>
+              <ion-col col-7>
+                {{ jobOperator.name }} 
+                </ion-col>
+                <ion-col col-2>
+                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> 
+              </ion-col>
+            </ion-row>
+          </ion-item>    
+        </ion-grid>
+  </ion-list>
+
+  <br>
+  <h3>{{ reports }}</h3>
+  <ion-item>
+    <ion-label></ion-label>
+    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">
+      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>
+      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>
+      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>
+      <ion-option value="1">{{ all }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-card *ngFor="let report of ReportCards">
+    <ion-card-content>
+      {{report.report_operator_name}}<br>
+      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>
+      <img [src]=report.report_img><br> 
+      {{report.report_desc}}<br>
+      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>
+      <font color="red">{{report.report_fault}}</font>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
