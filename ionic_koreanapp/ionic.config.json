@@ -1,7 +1,0 @@
-{
-  "name": "django_ionic_api",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
