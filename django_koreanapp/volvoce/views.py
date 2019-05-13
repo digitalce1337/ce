@@ -3414,6 +3414,7 @@ def getHomeOperatorChart(request):
     access_token= request.GET['access_token']
     getTotalDays_list =[]
     getMonth_list=[]
+    getMonth_list1=[]
     getYear_list =[]
 
     cur_date = datetime.datetime.now(tz=timezone.utc)
@@ -3432,7 +3433,7 @@ def getHomeOperatorChart(request):
         return JsonResponse(json_obj)
     try:
         with connection.cursor() as cursor:
-            new_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND job_year =\'%s\' GROUP BY job_month ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,cur_year)
+            new_query = "SELECT job_month,job_year, COUNT(*) as totalWorkDays FROM volvoce.volvoce_fulljobdetails WHERE owner=\'%s\' AND job_year =\'%s\' AND operator <> \'%s\' GROUP BY job_month ORDER BY Job_Year ASC, Job_month ASC" % (owner_email,cur_year,'')
             cursor.execute(new_query)
             res = dictfetchall(cursor)
             totalWorkDays = [r['totalWorkDays'] for r in res]
