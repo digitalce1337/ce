@@ -28,7 +28,9 @@ export class JobinfoPage {
   public language: string;
   public txtitle: string;
   public complete_job: string;
+  public cancel_job: string;
   public reports: string;
+  public view_reports: string;
   public past: string;
   public days: string;
   public all: string;
@@ -127,7 +129,9 @@ export class JobinfoPage {
   private _initializeTranslation(): void{
       this.txtitle =  this._translate.instant("jobinfo.txtitle");
       this.complete_job =  this._translate.instant("jobinfo.complete_job");
+      this.cancel_job =  this._translate.instant("jobinfo.cancel_job");
       this.reports =  this._translate.instant("jobinfo.reports");
+      this.view_reports =  this._translate.instant("jobinfo.view_reports");
       this.past =  this._translate.instant("jobinfo.past");
       this.days =  this._translate.instant("jobinfo.days");
       this.all =  this._translate.instant("jobinfo.all");
@@ -293,6 +297,33 @@ export class JobinfoPage {
     });
 
   }
+
+  // cancelJob() {
+  //   console.log("job cancelled");
+  //   console.log(this.buttonDisabled);
+  //   let alert = this.alertCtrl.create({
+  //     title: this.completemsgtitle,
+  //     message: this.completemsg,
+  //     buttons:[
+  //       {
+  //         text: 'Yes',
+  //         handler: () =>{
+  //           this.buttonColor = 'secondary';
+  //           this.buttonDisabled = true;
+  //           this.updateJobComplete();
+  //         }
+  //       },
+  //       {
+  //         text: 'No',
+  //         role: 'cancel',
+  //         handler: () => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       }
+  //     ]
+  //   })
+  //   alert.present()
+  // }
   
   onSelectChange(selectedValue: any){
     console.log('Selected', selectedValue);

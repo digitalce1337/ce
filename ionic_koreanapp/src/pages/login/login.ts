@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Events, } from 'ionic-angular';
 
 // import { Facebook } from '@ionic-native/facebook';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
@@ -46,6 +46,7 @@ export class LoginPage {
   loading: any;
   access_token: string;
   isLoggedIn: boolean = false;
+  roleValue: boolean;
 
   provider = {
     loggedin: false,
@@ -58,7 +59,15 @@ export class LoginPage {
   //   public navCtrl: NavController, public navParams: NavParams) {
   // }
 
-  constructor(private alertCtrl: AlertController, private fb: Facebook, public navCtrl: NavController, public loadingCtrl: LoadingController, private storage: Storage, public appprov: AppProvider, public navParams: NavParams, public _translate: TranslateService) {
+  constructor(private alertCtrl: AlertController, 
+    private fb: Facebook, 
+    public navCtrl: NavController, 
+    public loadingCtrl: LoadingController, 
+    private storage: Storage, 
+    public appprov: AppProvider, 
+    public event: Events,
+    public navParams: NavParams, 
+    public _translate: TranslateService) {
     storage.ready().then(() => {
       storage.get('access_token').then((val) => {        
         this.showLoader();
@@ -212,10 +221,14 @@ export class LoginPage {
                     console.log(update);
                     this.storage.set('access_token', this.access_token);
                     if (this.Role == 'Owner') {
+                      this.roleValue = true;
+                      this.event.publish('roleReceived',this.roleValue);
                       this.navCtrl.setRoot(TabsPage);
                       return;
                     }
                     else {
+                      this.roleValue = false;
+                      this.event.publish('roleReceived',this.roleValue);
                       this.navCtrl.setRoot(OperatorstabsPage, this.storage);
                       return;
                     }

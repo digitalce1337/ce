@@ -118,6 +118,8 @@
     "jobinfo":{
         "txtitle": "Job Information",
         "complete_job" : "Complete Job",
+        "cancel_job" : "Cancel Job",
+        "view_reports": "View Reports",
         "reports": "Reports",
         "past" : "Past",
         "days": "days",

@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { Platform, Nav, MenuClose, LoadingController } from 'ionic-angular';
+import { Platform, Nav, MenuClose, LoadingController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
@@ -44,6 +44,7 @@ export class MyApp {
   // Role: any;
   Role: boolean;
   loading: any;
+  roleValue: any;
 
   constructor(platform: Platform, 
     statusBar: StatusBar, 
@@ -51,6 +52,7 @@ export class MyApp {
     public appprov: AppProvider,
     splashScreen: SplashScreen,
     private menu: MenuClose,
+    public event: Events,
     private storage: Storage,
     // public kakao: KakaoCordovaSDK,
     private _translate : TranslateService) {
@@ -73,6 +75,12 @@ export class MyApp {
       }
     });
 
+    event.subscribe('roleReceived', (value) => {
+      this.roleValue = value;
+      this.Role = this.roleValue;
+      console.log('refreshed', value);
+    });
+    
     storage.ready().then(() => {
       storage.get('access_token').then((val) => {
         this.access_token = val.toString();
