@@ -131,7 +131,8 @@ export class AddjobPage {
     this.counter ++;
     
     return this._FB.group({
-      Opname: ['',Validators.required],
+      Opname: [''],
+      // Opname: ['',Validators.required],
       Vehtype: ['',Validators.required],
     });
   }

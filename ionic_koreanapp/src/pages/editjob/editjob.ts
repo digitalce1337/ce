@@ -128,7 +128,7 @@ export class EditjobPage {
   }
     
   private _initializeTranslation(): void{
-      this.title =  this._translate.instant("addjob.title");
+      this.title =  this._translate.instant("addjob.edit_title");
       this.client = this._translate.instant("addjob.client");
       this.project_earning = this._translate.instant("addjob.project_earning");
       this.date_from = this._translate.instant("addjob.date_from");

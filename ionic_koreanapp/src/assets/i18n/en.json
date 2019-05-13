@@ -130,6 +130,7 @@
 
     "addjob":{
         "title" : "Add Job",
+		"edit_title" : "Edit Job",
         "client": "Client Name",
         "project_earning" : "Project Earning",
         "location": "Location",

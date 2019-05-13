@@ -133,6 +133,7 @@
 
     "addjob":{
         "title" : "추가 작업",
+		"edit_title" : "편집 작업",
         "client": "고객(업체)명",
         "project_earning" : "프로젝트 매출액",
         "location": "장소",
