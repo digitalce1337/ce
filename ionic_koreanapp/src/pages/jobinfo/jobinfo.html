@@ -24,7 +24,8 @@
           <ion-icon name="create" (click)=editJob(); *ngIf="editShow"></ion-icon>
       </ion-col>
       <ion-col>
-        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=cancelJob();>{{ cancel_job }}</button>
+        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled">{{ cancel_job }}</button>
+        <!-- <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=cancelJob();>{{ cancel_job }}</button> -->
       </ion-col>
       <ion-col>
         <button ion-button color="default" [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>
@@ -70,8 +71,9 @@
   <br>
   <h3>{{ reports }}</h3>
   <ion-item>
-    <ion-label>{{ view_reports }}</ion-label>
-    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)">
+    <ion-label></ion-label>
+    <!-- <ion-label>{{ view_reports }}</ion-label> -->
+    <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)" placeholder="{{ past }} 3 {{ days }}">
       <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>
       <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>
       <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>

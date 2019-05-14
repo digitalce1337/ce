@@ -37,6 +37,8 @@ export class JobinfoPage {
   public cancel: string;
   public completemsgtitle: string;
   public completemsg: string;
+  // public cancelmsgtitle: string;
+  // public cancelmsg: string;
 
   public photos: any = [];
   public base64Image: string;
@@ -138,6 +140,8 @@ export class JobinfoPage {
       this.cancel =  this._translate.instant("jobinfo.cancel");
       this.completemsgtitle =  this._translate.instant("jobinfo.completemsgtitle");
       this.completemsg =  this._translate.instant("jobinfo.completemsg");
+      // this.cancelmsgtitle =  this._translate.instant("jobinfo.cancelmsgtitle");
+      // this.cancelmsg =  this._translate.instant("jobinfo.cancelmsg");
   }
 
 
@@ -303,14 +307,14 @@ export class JobinfoPage {
   //   console.log(this.buttonDisabled);
   //   let alert = this.alertCtrl.create({
   //     title: this.completemsgtitle,
-  //     message: this.completemsg,
+  //     message: this.cancelmsg,
   //     buttons:[
   //       {
   //         text: 'Yes',
   //         handler: () =>{
   //           this.buttonColor = 'secondary';
   //           this.buttonDisabled = true;
-  //           this.updateJobComplete();
+  //           this.updateJobCancelled();
   //         }
   //       },
   //       {
@@ -324,7 +328,18 @@ export class JobinfoPage {
   //   })
   //   alert.present()
   // }
-  
+
+  // updateJobCancelled() {
+  //   this.appprov.updateJobCancelled(this.access_token, this.jid).then((res) => {
+  //     let data = JSON.stringify(res);
+  //     data = JSON.parse(data);
+  //     console.log("Job cancelled");
+      
+  //   }, err=>{
+  //     console.log(err);
+  //   });
+  // }
+
   onSelectChange(selectedValue: any){
     console.log('Selected', selectedValue);
     this.getJobCards(this.jid, selectedValue);

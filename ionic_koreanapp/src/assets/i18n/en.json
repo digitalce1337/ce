@@ -112,6 +112,7 @@
         "history" : "History",
         "ongoing" : "Ongoing",
         "upcomming" : "Upcoming",
+		"cancelled" : "Cancelled",
         "add_job": "Add Job"
     },
 
@@ -127,7 +128,7 @@
         "cancel": "Cancel",
         "Ok": "OK",
         "completemsgtitle": "Confirmation",
-        "completemsg": "Are you sure this job is completed?"
+        "completemsg": "Are you sure this job is completed?"        
     },
 
     "addjob":{

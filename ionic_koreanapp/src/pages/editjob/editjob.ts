@@ -69,6 +69,8 @@ export class EditjobPage {
   public date_from_: string;
   public date_to_: string;
   public description_: string;
+  public operator_: string;
+  public vehicle_ : string;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -157,6 +159,9 @@ export class EditjobPage {
       this.date_from_ = data['date_from'];
       this.date_to_ = data['date_to'];
       this.description_ = data['description'];
+      this.operator_ = data['operators'];
+      this.vehicle_ = data['vehicles'];
+      // alert("operator_ :" + this.operator_ + " " + "vehicle_:" + this.vehicle_);
       this.getOperators();
       this.getVehicles();
     }, err => {

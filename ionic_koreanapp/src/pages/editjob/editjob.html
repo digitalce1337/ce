@@ -57,15 +57,17 @@
               <ion-icon name="close"></ion-icon>
             </span></ion-item-divider>
           <ion-item>
-            <ion-label floating>{{ operator_name }}:</ion-label>
-            <ion-select formControlName="Opname" (ionChange)="test($event)">
+            <ion-label stacked>{{ operator_name }}:</ion-label>
+            <!-- <ion-label floating>{{ operator_name }}:</ion-label> -->
+            <ion-select formControlName="Opname" (ionChange)="test($event)" placeholder={{operator_}}>
               <ion-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-              <ion-label floating>{{ vehicle }}:</ion-label>
-              <ion-select formControlName="Vehtype">
+              <ion-label stacked>{{ vehicle }}:</ion-label>
+              <!-- <ion-label floating>{{ vehicle }}:</ion-label> -->
+              <ion-select formControlName="Vehtype" placeholder={{vehicle_}}>
                   <ion-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-option>
               </ion-select>
           </ion-item>

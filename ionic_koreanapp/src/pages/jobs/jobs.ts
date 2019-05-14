@@ -28,6 +28,24 @@ export class JobsPage {
   public image: any;
   public base64Image: string;
 
+  cancelJobs: Array<{
+    jid: string,
+    title: string,
+    date_from: string, 
+    date_to:string,
+    description: string, 
+    location: string,
+    payout:string}>;
+
+  cancelJid: string[];
+  cancelTitle: string[];
+  cancel_date_from: string[];
+  cancel_date_to: string[];
+  cancel_description: string[];
+  cancel_location : string[];
+  cancel_payout: string[];
+  cancel: any;
+
   pastJobs: Array<{
     jid: string,
     title: string,
@@ -138,9 +156,44 @@ export class JobsPage {
       this.history =  this._translate.instant("jobstx.history");
       this.txongoing =  this._translate.instant("jobstx.ongoing");
       this.upcomming =  this._translate.instant("jobstx.upcomming");
+      this.cancelled =  this._translate.instant("jobstx.cancelled");
       this.add_job =  this._translate.instant("jobstx.add_job");
   }
 
+  // retrieveCancelJobs() {
+  //   this.appprov.retrieveCancelJobs(this.access_token).then((res) => {
+  //     this.cancel = res;
+  //     this.cancelJid = this.cancel.jid;
+  //     this.cancelTitle = this.cancel.title;
+  //     this.cancel_description = this.cancel.description;
+  //     this.cancel_date_from = this.cancel.date_from;
+  //     this.cancel_date_to = this.cancel.date_to;
+  //     this.cancel_location = this.cancel.location;
+  //     this.cancel_payout = this.cancel.payout;
+  //     this.cancelJobs = [];
+  //     try{
+  //       for(let i = 0; i < this.cancelTitle.length; i++) {
+  //         this.cancelJobs.push({
+  //           jid: this.cancelJid[i],
+  //           title: this.cancelTitle[i],
+  //           description: this.cancel_description[i],
+  //           date_from: this.cancel_date_from[i].substring(0,10),
+  //           date_to: this.cancel_date_to[i].substring(0,10),
+  //           location: this.cancel_location[i],
+  //           payout: this.cancel_payout[i]
+  //         });
+  //       }
+  //     }
+  //     catch{
+  //       console.log("Cancelled job cannot retrieve length");
+  //     }
+  //     console.log("Cancelled job pushed");
+      
+  //   }, err=>{
+  //     console.log(err);
+  //   });
+
+  // }
 
   retrievePastJobs(){
     this.appprov.retrievePastJobs(this.access_token).then((res) => {
@@ -175,18 +228,6 @@ export class JobsPage {
       console.log(err);
     });
 
-    
-    // this.date_yr = this.past_date_from.substring(0,4);
-    // this.date_yr = this.past.date_from.substring(0,4);
-    // this.date_mth =this.past.date_from.substring(5,7);
-    // this.date_day = this.past.date_from.substring(8,10);
-    // this.past.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
-
-    // this.date_yr = this.past.date_to.substring(0,4);
-    // this.date_mth =this.past.date_to.substring(5,7);
-    // this.date_day = this.past.date_to.substring(8,10);
-    // this.past.date_to = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
-    
   }
 
   retrieveOngoingJobs(){
@@ -248,23 +289,7 @@ export class JobsPage {
     }, err=>{
       console.log(err);
     });
-    // for(let i=0; i <3; i++)
-    // {
-    //   this.date_yr = this.ongoing_date_from[i].substring(0,4);
-    //   this.date_mth = this.ongoing_date_from[i].substring(5,7);
-    //   this.date_day = this.ongoing_date_from[i].substring(8,10);
-    //   this.ongoing_date_from[i] = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
-    //   alert("ongoing date_from: " + this.ongoing_date_from[i]);
-    // }
-    // this.date_yr = this.ongoing.date_from.substring(0,4);
-    // this.date_mth =this.ongoing.date_from.substring(5,7);
-    // this.date_day = this.ongoing.date_from.substring(8,10);
-    // this.ongoing.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
 
-    // this.date_yr = this.ongoing.date_from.substring(0,4);
-    // this.date_mth =this.ongoing.date_from.substring(5,7);
-    // this.date_day = this.ongoing.date_from.substring(8,10);
-    // this.ongoing.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
   }
 
   retrieveUpcomingJobs(){
@@ -306,16 +331,7 @@ export class JobsPage {
     }, err=>{
       console.log(err);
     });
-    
-    // this.date_yr = this.upcoming.date_from.substring(0,4);
-    // this.date_mth =this.upcoming.date_from.substring(5,7);
-    // this.date_day = this.upcoming.date_from.substring(8,10);
-    // this.upcoming.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
 
-    // this.date_yr = this.upcoming.date_from.substring(0,4);
-    // this.date_mth =this.upcoming.date_from.substring(5,7);
-    // this.date_day = this.upcoming.date_from.substring(8,10);
-    // this.upcoming.date_from = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
   }
 
  AddJob(){
