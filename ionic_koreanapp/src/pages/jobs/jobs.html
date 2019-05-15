@@ -120,7 +120,7 @@
     </ion-list>
     
     <ion-list *ngSwitchCase="'Cancelled'">
-      cancelled jobs tab segment
+      <!-- cancelled jobs tab segment -->
       <ion-card *ngFor="let cancelJob of cancelJobs, let i = index" (click)="viewJob($event, cancelJob.jid);">
         <ion-grid>
         <ion-item >
