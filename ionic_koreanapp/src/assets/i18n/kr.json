@@ -115,12 +115,15 @@
         "history" : "완료 작업",
         "ongoing" : "진행 작업",
         "upcomming" : "예정 작업",
+		"cancelled" : "test",
         "add_job": "작업 추가"
     },
 
     "jobinfo":{
         "txtitle": "작업",
         "complete_job" : "작업 완료",
+		"cancel_job" : "test",
+        "view_reports": "test",
         "reports": "보고서",
         "past" : "최근",
         "days": "일",
