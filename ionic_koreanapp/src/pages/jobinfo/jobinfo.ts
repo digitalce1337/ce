@@ -339,7 +339,12 @@ export class JobinfoPage {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       console.log("Job cancelled");
-      
+      this.appprov.deleteJob(this.access_token,this.jid).then((res) =>{
+        let data = JSON.stringify(res);
+        data = JSON.parse(data);
+        console.log("Deleted rows from fullJobDetails");
+      }, err =>{console.log(err);
+      })
     }, err=>{
       console.log(err);
     });

@@ -3625,9 +3625,9 @@ def getMonthlyPay(request):
             months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             for i in months:
                 if i < 8:
-                    cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
-                    first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\'" % (
-                    (months[cur_month - 4 + i - 1]), str(email))
+                    # cursor.execute("SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=%s",[(months[cur_month-4+i-1])])
+                    first_query = "SELECT SUM(payout) FROM volvoce.volvoce_joblist WHERE MONTH(date_to)=\'%s\' AND email = \'%s\' AND completed <> \'%s\'" % (
+                    (months[cur_month - 4 + i - 1]), str(email),'2')
                     cursor.execute(first_query)
                     res = dictfetchall(cursor)
                     expected = [r['SUM(payout)'] for r in res]
