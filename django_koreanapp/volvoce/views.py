@@ -1360,6 +1360,55 @@ def deleteVehicle(request):
         print(json_obj)
         return JsonResponse(json_obj)
 
+def retrieveCancelledJobs(request):
+    access_token = request.GET['access_token']
+    print(access_token)
+    jid = []
+    title = []
+    description = []
+    date_from = []
+    date_to = []
+    location = []
+    payout = []
+    email = ''
+    try:
+        owner = User.objects.get(access_token=access_token)
+        email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        history_jobs = JobList.objects.filter(email=email, completed='2')
+        for job in history_jobs:
+            jid.append(job.JID)
+            title.append(job.title)
+            description.append(job.description)
+            date_from.append(job.date_from)
+            date_to.append(job.date_to)
+            location.append(job.location)
+            payout.append(job.payout)
+        json_obj = {
+            'jid': jid,
+            'title': title,
+            'description': description,
+            'date_from': date_from,
+            'date_to': date_to,
+            'location': location,
+            'payout': payout
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
 
 def retrievePastJobs(request):
     access_token = request.GET['access_token']
@@ -1746,6 +1795,38 @@ def updateJobComplete(request):
     try:
         job = JobList.objects.get(JID=jid)
         job.completed = '1'
+        job.save()
+        json_obj = {
+            'result': 'true'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+
+def updateJobCancelled(request):
+    access_token = request.GET['access_token']
+    jid = request.GET['jid']
+    print(access_token)
+    email = ''
+    try:
+        owner = User.objects.get(access_token=access_token)
+        email = owner.email
+    except Exception as e:
+        print(e)
+        json_obj = {
+            'result': 'false'
+        }
+        print(json_obj)
+        return JsonResponse(json_obj)
+    try:
+        job = JobList.objects.get(JID=jid)
+        job.completed = '2'
         job.save()
         json_obj = {
             'result': 'true'
