@@ -38,7 +38,7 @@ export class JobinfoPage {
   public completemsgtitle: string;
   public completemsg: string;
   // public cancelmsgtitle: string;
-  // public cancelmsg: string;
+  public cancelmsg: string;
 
   public photos: any = [];
   public base64Image: string;
@@ -141,7 +141,7 @@ export class JobinfoPage {
       this.completemsgtitle =  this._translate.instant("jobinfo.completemsgtitle");
       this.completemsg =  this._translate.instant("jobinfo.completemsg");
       // this.cancelmsgtitle =  this._translate.instant("jobinfo.cancelmsgtitle");
-      // this.cancelmsg =  this._translate.instant("jobinfo.cancelmsg");
+      this.cancelmsg =  this._translate.instant("jobinfo.cancelmsg");
   }
 
 
@@ -245,6 +245,11 @@ export class JobinfoPage {
       if (this.completed == '1'){
         this.buttonDisabled = true;
         this.buttonColor = 'secondary';
+        this.editShow = false;      
+      }
+      else if(this.completed =='2') {
+        this.buttonDisabled = true;
+        this.buttonColor = 'secondary';
         this.editShow = false;
       }
       else{
@@ -302,43 +307,43 @@ export class JobinfoPage {
 
   }
 
-  // cancelJob() {
-  //   console.log("job cancelled");
-  //   console.log(this.buttonDisabled);
-  //   let alert = this.alertCtrl.create({
-  //     title: this.completemsgtitle,
-  //     message: this.cancelmsg,
-  //     buttons:[
-  //       {
-  //         text: 'Yes',
-  //         handler: () =>{
-  //           this.buttonColor = 'secondary';
-  //           this.buttonDisabled = true;
-  //           this.updateJobCancelled();
-  //         }
-  //       },
-  //       {
-  //         text: 'No',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       }
-  //     ]
-  //   })
-  //   alert.present()
-  // }
+  cancelJob() {
+    console.log("job cancelled");
+    console.log(this.buttonDisabled);
+    let alert = this.alertCtrl.create({
+      title: this.completemsgtitle,
+      message: this.cancelmsg,
+      buttons:[
+        {
+          text: 'Yes',
+          handler: () =>{
+            this.buttonColor = 'secondary';
+            this.buttonDisabled = true;
+            this.updateJobCancelled();
+          }
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    })
+    alert.present()
+  }
 
-  // updateJobCancelled() {
-  //   this.appprov.updateJobCancelled(this.access_token, this.jid).then((res) => {
-  //     let data = JSON.stringify(res);
-  //     data = JSON.parse(data);
-  //     console.log("Job cancelled");
+  updateJobCancelled() {
+    this.appprov.updateJobCancelled(this.access_token, this.jid).then((res) => {
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);
+      console.log("Job cancelled");
       
-  //   }, err=>{
-  //     console.log(err);
-  //   });
-  // }
+    }, err=>{
+      console.log(err);
+    });
+  }
 
   onSelectChange(selectedValue: any){
     console.log('Selected', selectedValue);

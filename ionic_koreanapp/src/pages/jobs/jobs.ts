@@ -129,6 +129,7 @@ export class JobsPage {
           this.retrievePastJobs();
           this.retrieveOngoingJobs();
           this.retrieveUpcomingJobs();
+          this.retrieveCancelledJobs();
           this._initializeTranslation();
         }
       });
@@ -139,6 +140,7 @@ export class JobsPage {
     this.retrievePastJobs();
     this.retrieveOngoingJobs();
     this.retrieveUpcomingJobs();
+    this.retrieveCancelledJobs();
     this._initializeTranslation();
   }
 
@@ -160,40 +162,40 @@ export class JobsPage {
       this.add_job =  this._translate.instant("jobstx.add_job");
   }
 
-  // retrieveCancelJobs() {
-  //   this.appprov.retrieveCancelJobs(this.access_token).then((res) => {
-  //     this.cancel = res;
-  //     this.cancelJid = this.cancel.jid;
-  //     this.cancelTitle = this.cancel.title;
-  //     this.cancel_description = this.cancel.description;
-  //     this.cancel_date_from = this.cancel.date_from;
-  //     this.cancel_date_to = this.cancel.date_to;
-  //     this.cancel_location = this.cancel.location;
-  //     this.cancel_payout = this.cancel.payout;
-  //     this.cancelJobs = [];
-  //     try{
-  //       for(let i = 0; i < this.cancelTitle.length; i++) {
-  //         this.cancelJobs.push({
-  //           jid: this.cancelJid[i],
-  //           title: this.cancelTitle[i],
-  //           description: this.cancel_description[i],
-  //           date_from: this.cancel_date_from[i].substring(0,10),
-  //           date_to: this.cancel_date_to[i].substring(0,10),
-  //           location: this.cancel_location[i],
-  //           payout: this.cancel_payout[i]
-  //         });
-  //       }
-  //     }
-  //     catch{
-  //       console.log("Cancelled job cannot retrieve length");
-  //     }
-  //     console.log("Cancelled job pushed");
+  retrieveCancelledJobs() {
+    this.appprov.retrieveCancelledJobs(this.access_token).then((res) => {
+      this.cancel = res;
+      this.cancelJid = this.cancel.jid;
+      this.cancelTitle = this.cancel.title;
+      this.cancel_description = this.cancel.description;
+      this.cancel_date_from = this.cancel.date_from;
+      this.cancel_date_to = this.cancel.date_to;
+      this.cancel_location = this.cancel.location;
+      this.cancel_payout = this.cancel.payout;
+      this.cancelJobs = [];
+      try{
+        for(let i = 0; i < this.cancelTitle.length; i++) {
+          this.cancelJobs.push({
+            jid: this.cancelJid[i],
+            title: this.cancelTitle[i],
+            description: this.cancel_description[i],
+            date_from: this.cancel_date_from[i].substring(0,10),
+            date_to: this.cancel_date_to[i].substring(0,10),
+            location: this.cancel_location[i],
+            payout: this.cancel_payout[i]
+          });
+        }
+      }
+      catch{
+        console.log("Cancelled job cannot retrieve length");
+      }
+      console.log("Cancelled job pushed");
       
-  //   }, err=>{
-  //     console.log(err);
-  //   });
+    }, err=>{
+      console.log(err);
+    });
 
-  // }
+  }
 
   retrievePastJobs(){
     this.appprov.retrievePastJobs(this.access_token).then((res) => {

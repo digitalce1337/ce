@@ -24,8 +24,8 @@
           <ion-icon name="create" (click)=editJob(); *ngIf="editShow"></ion-icon>
       </ion-col>
       <ion-col>
-        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled">{{ cancel_job }}</button>
-        <!-- <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=cancelJob();>{{ cancel_job }}</button> -->
+        <!-- <button ion-button color={{buttonColor}} [disabled]="buttonDisabled">{{ cancel_job }}</button> -->
+        <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=cancelJob(); *ngIf="editShow">{{ cancel_job }}</button>
       </ion-col>
       <ion-col>
         <button ion-button color="default" [disabled]="buttonDisabled" (click)=completeJob();>{{ complete_job }}</button>

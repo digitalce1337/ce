@@ -340,17 +340,17 @@ export class AppProvider {
     })
   }
 
-  // public retrieveCancelJobs(access_token){
-  //   console.log("Retrieving Cancelled Jobs");
-  //   return new Promise(resolve => {
-  //     this.http.get(apiKey+'retrieveCancelJobs?access_token='+access_token).subscribe((res) => {
-  //       resolve(res);
-  //       console.log("Cancelled Jobs Retrieved");
-  //     }, err => {
-  //       console.log(err);
-  //     })
-  //   })
-  // }
+  public retrieveCancelledJobs(access_token){
+    console.log("Retrieving Cancelled Jobs");
+    return new Promise(resolve => {
+      this.http.get(apiKey+'retrieveCancelledJobs?access_token='+access_token).subscribe((res) => {
+        resolve(res);
+        console.log("Cancelled Jobs Retrieved");
+      }, err => {
+        console.log(err);
+      })
+    })
+  }
 
   public retrievePastJobs(access_token){
     console.log("Retrieving History Jobs");
@@ -467,17 +467,17 @@ public updateJobComplete(access_token, jid){
     })
 }
 
-// public updateJobCancelled(access_token, jid){
-//   console.log("Updating cancellation of job");
-//   return new Promise(resolve => {
-//     this.http.get(apiKey+'updateJobCancelled?access_token='+access_token+'&jid='+jid).subscribe((res) => {
-//       resolve(res);
-//       console.log("Job cancel updated");
-//     }, err => {
-//       console.log(err);
-//       })
-//   })
-// }
+public updateJobCancelled(access_token, jid){
+  console.log("Updating cancellation of job");
+  return new Promise(resolve => {
+    this.http.get(apiKey+'updateJobCancelled?access_token='+access_token+'&jid='+jid).subscribe((res) => {
+      resolve(res);
+      console.log("Job cancel updated");
+    }, err => {
+      console.log(err);
+      })
+  })
+}
 
 updateOwnerRole(access_token, role){
   console.log("Update owner role");
