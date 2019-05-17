@@ -3155,13 +3155,14 @@ def getOpCapabilities(request):
     access_token = request.GET['access_token']
     vehicle_type = []
     vehicle_url = []
+    brand = 'Volvo'
     try:
         operator = User.objects.get(access_token=access_token)
         operator_email = operator.email
         operator_vehicles = OperatorVehicle.objects.filter(opEmail=operator_email)
         for vehicle in operator_vehicles:
             vehicle_type.append(vehicle.vtype)
-            url = Vehicle.objects.get(Vtype=vehicle.vtype)
+            url = Vehicle.objects.get(Vtype=vehicle.vtype, manufacturer=brand)
             vehicle_url.append(url.ImgUrl)
         json_obj = {
             'vehicle_type': vehicle_type,
