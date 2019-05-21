@@ -3003,7 +3003,13 @@ def getJobCards(request):
             timestamp.append(job.timestamp)
             report_type.append(job.report_type)
             img_urls.append(job.image.url)
-            job_descs.append(job.desc)
+            # if (job.desc != 'undefined'):
+            #     job_descs.append(job.desc)
+            if (job.desc == 'undefined'):
+                job_descs.append('')
+            else:
+                job_descs.append(job.desc)
+            # job_descs.append(job.desc)
             locations.append(job.location)
             # faults.append(job.faults)
             all_faults = job.faults[1:-1]
@@ -3013,7 +3019,11 @@ def getJobCards(request):
                 key = fault.split(':')[0]
                 value = fault.split(':')[1]
                 if value == '1':
-                    temp += key + ' : ' + value + ', '
+                    temp += key + ', '
+
+                    # temp = fault
+                    # temp += key + ' : ' + value + ', '
+            temp = temp.rstrip(", ")
             faults.append(temp)
         json_obj = {
             'email': emails,
