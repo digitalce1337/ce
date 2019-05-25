@@ -128,7 +128,8 @@
         "cancel": "Cancel",
         "Ok": "OK",
         "completemsgtitle": "Confirmation",
-        "completemsg": "Are you sure this job is completed?"        
+        "completemsg": "Are you sure this job is completed?",        
+        "cancelmsg": "Are you sure this job is cancelled?"        
     },
 
     "addjob":{
@@ -209,5 +210,14 @@
         "errormsg": "Please fill up the report and attach an image.",
         "reportmsgtitle": "Success!",
         "reportmsg": "Report added successfully."
-    }
+    },
+	
+	"profile": {
+		"companyName": "Company Name",
+		"companyAdd": "Company Address",
+		"email": "Email",
+		"phone_no": "Phone Number",
+		"language": "Language"
+	
+	}
 }

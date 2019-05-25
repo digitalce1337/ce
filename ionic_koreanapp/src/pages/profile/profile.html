@@ -36,22 +36,25 @@
 
   <ion-grid>
       <ion-label>Email:</ion-label>
+      <!-- <ion-label>{{ email }}:</ion-label> -->
       <b>{{ Uemail }}</b>
   </ion-grid>
   
   <ion-grid>
       <ion-label>Phone Number:</ion-label>
+      <!-- <ion-label>{{ phone_no }}:</ion-label> -->
       <b>{{ Unum }}</b>
   </ion-grid>
 
   <br>
   
-  <ion-grid>
+  <ion-item>
     Change Language:
     <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder="Language">
+    <!-- <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder="{{language}}"> -->
       <ion-option value="en">English</ion-option>
       <ion-option value="kr">한국어</ion-option>
     </ion-select>
-  </ion-grid>
+  </ion-item>
 
 </ion-content>

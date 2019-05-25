@@ -131,7 +131,8 @@
         "cancel": "취소",
         "Ok": "OK",
         "completemsgtitle": "확인",
-        "completemsg": "이 작업이 확실히 완료되었습니까?"
+        "completemsg": "이 작업이 확실히 완료되었습니까?",
+        "cancelmsg": "이 작업이 확실히 취소 된?"
     },
 
     "addjob":{
