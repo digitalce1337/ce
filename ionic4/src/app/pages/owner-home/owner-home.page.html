@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ownerHome</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <u>{{ fleet }} {{ displaydate }}</u> -->
+  <u>Fleet 13 Jun 2019</u>
+
+<ion-grid>
+  <ion-row>
+    vehicle img mini icons
+    <!-- <ion-col col-4 *ngFor="let vehicle of vehicles">
+      <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">
+      <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">
+        {{vehicle.vehicle_count}}
+    </ion-col> -->
+  </ion-row>
+</ion-grid>
+
+<div padding>
+<!-- <h3 align="center">{{viewTitle}}</h3> -->
+<h3 align="center">Calendar</h3>
+  <!-- <calendar [eventSource] = "eventSource"
+            [calendarMode] = "calendar.mode"
+            [currentDate] = "calendar.currentDate"
+            (onCurrentDateChanged) = "onCurrentDateChanged($event)"
+            (onEventSelected) = "onEventSelected($event)"
+            (onTitleChanged) = "onViewTitleChanged($event)"
+            (onTimeSelected) = "onTimeSelected($event)"
+            step="30">
+  </calendar> -->
+</div> 
+
+<!-- <ion-card>
+  <ion-card-header>
+    {{ jobstats }}
+  </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvas></canvas>
+  </ion-card-content>
+</ion-card> -->
+
+<ion-card>
+    <ion-card-header>   
+           Earnings (MWon)       
+      </ion-card-header>
+  <ion-card-content>
+    <canvas #barCanvasEarnings></canvas>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>   
+         Fleet Usage %
+    </ion-card-header>
+<ion-card-content>
+  <canvas #barCanvasFleetUsage></canvas>
+</ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>   
+         Operator Usage %
+    </ion-card-header>
+<ion-card-content>
+  <canvas #barCanvasOperatorUsage></canvas>
+</ion-card-content>
+</ion-card> 
+
+
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ownerFleet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+      
+    <ion-item button>
+    <!-- <ion-item button  *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)"> -->
+    <!-- <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)"> -->
+    <ion-thumbnail slot="start">
+        img
+        <!-- <img [src]=vehicle.img style="width:6rem; height:6rem"> -->
+    </ion-thumbnail>
+      <h2>56789</h2>
+      <!-- <h2>{{vehicle.Modelno}}</h2> -->
+      <p>excavator</p>
+      <!-- <p>{{vehicle.Desc}}</p> -->
+    </ion-item>
+    <!-- </button> -->
+
+    <!-- <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">
+      <ion-thumbnail item-start>
+        <img [src] =>
+      </ion-thumbnail>
+      <h2>{{vehicle.Modelno}}</h2>
+      <p>{{vehicle.Desc}}</p>
+    </button> -->
+  
+  </ion-list>
+
+</ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <ion-button expand="full" (click)="AddVeh()"> Add Vehicle</ion-button>
+    <!-- <button ion-button full (click)="AddVeh()" >{{ add }}</button> -->
+  </ion-toolbar>
+</ion-footer>

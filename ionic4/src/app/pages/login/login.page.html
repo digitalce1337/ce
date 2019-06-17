@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="assets/imgs/LoginIcon.png">
+  <!-- <ion-button>
+      <ion-label>Owner</ion-label>
+  </ion-button> -->
+  <!-- <ion-item button>
+      <ion-label>Owner</ion-label>
+  </ion-item>
+  <br>
+  <ion-button>
+      <ion-label>Operator</ion-label>
+  </ion-button> -->
+<!-- <ion-list ngDefaultControl [(ngModel)]="Role" > -->
+<ion-list>
+    <ion-radio-group ngDefaultControl [(ngModel)]="Role" (ionChange)="showRole()">
+        <ion-item>
+            <ion-label>Owner</ion-label>
+            <ion-radio value ="Owner" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Operator</ion-label>
+          <ion-radio value ="Operator" ></ion-radio>
+        </ion-item>
+    </ion-radio-group>
+</ion-list>
+  
+  <br>
+  <!-- <ion-radio-group [(ngModel)]="Role" (ionChange)="role($event)">
+    <ion-item>
+      <ion-label>Owner name</ion-label>
+      <ion-radio value ="Owner" (ionSelect)="Owner"></ion-radio>
+    </ion-item>
+    <ion-item>
+        <ion-label>Operator</ion-label>
+        <ion-radio value ="Operator" (ionSelect)="Operator"></ion-radio>
+      </ion-item>
+  </ion-radio-group> -->
+
+  
+  <!-- <br /> -->
+  <!-- <ion-list radio-group [(ngModel)]="Role" (ionChange)="role($event)"> -->
+    <!-- <ion-item> -->
+      <!-- <ion-label>{{ owner }}</ion-label> -->
+      <!-- <ion-label>Owner</ion-label> -->
+      <!-- <ion-radio value="Owner" (ionSelect)="Owner"></ion-radio> -->
+    <!-- </ion-item> -->
+    <!-- <ion-item> -->
+      <!-- <ion-label>{{ operator }}</ion-label> -->
+      <!-- <ion-label>Operator</ion-label> -->
+      <!-- <ion-radio value="Operator" (ionSelect)="Operator"></ion-radio> -->
+    <!-- </ion-item> -->
+  <!-- </ion-list> -->
+
+  <!-- <button ion-button block outline (click)="loginWithFacebook1()" *ngIf="!provider.loggedin"> -->
+  <!-- <ion-button expand="block" (click)="loginWithFacebook1()"> -->
+  <ion-button expand="block" (click)="testLogin()">
+    <ion-icon name="logo-facebook"></ion-icon>
+    Login With Facebook
+  </ion-button>
+  <!-- <button ion-button block outline (click)="loginWithFacebook1()">
+    
+  </button> -->
+
+</ion-content>

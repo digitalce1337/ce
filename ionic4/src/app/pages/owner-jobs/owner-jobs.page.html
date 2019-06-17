@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ownerJobs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <ion-segment ngDefaultControl [(ngModel)]="job">
+      <ion-segment-button value="History">
+        History
+        <!-- {{ history }} -->
+      </ion-segment-button>
+      <ion-segment-button value="Ongoing">
+        Ongoing
+        <!-- {{ txongoing }} -->
+      </ion-segment-button>
+      <ion-segment-button value="Upcoming">
+        Upcoming
+        <!-- {{ upcomming }} -->
+      </ion-segment-button>
+      <ion-segment-button value="Cancelled">
+        Cancelled
+        <!-- {{ cancelled }} -->
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="job">
+    <ion-list *ngSwitchCase="'History'">
+      <ion-card *ngFor="let pastJob of pastJobs, let i = index" (click)="viewJob($event, pastJob.jid);">
+      <ion-grid>
+        <ion-item >
+          <ion-row class="bottomRow">
+            <ion-col col-2>
+                <ion-avatar>
+                  <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+                </ion-avatar>
+            </ion-col>
+            <ion-col col-10>
+              <b>Title</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+              <!-- <b>{{pastJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon> -->
+              Location 
+              <!-- {{pastJob.location}}  -->
+              <br>
+              Date From &nbsp;&nbsp; - &nbsp; Date To
+              <!-- {{pastJob.date_from}} &nbsp;&nbsp; - &nbsp; {{pastJob.date_to}} -->
+              <h3>$ &nbsp; $$$$</h3>
+              <!-- <h3>$ &nbsp; {{pastJob.payout}}</h3> -->
+            </ion-col>
+          </ion-row>
+        </ion-item>    
+      </ion-grid>
+    </ion-card>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'Ongoing'">
+      <ion-card *ngFor="let ongoingJob of ongoingJobs, let i = index" (click)="viewJob($event, ongoingJob.jid);">
+      <ion-grid>
+        <ion-item>
+          <ion-row class="bottomRow">
+            <ion-col col-2>
+                <ion-avatar>
+                  <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+                </ion-avatar>
+            </ion-col>
+            <ion-col col-10>
+              <b>Title</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+              <!-- <b>{{ongoingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon> -->
+              Location 
+              <!-- {{ongoingJob.location}}  -->
+              <br>
+              Date From &nbsp;&nbsp; - &nbsp; Date To
+              <!-- {{ongoingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{ongoingJob.date_to}} -->
+              <h3>$ &nbsp; $$$$</h3>
+              <!-- <h3>$ &nbsp; {{ongoingJob.payout}}</h3> -->
+            </ion-col>
+          </ion-row>
+        </ion-item>    
+      </ion-grid>
+    </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Upcoming'">
+      <ion-card *ngFor="let upcomingJob of upcomingJobs, let i = index" (click)="viewJob($event, upcomingJob.jid);">
+      <ion-grid>
+      <ion-item >
+        <ion-row class="bottomRow">
+          <ion-col col-2>
+              <ion-avatar>
+                <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'>
+              </ion-avatar>
+          </ion-col>
+          <ion-col col-10>
+            <b>Title</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+            <!-- <b>{{upcomingJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon> -->
+            Location 
+            <!-- {{upcomingJob.location}}  -->
+            <br>
+            Date from &nbsp;&nbsp; - &nbsp; Date to
+            <!-- {{upcomingJob.date_from}} &nbsp;&nbsp; - &nbsp; {{upcomingJob.date_to}} -->
+            <h3>$ &nbsp; $$$$</h3>
+            <!-- <h3>$ &nbsp; {{upcomingJob.payout}}</h3> -->
+          </ion-col>
+        </ion-row>
+      </ion-item>    
+    </ion-grid>
+    </ion-card>
+  </ion-list>
+  
+  <ion-list *ngSwitchCase="'Cancelled'">
+    <!-- cancelled jobs tab segment -->
+    <ion-card *ngFor="let cancelJob of cancelJobs, let i = index" (click)="viewJob($event, cancelJob.jid);">
+      <ion-grid>
+      <ion-item >
+        <ion-row class="bottomRow">
+          <ion-col col-2>
+              <ion-avatar>
+                img
+                <!-- <img src = 'https://ukplantoperators.com/wp-content/uploads/2016/07/276107.jpg'> -->
+              </ion-avatar>
+          </ion-col>
+          <ion-col col-10>
+            <b>Job Title</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon>
+            <!-- <b>{{cancelJob.title}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><ion-icon name="pin"></ion-icon> -->
+            Location 
+            <!-- {{cancelJob.location}}  -->
+            <br>
+            {{cancelJob.date_from}} &nbsp;&nbsp; - &nbsp; {{cancelJob.date_to}}
+            <h3>$ &nbsp; $$$$</h3>
+            <!-- <h3>$ &nbsp; {{cancelJob.payout}}</h3> -->
+          </ion-col>
+        </ion-row>
+      </ion-item>    
+    </ion-grid>
+    </ion-card>
+  </ion-list>
+  </div>
+
+
+</ion-content>
+<ion-footer>
+    <ion-button expand="full" (click)="goto()">Add job</ion-button>
+    <!-- <ion-button expand="full" (click)="manage(form.value)" [disabled]="!form.valid">{{ submit }}</button> -->
+</ion-footer>
