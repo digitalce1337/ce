@@ -109,6 +109,11 @@ export class OwnerJobsPage implements OnInit {
     this.router.navigateByUrl('/owner-add-job');
   }
 
+  gotoinfo() {
+    console.log("clickec. going to job info page");
+    this.router.navigateByUrl('/owner-job-info');
+  }
+
   retrieveCancelledJobs() {
     this.appprov.retrieveCancelledJobs(this.access_token).then((res) => {
       this.cancel = res;
