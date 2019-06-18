@@ -4,14 +4,14 @@ import { ApiService } from '../apikey/api.service';
 import { AlertController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx'; 
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-
+  public access_token :string = 'EAAf9qfuOeRABANfYesfffF3eW9hZA4WVZBqFH1at83gIQK4dmv4Bb1t5XBo11SPeNSjUTg7Dk4bBKhHR9rCW3LwG2DZAGd9xdc1fcaYpkb1hR6ue18TfXOYPGgHa3jdnWzMwhO20mRhfZAIb9CTkBuNdRhHOL8ZCETZBy5xq5KbUkk3uYJQ9MiMnv2Ihr0VM9LMxd5xNLxegwY5ypgBLSrpsJbX9wH8x6YVwLWxamKLAZDZD';
   constructor(private store: Storage, private apiKey: ApiService, public alertCtrl: AlertController,
     public http: HttpClient, public filetransfer: FileTransfer, public gloc: Geolocation) { }
 
