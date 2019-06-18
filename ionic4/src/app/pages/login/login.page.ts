@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   }
 
   showRole(){
-    console.log("role is: "+this.Role);
+    console.log("Button selected: "+this.Role);
   }
 
   // role(value) {
@@ -55,14 +55,13 @@ export class LoginPage implements OnInit {
   // }
 
   testLogin(){
-    console.log("clicked");
-    console.log("show me"+this.Role);
+    console.log("Clicked on Login");    
     if(this.Role == 'Owner') {
-      this.router.navigateByUrl('owner/tabs/owner-home');
-      console.log("clicked");
+      console.log("User Role: "+this.Role);
+      this.router.navigateByUrl('owner/tabs/owner-home');    
     }
     else {
-      console.log("show me"+this.Role);
+      console.log("User Role: "+this.Role);
       this.router.navigateByUrl('operator/tabs/operator-home');
       // this.navCtrl.navigateRoot('/LoginPage');
     }
