@@ -7,33 +7,36 @@
   <ion-content padding>
     <!-- <u>{{ fleet }} {{ displaydate }}</u> -->
     <u>Display Current Date</u>
-    <h3>Test,{{welcome}}</h3>
+    <h3>{{welcome}}</h3>
   
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h3>Display Skill Sets</h3>
+        <h3>Display Skill Sets </h3>
       </ion-col>     
     </ion-row>
     <ion-row>
         <ion-col>
-          <h3>Display images from assets</h3>
+          <h3>Display images from assets </h3>
         </ion-col>     
       </ion-row>
   </ion-grid>
   
   <div padding>
-  <!-- <h3 align="center">{{viewTitle}}</h3> -->
-  <h3 align="center">Calendar</h3>
-    <!-- <calendar [eventSource] = "eventSource"
-              [calendarMode] = "calendar.mode"
-              [currentDate] = "calendar.currentDate"
-              (onCurrentDateChanged) = "onCurrentDateChanged($event)"
-              (onEventSelected) = "onEventSelected($event)"
-              (onTitleChanged) = "onViewTitleChanged($event)"
-              (onTimeSelected) = "onTimeSelected($event)"
-              step="30">
-    </calendar> -->
+  <!-- <ion-content padding>     -->
+  <h3 align="center">{{viewTitle}}</h3>  
+  <h3 align="center">Calendar</h3>  
+    <calendar
+    [eventSource] = "eventSource"
+    [calendarMode] = "calendar.mode"
+    [currentDate] = "calendar.currentDate"
+    (onCurrentDateChanged) = "onCurrentDateChanged($event)"
+    (onEventSelected) = "onEventSelected($event)"
+    (onTitleChanged) = "onViewTitleChanged($event)"
+    (onTimeSelected) = "onTimeSelected($event)"
+    step="30">
+    </calendar>
+  <!-- </ion-content>  -->
   </div> 
   
   <ion-card>

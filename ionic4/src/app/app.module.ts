@@ -28,6 +28,10 @@ import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http'
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import {NgCalendarModule} from 'ionic2-calendar';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+
 export function HttpLoaderFactory(http: HttpClient){
   console.log("you pass here");
   return new TranslateHttpLoader(http, './assets/i18n/','.json');
@@ -37,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient){
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule, 
@@ -44,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient){
     IonicModule.forRoot(), 
     AppRoutingModule,
     IonicStorageModule.forRoot(),
+    NgCalendarModule,
     HttpModule,        
     TranslateModule.forRoot({
       loader: {
