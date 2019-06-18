@@ -1,9 +1,98 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>ownerJobInfo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/owner/tabs/owner-jobs"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  Job info once job clicked on the jobs page
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h2>Job title</h2>
+        <!-- <h2>{{title}}</h2> -->
+      </ion-col>
+      <ion-col>
+          <!-- <ion-icon name="create" (click)=editJob();></ion-icon> -->
+          <ion-icon name="create" (click)=editJob(); ></ion-icon>
+          <!-- <ion-icon name="create" (click)=editJob(); *ngIf="editShow"></ion-icon> -->
+      </ion-col>
+      <ion-col>
+        <!-- <button ion-button color={{buttonColor}} [disabled]="buttonDisabled">{{ cancel_job }}</button> -->
+        <ion-button color="danger" (click)=cancelJob(); >Cancel</ion-button>
+        <!-- <button ion-button color={{buttonColor}} [disabled]="buttonDisabled" (click)=cancelJob(); *ngIf="editShow">{{ cancel_job }}</button> -->
+      </ion-col>
+      <ion-col>
+        <ion-button color="secondary" (click)=completeJob();>Complete</ion-button>
+        <!-- <button ion-button color="default" [disabled]="buttonDisabled" (click)=completeJob(); *ngIf="editShow">{{ complete_job }}</button> -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-7>
+        Date From - Date To
+        <!-- {{date_from}} - {{date_to}} -->
+      </ion-col>
+      <ion-col col-5>
+        $ &nbsp;Random amount
+        <!-- $ &nbsp;{{payout}} -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      Location
+      <!-- {{location}} -->
+    </ion-row>
+    <ion-row>
+      Description
+      <!-- {{description}} -->
+    </ion-row>
+  </ion-grid>
+<br>
+
+  <!-- <ion-list>
+      <ion-grid>
+          <ion-item *ngFor="let jobOperator of jobOperators">
+            <ion-row class="bottomRow">
+              <ion-col col-3>
+                  <ion-avatar>
+                    <img [src] = jobOperator.profile_url >
+                  </ion-avatar>
+              </ion-col>
+              <ion-col col-7>
+                {{ jobOperator.name }} 
+                </ion-col>
+                <ion-col col-2>
+                <img [src] = jobOperator.vehicle_url style="width:4rem; height:4rem"> 
+              </ion-col>
+            </ion-row>
+          </ion-item>    
+        </ion-grid>
+  </ion-list>
+
+  <br>
+  <h3>{{ reports }}</h3>
+  <ion-item>
+    <ion-label></ion-label> -->
+    <!-- <ion-label>{{ view_reports }}</ion-label> -->
+    <!-- <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)" placeholder="{{ past }} 3 {{ days }}">
+      <ion-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-option>
+      <ion-option value="7">{{ past }} 7 {{ days }}</ion-option>
+      <ion-option value="30">{{ past }} 30 {{ days }}</ion-option>
+      <ion-option value="1">{{ all }}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-card *ngFor="let report of ReportCards">
+    <ion-card-content>
+      {{report.report_operator_name}}<br>
+      <ion-icon name="pin"></ion-icon> &nbsp; <a href="#" (click)= "openMap(report.report_location)">{{report.report_location}}</a>
+      <img [src]=report.report_img><br> 
+      {{report.report_desc}}<br>
+      {{report.report_vehicle_type}} &nbsp;&nbsp;&nbsp; ({{report.report_serial_no}}&nbsp;-&nbsp;{{report.report_model_no}})<br>
+      <font color="red">{{report.report_fault}}</font>
+    </ion-card-content>
+  </ion-card> -->
+
 
 </ion-content>
