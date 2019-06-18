@@ -21,8 +21,17 @@ import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { InAppBrowser} from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { Http } from '@angular/http';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+
+
+import {HttpModule, Http } from '@angular/http';
+import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient){
+  console.log("you pass here");
+  return new TranslateHttpLoader(http, './assets/i18n/','.json');
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +43,15 @@ import { HttpClientModule, HttpHeaders } from '@angular/common/http';
     ReactiveFormsModule,
     IonicModule.forRoot(), 
     AppRoutingModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpModule,        
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (HttpLoaderFactory),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     StatusBar,
