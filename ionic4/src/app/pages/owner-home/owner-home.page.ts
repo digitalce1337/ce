@@ -3,6 +3,7 @@ import { AppService } from 'src/app/services/app.service';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-owner-home',
@@ -75,19 +76,40 @@ export class OwnerHomePage implements OnInit {
 
   public displaydate: any;
 
-  constructor(public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService) { 
+  constructor(public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService,
+    private _translate: TranslateService) { 
     // this.getMonthlyPay();
     // this.getHomeFleetChart();    
     // this.getHomeOperatorChart();
   }
 
   ngOnInit() {
+    this._initializeTranslation();
     this.getEarnings();
     this.getFleetUsage();
     this.getOperatorUsage();
     // this.getMonthlyPay();
     // this.getHomeFleetChart();    
     // this.getHomeOperatorChart();
+  }
+  public changeLanguage(): void{
+    this._translateLanguage();
+  }
+  
+  private _translateLanguage() : void{
+  //  this._translate.use(this.language);
+    this._translate.setDefaultLang(this.language);
+    this._initializeTranslation();
+  }
+    
+  private _initializeTranslation(): void{
+    setTimeout(()=>{
+      this.title =  this._translate.instant("home.title");
+      this.welcome = this._translate.instant("home.welcome");
+      this.forecast = this._translate.instant("home.forecast");
+      this.fleet = this._translate.instant("home.fleet");
+      this.jobstats = this._translate.instant("home.jobstats");
+    }, 200);
   }
 
   async presentAlert(title,msg){

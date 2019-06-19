@@ -4,6 +4,7 @@ import { AlertController, NavController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router, NavigationExtras } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-owner-jobs',
@@ -99,10 +100,34 @@ export class OwnerJobsPage implements OnInit {
   job: any;
 
   constructor(public appprov: AppService, public alertCtrl: AlertController, public androidPermissions: AndroidPermissions,
-    public camera: Camera, public router: Router, public navCtrl: NavController) { }
+    public camera: Camera, public router: Router, public navCtrl: NavController, public _translate: TranslateService) { }
 
   ngOnInit() {
+    // this.retrievePastJobs();
+    // this.retrieveOngoingJobs();
+    // this.retrieveUpcomingJobs();
+    // this.retrieveCancelledJobs();
+    this._initializeTranslation();
   }
+
+  public changeLanguage(): void{
+    this._translateLanguage();
+  }
+   
+  private _translateLanguage() : void{
+    this._translate.use(this.language);
+    this._initializeTranslation();
+  }
+    
+  private _initializeTranslation(): void{
+      this.title =  this._translate.instant("jobstx.title");
+      this.history =  this._translate.instant("jobstx.history");
+      this.txongoing =  this._translate.instant("jobstx.ongoing");
+      this.upcomming =  this._translate.instant("jobstx.upcomming");
+      this.cancelled =  this._translate.instant("jobstx.cancelled");
+      this.add_job =  this._translate.instant("jobstx.add_job");
+  }
+
 
   goto() {
     console.log("clickec. going to add job page");

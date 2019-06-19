@@ -1,12 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ownerHome</ion-title>
+    <!-- <ion-title>ownerHome</ion-title> -->
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- <u>{{ fleet }} {{ displaydate }}</u> -->
-  <u>Fleet 13 Jun 2019 </u>
+  <u>{{ fleet }} {{ displaydate }}</u>
+  <!-- <u>Fleet 13 Jun 2019 </u> -->
 
 <ion-grid>
   <ion-row>
@@ -21,7 +22,7 @@
 
 <div padding>
 <h3 align="center">{{viewTitle}}</h3>
-<h3 align="center">Calendar</h3>
+<!-- <h3 align="center">Calendar</h3> -->
   <calendar [eventSource] = "eventSource"
             [calendarMode] = "calendar.mode"
             [currentDate] = "calendar.currentDate"

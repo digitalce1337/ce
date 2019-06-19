@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OwnerJobsPage } from './owner-jobs.page';
+import { OwnerEditJobPage } from './owner-edit-job.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: OwnerJobsPage
+    component: OwnerEditJobPage
   }
 ];
 
@@ -18,10 +18,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [OwnerJobsPage]
+  declarations: [OwnerEditJobPage]
 })
-export class OwnerJobsPageModule {}
+export class OwnerEditJobPageModule {}

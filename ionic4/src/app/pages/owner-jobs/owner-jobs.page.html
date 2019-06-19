@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ownerJobs</ion-title>
+    <!-- <ion-title>ownerJobs</ion-title> -->
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,20 +9,20 @@
   <div padding>
     <ion-segment ngDefaultControl [(ngModel)]="job">
       <ion-segment-button value="History">
-        History
-        <!-- {{ history }} -->
+        <!-- History -->
+        {{ history }}
       </ion-segment-button>
       <ion-segment-button value="Ongoing">
-        Ongoing
-        <!-- {{ txongoing }} -->
+        <!-- Ongoing -->
+        {{ txongoing }}
       </ion-segment-button>
       <ion-segment-button value="Upcoming">
-        Upcoming
-        <!-- {{ upcomming }} -->
+        <!-- Upcoming -->
+        {{ upcomming }}
       </ion-segment-button>
       <ion-segment-button value="Cancelled">
-        Cancelled
-        <!-- {{ cancelled }} -->
+        <!-- Cancelled -->
+        {{ cancelled }}
       </ion-segment-button>
     </ion-segment>
   </div>
