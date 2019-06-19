@@ -1,2 +1,13 @@
 .vscode
 www
+tyings
+platforms
+e2e
+node_modules
+plugins
+resources
+tsconfig.json
+tslint.json
+ionic.config.json
+package.json
+package-lock.json
