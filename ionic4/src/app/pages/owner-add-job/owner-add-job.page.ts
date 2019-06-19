@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from 'src/app/services/app.service';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-owner-add-job',
@@ -53,7 +54,7 @@ export class OwnerAddJobPage implements OnInit {
   DispSno: string[];
   vehAvail: string[];
 
-  constructor(public _FB: FormBuilder, public appprov: AppService,
+  constructor(public _translate: TranslateService,public _FB: FormBuilder, public appprov: AppService,
     public modalCtrl: ModalController) { 
       // this.access_token = this.navParams.get('access_token');
       this.VehicleTD = [];
@@ -77,7 +78,30 @@ export class OwnerAddJobPage implements OnInit {
     }
 
   ngOnInit() {
+    this._translateLanguage();
   }
+  private _translateLanguage() : void{
+    // this._translate.use(this.language);
+    this._initializeTranslation();
+  }
+  private _initializeTranslation(): void{
+    this.title =  this._translate.instant("addjob.title");    
+    this.client =  this._translate.instant("addjob.client");
+    this.project_earning =  this._translate.instant("addjob.project_earning");
+    this.location =  this._translate.instant("addjob.location");
+    this.date_from =  this._translate.instant("addjob.date_from");
+    this.date_to =  this._translate.instant("addjob.date_to");
+    this.description =  this._translate.instant("addjob.description");
+    this.operator_vehicle =  this._translate.instant("addjob.operator_vehicle");
+    this.operator_name =  this._translate.instant("addjob.operator_name");
+    this.submit =  this._translate.instant("addjob.submit");
+    this.add =  this._translate.instant("addjob.add");
+    this.back =  this._translate.instant("addjob.back");  
+    this.addjobmsgtitle =  this._translate.instant("addjob.addjobmsgtitle");
+    this.addjobmsg =  this._translate.instant("addjob.addjobmsg");
+    // console.log(this.welcome);        
+}
+
   initOpVehPay(): FormGroup{
     this.counter ++;
     
