@@ -15,20 +15,20 @@
           <ion-row class="bottomRow" (click)="viewOperator($event, operator.operatorlist);">
             <ion-col col-2>
               <ion-avatar>
-                <!-- <img [src]=operator.operatordetails_profileurl> -->
-                profileImg
+                <img [src]=operator.operatordetails_profileurl>
+                <!-- profileImg -->
               </ion-avatar>
             </ion-col>
             <ion-col col-8>
-              <!-- {{operator.operatordetails_name}} -->
-              Operator Name
-              <!-- <img [src]=operator.operatordetails_status style="width:1rem; height:1rem"> -->
-              status icon
-              <!-- {{operator.operatordetails_busydate}} -->
-              Status
+              {{operator.operatordetails_name}}
+              <!-- Operator Name -->
+              <img [src]=operator.operatordetails_status style="width:1rem; height:1rem">
+              <!-- status icon -->
+              {{operator.operatordetails_busydate}}
+              <!-- Status -->
               <br>
-              <!-- <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src]=vehicles style="width:4rem; height:4rem"> -->
-              skills imgs
+              <img *ngFor="let vehicles of operator.operatordetails_vehicles" [src]=vehicles style="width:4rem; height:4rem">
+              <!-- skills imgs -->
             </ion-col>
             <!-- <ion-col col-2>
               <img src = "../../assets/imgs/more_button.png" style="width:2rem; height:2rem" (click)="viewOperator($event, operator.operatorlist);">

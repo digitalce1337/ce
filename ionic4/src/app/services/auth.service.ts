@@ -117,21 +117,6 @@ export class AuthService {
     if (AToken === undefined) {
       return;
     }
-    // return this.http.get(this.api.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).pipe(tap(data => {
-    // // return this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).pipe(data => {
-    //   console.log(data);
-    //   // resolve(data);
-    // }, err => {
-    //   console.log('error in auth getuserinfo');
-    //   console.log(err);
-    // });
-
-    // return this.http.get(this.api.apiKey + 'getUserInfo?access_token='+AToken).pipe(tap(data => {
-    //   console.log(data);
-    //   resolve(data);
-    //   // return data;
-    // })
-    // )
 
     return new Promise<any>((resolve) => {
       let res = this.http.get(this.api.apiKey + 'getUserInfo?access_token='+AToken);
@@ -146,17 +131,6 @@ export class AuthService {
     });
     
 
-    // return new Promise(resolve => {
-    //   // this.http.get(this.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
-    //   // this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
-    //   this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).subscribe(data => {
-    //     console.log(data);
-    //     // resolve(data);
-    //   }, err => {
-    //     console.log('error in auth getuserinfo');
-    //     console.log(err);
-    //   });
-    // });
   }
 
 

@@ -73,22 +73,22 @@ export class OwnerAddVehiclePage implements OnInit {
     if(this.SerialNo != '' && this.ModelNo != '' && this.PurchaseDate && 
     this.SelManu != '' && this.Description != '' && this.SelVeh != '') {
       let datestr = this.PurchaseDate.toString();
-      // this.appprov.addVeh(this.UsrEmail,
-      //                     this.SerialNo,
-      //                     this.ModelNo,
-      //                     datestr,
-      //                     this.SelManu,
-      //                     this.Description,
-      //                     this.SelVeh).then((res) => {
-      //                       // this.appprov.presentAlert('Success!','Vehicle Successfully Added');
-      //                       this.SerialNo = '';
-      //                       this.ModelNo = '';
-      //                       this.PurchaseDate;
-      //                       this.Description = '';
-      //                       this.promptUser();
-      //                     },err=>{
-      //                       console.log(err);
-      //                     })
+      this.appprov.addVeh(this.UsrEmail,
+                          this.SerialNo,
+                          this.ModelNo,
+                          datestr,
+                          this.SelManu,
+                          this.Description,
+                          this.SelVeh).then((res) => {
+                            // this.appprov.presentAlert('Success!','Vehicle Successfully Added');
+                            this.SerialNo = '';
+                            this.ModelNo = '';
+                            this.PurchaseDate;
+                            this.Description = '';
+                            this.promptUser();
+                          },err=>{
+                            console.log(err);
+                          })
     }
     else{
       this.appprov.presentAlert('Error!', 'Please fill up the form!');

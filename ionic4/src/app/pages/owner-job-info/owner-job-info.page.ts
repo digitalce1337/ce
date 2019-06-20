@@ -77,7 +77,7 @@ export class OwnerJobInfoPage implements OnInit {
   report_vehicle_types: string[];
   report_faults: string[];
 
-  constructor(public navCtrl: NavController, public _translate: TranslateService, public appprov: AppService, private apiKey: ApiService) { }
+  constructor(public navCtrl: NavController, public _translate: TranslateService, public appprov: AppService, private api: ApiService) { }
 
   ngOnInit() {
     this.retrieveJobDetails(this.jid);
@@ -128,8 +128,8 @@ export class OwnerJobInfoPage implements OnInit {
       if (this.report_imgs != undefined || this.report_imgs != null){
         for (let i=0; i<this.report_imgs.length; i++){
           this.ReportCards.push({
-            report_img: this.apiKey + this.report_imgs[i].toString(),
-            // report_img: this.apiKey.slice(0,-1) + this.report_imgs[i].toString(),
+            report_img: this.api.apiKey + this.report_imgs[i].toString(),
+            // report_img: this.api.apiKey.slice(0,-1) + this.report_imgs[i].toString(),
             report_desc: this.report_descs[i],
             report_location: this.report_locations[i],
             report_operator_name: this.report_operator_names[i],

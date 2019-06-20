@@ -40,7 +40,7 @@ export class OwnerFleetPage implements OnInit {
 
   ngOnInit() {
     this._initializeTranslation(); 
-    // this.getFleetin();
+    this.getFleetin();
   }
 
   public changeLanguage(): void{

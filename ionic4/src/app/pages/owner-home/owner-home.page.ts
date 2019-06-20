@@ -72,6 +72,7 @@ export class OwnerHomePage implements OnInit {
   public Ucompany: any;
   public Ucompanyadd: any;
 
+  // private access_token:string;
   private access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';
 
   public displaydate: any;
@@ -86,12 +87,14 @@ export class OwnerHomePage implements OnInit {
   ngOnInit() {
     this._initializeTranslation();
     this.getUserInfo();
-    this.getEarnings();
-    this.getFleetUsage();
-    this.getOperatorUsage();
-    // this.getMonthlyPay();
-    // this.getHomeFleetChart();    
-    // this.getHomeOperatorChart();
+    this.getMonthlyPay();
+    this.getVehicleStatus('');
+    // this.getEarnings();
+    // this.getFleetUsage();
+    // this.getOperatorUsage();
+    
+    this.getHomeFleetChart();    
+    this.getHomeOperatorChart();
   }
   public changeLanguage(): void{
     this._translateLanguage();
@@ -141,7 +144,7 @@ export class OwnerHomePage implements OnInit {
       data = JSON.parse(data);
       let chartExpectedMoney = data['Expected'];
       let chartReceivedMoney = data['Received'];        
-      // this.getEarnings(chartExpectedMoney,chartReceivedMoney);    
+      this.getEarnings(chartExpectedMoney,chartReceivedMoney);    
     }, err => {
       console.log(err);
     })
@@ -152,7 +155,7 @@ export class OwnerHomePage implements OnInit {
       var data = JSON.stringify(res);
       data = JSON.parse(data);    
       let chartFirstMonth = data['chartData'];  
-      // this.getOperatorUsage(chartFirstMonth);     
+      this.getOperatorUsage(chartFirstMonth);     
     }, err => {
       console.log(err);
     })
@@ -163,7 +166,7 @@ export class OwnerHomePage implements OnInit {
       var data = JSON.stringify(res);
       data = JSON.parse(data);    
       let chartFirstMonth = data['chartData'];  
-      // this.getFleetUsage(chartFirstMonth);     
+      this.getFleetUsage(chartFirstMonth);     
     }, err => {
       console.log(err);
     })
@@ -256,8 +259,8 @@ export class OwnerHomePage implements OnInit {
     })
   }//end of getVehicle
 
-  // getEarnings(chartExpectedMoney,chartReceivedMoney)
-  getEarnings()
+  getEarnings(chartExpectedMoney,chartReceivedMoney)
+  // getEarnings()
   {
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var today = new Date();
@@ -276,11 +279,11 @@ export class OwnerHomePage implements OnInit {
     }
     //Expected
     console.log("Load test DATA SETTT");
-    // var ExpectedData = chartExpectedMoney;
+    var ExpectedData = chartExpectedMoney;
     var dataPack1 = ['5','14','14','4','30','45','60'];
 
     //Total
-    // var totalData = chartReceivedMoney;
+    var totalData = chartReceivedMoney;
     var dataPack2 = ['10','35','50','10','35','50','90'];
 
   
@@ -291,16 +294,16 @@ export class OwnerHomePage implements OnInit {
         datasets: [
           {
           label: 'Expected',
-          // data: ExpectedData,
-          data: dataPack1,
+          data: ExpectedData,
+          // data: dataPack1,
           // backgroundColor: "rgba(0, 110,255, 0.2)",
           backgroundColor: "rgba(107,142,35, 0.2)",                
           borderWidth:1
         },
         {
           label: 'Earned',
-          // data: totalData,
-          data: dataPack2,
+          data: totalData,
+          // data: dataPack2,
           // backgroundColor: "rgba(51, 102, 102, 0.2)", //light green
           // backgroundColor: "rgba(225, 58, 55, 0.7)", //red            
           backgroundColor: "rgba(152,251,152, 0.2)",        
@@ -345,8 +348,8 @@ export class OwnerHomePage implements OnInit {
 
   }
 
-  // getFleetUsage(chartData){
-  getFleetUsage(){
+  getFleetUsage(chartData){
+  // getFleetUsage(){
     // var specificMachine = [10,15,6,12];
     var baseDays = 22;
     var vehNum = 4;
@@ -358,8 +361,8 @@ export class OwnerHomePage implements OnInit {
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
-    // var chartData_Pack = chartData;
-    var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
+    var chartData_Pack = chartData;
+    // var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
 
     for(let i=0; i<month_range; i++)
     {
@@ -376,8 +379,8 @@ export class OwnerHomePage implements OnInit {
         labels: labels_month,
         datasets: [{
           label: '%',
-          data: dataPack1,
-          // data: chartData_Pack,
+          // data: dataPack1,
+          data: chartData_Pack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           // borderColor: "rbga(0, 110, 255, 1)",
           borderWidth:1
@@ -403,8 +406,8 @@ export class OwnerHomePage implements OnInit {
     })
   }
 
-  // getOperatorUsage(chartData){
-  getOperatorUsage(){
+  getOperatorUsage(chartData){
+  // getOperatorUsage(){
     // var specificMachine = [10,15,6,12];
     var baseDays = 22;
     var vehNum = 4;
@@ -416,7 +419,7 @@ export class OwnerHomePage implements OnInit {
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
-    // var chartData_Pack = chartData;
+    var chartData_Pack = chartData;
     var dataPack1 = [fleetPercentage,'14','14','4','30','45','60'];
 
     for(let i=0; i<month_range; i++)
@@ -434,8 +437,8 @@ export class OwnerHomePage implements OnInit {
         labels: labels_month,
         datasets: [{
           label: '%',
-          // data: chartData_Pack,
-          data: dataPack1,
+          data: chartData_Pack,
+          // data: dataPack1,
           backgroundColor: "rgba(0, 110,255, 0.2)",
           // borderColor: "rbga(0, 110, 255, 1)",
           borderWidth:1

@@ -22,7 +22,8 @@ export class OwnerOperatorsPage implements OnInit {
   public downloadappmsg1: string;
   public downloadappmsg2: string;
 
-  private access_token: string;
+  // private access_token: string;
+  private access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';
   public UsrEmail: any;
   loading: any;
 
@@ -48,6 +49,7 @@ export class OwnerOperatorsPage implements OnInit {
     private socialSharing: SocialSharing, public appprov: AppService, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
+    this.getEmail(this.access_token); 
   }
 
   getEmail(access_token) {

@@ -21,7 +21,8 @@ public skill_sets: string;
 
 @ViewChild('barCanvas') barCanvas;
   barChart: any;
-  access_token: any;
+  // access_token: any;
+  private access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';
   userinfo: any;
   Uemail: any;
   Unum: any;
@@ -61,11 +62,11 @@ public skill_sets: string;
 }
   ngOnInit() {    
     this._translateLanguage();
-    // this.getUserInfo();
-    // this.getOperatorJoblist();
-    // this.getCapabilities();
-    this.getJobStats();
-    // this.getOperatorHomePageUtil()
+    this.getUserInfo();
+    this.getOperatorJoblist();
+    this.getCapabilities();
+    // this.getJobStats();
+    this.getOperatorHomePageUtil();
     // this._initializeTranslation();
   }
   onViewTitleChanged(title){
@@ -183,14 +184,14 @@ public skill_sets: string;
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       let chartData = data['chartData']                
-      // this.getJobStats(chartData);              
+      this.getJobStats(chartData);              
     }, err=>{
       console.log(err);
     });
   }
   
-  // getJobStats(chartData){
-  getJobStats(){
+  getJobStats(chartData){
+  // getJobStats(){
     var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
@@ -198,9 +199,9 @@ public skill_sets: string;
     var month_range = 4;
     var dataPack1 = ['7','14','14','4','22','20','15'];
     //Original real-live data
-    // var chart_DataPack = chartData;
+    var chart_DataPack = chartData;
     //Default test data
-    var chart_DataPack = dataPack1;
+    // var chart_DataPack = dataPack1;
     for(let i=0; i<month_range; i++)
     {
       labels_month.push(months[(month+12 - i)%12]);
