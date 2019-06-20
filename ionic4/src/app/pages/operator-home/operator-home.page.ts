@@ -93,7 +93,7 @@ public skill_sets: string;
   getUserInfo(){
     this.authService.getUserinfo(this.access_token).then((result) => {
       this.userinfo = result;
-      this.userinfo = JSON.parse(this.userinfo._body);
+      // this.userinfo = JSON.parse(this.userinfo._body);
       this.Uemail = this.userinfo.email;
       this.Unum = this.userinfo.phone_no;
       this.Uname = this.userinfo.name;

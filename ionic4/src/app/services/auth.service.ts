@@ -7,6 +7,9 @@ import { ApiService } from '../apikey/api.service';
 import { BehaviorSubject } from 'rxjs';
 import { asElementData } from '@angular/core/src/view';
 import { environment } from '../../environments/environment';
+import { tap } from 'rxjs/operators';
+import { resolve } from 'q';
+import { error } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,7 @@ export class AuthService {
 
   public token: any;
   // authenState = new BehaviorSubject(false);
-  constructor(public http: HttpClient, public storage: Storage, private apiKey: ApiService ) { }
+  constructor(public http: HttpClient, public storage: Storage, private api: ApiService ) { }
 
   createAccount(details) {
     return new Promise((resolve, reject) => {
@@ -27,7 +30,7 @@ export class AuthService {
 
 
 
-      this.http.post(this.apiKey + 'auth/users/create/', JSON.stringify(details), { headers: headers })
+      this.http.post(this.api.apiKey + 'auth/users/create/', JSON.stringify(details), { headers: headers })
         // .then(res => {
           .subscribe(res => {
           const data = res;
@@ -52,7 +55,7 @@ export class AuthService {
       headers.append('Accept', 'application/json');
       headers.append('content-type', 'application/json');
 
-      this.http.post(this.apiKey + 'auth/jwt/create', JSON.stringify(credentials), { headers: headers })
+      this.http.post(this.api.apiKey + 'auth/jwt/create', JSON.stringify(credentials), { headers: headers })
         .subscribe(res => {
           // .toPromise().then(res => {
           const data = res;
@@ -102,7 +105,7 @@ export class AuthService {
 
   GetProducts() {
     return new Promise(resolve => {
-      this.http.get(this.apiKey + '').subscribe(data => {
+      this.http.get(this.api.apiKey + '').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
@@ -114,16 +117,46 @@ export class AuthService {
     if (AToken === undefined) {
       return;
     }
-    return new Promise(resolve => {
-      // this.http.get(this.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
-      // this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
-      this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'text'}).subscribe(data => {
+    // return this.http.get(this.api.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).pipe(tap(data => {
+    // // return this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).pipe(data => {
+    //   console.log(data);
+    //   // resolve(data);
+    // }, err => {
+    //   console.log('error in auth getuserinfo');
+    //   console.log(err);
+    // });
+
+    // return this.http.get(this.api.apiKey + 'getUserInfo?access_token='+AToken).pipe(tap(data => {
+    //   console.log(data);
+    //   resolve(data);
+    //   // return data;
+    // })
+    // )
+
+    return new Promise<any>((resolve) => {
+      let res = this.http.get(this.api.apiKey + 'getUserInfo?access_token='+AToken);
+      res.subscribe((data) => {
+        console.log('here in authService getuserinfo');
+        console.log(data);
         resolve(data);
-      }, err => {
+      }, error => {
         console.log('error in auth getuserinfo');
-        console.log(err);
+        console.log(error);
       });
     });
+    
+
+    // return new Promise(resolve => {
+    //   // this.http.get(this.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
+    //   // this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
+    //   this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'json'}).subscribe(data => {
+    //     console.log(data);
+    //     // resolve(data);
+    //   }, err => {
+    //     console.log('error in auth getuserinfo');
+    //     console.log(err);
+    //   });
+    // });
   }
 
 

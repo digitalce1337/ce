@@ -197,9 +197,10 @@ export class OwnerHomePage implements OnInit {
   }
   
   getUserInfo(){
+    // this.authService.getUserinfo(this.access_token).then((result) => {
     this.authService.getUserinfo(this.access_token).then((result) => {
       this.userinfo = result;
-      this.userinfo = JSON.parse(this.userinfo._body);
+      // this.userinfo = JSON.parse(this.userinfo._body);
       this.Uemail = this.userinfo.email;
       this.Udob = this.userinfo.dob;
       this.Uname = this.userinfo.name;
