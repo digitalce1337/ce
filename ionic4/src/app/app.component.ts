@@ -35,7 +35,7 @@ export class AppComponent {
         console.log('res: '+ res);
         if(res == ''){
           // this.router.initialNavigation('/LoginPage');
-          // this.router.navigateByUrl('LoginPage');
+          this.router.navigateByUrl('login');
         }
         else {
           // this.authService.authenState.getValue();

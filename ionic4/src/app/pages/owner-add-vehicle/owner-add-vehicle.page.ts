@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-owner-add-vehicle',
@@ -36,10 +37,36 @@ export class OwnerAddVehiclePage implements OnInit {
 
   buttonOpt: boolean;
 
-  constructor(public navCtrl: NavController, public appprov: AppService, private alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public appprov: AppService, private alertCtrl: AlertController,
+    public _translate: TranslateService) { }
 
   ngOnInit() {
+    this._initializeTranslation();
   }
+
+  public changeLanguage(): void{
+    this._translateLanguage();
+  }
+   
+  private _translateLanguage() : void{
+    this._translate.use(this.language);
+    this._initializeTranslation();
+  }
+    
+  private _initializeTranslation(): void{
+      this.title =  this._translate.instant("addvehicle.title");
+      this.vehicle_type =  this._translate.instant("addvehicle.vehicle_type");
+      this.manufacturer =  this._translate.instant("addvehicle.manufacturer");
+      this.vehicle_details =  this._translate.instant("addvehicle.vehicle_details");
+      this.model_no =  this._translate.instant("addvehicle.model_no");
+      this.serial_no =  this._translate.instant("addvehicle.serial_no");
+      this.purchase_date =  this._translate.instant("addvehicle.purchase_date");
+      this.description = this._translate.instant("addvehicle.description");
+      this.add =  this._translate.instant("addvehicle.add");
+      this.addmsgtitle = this._translate.instant("addvehicle.addmsgtitle");
+      this.addmsg = this._translate.instant("addvehicle.addmsg");
+  }
+
 
   AddVehicle(){
 

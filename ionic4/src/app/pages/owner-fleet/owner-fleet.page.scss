@@ -1,0 +1,25 @@
+page-fleets {
+    .item ion-thumbnail{
+        min-width: 6rem;
+        max-width: 6rem;
+        min-height: 6rem;
+        img {
+            max-width: 6rem;
+            min-width: 6rem;
+            border-radius: 50%;
+        }
+    }
+
+    // ion-thumbnail,
+    // ion-thumbnail > img {
+    //     width: 50px !important;
+    //     height: 50px !important;
+    //     border-radius: 50%;
+    // }
+    .FloatButton{
+        left: 0px;
+        top:565px;
+        z-index: 1000;
+    }
+
+}

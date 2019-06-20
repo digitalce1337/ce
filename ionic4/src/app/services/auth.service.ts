@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Storage } from '@ionic/storage';
 import { ApiService } from '../apikey/api.service';
 import { BehaviorSubject } from 'rxjs';
-
+import { asElementData } from '@angular/core/src/view';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   public token: any;
-  authenState = new BehaviorSubject(false);
+  // authenState = new BehaviorSubject(false);
   constructor(public http: HttpClient, public storage: Storage, private apiKey: ApiService ) { }
 
   createAccount(details) {
@@ -21,6 +22,10 @@ export class AuthService {
 
       const headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
+      
+      // let httpOptions = {headers:new HttpHeaders ({ 'Content-Type': 'application/json'})}, reponseType:'text' as 'json'};
+
+
 
       this.http.post(this.apiKey + 'auth/users/create/', JSON.stringify(details), { headers: headers })
         // .then(res => {
@@ -34,7 +39,7 @@ export class AuthService {
         }, (err) => {
           reject(err);
         });
-        this.authenState.next(true);
+        // this.authenState.next(true);
     });
   }
 
@@ -66,7 +71,7 @@ export class AuthService {
 
   logout() {
     this.storage.set('token', '');
-    this.authenState.next(false);
+    // this.authenState.next(false);
   }
 
 
@@ -75,9 +80,9 @@ export class AuthService {
     return new Promise((resolve, reject) => {
 
       this.storage.get('token').then((value) => {
-        if(value) {
-          this.authenState.next(true);
-        }
+        // if(value) {
+        //   this.authenState.next(true);
+        // }
         // this.token = value;
         this.token = '';
 
@@ -91,9 +96,9 @@ export class AuthService {
     });
   }
 
-  isAuthenticated() {
-    return this.authenState.value;
-  }
+  // isAuthenticated() {
+  //   return this.authenState.value;
+  // }
 
   GetProducts() {
     return new Promise(resolve => {
@@ -110,7 +115,9 @@ export class AuthService {
       return;
     }
     return new Promise(resolve => {
-      this.http.get(this.apiKey + 'getUserInfo?access_token=' + AToken).subscribe(data => {
+      // this.http.get(this.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
+      // this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken).subscribe(data => {
+      this.http.get(environment.apiKey + 'getUserInfo?access_token='+ AToken,{responseType: 'text'}).subscribe(data => {
         resolve(data);
       }, err => {
         console.log('error in auth getuserinfo');

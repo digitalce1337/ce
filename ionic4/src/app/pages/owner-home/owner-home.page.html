@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <!-- <ion-title>ownerHome</ion-title> -->
-    <ion-title>{{ title }}</ion-title>
+    <!-- <ion-title>{{ title }}</ion-title> -->
+    <ion-title><h3> {{ welcome }}, {{Uname}} </h3></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,12 +12,12 @@
 
 <ion-grid>
   <ion-row>
-    vehicle img mini icons
-    <!-- <ion-col col-4 *ngFor="let vehicle of vehicles">
+    <!-- vehicle img mini icons -->
+    <ion-col col-4 *ngFor="let vehicle of vehicles">
       <img [src] = vehicle.ImgUrl style="width:4rem; height:4rem">
       <img [src] = vehicle.vehicle_status style="width:1rem; height:1rem">
         {{vehicle.vehicle_count}}
-    </ion-col> -->
+    </ion-col>
   </ion-row>
 </ion-grid>
 
