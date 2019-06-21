@@ -21,7 +21,8 @@ export class OwnerJobsPage implements OnInit {
   public cancelled: string;
   public add_job: string;
 
-  private access_token: string;
+  // private access_token: string;
+  private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
   
   public image: any;
   public base64Image: string;
@@ -103,10 +104,11 @@ export class OwnerJobsPage implements OnInit {
     public camera: Camera, public router: Router, public navCtrl: NavController, public _translate: TranslateService) { }
 
   ngOnInit() {
-    // this.retrievePastJobs();
-    // this.retrieveOngoingJobs();
-    // this.retrieveUpcomingJobs();
-    // this.retrieveCancelledJobs();
+    this.job = "Ongoing";
+    this.retrievePastJobs();
+    this.retrieveOngoingJobs();
+    this.retrieveUpcomingJobs();
+    this.retrieveCancelledJobs();
     this._initializeTranslation();
   }
 
@@ -130,12 +132,12 @@ export class OwnerJobsPage implements OnInit {
 
 
   goto() {
-    console.log("clickec. going to add job page");
+    console.log("clicked. going to add job page");
     this.router.navigateByUrl('/owner-add-job');
   }
 
   gotoinfo() {
-    console.log("clickec. going to job info page");
+    console.log("clicked. going to job info page");
     this.router.navigateByUrl('/owner-job-info');
   }
 
