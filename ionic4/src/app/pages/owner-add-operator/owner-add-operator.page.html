@@ -7,8 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 add operator details 
+  <ion-item>
+    <ion-label stacked>{{ email }}</ion-label>
+    <ion-input type="text" [(ngModel)]="emailField"></ion-input>
+  </ion-item>
+
 </ion-content>
 
 <ion-footer no-shadow>

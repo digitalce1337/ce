@@ -86,6 +86,8 @@ export class OwnerHomePage implements OnInit {
 
   ngOnInit() {
     this._initializeTranslation();
+    this.getEmailPay();
+    this.getOwnerJoblist(); 
     this.getUserInfo();
     this.getMonthlyPay();
     this.getVehicleStatus('');

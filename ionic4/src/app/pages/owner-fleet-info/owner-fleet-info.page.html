@@ -1,9 +1,77 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ownerFleetInfo</ion-title>
+    <!-- <ion-title>ownerFleetInfo</ion-title> -->
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col><ion-img src="{{img}}" width="140" height="140"></ion-img></ion-col>
+      <!-- <ion-col><img src="{{vehicle.img}}" width="140" height="140"></img></ion-col> -->
+      <ion-col>
+        <!-- <h4>{{ vehicle.model_no }}</h4> <br /> -->
+        <h4>{{ Modelno }}</h4> <br />
+        <!-- <b>{{ serial_no }} </b>: {{ vehicle.serial_no }} <br /> -->
+        <b>{{ serial_no }} </b>: {{ serialno }} <br />
+        <b>{{ purchase_date }}</b>: {{ pdate }} <br />
+        <b>{{ machine_hour }}</b>: {{ machinehour }}
+        <br/>
+        <!-- <ion-button float-center expand="small" color="danger"  (click)="deleteVehicle(vehicle.serial_no, vehicle.model_no)">{{ remove_vehicle }}</ion-button> -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <b style="font-size:2em">{{ maintenance }}</b><br/>
+          <b style="font-size:2em">{{ vehicle.completed_count }}</b> {{ completed }}<br/>
+          {{ last_service }}: {{vehicle.last_service }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <b style="font-size:2em">{{ vehicle.upcoming_count }}</b> {{ upcomming }} 
+            <!-- <ion-button icon-only float-center expand="small" color="dark" round style="margin-top: -10px" (click)="AddMaintenance()"> 
+                <ion-icon name="add" style="font-size:1em"></ion-icon>
+            </ion-button>
+            <ion-button icon-only float-center expand="small" color="dark" round style="margin-top: -10px" (click)="EditMaintenance()"> 
+                <ion-icon name="create" style="font-size:1em"></ion-icon>
+            </ion-button> -->
+              <br/>
+            {{ vehicle.upcoming_date }} {{ vehicle.upcoming_place }}
+        </ion-col>
+    </ion-row>
 
+    <ion-row>
+        <ion-col>
+            <b style="font-size:2em">{{ employment }}</b><br/>
+            <div text-center><b>{{ viewTitle }}</b></div>
+<!-- 
+            <calendar 
+            [eventSource]="eventSource"
+            [calendarMode]="calendar.mode"
+            [currentDate]="calendar.currentDate"
+            (onEventSelected)="onEventSelected($event)"
+            (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event)"
+            step="30"
+            class="calendar"></calendar> -->
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <b style="font-size:2em">{{ utilization }}</b><br/>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card>
+    <ion-card-header>
+      {{ month }}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barVehCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

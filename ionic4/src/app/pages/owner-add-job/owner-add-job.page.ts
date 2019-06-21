@@ -28,7 +28,7 @@ export class OwnerAddJobPage implements OnInit {
   public addjobmsgtitle: string;
   public addjobmsg: string;
 
-  private access_token;
+  public access_token;
   public form: FormGroup;
   public UsrEmail:any;
   public OpList: any;

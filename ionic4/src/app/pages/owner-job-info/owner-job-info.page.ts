@@ -30,7 +30,7 @@ export class OwnerJobInfoPage implements OnInit {
   public photos: any = [];
   public base64Image: string;
 
-  private access_token: string;
+  public access_token: string;
 
   jid: string;
   payout: string;

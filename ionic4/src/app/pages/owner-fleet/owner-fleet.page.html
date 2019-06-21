@@ -10,8 +10,9 @@
   <ion-list>
       
     <!-- <ion-item button> -->
-    <ion-item button  *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)">
-    <!-- <button ion-item *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)"> -->
+    <!-- <ion-item button  *ngFor="let vehicle of vehicles"> -->
+    <ion-item button  *ngFor="let vehicle of vehicles" (click)="itemTapped1($event,vehicle)">
+    <!-- <ion-item button  *ngFor="let vehicle of vehicles" (click)="itemTapped($event,vehicle)"> -->
     <ion-thumbnail slot="start">
         <!-- img -->
         <img [src]=vehicle.img style="width:6rem; height:6rem">
@@ -40,5 +41,8 @@
     <ion-button expand="full" (click)="AddVeh()">{{ add }}</ion-button>
     <!-- <ion-button expand="full" (click)="AddVeh()"> Add Vehicle</ion-button> -->
     <!-- <button ion-button full (click)="AddVeh()" >{{ add }}</button> -->
+  </ion-toolbar>
+  <ion-toolbar position="bottom">
+    <ion-button expand="full" (click)="itemTapped()">Info</ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -15,6 +15,8 @@ export class OwnerFleetPage implements OnInit {
   public title: string; 
   public add: string;
 
+  item_v:any;
+
   vehicles: Array<{
     serialno: string,
     Modelno: string, 
@@ -65,15 +67,14 @@ export class OwnerFleetPage implements OnInit {
     // this.route.navigateByUrl('OwnerAddVehiclePage');
   }
 
-  itemTapped(event, item) {
-    // this.nav.push(FleetInfoPage, {item: item});
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          item: item,
-      }
-    };
-    this.route.navigateByUrl('owner-fleet-info',navigationExtras);
-  }
+  // itemTapped(event, item) {
+  
+  itemTapped() {
+    console.log("here itemtapped");
+    this.route.navigateByUrl('owner-fleet-info');
+    console.log("moving to fleet info");
+  }  
+
 
   getFleets(emailin){
     this.appprov.GetFleet(emailin).then((res) => {
@@ -109,6 +110,35 @@ export class OwnerFleetPage implements OnInit {
     }, err =>{
       console.log(err);
     });
+  }
+
+  itemTapped1(event, item_v) {
+    // itemTapped() {
+      // this.nav.push(FleetInfoPage, {item: item});
+      // item_v = this.vehicles;
+      console.log("here itemtapped");
+      console.log("item_v: " + item_v);
+      console.log("item_v: " + item_v.Modelno);
+      console.log("item_v: " + item_v.img);
+      console.log("item_v: " + item_v.pdate);
+
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          serialno: item_v.serialno,
+          Modelno: item_v.Modelno, 
+          pdate:item_v.pdate,
+          Desc: item_v.Desc, 
+          vtype:item_v.vtype,
+          manu:item_v.manu,
+          img: item_v.img
+        }
+      };
+      console.log("this is item_v: " + navigationExtras);
+      // this.route.navigateByUrl('/owner-fleet-info', navigationExtras);
+      // this.route.navigateByUrl('owner-fleet-info',navigationExtras);
+      // this.navCtrl.navigateForward('/owner-fleet-info');
+      this.navCtrl.navigateForward(['owner-fleet-info'], navigationExtras);
+      // console.log("moving to fleet info");
   }
 
 }
