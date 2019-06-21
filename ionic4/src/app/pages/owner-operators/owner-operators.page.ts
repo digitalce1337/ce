@@ -5,6 +5,7 @@ import { AppService } from 'src/app/services/app.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { OwnerAddOperatorPage } from '../owner-add-operator/owner-add-operator.page';
 import { OwnerViewOperatorPage } from '../owner-view-operator/owner-view-operator.page';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-owner-operators',
@@ -22,8 +23,8 @@ export class OwnerOperatorsPage implements OnInit {
   public downloadappmsg1: string;
   public downloadappmsg2: string;
 
-  // private access_token: string;
-  private access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';
+  // public access_token: string;
+  public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';
   public UsrEmail: any;
   loading: any;
 
@@ -46,10 +47,30 @@ export class OwnerOperatorsPage implements OnInit {
   public operatordetails_busydate: string[];
 
   constructor(private modal: ModalController, public navCtrl: NavController, public modalCtrl: ModalController,
-    private socialSharing: SocialSharing, public appprov: AppService, public loadingCtrl: LoadingController) { }
+    private socialSharing: SocialSharing, public appprov: AppService, public loadingCtrl: LoadingController,public _translate: TranslateService ) { }
 
   ngOnInit() {
+    this._translateLanguage();
     this.getEmail(this.access_token); 
+  }
+
+  public changeLanguage(): void {
+    this._translateLanguage();
+  }
+
+  private _translateLanguage(): void {
+    this._translate.use(this.language);
+    this._initializeTranslation();
+  }
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("operators.title");
+    this.available = this._translate.instant("operators.available");
+    this.busy = this._translate.instant("operators.busy");
+    this.add_operator = this._translate.instant("operators.add_operator");
+    this.downloadappmsgtitle = this._translate.instant("operators.downloadappmsgtitle");
+    this.downloadappmsg1 = this._translate.instant("operators.downloadappmsg1");
+    this.downloadappmsg2 = this._translate.instant("operators.downloadappmsg2");
   }
 
   getEmail(access_token) {
@@ -135,6 +156,7 @@ export class OwnerOperatorsPage implements OnInit {
 
     const myModal = await this.modalCtrl.create({component:OwnerAddOperatorPage, componentProps:{access_token: this.access_token,enableBackdropDismiss: false}});
     await myModal.present();
+    // myModal.present();
     myModal.dismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
@@ -172,42 +194,42 @@ export class OwnerOperatorsPage implements OnInit {
   emailShare() {
     console.log("email sharing here create OTP");
     // this.showLoader();
-    // var OTP: any;
-    // this.appprov.MakeOTP(this.access_token).then((res: any) => {
-    //   console.log(res);
-    //   OTP = res.otp;
-    //   console.log('i am using this ' + OTP);
+    var OTP: any;
+    this.appprov.MakeOTP(this.access_token).then((res: any) => {
+      console.log(res);
+      OTP = res.otp;
+      console.log('i am using this ' + OTP);
 
-    //   // Check if sharing via email is supported
-    //   this.socialSharing.canShareViaEmail()
-    //     .then(
-    //       res => {
-    //         if (res == "OK") {
-    //           console.log(res);
-    //           // Share via email
-    //           this.socialSharing.shareViaEmail(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2 + " " +
-    //             'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, [''])
-    //             // 'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, ['recipient@example.org'])
-    //             .then(
-    //               res => {
-    //                 console.log("ShareViaEmail status: " + res);
-    //               }, error => {
-    //                 console.log("ShareViaEmail error: " + error);
-    //               });
-    //         }
-    //       }, error => {
-    //         console.log(error);
-    //       });
+      // Check if sharing via email is supported
+      this.socialSharing.canShareViaEmail()
+        .then(
+          res => {
+            if (res == "OK") {
+              console.log(res);
+              // Share via email
+              this.socialSharing.shareViaEmail(this.downloadappmsg1 + ': ' + OTP + " " + this.downloadappmsg2 + " " +
+                'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, [''])
+                // 'http://play.google.com/store/apps/details?id=com.digitalce.digitalce', this.downloadappmsgtitle, ['recipient@example.org'])
+                .then(
+                  res => {
+                    console.log("ShareViaEmail status: " + res);
+                  }, error => {
+                    console.log("ShareViaEmail error: " + error);
+                  });
+            }
+          }, error => {
+            console.log(error);
+          });
 
-    //   this.loading.dismiss();
-    // })
+      this.loading.dismiss();
+    })
   }
 
   async showLoader() {
     this.loading = await this.loadingCtrl.create({
       message: 'Loading...'
     });
-    this.loading.present();
+    await this.loading.present();
   }
 
 }
