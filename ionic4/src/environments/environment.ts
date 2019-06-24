@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiKey: 'http://192.168.43.27:8000/'
-  apiKey: 'http://10.178.26.64:8000/'
+  // apiKey: 'http://10.178.26.64:8000/'
+  apiKey: 'http://192.168.43.188:8000/'
 };
 
 /*
