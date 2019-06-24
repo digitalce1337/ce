@@ -327,13 +327,14 @@ export class OwnerJobsPage implements OnInit {
   }
 
   viewJob(event, jid){
-    console.log(jid);
+    console.log("Check jobID value: "+jid);    
     let navigationExtras: NavigationExtras = {
       queryParams: {
           TakeJid: jid
       }
     };
-    this.router.navigateByUrl('owner-job-info', navigationExtras );
+    this.navCtrl.navigateForward(['owner-job-info'], navigationExtras );
+    // this.router.navigateByUrl('owner-job-info', navigationExtras );
     // this.nav.push(JobinfoPage, {'jid':jid});
   }
 

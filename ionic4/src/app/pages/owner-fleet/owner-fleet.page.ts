@@ -15,7 +15,7 @@ export class OwnerFleetPage implements OnInit {
   public title: string; 
   public add: string;
 
-  item_v:any;
+  // item_v:any;
 
   vehicles: Array<{
     serialno: string,
