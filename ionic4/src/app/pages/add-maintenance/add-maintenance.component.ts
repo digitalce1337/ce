@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-maintenance',
@@ -19,6 +19,9 @@ export class AddMaintenanceComponent implements OnInit {
   public add: string;
   public cancel: string;
 
+  serial;
+  model;
+
   // private access_token: string;
 
   //Zul account
@@ -32,10 +35,13 @@ export class AddMaintenanceComponent implements OnInit {
   LocationField: any;
   DescriptionField: any;
 
-  constructor(public _translate: TranslateService, public appprov: AppService, public modalCtrl: ModalController) { }
+  constructor(public _translate: TranslateService, public appprov: AppService, public modalCtrl: ModalController, 
+    public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
     console.log('ionViewDidLoad AddMaintenancePage');
+    console.log("addMaintenance serial no: " + this.serial);
+    console.log("addMaintenance model no: " + this.model);
     this._initializeTranslation();
   }
 
@@ -63,8 +69,8 @@ export class AddMaintenanceComponent implements OnInit {
     let date_to = this.Todatetime;
     let location = this.LocationField;
     let desc = this.DescriptionField;
-    let serial_no = this.vehInfo.serial_no;
-    let modelnum = this.vehInfo.model_no;
+    let serial_no = this.serial;
+    let modelnum = this.model;
     this.appprov.addMaintenance(this.access_token, serial_no, date_from, date_to, location, desc,modelnum).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -77,7 +83,8 @@ export class AddMaintenanceComponent implements OnInit {
 
   close(){
     // this.viewctrl.dismiss();
-    this.modalCtrl.dismiss();
+    // this.modalCtrl.dismiss();
+    this.popoverCtrl.dismiss();
   }
 
 }

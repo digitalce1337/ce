@@ -165,6 +165,7 @@ export class OwnerFleetInfoPage implements OnInit {
     this.vehicle.img = this.img;
     this.vehicle.model_no = this.Modelno;
     this.vehicle.serial_no = this.serial_no;
+    console.log("retrieveVehInfo: " + this.vehicle.serial_no);
     // this.vehicle.img = vehicle.img;
     // this.vehicle.model_no = vehicle.Modelno;
     // this.vehicle.serial_no = vehicle.serialno;
@@ -287,15 +288,28 @@ export class OwnerFleetInfoPage implements OnInit {
     // const PopMod = await this.popoverCtrl.create({component:OwnerAddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
     const PopMod = await this.popoverCtrl.create({
       component:AddMaintenanceComponent, 
-      componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
+      // componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
+      componentProps:{
+        serial:this.serialno,
+        model: this.Modelno,
+        showBackdrop: true, 
+        enableBackdropDismiss: true, 
+        cssClass: 'popoverStyle'}
     });
     // const PopMod = await this.popoverCtrl.create({
     //   component:'owner-add-maintenance', 
     //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
     // });
     // "AddMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
-    return await PopMod.present();
+    
+    // PopMod.dismiss(() => this.allmethods(this.serialno));
+    console.log("add maintenance: " + this.serialno);
     // PopMod.dismiss(() => this.allmethods(this.vehicle.serial_no));
+    // PopMod.onDidDismiss().then( data => {
+    //   const serial = data[this.vehicle.serial_no];
+    //   console.log("add maintenance: " + serial);
+    // });
+    return await PopMod.present();
     // PopMod.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 
@@ -310,8 +324,9 @@ export class OwnerFleetInfoPage implements OnInit {
     //   component:OwnerEditMaintenancePage, 
     //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
     // });
+    
+    Modal.dismiss(() => this.allmethods(this.vehicle.serial_no));
     return await Modal.present();
-    // Modal.dismiss(() => this.allmethods(this.vehicle.serial_no));
     // Modal.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 
