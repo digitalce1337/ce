@@ -31,6 +31,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgCalendarModule} from 'ionic2-calendar';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import { AddMaintenanceComponent } from './pages/add-maintenance/add-maintenance.component';
+import { EditMaintenanceComponent } from './pages/edit-maintenance/edit-maintenance.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   console.log("you pass here");
@@ -38,8 +40,8 @@ export function HttpLoaderFactory(http: HttpClient){
 }
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, AddMaintenanceComponent, EditMaintenanceComponent],
+  entryComponents: [AddMaintenanceComponent, EditMaintenanceComponent],
   imports: [
     CommonModule,
     BrowserModule,

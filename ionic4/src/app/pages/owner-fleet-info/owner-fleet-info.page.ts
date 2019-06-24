@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
-import { PopoverController, NavController } from '@ionic/angular';
+import { PopoverController, NavController, ModalController } from '@ionic/angular';
 import { Chart } from 'chart.js';
-import { OwnerEditMaintenancePage } from '../owner-edit-maintenance/owner-edit-maintenance.page';
-import { OwnerAddMaintenancePage } from '../owner-add-maintenance/owner-add-maintenance.page';
 import { Router, Route, ActivatedRoute } from '@angular/router';
+import { AddMaintenanceComponent } from '../add-maintenance/add-maintenance.component';
+import { EditMaintenanceComponent } from '../edit-maintenance/edit-maintenance.component';
 
 @Component({
   selector: 'app-owner-fleet-info',
@@ -43,8 +43,8 @@ export class OwnerFleetInfoPage implements OnInit {
   // @ViewChild('doughnutCanvas2') doughnutCanvas2;
   // doughnutChart2: any;
 
-  // eventSource = [];
-  eventSource;
+  eventSource = [];
+  // eventSource;
   viewTitle: string;
   selectedDay = new Date();
   calendar = {
@@ -88,14 +88,16 @@ export class OwnerFleetInfoPage implements OnInit {
 
   // private access_token: string;
   //Zul account
-  // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
+  public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
-  private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
 
   public todaydate: any;
 
   constructor(public _translate: TranslateService, public appprov: AppService, public popoverCtrl: PopoverController,
-    public navCtrl: NavController, public router: Router, public activeRoute: ActivatedRoute) { 
+    public navCtrl: NavController, public router: Router, public activeRoute: ActivatedRoute,
+    public modalCtrl: ModalController) { 
+      
       this.activeRoute.queryParams.subscribe(params => {
         this.serialno = params["serialno"];
         this.Modelno = params["Modelno"];
@@ -111,13 +113,19 @@ export class OwnerFleetInfoPage implements OnInit {
 
   ngOnInit() {
     this._initializeTranslation();
+    this.retrieveVehicleInfo();
+    this.retrieveMachineHour(this.serialno);
+    this.retrieveMaintenanceCompleted(this.serialno, this.todaydate);
+    this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
+    this.retrieveVehicleSchedule(this.serialno);
+    this.retrieveVehicleUtil(this.serialno,this.Modelno);
     // this.retrieveVehicleInfo(this.SelectedVeh);
     // this.retrievePurchaseDate(this.vehicle.serial_no);
     // this.retrieveMachineHour(this.vehicle.serial_no);
     // this.retrieveMaintenanceCompleted(this.vehicle.serial_no, this.todaydate);
     // this.retrieveMaintenanceUpcoming(this.vehicle.serial_no, this.todaydate);
     // this.retrieveVehicleSchedule(this.vehicle.serial_no);
-    // this.retrieveVehicleUtil(this.vehicle.serial_no,this.vehicle.model_no);
+    
     // this._initializeTranslation();
   }
 
@@ -152,7 +160,8 @@ export class OwnerFleetInfoPage implements OnInit {
   }
 
 
-  retrieveVehicleInfo(vehicle){
+  // retrieveVehicleInfo(vehicle){
+  retrieveVehicleInfo(){
     this.vehicle.img = this.img;
     this.vehicle.model_no = this.Modelno;
     this.vehicle.serial_no = this.serial_no;
@@ -161,24 +170,24 @@ export class OwnerFleetInfoPage implements OnInit {
     // this.vehicle.serial_no = vehicle.serialno;
   }
 
-  retrievePurchaseDate(serial_no){
-    this.appprov.retrieveVehPurchaseDate(serial_no, this.access_token).then((res) => {
-      let data = JSON.stringify(res);
-      // data = JSON.parse(data);
-      this.vehicle.purchase_date = data['purchase_date'];
-      // this.date_yr = this.vehicle.purchase_date.substring(0,4);
-      // this.date_mth = this.vehicle.purchase_date.substring(5,7);
-      // this.date_day = this.vehicle.purchase_date.substring(8,10);
-      // this.vehicle.purchase_date = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
-      }, err=>{
-      console.log(err);
-    });
-  }
+  // retrievePurchaseDate(serial_no){
+  //   this.appprov.retrieveVehPurchaseDate(serial_no, this.access_token).then((res) => {
+  //     let data = JSON.stringify(res);
+  //     // data = JSON.parse(data);
+  //     this.vehicle.purchase_date = data['purchase_date'];
+  //     // this.date_yr = this.vehicle.purchase_date.substring(0,4);
+  //     // this.date_mth = this.vehicle.purchase_date.substring(5,7);
+  //     // this.date_day = this.vehicle.purchase_date.substring(8,10);
+  //     // this.vehicle.purchase_date = this.date_day + '-' + this.date_mth + '-'  + this.date_yr;
+  //     }, err=>{
+  //     console.log(err);
+  //   });
+  // }
 
   retrieveMachineHour(serial_no){
     this.appprov.retrieveMachineHour(serial_no, this.access_token).then((res) => {
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
+      data = JSON.parse(data);
       // this.vehicle.machine_hour = data['machine_hour'];
       this.machinehour = data['machine_hour'];
     }, err => {
@@ -189,11 +198,12 @@ export class OwnerFleetInfoPage implements OnInit {
   retrieveMaintenanceCompleted(serial_no, todaydate){
     this.appprov.retrieveMaintenanceCompleted(serial_no, this.access_token, todaydate).then((res) => {
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
-      // this.vehicle.completed_count = data['count'];
+      data = JSON.parse(data);
       this.completed_count = data['count'];
-      // this.vehicle.last_service = data['lastservice'];
       this.lastservice = data['lastservice'];
+      // this.vehicle.completed_count = data['count'];
+      // this.vehicle.last_service = data['lastservice'];
+      
       }, err=>{
       console.log(err);
     });
@@ -202,7 +212,7 @@ export class OwnerFleetInfoPage implements OnInit {
   retrieveMaintenanceUpcoming(serial_no, todaydate){
     this.appprov.retrieveMaintenanceUpcoming(serial_no, this.access_token, todaydate).then((res) => {
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
+      data = JSON.parse(data);
       // this.vehicle.upcoming_count = data['count'];
       // this.vehicle.upcoming_date = data['upcoming'];
       // this.vehicle.upcoming_place = "@ "+ data['location'];
@@ -216,9 +226,11 @@ export class OwnerFleetInfoPage implements OnInit {
 
   retrieveVehicleSchedule(serial_no){
     this.appprov.retrieveVehicleSchedule(serial_no, this.access_token).then((res) => {
+      console.log("retrieveVehicleSchedule: " + serial_no);
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
+      data = JSON.parse(data);
       let job_desc = data['desc'];
+      console.log("job_desc: "+ job_desc);
       let date_from = data['date_from'];
       let date_to = data['date_to'];
       let job = {'job_desc':job_desc, 'job_datefrom':date_from, 'job_dateto':date_to};
@@ -232,7 +244,7 @@ export class OwnerFleetInfoPage implements OnInit {
   retrieveVehicleUtil(serial_no,model_no){
     this.appprov.retrieveVehicleUtil(serial_no,model_no, this.access_token).then((res) => {
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
+      data = JSON.parse(data);
       let chartData = data['chartData'];
       // let vehicle_month = data['vehicle_month'];
       // let vehicle_year = data['vehicle_year'];
@@ -272,18 +284,34 @@ export class OwnerFleetInfoPage implements OnInit {
   async AddMaintenance(){
     // const PopMod = await this.popoverCtrl.create("AddMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'});
     // const PopMod = await this.popoverCtrl.create({component:AddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
-    const PopMod = await this.popoverCtrl.create({component:OwnerAddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
+    // const PopMod = await this.popoverCtrl.create({component:OwnerAddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
+    const PopMod = await this.popoverCtrl.create({
+      component:AddMaintenanceComponent, 
+      componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
+    });
+    // const PopMod = await this.popoverCtrl.create({
+    //   component:'owner-add-maintenance', 
+    //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
+    // });
     // "AddMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
-    await PopMod.present();
-    PopMod.dismiss(() => this.allmethods(this.vehicle.serial_no));
+    return await PopMod.present();
+    // PopMod.dismiss(() => this.allmethods(this.vehicle.serial_no));
     // PopMod.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
-    }
+  }
 
   async EditMaintenance(){
     // const Modal = await this.modalCtrl.create("EditMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true});
-    const Modal = await this.popoverCtrl.create({component:OwnerEditMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}});
-    await Modal.present();
-    Modal.dismiss(() => this.allmethods(this.vehicle.serial_no));
+    // const Modal = await this.modalCtrl.create({
+    const Modal = await this.popoverCtrl.create({
+      component:EditMaintenanceComponent, 
+      componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
+    });
+    // const Modal = await this.modalCtrl.create({
+    //   component:OwnerEditMaintenancePage, 
+    //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
+    // });
+    return await Modal.present();
+    // Modal.dismiss(() => this.allmethods(this.vehicle.serial_no));
     // Modal.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 
@@ -301,6 +329,7 @@ export class OwnerFleetInfoPage implements OnInit {
   plotSchedule(jobs){
     var job = [];
     var dates_from = jobs.job_datefrom;
+    console.log("plotSchedule: " + dates_from + " type: "+ typeof dates_from);
     var dates_to = jobs.job_dateto;
     var jids = jobs.job_desc;
     var today = new Date()
@@ -326,6 +355,7 @@ export class OwnerFleetInfoPage implements OnInit {
     var labels_month = [];
     var month_range = 4;
     var chart_DataPack = chartData;
+    console.log("chartdata: " + chart_DataPack);
     var dataPack1 = ['7','14','14','4','22','20','15'];
     for(let i=0; i<month_range; i++)
     {
@@ -372,7 +402,7 @@ export class OwnerFleetInfoPage implements OnInit {
   deleteVehicle(serial_no, model_no){
     this.appprov.deleteVehicle(this.access_token, serial_no, model_no).then((res) => {
       let data = JSON.stringify(res);
-      // data = JSON.parse(data);
+      data = JSON.parse(data);
       console.log("vehicle deleted");
       this.navCtrl.pop();
       }, err=>{

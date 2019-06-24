@@ -1,0 +1,16 @@
+<p>
+  edit-maintenance works!
+</p>
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding  *ngFor="let maintenance of maintenances">
+      <ion-item>
+        <h2> {{ maintenance.location }} </h2>
+        <p>{{ maintenance.date_from }} - {{maintenance.date_to }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button (click)="deleteMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="danger">{{ delete }}</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

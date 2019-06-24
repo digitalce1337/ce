@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OwnerEditMaintenancePage } from './owner-edit-maintenance.page';
+import { AddMaintenanceComponent } from './add-maintenance.component';
 
-describe('OwnerEditMaintenancePage', () => {
-  let component: OwnerEditMaintenancePage;
-  let fixture: ComponentFixture<OwnerEditMaintenancePage>;
+describe('AddMaintenanceComponent', () => {
+  let component: AddMaintenanceComponent;
+  let fixture: ComponentFixture<AddMaintenanceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OwnerEditMaintenancePage ],
+      declarations: [ AddMaintenanceComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OwnerEditMaintenancePage);
+    fixture = TestBed.createComponent(AddMaintenanceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
