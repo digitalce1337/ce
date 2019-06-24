@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
 import { ApiService } from 'src/app/apikey/api.service';
@@ -81,7 +81,7 @@ export class OwnerJobInfoPage implements OnInit {
   report_faults: string[];
 
   constructor(public navCtrl: NavController, public _translate: TranslateService, public appprov: AppService, private api: ApiService
-    , public activeRoute:ActivatedRoute) { 
+    , public activeRoute:ActivatedRoute, public alertCtrl : AlertController) { 
     this.activeRoute.queryParams.subscribe(params => { 
       console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
       this.jid = params["TakeJid"];
@@ -245,5 +245,89 @@ export class OwnerJobInfoPage implements OnInit {
     this.navCtrl.navigateForward('/owner-edit-job');
     // this.nav.push(EditjobPage, {'access_token':this.access_token,'jid':this.jid });
   }
+  updateJobComplete() {
+    this.appprov.updateJobComplete(this.access_token, this.jid).then((res) => {
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);
+      console.log("Job completed");
 
+    }, err => {
+      console.log(err);
+    });
+
+  }
+  async completeJob() {
+    console.log("job completed");
+    console.log(this.buttonDisabled);
+    let alert = await this.alertCtrl.create({
+      header: this.completemsgtitle,
+      message: this.completemsg,
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.buttonColor = 'secondary';
+            this.buttonDisabled = true;
+            this.updateJobComplete();
+          }
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    })
+   await alert.present()
+  }
+
+  updateJobCancelled() {
+    this.appprov.updateJobCancelled(this.access_token, this.jid).then((res) => {
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);
+      console.log("Job cancelled");
+      this.appprov.deleteJob(this.access_token, this.jid).then((res) => {
+        let data = JSON.stringify(res);
+        data = JSON.parse(data);
+        console.log("Deleted rows from fullJobDetails");
+      }, err => {
+        console.log(err);
+      })
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  async cancelJob() {
+    console.log("job cancelled");
+    console.log(this.buttonDisabled);
+    let alert = await this.alertCtrl.create({
+      header: this.completemsgtitle,
+      message: this.cancelmsg,
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.buttonColor = 'secondary';
+            this.buttonDisabled = true;
+            this.updateJobCancelled();
+          }
+        },
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    })
+    await alert.present()
+  }
+  onSelectChange(selectedValue: any) {
+    console.log('Selected', selectedValue);
+    this.getJobCards(this.jid, selectedValue);
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController, LoadingController, Events } from '@ionic/angular';
+import { AlertController, LoadingController, Events, NavController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { Storage } from '@ionic/storage';
@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
 
   constructor(public router: Router, public storage: Storage, public alertCtrl: AlertController,
     private fb: Facebook, public loadingCtrl: LoadingController, 
-    public appprov: AppService, public event: Events) { }
+    public appprov: AppService, public event: Events,public navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -66,12 +66,20 @@ export class LoginPage implements OnInit {
     }
   }
 
-  showLoader() {
-    this.loading = this.loadingCtrl.create({
+  async showLoader() {
+    this.loading = await this.loadingCtrl.create({
       message: 'Loading...'
     });
-    this.loading.present();
+    await this.loading.present();
   }
+
+  async dismissLoader() {    
+    setTimeout(()=>{
+      this.loading.dismiss();
+    },2000);
+  //   await this.loading.dismiss();
+  }
+
 
   async showAlert(message: string) {
     const alert = await this.alertCtrl.create({
@@ -104,15 +112,16 @@ export class LoginPage implements OnInit {
       this.roleAlert();
       return;
     }// if role
-
+    console.log("Going to showLoader: Checkpoint 0")
     this.showLoader();
 
     this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
-
-      this.loading.dismiss();
+      console.log("Going to dismiss: Checkpoint 1")
+      this.dismissLoader();
+      // this.loading.dismiss();
       if (res.status === 'connected') {
         // this.showAlert(res.authResponse.userID + ": " + res.authResponse.accessToken);
-
+        console.log("Dismiss passed: Checkpoint 2")
         this.access_token = res.authResponse.accessToken;
         const userID = res.authResponse.userID;
 
@@ -126,7 +135,8 @@ export class LoginPage implements OnInit {
             const name = profile.name;
 
             if (email != null && email !== '') {
-              this.loading.dismiss();
+              this.dismissLoader();
+              // this.loading.dismiss();
               console.log('User is logged in either by new access_token or revisit user');
               this.appprov.checkExistingUser(email).then((res) => {
                 let checkUser = JSON.stringify(res);
@@ -149,7 +159,8 @@ export class LoginPage implements OnInit {
                       this.roleValue = true;
                       // this.event.publish('roleReceived', this.roleValue);
                       // this.nav.setRoot(TabsPage);
-                      this.router.navigateByUrl('owner/tabs/owner-home', navigationExtras);
+                      this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);
+                      // this.router.navigateByUrl('owner/tabs/owner-home', navigationExtras);
                       console.log("clicked" + "storage: " + this.storage);
                       return;
                     } else {
@@ -157,12 +168,14 @@ export class LoginPage implements OnInit {
                       // this.event.publish('roleReceived', this.roleValue);
                       // this.nav.setRoot(OperatorstabsPage, this.storage);
                       console.log("show me "+this.Role + " storage: " + this.storage);
-                      this.router.navigateByUrl('operator/tabs/operator-home',navigationExtras);
+                      this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);
+                      // this.router.navigateByUrl('operator/tabs/operator-home',navigationExtras);
                       return;
                     }
                   }, err => { console.log(err); });
                 } else {
-                  this.loading.dismiss();
+                  this.dismissLoader();
+                  // this.loading.dismiss();
                   this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
                     let adduser = JSON.stringify(res);
                     adduser = JSON.parse(adduser);
@@ -177,7 +190,7 @@ export class LoginPage implements OnInit {
               this.isLoggedIn = true;
 
               if (this.Role === 'Owner') {
-                this.router.navigateByUrl('CreatecompanyPage');
+                this.router.navigateByUrl('create-company');
                 // this.navCtrl.navigateForward('/CreatecompanyPage', this.storage);
                 // this.nav.push(CreatecompanyPage, this.storage);
               } else {
@@ -197,7 +210,8 @@ export class LoginPage implements OnInit {
       console.log('Display value for isLoggedIn', this.isLoggedIn);
     });
     this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
-    this.loading.dismiss();
+    this.dismissLoader();
+    // this.loading.dismiss();
   }
 
 
