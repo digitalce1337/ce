@@ -101,22 +101,56 @@ export class LoginPage implements OnInit {
   }
 
   loginWithFacebook1() {
-
-    if (this.Role == null || this.Role === undefined) {
-      // const alert = this.alertCtrl.create({
-      //   header: this.rolemsgtitle,
-      //   subHeader: this.rolemsg,
-      //   buttons: ['OK']
-      // }).then(alert => alert.present());
-      // alert.present();
+    console.log("Check if role was cached: "+this.Role);
+    if (this.Role == null || this.Role === undefined) {      
       this.roleAlert();
+      console.log("Display Role: "+ this.Role);
       return;
-    }// if role
-    console.log("Going to showLoader: Checkpoint 0")
+    }
+    console.log("Display Role: "+ this.Role);
+    console.log("Starting FBloginStatus");
+    //using cache, access straight to the page. Check for the access_token whether belongs to owner/ operator
+    //Direct to correct place
+    this.fb.getLoginStatus().then((res)=>{
+      console.log("FBgetLoginStatus: "+res.status);
+      if (res.status === 'connected'){
+        console.log("From FB login cache status 1: "+res.authResponse.accessToken);
+        var acT = res.authResponse.accessToken;
+        // console.log("From FB login cache status 2: "+res.accessToken);
+        console.log("From FB login cache status 3: "+res.authResponse.userID);
+        //Direct to cached location
+        // console.log("Variable aCT:" + acT);
+        this.access_token = res.authResponse.accessToken;
+        this.storage.set('access_token', this.access_token);
+                    let navigationExtras: NavigationExtras = {
+                      queryParams: {
+                          token: this.access_token,
+                      }};
+                      console.log("Selected Role: "+ this.Role);
+        if (this.Role == 'Owner') {
+          this.roleValue = true;
+          this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
+          // console.log("clicked" + "storage: " + this.storage);
+          // return;
+        } else {
+          this.roleValue = false;          
+          console.log("show me "+this.Role + " storage: " + this.storage);
+          this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
+          // return;
+        }
+      }
+        else
+        {
+            console.log("Going to else: "+res.status);
+      //     }
+      // })
+        
+    // if role
+    console.log("Going to showLoader: Checkpoint 0");
     this.showLoader();
-
+    //Need to include check login status here, use auth credentials if exist
     this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
-      console.log("Going to dismiss: Checkpoint 1")
+      console.log("Going to dismiss: Checkpoint 1");
       this.dismissLoader();
       // this.loading.dismiss();
       if (res.status === 'connected') {
@@ -124,6 +158,8 @@ export class LoginPage implements OnInit {
         console.log("Dismiss passed: Checkpoint 2")
         this.access_token = res.authResponse.accessToken;
         const userID = res.authResponse.userID;
+        console.log("Retrieved access_token from authRes: "+this.access_token);
+        console.log("Retrieved userID from authRes: "+ userID);
 
         this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
           profile => {
@@ -149,6 +185,7 @@ export class LoginPage implements OnInit {
                     let update = JSON.stringify(res);
                     update = JSON.parse(update);
                     console.log(update);
+                    console.log("Going to set access_token into storage: "+this.access_token);
                     this.storage.set('access_token', this.access_token);
                     let navigationExtras: NavigationExtras = {
                       queryParams: {
@@ -185,7 +222,7 @@ export class LoginPage implements OnInit {
               }, err => {
                 console.log(err);
               });
-
+              console.log("Going to set access_token into storage: "+this.access_token);
               this.storage.set('access_token', this.access_token);
               this.isLoggedIn = true;
 
@@ -212,9 +249,8 @@ export class LoginPage implements OnInit {
     this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
     this.dismissLoader();
     // this.loading.dismiss();
-  }
+  }}
 
-
-
-
-}
+  //remove to avoid being in loop
+    )}}
+    

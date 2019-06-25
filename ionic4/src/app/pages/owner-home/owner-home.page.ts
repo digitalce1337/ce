@@ -4,6 +4,8 @@ import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-owner-home',
@@ -72,35 +74,92 @@ export class OwnerHomePage implements OnInit {
   public Ucompany: any;
   public Ucompanyadd: any;
 
-  // public access_token:string;
+  public access_token:string;  
   //Zul account
   // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
-  private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
 
   public displaydate: any;
+  // private storage: Storage;
 
   constructor(public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService,
-    private _translate: TranslateService) { 
+    private _translate: TranslateService, public storage: Storage,public activeRoute: ActivatedRoute) {
+      // this.activeRoute.queryParams.subscribe(params => {
+      //   this.access_token = params["token"];
+      // })
+      // this.storage.get('access_token').then((val)=>{
+      //   console.log("Value is: "+val);    
+      // })
+
+      // this.getTheValue();
+      // console.log("Using of activatedRoute passing for token");
+      // console.log("Display AT: "+ this.access_token);      
+      // storage.get('access_token');
+      // })
+
+      // storage.ready().then(()=>{
+      //   console.log("Storage ready passed");        
+      //   storage.get('access_token').then((val)=>{
+      //     console.log("Storage get passed");
+      //     console.log("Value: "+val+ " AT: "+this.access_token);
+      //     this.access_token= val;
+      //   })
+      // })     
+
+      // this.storage.set('access_token', this.access_token);
     // this.getMonthlyPay();
     // this.getHomeFleetChart();    
     // this.getHomeOperatorChart();
   }
-
+  // getTheValue(){
+  //   this.storage.get('access_token').then((val)=>{
+  //     console.log("Value is: "+val);    
+  //   })
+  // }
   ngOnInit() {
-    this._initializeTranslation();
-    this.getEmailPay();
-    this.getOwnerJoblist(); 
-    this.getUserInfo();
-    this.getMonthlyPay();
-    this.getVehicleStatus('');
+    this.storage.ready().then(()=>{
+      console.log("Storage ready passed");        
+      this.storage.get('access_token').then((val)=>{
+        console.log("Storage get passed");
+        console.log("Value: "+val+ " AT: "+this.access_token);
+        this.access_token = val;       
+        console.log("Set AT, check: "+ this.access_token);
+        this._translateLanguage();
+        // this._initializeTranslation();       
+        this.getEmailPay();        
+        this.getOwnerJoblist();         
+        this.getUserInfo();        
+        this.getMonthlyPay();        
+        this.getVehicleStatus('');
+        this.getHomeFleetChart();    
+        this.getHomeOperatorChart();
+      })})
+    
+    // this.storage.get('access_token').then((val)=>{
+    //     console.log("Value is: "+val);    
+    //   })
+    // console.log("Started")
+    // this._initializeTranslation();
+    // console.log("Started emailpay")
+    // this.getEmailPay();
+    // console.log("Started ownerjoblist")
+    // this.getOwnerJoblist(); 
+    // console.log("Started UserInfo")
+    // this.getUserInfo();
+    // console.log("Started MonthlyPay")
+    // this.getMonthlyPay();
+    // console.log("Started vehstatus")
+    // this.getVehicleStatus('');
+
     // this.getEarnings();
     // this.getFleetUsage();
     // this.getOperatorUsage();
     
-    this.getHomeFleetChart();    
-    this.getHomeOperatorChart();
+    // this.getHomeFleetChart();    
+    // this.getHomeOperatorChart();
   }
+  
   public changeLanguage(): void{
     this._translateLanguage();
   }

@@ -5,6 +5,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-jobs',
@@ -21,8 +22,8 @@ export class OwnerJobsPage implements OnInit {
   public cancelled: string;
   public add_job: string;
 
-  // private access_token: string;
-  private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  private access_token: string;
+  // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
   
   public image: any;
   public base64Image: string;
@@ -101,16 +102,21 @@ export class OwnerJobsPage implements OnInit {
   job: any;
 
   constructor(public appprov: AppService, public alertCtrl: AlertController, public androidPermissions: AndroidPermissions,
-    public camera: Camera, public router: Router, public navCtrl: NavController, public _translate: TranslateService) { }
+    public camera: Camera, public router: Router, public navCtrl: NavController, public _translate: TranslateService, public storage: Storage) { }
 
   ngOnInit() {
-    this.job = "Ongoing";
-    this.retrievePastJobs();
-    this.retrieveOngoingJobs();
-    this.retrieveUpcomingJobs();
-    this.retrieveCancelledJobs();
-    this._initializeTranslation();
+    this.storage.ready().then(()=>{
+      console.log("Storage ready passed");        
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;       
+        this.job = "Ongoing";
+        this.retrievePastJobs();
+        this.retrieveOngoingJobs();
+        this.retrieveUpcomingJobs();
+        this.retrieveCancelledJobs();
+        this._initializeTranslation();
   }
+      )})}
 
   public changeLanguage(): void{
     this._translateLanguage();
