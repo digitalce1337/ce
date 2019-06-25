@@ -6,6 +6,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { OwnerAddOperatorPage } from '../owner-add-operator/owner-add-operator.page';
 import { OwnerViewOperatorPage } from '../owner-view-operator/owner-view-operator.page';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-operators',
@@ -23,9 +24,9 @@ export class OwnerOperatorsPage implements OnInit {
   public downloadappmsg1: string;
   public downloadappmsg2: string;
 
-  // public access_token: string;
+  public access_token: string;
   //Zul account
-  public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
+  // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
   // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
   
@@ -51,12 +52,17 @@ export class OwnerOperatorsPage implements OnInit {
   public operatordetails_busydate: string[];
 
   constructor(private modal: ModalController, public navCtrl: NavController, public modalCtrl: ModalController,
-    private socialSharing: SocialSharing, public appprov: AppService, public loadingCtrl: LoadingController,public _translate: TranslateService ) { }
+    private socialSharing: SocialSharing, public appprov: AppService, public loadingCtrl: LoadingController,public _translate: TranslateService, public storage: Storage) { }
 
   ngOnInit() {
-    this._translateLanguage();
-    this.getEmail(this.access_token); 
+    this.storage.ready().then(()=>{
+      console.log("Storage ready passed");        
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;    
+        this._translateLanguage();
+        this.getEmail(this.access_token); 
   }
+      )})}
 
   public changeLanguage(): void {
     this._translateLanguage();
