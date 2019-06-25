@@ -15,7 +15,8 @@
         <ion-col>
           <ion-item>
             <ion-label color="primary" stacked>{{ start_date }}</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime>
+            <!-- <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime> -->
+            <ion-datetime displayFormat="YYYY/MM/DD" min="2018" placeholder="From Date" [(ngModel)]="Fromdatetime" name="FromDateVal"></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -23,7 +24,8 @@
         <ion-col>
           <ion-item>
             <ion-label color="primary" stacked>{{ end_date }}</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime>
+            <!-- <ion-datetime displayFormat="DD/MM/YYYY" min="2018" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime> -->
+            <ion-datetime displayFormat="YYYY/MM/DD" min="2018" placeholder="To Date" [(ngModel)]="Todatetime" name="ToDateVal"></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>

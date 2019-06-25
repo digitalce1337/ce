@@ -65,16 +65,20 @@ export class AddMaintenanceComponent implements OnInit {
   }
   
   addMaintenance(){
-    let date_from = this.Fromdatetime;
-    let date_to = this.Todatetime;
+    let date_from = this.Fromdatetime.substring(0,10);
+    let date_to = this.Todatetime.substring(0,10);
     let location = this.LocationField;
     let desc = this.DescriptionField;
     let serial_no = this.serial;
     let modelnum = this.model;
+    console.log("date from: "+ date_from + " date to: " + date_to);
+    console.log("location: " + location + " desc: " + desc);
     this.appprov.addMaintenance(this.access_token, serial_no, date_from, date_to, location, desc,modelnum).then((res) => {
+      console.log("appprov res: " + res);
       let data = JSON.stringify(res);
+      console.log("appprov stringify: " + data);
       data = JSON.parse(data);
-      
+      console.log("appprov parse: " + data);
     }, err => {
       console.log(err);
     });

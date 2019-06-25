@@ -25,9 +25,10 @@ export class OwnerOperatorsPage implements OnInit {
 
   // public access_token: string;
   //Zul account
-  // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
+  public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
-  private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  
   public UsrEmail: any;
   loading: any;
 
@@ -160,7 +161,7 @@ export class OwnerOperatorsPage implements OnInit {
     const myModal = await this.modalCtrl.create({component:OwnerAddOperatorPage, componentProps:{access_token: this.access_token,enableBackdropDismiss: false}});
     await myModal.present();
     // myModal.present();
-    myModal.dismiss((data) => {
+    return myModal.dismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
     });
@@ -186,12 +187,19 @@ export class OwnerOperatorsPage implements OnInit {
     //   this.getEmail(this.access_token);
     //   // this.getOperatorList(this.access_token);
     // });
-    const myModal = await this.modalCtrl.create({component: OwnerViewOperatorPage, componentProps:{email: email,enableBackdropDismiss: false}});
-    await myModal.present();
+    const myModal = await this.modalCtrl.create({
+      component: OwnerViewOperatorPage, 
+      componentProps:{
+        email: email,
+        enableBackdropDismiss: false}
+    });
+    console.log("operators email: " + email);
+    // await myModal.present();
     myModal.dismiss((data) => {
       console.log(data);
       this.getEmail(this.access_token);
     });
+    return await myModal.present();
   }
 
   emailShare() {

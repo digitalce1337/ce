@@ -283,9 +283,6 @@ export class OwnerFleetInfoPage implements OnInit {
   }
   
   async AddMaintenance(){
-    // const PopMod = await this.popoverCtrl.create("AddMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'});
-    // const PopMod = await this.popoverCtrl.create({component:AddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
-    // const PopMod = await this.popoverCtrl.create({component:OwnerAddMaintenancePage, componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}});
     const PopMod = await this.popoverCtrl.create({
       component:AddMaintenanceComponent, 
       // componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
@@ -296,13 +293,6 @@ export class OwnerFleetInfoPage implements OnInit {
         enableBackdropDismiss: true, 
         cssClass: 'popoverStyle'}
     });
-    // const PopMod = await this.popoverCtrl.create({
-    //   component:'owner-add-maintenance', 
-    //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
-    // });
-    // "AddMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
-    
-    // PopMod.dismiss(() => this.allmethods(this.serialno));
     console.log("add maintenance: " + this.serialno);
     // PopMod.dismiss(() => this.allmethods(this.vehicle.serial_no));
     // PopMod.onDidDismiss().then( data => {
@@ -314,19 +304,24 @@ export class OwnerFleetInfoPage implements OnInit {
   }
 
   async EditMaintenance(){
-    // const Modal = await this.modalCtrl.create("EditMaintenancePage",{vehicle:this.vehicle},{showBackdrop: true, enableBackdropDismiss: true});
-    // const Modal = await this.modalCtrl.create({
-    const Modal = await this.popoverCtrl.create({
+    const Modal = await this.modalCtrl.create({
       component:EditMaintenanceComponent, 
-      componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
+      componentProps:{
+        serial:this.serialno,
+        showBackdrop: true, 
+        enableBackdropDismiss: true}
     });
     // const Modal = await this.modalCtrl.create({
     //   component:OwnerEditMaintenancePage, 
     //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
     // });
     
-    Modal.dismiss(() => this.allmethods(this.vehicle.serial_no));
-    return await Modal.present();
+    Modal.dismiss(() => this.allmethods(this.serialno));
+    // Modal.onDidDismiss(() => this.allmethods(this.serialno)));
+    
+    return Modal.present();
+    // await Modal.present();
+    // Modal.dismiss(() => this.allmethods(this.serialno));
     // Modal.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 

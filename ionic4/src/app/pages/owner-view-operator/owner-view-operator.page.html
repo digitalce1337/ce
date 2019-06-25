@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>OwnerViewOperator</ion-title>
+    <ion-buttons slot="start">
+        <ion-button (click)="closeModal()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="start">
+        <ion-back-button defaultHref="/owner/tabs/owner-operators"></ion-back-button>
+      </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+        <ion-col col-4>
+            <ion-avatar>
+                <img [src] = "PhotoUrl">
+              </ion-avatar>    
+        </ion-col>
+        <ion-col col-1></ion-col>
+        <ion-col col-7>
+          <h2>{{ name }}</h2>
+          <br>
+          <img *ngFor="let vehicle of vehicles" [src] = vehicle.vehicle_img style="width:4rem; height:4rem">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
+    <div padding> 
+      <h3 align="center">{{viewTitle}}</h3>
+        <calendar [eventSource] = "eventSource"
+                    [calendarMode] = "calendar.mode"
+                    [currentDate] = "calendar.currentDate"
+                    (onCurrentDateChanged) = "onCurrentDateChanged($event)"
+                    (onEventSelected) = "onEventSelected($event)"
+                    (onTitleChanged) = "onViewTitleChanged($event)"
+                    (onTimeSelected) = "onTimeSelected($event)"
+                    step="30">
+        </calendar>
+    </div>
+  <ion-card>
+    <ion-card-header>
+      {{ month }}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barOpCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

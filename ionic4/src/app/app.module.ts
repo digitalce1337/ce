@@ -33,6 +33,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { AddMaintenanceComponent } from './pages/add-maintenance/add-maintenance.component';
 import { EditMaintenanceComponent } from './pages/edit-maintenance/edit-maintenance.component';
+import { OwnerViewOperatorPage } from './pages/owner-view-operator/owner-view-operator.page';
 
 export function HttpLoaderFactory(http: HttpClient){
   console.log("you pass here");
@@ -40,8 +41,8 @@ export function HttpLoaderFactory(http: HttpClient){
 }
 
 @NgModule({
-  declarations: [AppComponent, AddMaintenanceComponent, EditMaintenanceComponent],
-  entryComponents: [AddMaintenanceComponent, EditMaintenanceComponent],
+  declarations: [AppComponent, AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage],
+  entryComponents: [AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage],
   imports: [
     CommonModule,
     BrowserModule,
