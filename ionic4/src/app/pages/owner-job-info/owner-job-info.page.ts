@@ -4,6 +4,7 @@ import { NavController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
 import { ApiService } from 'src/app/apikey/api.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-job-info',
@@ -30,11 +31,11 @@ export class OwnerJobInfoPage implements OnInit {
   public photos: any = [];
   public base64Image: string;
 
-  // public access_token: string;
+  private access_token: string;
   //Zul account
   // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
-  public access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
+  // public access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
   jid: string;
   payout: string;
   date_from: string;
@@ -81,40 +82,47 @@ export class OwnerJobInfoPage implements OnInit {
   report_faults: string[];
 
   constructor(public navCtrl: NavController, public _translate: TranslateService, public appprov: AppService, private api: ApiService
-    , public activeRoute:ActivatedRoute, public alertCtrl : AlertController) { 
+    , public activeRoute:ActivatedRoute, public alertCtrl : AlertController, public storage : Storage) { 
     this.activeRoute.queryParams.subscribe(params => { 
       console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
       this.jid = params["TakeJid"];
       console.log("Give result: "+ this.jid);
-      // this.serialno = params["serialno"];
-      // this.Modelno = params["Modelno"];
-      // this.pdate = params["pdate"];
-      // this.Desc = params["Desc"];
-      // this.vtype = params["vtype"];
-      // this.manu = params["manu"];
-      // this.img = params["img"];
-      
-    });
-    // console.log(this.Modelno);
+    });  
   }
   
 
   ngOnInit() {
-    this.retrieveJobDetails(this.jid);
-    this.retrieveJobOperators(this.jid);
-    this.getJobCards(this.jid, '3');
-    this._initializeTranslation();
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();        
+        this.retrieveJobDetails(this.jid);
+        this.retrieveJobOperators(this.jid);
+        this.getJobCards(this.jid, '3');
+        // this._initializeTranslation();
+          })})
   }
 
   public changeLanguage(): void{
     this._translateLanguage();
   }
    
-  private _translateLanguage() : void{
-    this._translate.use(this.language);
-    this._initializeTranslation();
-  }
+  // private _translateLanguage() : void{
+  //   this._translate.use(this.language);
+  //   this._initializeTranslation();
+  // }
     
+  private _translateLanguage() : void{    
+      if (this.language === ('kr'))
+      {
+        this._translate.setDefaultLang('kr');      
+      } else
+      {
+        this._translate.setDefaultLang('en');
+      }      
+      this._initializeTranslation();
+    }
+
   private _initializeTranslation(): void{
       this.txtitle =  this._translate.instant("jobinfo.txtitle");
       this.complete_job =  this._translate.instant("jobinfo.complete_job");

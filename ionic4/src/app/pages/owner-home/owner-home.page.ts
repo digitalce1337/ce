@@ -136,29 +136,6 @@ export class OwnerHomePage implements OnInit {
         this.getHomeFleetChart();    
         this.getHomeOperatorChart();
       })})
-    
-    // this.storage.get('access_token').then((val)=>{
-    //     console.log("Value is: "+val);    
-    //   })
-    // console.log("Started")
-    // this._initializeTranslation();
-    // console.log("Started emailpay")
-    // this.getEmailPay();
-    // console.log("Started ownerjoblist")
-    // this.getOwnerJoblist(); 
-    // console.log("Started UserInfo")
-    // this.getUserInfo();
-    // console.log("Started MonthlyPay")
-    // this.getMonthlyPay();
-    // console.log("Started vehstatus")
-    // this.getVehicleStatus('');
-
-    // this.getEarnings();
-    // this.getFleetUsage();
-    // this.getOperatorUsage();
-    
-    // this.getHomeFleetChart();    
-    // this.getHomeOperatorChart();
   }
   
   public changeLanguage(): void{
