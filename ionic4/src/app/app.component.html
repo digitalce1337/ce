@@ -11,19 +11,20 @@
     </ion-header>
 
     <ion-content padding>
-      menu stuff
       <ion-list>
-        <ion-menu-toggle *ngFor="let p of appPages" (click)="openPage(p)">
+        <!-- <ion-menu-toggle *ngFor="let p of appPages"> -->
+        <ion-menu-toggle *ngFor="let p of appPages" (click)="openPage(p.url)">
           <ion-item [routerLink]="p.url" [routerDirection]="'root'">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
-        <ion-item *ngIf="Role" [(ngModel)]="Role">
+        <!-- <ion-item *ngIf="Role" [(ngModel)]="Role"> -->
+        <ion-item>
           <ion-label> Operator Mode </ion-label>
           <ion-icon slot="start" name="swap"></ion-icon>
-          <ion-toggle [(ngModel)]="toggle" (ionChange)="toggleProfile()"></ion-toggle>
+          <ion-toggle ngDefaultControl [(ngModel)]="toggle" (ionChange)="toggleProfile()"></ion-toggle>
 
         </ion-item>
 

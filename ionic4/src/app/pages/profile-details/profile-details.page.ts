@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, Events } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,34 +9,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileDetailsPage implements OnInit {
 
-  public toggled;
+  public toggle;
 
-  constructor(public navCtrl: NavController, public activeRoute: ActivatedRoute) {
-    this.activeRoute.queryParams.subscribe(params => {
-      this.toggled = params["toggled"];
-      console.log("toggle status: " + this.toggled);
-    });
-   }
+  constructor(public navCtrl: NavController, public activeRoute: ActivatedRoute,
+    public event: Events) {}
 
   ngOnInit() {
-    this.popToHome();
+    this.event.subscribe('toggleValue', (value) => {
+      console.log("toggleValue: " + value);
+      this.toggle = value;
+    })
+    // this.popToHome();
   }
 
   popToHome(){
-    // if(this.Role == 1 && this.toggled == true) {
-    //   this.navCtrl.push(OperatorstabsPage);  
-    // }
-    // else if(this.Role ==1 && this.toggled == false) {
-    //   this.navCtrl.push(TabsPage)
-    // }
-    // else {
-    //   this.navCtrl.push(OperatorstabsPage);
-    // }
-    if(this.toggled == false) { 
+    console.log("poptoHome this.toggled:" + this.toggle);
+    if(this.toggle == false) { 
       // this.navCtrl.push(TabsPage);
       this.navCtrl.navigateBack(['owner/tabs/owner-home']);
     }
-    else if(this.toggled == true) {
+    else if(this.toggle == true) {
       // this.navCtrl.push(OperatorstabsPage);
       this.navCtrl.navigateBack(['operator/tabs/operator-home']);
     }

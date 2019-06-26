@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
-import { Platform, MenuController, NavController } from '@ionic/angular';
+import { Platform, MenuController, NavController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { Router, NavigationExtras } from '@angular/router';
 
-import {TranslateService} from '@ngx-translate/core'
+import { TranslateService } from '@ngx-translate/core'
 import { LanguageService } from './services/language.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class AppComponent {
     }
   ];
 
-  public toggle: boolean = false;
+  toggle: boolean = false;
   public Role: boolean = true;
 
   constructor(
@@ -40,9 +40,11 @@ export class AppComponent {
     public navCtrl: NavController,
     private _translate : TranslateService,
     private languageService: LanguageService,
-    public menu: MenuController
+    public menu: MenuController,
+    public event: Events
   ) {
     this.initializeApp();
+    // this.toggle = false;
   }
 
   initializeApp() {
@@ -74,34 +76,31 @@ export class AppComponent {
   }
 
   toggleProfile(){
-    let navToggle: NavigationExtras = {
-      queryParams: {
-        toggled: this.toggle
-      }
-    }
+    // this.event.publish('toggleValue',this.toggle);
+    // console.log("this.toggle value: " + this.toggle);
 
     if(this.toggle == true){
       // this.nav.setRoot(OperatorstabsPage);
-      this.navCtrl.navigateRoot(['operator/tabs/operator-home']);
+      this.navCtrl.navigateForward(['operator/tabs/operator-home']);
       // this.navCtrl.navigateForward(['operator/tabs/operator-home'], navToggle);
 
       this.menu.close();
     }
     else{
       // this.nav.setRoot(TabsPage);
-      this.navCtrl.navigateRoot(['owner/tabs/owner-home']);
+      this.navCtrl.navigateForward(['owner/tabs/owner-home']);
       // this.navCtrl.navigateForward(['owner/tabs/owner-home'], navToggle);
       this.menu.close();
     }
   }
 
   openPage(page){
-    let navToggle: NavigationExtras = {
-      queryParams: {
-        toggled: this.toggle
-      }
-    }
+    console.log("openpage page: " + JSON.stringify(page));
+
+    this.event.publish('toggleValue',this.toggle);
+    console.log("this.toggle value: " + this.toggle); 
+
     // this.nav.setRoot(page.pageName, {toggled: this.toggleButton});
-    this.navCtrl.navigateForward(page, navToggle);
+    this.navCtrl.navigateForward(page);
   }
 }
