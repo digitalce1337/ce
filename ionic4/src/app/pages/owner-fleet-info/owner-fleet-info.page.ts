@@ -6,6 +6,7 @@ import { Chart } from 'chart.js';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { AddMaintenanceComponent } from '../add-maintenance/add-maintenance.component';
 import { EditMaintenanceComponent } from '../edit-maintenance/edit-maintenance.component';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-fleet-info',
@@ -96,7 +97,7 @@ export class OwnerFleetInfoPage implements OnInit {
 
   constructor(public _translate: TranslateService, public appprov: AppService, public popoverCtrl: PopoverController,
     public navCtrl: NavController, public router: Router, public activeRoute: ActivatedRoute,
-    public modalCtrl: ModalController) { 
+    public modalCtrl: ModalController,public storage: Storage) { 
       
       this.activeRoute.queryParams.subscribe(params => {
         this.serialno = params["serialno"];
@@ -111,14 +112,19 @@ export class OwnerFleetInfoPage implements OnInit {
       console.log(this.Modelno);
     }
 
-  ngOnInit() {
-    this._initializeTranslation();
-    this.retrieveVehicleInfo();
-    this.retrieveMachineHour(this.serialno);
-    this.retrieveMaintenanceCompleted(this.serialno, this.todaydate);
-    this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
-    this.retrieveVehicleSchedule(this.serialno);
-    this.retrieveVehicleUtil(this.serialno,this.Modelno);
+  ngOnInit() {this.storage.ready().then(()=>{
+    console.log("Storage ready passed");        
+    this.storage.get('access_token').then((val)=>{        
+      this.access_token = val;    
+      this._translateLanguage();      
+      this.retrieveVehicleInfo();
+      this.retrieveMachineHour(this.serialno);
+      this.retrieveMaintenanceCompleted(this.serialno, this.todaydate);
+      this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
+      this.retrieveVehicleSchedule(this.serialno);
+      this.retrieveVehicleUtil(this.serialno,this.Modelno);
+}
+    )})}    
     // this.retrieveVehicleInfo(this.SelectedVeh);
     // this.retrievePurchaseDate(this.vehicle.serial_no);
     // this.retrieveMachineHour(this.vehicle.serial_no);
@@ -127,16 +133,26 @@ export class OwnerFleetInfoPage implements OnInit {
     // this.retrieveVehicleSchedule(this.vehicle.serial_no);
     
     // this._initializeTranslation();
-  }
+  // }
 
   public changeLanguage(): void{
     this._translateLanguage();
   }
    
   private _translateLanguage() : void{
-    this._translate.use(this.language);
+    if (this.language === ('kr'))
+    {      
+      this._translate.setDefaultLang('kr');          
+    }
+    else 
+    {
+      this._translate.setDefaultLang('en');      
+    }            
     this._initializeTranslation();
   }
+  //   this._translate.use(this.language);
+  //   this._initializeTranslation();
+  // }
     
   private _initializeTranslation(): void{
       this.title =  this._translate.instant("fleet-info.title");
