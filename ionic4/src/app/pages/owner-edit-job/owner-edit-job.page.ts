@@ -29,7 +29,8 @@ export class OwnerEditJobPage implements OnInit {
   public addjobmsg: string;
   public update: string;
 
-  public access_token;
+  // public access_token;
+  private access_token: string;
   public form: FormGroup;
   public UsrEmail:any;
   public OpList: any;
