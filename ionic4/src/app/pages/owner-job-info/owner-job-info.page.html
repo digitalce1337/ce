@@ -76,7 +76,7 @@
   <h3>{{ reports }}</h3>
   <ion-item>
     <ion-label></ion-label>
-    <!-- <ion-label>{{ view_reports }}</ion-label> -->
+    <ion-label>{{ view_reports }}</ion-label>
     <ion-select [(ngModel)]="duration" (ionChange)="onSelectChange($event)" placeholder="{{ past }} 3 {{ days }}">
       <ion-select-option value="3" [selected]="true">{{ past }} 3 {{ days }}</ion-select-option>
       <ion-select-option value="7">{{ past }} 7 {{ days }}</ion-select-option>

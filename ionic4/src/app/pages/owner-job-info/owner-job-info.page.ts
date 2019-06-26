@@ -27,6 +27,7 @@ export class OwnerJobInfoPage implements OnInit {
   public completemsg: string;
   // public cancelmsgtitle: string;
   public cancelmsg: string;
+  public duration: any;
 
   public photos: any = [];
   public base64Image: string;
@@ -335,7 +336,10 @@ export class OwnerJobInfoPage implements OnInit {
     await alert.present()
   }
   onSelectChange(selectedValue: any) {
-    console.log('Selected', selectedValue);
-    this.getJobCards(this.jid, selectedValue);
+    // console.log('Selected val: ', selectedValue.value);        
+    let item = this.duration;
+    console.log("Item inner:"+ item);  
+    this.getJobCards(this.jid, item);
+    
   }
 }
