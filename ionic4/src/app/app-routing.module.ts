@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'owner-edit-job', loadChildren: './pages/owner-edit-job/owner-edit-job.module#OwnerEditJobPageModule' },
   { path: 'owner-fleet-info', loadChildren: './pages/owner-fleet-info/owner-fleet-info.module#OwnerFleetInfoPageModule' },
   { path: 'owner-view-operator', loadChildren: './pages/owner-view-operator/owner-view-operator.module#OwnerViewOperatorPageModule' },
+  { path: 'profile-details', loadChildren: './pages/profile-details/profile-details.module#ProfileDetailsPageModule' },
   // { path: '', redirectTo: 'owner/tabs/owner-home', pathMatch: 'full' },
   // { path: 'owner-tabs', loadChildren: './pages/owner-tabs/owner-tabs.module#OwnerTabsPageModule' },
   // { path: 'owner-home', loadChildren: './pages/owner-home/owner-home.module#OwnerHomePageModule' },

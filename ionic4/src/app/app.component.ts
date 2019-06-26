@@ -14,6 +14,20 @@ import { LanguageService } from './services/language.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/owner/tabs/owner-home',
+      icon: 'home'
+    },
+    {
+      title: 'Profile',
+      url: '/profile-details',
+      icon: 'person'
+    }
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
