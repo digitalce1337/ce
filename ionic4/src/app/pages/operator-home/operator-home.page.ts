@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-operator-home',
@@ -21,9 +22,9 @@ public skill_sets: string;
 
 @ViewChild('barCanvas') barCanvas;
   barChart: any;
-  // access_token: any;
+  private access_token: any;
   //Zul account
-  public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
+  // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
   // private access_token:string ='EAAf9qfuOeRABAMaaCS2IHAYrmREB2QCQoT2zvTQMwHWJrcisIZBXNkxhFn3nlWyPgZAJD6ZBtzo3KkTZAxjAZBQRyWYadKuctjN73pcYgJVsXTAAlGdRD0mQjPORpotRPZAUts2Q01sZCN58mlc6PO203JAR9TFwiYDDAq2jbymXkONFZBqRqrj3CSDN9x9mAMB5dZATjWSYzVj5Bw1me25biYNZA4NPiaZC0wut7IQWv21XgZDZD';
   
@@ -49,7 +50,7 @@ public skill_sets: string;
     vehicle_type: string
   }>;
   // constructor(public _translate: TranslateService) { }
-  constructor(public _translate: TranslateService,public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService) {}
+  constructor(public _translate: TranslateService,public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService, public storage : Storage) {}
   
   private _translateLanguage() : void{
     // this._translate.use(this.language);
@@ -65,14 +66,25 @@ public skill_sets: string;
     // console.log(this.welcome);        
 }
   ngOnInit() {    
-    this._translateLanguage();
-    this.getUserInfo();
-    this.getOperatorJoblist();
-    this.getCapabilities();
-    // this.getJobStats();
-    this.getOperatorHomePageUtil();
-    // this._initializeTranslation();
+    this.storage.ready().then(()=>{
+      this.storage.get('access_token').then((val)=>{
+        this.access_token = val;       
+        this._translateLanguage();
+        this.getUserInfo();
+        this.getOperatorJoblist();
+        this.getCapabilities();
+        this.getOperatorHomePageUtil();
+      })})
   }
+  //   this._translateLanguage();
+  //   this.getUserInfo();
+  //   this.getOperatorJoblist();
+  //   this.getCapabilities();
+  //   // this.getJobStats();
+  //   this.getOperatorHomePageUtil();
+  //   // this._initializeTranslation();
+  // }
+  0
   onViewTitleChanged(title){
     this.viewTitle = title;
   }
