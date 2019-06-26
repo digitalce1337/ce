@@ -69,7 +69,16 @@ export class OwnerOperatorsPage implements OnInit {
   }
 
   private _translateLanguage(): void {
-    this._translate.use(this.language);
+    if (this.language === ('kr'))
+    {      
+      this._translate.setDefaultLang('kr');      
+      // this._translate.use(this.language);
+    }
+    else 
+    {
+      this._translate.setDefaultLang('en');
+      // this._translate.use(this.language);
+    }            
     this._initializeTranslation();
   }
 

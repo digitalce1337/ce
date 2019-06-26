@@ -74,7 +74,8 @@ export class OwnerHomePage implements OnInit {
   public Ucompany: any;
   public Ucompanyadd: any;
 
-  public access_token:string;  
+  // public access_token:string;  
+  private access_token: string;
   //Zul account
   // public access_token:string ='EAAf9qfuOeRABAL2aXLSPMZAde2U8ZCZCKoQEtXIzxmZCsxwSdjx7dxTaMOiQP8ZAuFB7gMnvwmohZBiyg4EFQH78FuwFR1VOL6vq2GZAK9aKdsVAeZBYAA9aaarSnxJWZCIEqU4bLX1hHYrLcsEDs0FFp4bSVYAMIJ5yZBIDtQxMl589jBi3BkDXDePk6Qsz5z5xooVQJQc7VVTH7CfTeGicwG';  
   //Jem account
@@ -166,7 +167,16 @@ export class OwnerHomePage implements OnInit {
   
   private _translateLanguage() : void{
   //  this._translate.use(this.language);
-    this._translate.setDefaultLang(this.language);
+    if (this.language === ('kr'))
+    {
+      // this._translate.setDefaultLang(this.language);
+      this._translate.setDefaultLang('kr');      
+    }
+    else 
+    {
+      this._translate.setDefaultLang('en');
+    }
+    // this._translate.setDefaultLang(this.language);
     this._initializeTranslation();
   }
     
