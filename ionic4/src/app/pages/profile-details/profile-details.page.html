@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>profileDetails</ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <!-- <ion-buttons slot="start">
-      <ion-back-button defaultHref="/owner/tabs/owner-home"></ion-back-button>
     </ion-buttons> -->
+    <ion-buttons slot="end">
+      <ion-button (click)="popToHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

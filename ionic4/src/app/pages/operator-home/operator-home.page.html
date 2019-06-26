@@ -1,13 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{title}}</ion-title>
-    <!-- <ion-title>{{title}}</ion-title> -->
+
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
   <ion-content padding>
-    <!-- <u>{{ fleet }} {{ displaydate }}</u> -->
-    <u>Display Current Date</u>
+    <u>{{ fleet }} {{ displaydate }}</u>
+    <!-- <u>Display Current Date</u> -->
     <h3>{{welcome}}</h3>
   
   <ion-grid>
