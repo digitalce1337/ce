@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import { OperatorCapSkillsPage } from '../operator-cap-skills/operator-cap-skills.page';
 
 @Component({
   selector: 'app-operator-home',
@@ -50,7 +51,8 @@ public skill_sets: string;
     vehicle_type: string
   }>;
   // constructor(public _translate: TranslateService) { }
-  constructor(public _translate: TranslateService,public appprov: AppService, public alertCtrl: AlertController, public authService: AuthService, public storage : Storage) {}
+  constructor(public _translate: TranslateService,public appprov: AppService, public alertCtrl: AlertController, 
+    public authService: AuthService, public storage : Storage, public popO: PopoverController) {}
   
   private _translateLanguage() : void{
     // this._translate.use(this.language);
@@ -65,26 +67,18 @@ public skill_sets: string;
     this.skill_sets =  this._translate.instant("operatorhome.skill_sets");
     // console.log(this.welcome);        
 }
-  ngOnInit() {    
-    this.storage.ready().then(()=>{
-      this.storage.get('access_token').then((val)=>{
-        this.access_token = val;       
+  ngOnInit() {
+    this.storage.ready().then(() => {
+      this.storage.get('access_token').then((val) => {
+        this.access_token = val;
         this._translateLanguage();
         this.getUserInfo();
         this.getOperatorJoblist();
         this.getCapabilities();
         this.getOperatorHomePageUtil();
-      })})
+      })
+    })
   }
-  //   this._translateLanguage();
-  //   this.getUserInfo();
-  //   this.getOperatorJoblist();
-  //   this.getCapabilities();
-  //   // this.getJobStats();
-  //   this.getOperatorHomePageUtil();
-  //   // this._initializeTranslation();
-  // }
-  0
   onViewTitleChanged(title){
     this.viewTitle = title;
   }
@@ -175,8 +169,11 @@ public skill_sets: string;
 
   getCapabilities(){
     this.capabilities = [];
-    this.appprov.getOpCapabilities(this.access_token.toString()).then((res:any) => {
+    // this.appprov.getOpCapabilities(this.access_token.toString()).then((res:any) => {
+    this.appprov.getOpCapabilities(this.access_token).then((res:any) => {
       let caps = JSON.stringify(res);
+      console.log("getCap res: " + res);
+      console.log("getCap cap: " + caps);
       caps = JSON.parse(caps);
       let urls = caps['vehicle_url'];
       let types = caps['vehicle_type'];
@@ -189,11 +186,13 @@ public skill_sets: string;
     })
   }
 
-  // public showCap(){
-  //   let popover = this.popO.create(UpdatecapopPage);
-  //   popover.present();
-  //   popover.onDidDismiss(() => this.getCapabilities());
-  // }
+  public async showCap(){
+    let popover = await this.popO.create({component: OperatorCapSkillsPage});
+    // console.log("showcap");
+    return await popover.present();
+    
+    // popover.onDidDismiss(() => this.getCapabilities());
+  }
 
   getOperatorHomePageUtil(){
     this.appprov.getOperatorHomePageUtil(this.access_token).then((res) => {
