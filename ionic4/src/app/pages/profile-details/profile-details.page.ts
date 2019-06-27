@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileDetailsPage implements OnInit {
 
   public toggle;
+  public Role: boolean;
 
   constructor(public navCtrl: NavController, public activeRoute: ActivatedRoute,
     public event: Events) {}
@@ -18,17 +19,26 @@ export class ProfileDetailsPage implements OnInit {
     this.event.subscribe('toggleValue', (value) => {
       console.log("toggleValue: " + value);
       this.toggle = value;
-    })
+    });
+    this.event.subscribe('role', (res) => {
+      console.log("role value: " + res);
+      this.Role = res;
+    });
     // this.popToHome();
   }
 
   popToHome(){
     console.log("poptoHome this.toggled:" + this.toggle);
-    if(this.toggle == false) { 
+    console.log("poptoHome this.Role:" + this.Role);
+    // console.log("Give result: "+ this.Role);
+
+    if(this.Role == true && this.toggle == false) { 
+    // if(this.toggle == false) { 
       // this.navCtrl.push(TabsPage);
       this.navCtrl.navigateBack(['owner/tabs/owner-home']);
     }
-    else if(this.toggle == true) {
+    else if(this.Role == true && this.toggle == true) {
+    // else if(this.toggle == true) {
       // this.navCtrl.push(OperatorstabsPage);
       this.navCtrl.navigateBack(['operator/tabs/operator-home']);
     }

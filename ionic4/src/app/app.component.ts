@@ -29,7 +29,9 @@ export class AppComponent {
   ];
 
   toggle: boolean = false;
-  public Role: boolean = true;
+  public Role: boolean;
+  // public Role: boolean = true;
+  // public Role: boolean = false;
 
   constructor(
     private platform: Platform,
@@ -45,6 +47,10 @@ export class AppComponent {
   ) {
     this.initializeApp();
     // this.toggle = false;
+    this.event.subscribe('roleReceived', (value) => {
+      // console.log("roleReceived: " + value);
+      this.Role = value;
+    });
   }
 
   initializeApp() {
@@ -66,18 +72,21 @@ export class AppComponent {
     });
   }
 
-  checkRole_() {
-    if(this.Role == true) {
-      this.toggleProfile();
-    }
-    else {
-      return;
-    }
-  }
+  // checkRole_() {
+  //   // console.log("roleReceived: " + this.Role);
+
+  //   // if(this.Role == true) {
+  //     // this.toggleProfile();
+  //   // }
+  //   // else {
+  //   //   return;
+  //   // }
+  // }
 
   toggleProfile(){
     // this.event.publish('toggleValue',this.toggle);
     // console.log("this.toggle value: " + this.toggle);
+    // console.log("roleReceived: " + this.Role);
 
     if(this.toggle == true){
       // this.nav.setRoot(OperatorstabsPage);
@@ -96,8 +105,10 @@ export class AppComponent {
 
   openPage(page){
     console.log("openpage page: " + JSON.stringify(page));
+    console.log("roleReceived: " + this.Role);
 
     this.event.publish('toggleValue',this.toggle);
+    this.event.publish('role', this.Role);
     console.log("this.toggle value: " + this.toggle); 
 
     // this.nav.setRoot(page.pageName, {toggled: this.toggleButton});

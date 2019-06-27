@@ -122,20 +122,22 @@ export class LoginPage implements OnInit {
         // console.log("Variable aCT:" + acT);
         this.access_token = res.authResponse.accessToken;
         this.storage.set('access_token', this.access_token);
-                    let navigationExtras: NavigationExtras = {
-                      queryParams: {
-                          token: this.access_token,
-                      }};
-                      console.log("Selected Role: "+ this.Role);
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            token: this.access_token,
+        }};
+        console.log("Selected Role: "+ this.Role);
         if (this.Role == 'Owner') {
           this.roleValue = true;
+          this.event.publish('roleReceived', this.roleValue);
           this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
           // console.log("clicked" + "storage: " + this.storage);
           // return;
         } else {
           this.roleValue = false;          
+          this.event.publish('roleReceived', this.roleValue);
           console.log("show me "+this.Role + " storage: " + this.storage);
-          this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
+          this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);          
           // return;
         }
       }
@@ -189,12 +191,12 @@ export class LoginPage implements OnInit {
                     this.storage.set('access_token', this.access_token);
                     let navigationExtras: NavigationExtras = {
                       queryParams: {
-                          token: this.access_token,
+                          token: this.access_token
                       }
                     };
                     if (this.Role == 'Owner') {
                       this.roleValue = true;
-                      // this.event.publish('roleReceived', this.roleValue);
+                      this.event.publish('roleReceived', this.roleValue);
                       // this.nav.setRoot(TabsPage);
                       this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);
                       // this.router.navigateByUrl('owner/tabs/owner-home', navigationExtras);
@@ -202,10 +204,10 @@ export class LoginPage implements OnInit {
                       return;
                     } else {
                       this.roleValue = false;
-                      // this.event.publish('roleReceived', this.roleValue);
+                      this.event.publish('roleReceived', this.roleValue);
                       // this.nav.setRoot(OperatorstabsPage, this.storage);
                       console.log("show me "+this.Role + " storage: " + this.storage);
-                      this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);
+                      this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);
                       // this.router.navigateByUrl('operator/tabs/operator-home',navigationExtras);
                       return;
                     }
