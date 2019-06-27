@@ -85,7 +85,8 @@ export class OwnerJobInfoPage implements OnInit {
   constructor(public navCtrl: NavController, public _translate: TranslateService, public appprov: AppService, private api: ApiService
     , public activeRoute:ActivatedRoute, public alertCtrl : AlertController, public storage : Storage) { 
     this.activeRoute.queryParams.subscribe(params => { 
-      console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
+      // console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
+      console.log("Results: "+ params["TakeJid"]);
       this.jid = params["TakeJid"];
       console.log("Give result: "+ this.jid);
     });  
@@ -142,6 +143,9 @@ export class OwnerJobInfoPage implements OnInit {
 
   getJobCards(jid, no_of_days){
     console.log("getting job card method called");
+    console.log("Access_token:", this.access_token)
+    console.log("JID:", jid)
+    console.log("No. of days:", no_of_days)
     this.appprov.getJobCards(this.access_token, jid, no_of_days).then((res) => {
       console.log(JSON.stringify(res));
       this.report_cards = res;
@@ -243,15 +247,14 @@ export class OwnerJobInfoPage implements OnInit {
 
   editJob(){
     console.log("editing");
-    // this.nav.push(EditjobPage, {'jid':this.jid, 'access_token':this.access_token});
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //       token: this.access_token,
-    //       id: this.jid
-    //   }
-    // };
-    // this.navCtrl.navigateForward('/EditjobPage', navigationExtras);
-    this.navCtrl.navigateForward('/owner-edit-job');
+    console.log("Check jobID value: "+this.jid);  
+    let navigationExtras: NavigationExtras = {
+      queryParams: {          
+          TakeJid: this.jid
+      }
+    };
+    this.navCtrl.navigateForward(['owner-edit-job'], navigationExtras);
+    // this.navCtrl.navigateForward('/owner-edit-job');
     // this.nav.push(EditjobPage, {'access_token':this.access_token,'jid':this.jid });
   }
   updateJobComplete() {

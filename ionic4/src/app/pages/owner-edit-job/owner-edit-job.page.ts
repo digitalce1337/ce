@@ -4,6 +4,7 @@ import { AppService } from 'src/app/services/app.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-owner-edit-job',
@@ -66,7 +67,13 @@ export class OwnerEditJobPage implements OnInit {
   public vehicle_ : string;
 
   constructor(public _translate: TranslateService, public appprov: AppService, public _FB: FormBuilder,
-    public modalCtrl: ModalController, public storage: Storage) { 
+    public modalCtrl: ModalController,public activeRoute:ActivatedRoute, public storage: Storage) { 
+      this.activeRoute.queryParams.subscribe(params => { 
+        // console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
+        console.log("Results: "+ params["TakeJid"]);
+        this.jid = params["TakeJid"];
+        console.log("Give result: "+ this.jid);
+      });
       // this.jid = navParams.get('jid');
       // this.access_token = navParams.get('access_token');
       this.VehicleTD = [];
@@ -86,12 +93,14 @@ export class OwnerEditJobPage implements OnInit {
         ])
       });
     }
-
+  
+    
   ngOnInit() {
     this.storage.ready().then(()=>{      
       this.storage.get('access_token').then((val)=>{        
         this.access_token = val;               
-        this._translateLanguage();      
+        this._translateLanguage();
+        this.getJobInfo();   
       })})
   }
   //   this._initializeTranslation();
