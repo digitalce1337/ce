@@ -242,9 +242,14 @@ export class OwnerAddJobPage implements OnInit {
     // this.date_from_ = this.date_from_.substring(0,10);
     // this.date_to_ = this.date_to_.substring(0,10);
     console.log("Going to get details from operator veh")
+    console.log("Focus on getVehicles")
+    console.log("getVeh Datefrom:",datefrom)
+    console.log("getVeh DateTo:",dateto)
     this.appprov.getOperatorVehicles(this.access_token,datefrom,dateto).then((res) => {
-      console.log('1');
+      // console.log('1');
       console.log("Managed to get details from operator veh")
+      console.log('Double check getveh Datefrom:',datefrom," DateTo: ",dateto);      
+      console.log('Next line is JSON stringify result:')
       console.log(JSON.stringify(res));
       this.DispSno = [];
       this.VehList = res;
