@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, ReactiveFormsModule } fr
 import { AppService } from 'src/app/services/app.service';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-add-job',
@@ -58,7 +59,7 @@ export class OwnerAddJobPage implements OnInit {
   vehAvail: string[];
 
   constructor(public _translate: TranslateService,public _FB: FormBuilder, public appprov: AppService,
-    public modalCtrl: ModalController) { 
+    public modalCtrl: ModalController, public storage: Storage) { 
       // this.access_token = this.navParams.get('access_token');
       this.VehicleTD = [];
       this.OpTD = [];
@@ -81,8 +82,17 @@ export class OwnerAddJobPage implements OnInit {
     }
 
   ngOnInit() {
-    this._translateLanguage();
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();
+        
+      })})
   }
+
+    // this._translateLanguage();
+  // }
+
   private _translateLanguage() : void{
     // this._translate.use(this.language);
     this._initializeTranslation();
@@ -184,10 +194,15 @@ export class OwnerAddJobPage implements OnInit {
 
   getOperators(datefrom,dateto){
     console.log("---call---");
-    console.log(datefrom);
-    console.log(dateto);
+    console.log("Get Operators DF after sub:",datefrom);
+    // console.log(datefrom);
+    console.log("Get Operators DT before sub:",dateto);
+    datefrom = datefrom.substring(0,10);
+    dateto = dateto.substring(0,10);    
+    console.log("Going to get details from operator NAMES DateFROM:",datefrom," DATETO:",dateto)
     this.OpTD[this.counter] = [];
     this.appprov.getOperatorNames(this.access_token,datefrom,dateto).then((res) => {
+      console.log("MANAGED TO get details from operator NAMES")
       console.log("no error");
       this.OpList = res;
       console.log(JSON.stringify(res));
@@ -214,19 +229,22 @@ export class OwnerAddJobPage implements OnInit {
           availbility: this.opavail[i]
         };
       }
-
-
-
     },(err) => {
+      console.log("FAILED TO get details from operator NAMES")
       console.log(err);
     });
   }// end of getOperators
 
   getVehicles(datefrom,dateto){
     this.VehicleTD[this.counter] = [];
-
+    datefrom = datefrom.substring(0,10);
+    dateto = dateto.substring(0,10);
+    // this.date_from_ = this.date_from_.substring(0,10);
+    // this.date_to_ = this.date_to_.substring(0,10);
+    console.log("Going to get details from operator veh")
     this.appprov.getOperatorVehicles(this.access_token,datefrom,dateto).then((res) => {
       console.log('1');
+      console.log("Managed to get details from operator veh")
       console.log(JSON.stringify(res));
       this.DispSno = [];
       this.VehList = res;
@@ -234,7 +252,11 @@ export class OwnerAddJobPage implements OnInit {
       this.vehtype = this.VehList.vehtype;
       this.vehModel = this.VehList.model_no;
       this.vehAvail = this.VehList.availability;
-
+      console.log("All the items from getOpsVeh:",this.DispSno,this.VehList,this.vehsno,this.vehModel,this.vehAvail);
+      console.log("ANYTHING BELOW HERE DIES")
+      console.log("HERE:", this.vehsno.length)
+      console.log("WATCH ABOVE THIS")
+      //SEEMS LIKE HERE IS THE ERROR
       let i = this.vehsno.length;
       console.log('2');
       for (let k = 0; k<i;k++){
