@@ -55,7 +55,7 @@ export class AppService {
     return new Promise(resolve => {
       this.http.get(this.api.apiKey + 'getFleet?email=' + email).subscribe(res => {
         resolve(res);
-        console.log('heyyyy2');
+        console.log('GetFleet Success');
       }, (err) => {
         console.log(err);
       });
@@ -435,8 +435,7 @@ public retrieveJobDetails(access_token, jid) {
   console.log('Retrieving job details');
   return new Promise(resolve => {
     this.http.get(this.api.apiKey + 'retrieveJobDetails?access_token=' + access_token + '&jid=' + jid).subscribe((res) => {
-      resolve(res);
-      console.log('heyyyy');
+      resolve(res);      
       console.log('Job Details Retrieved');
       console.log('jid: ' + jid);
 
