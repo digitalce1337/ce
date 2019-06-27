@@ -112,7 +112,8 @@ export class OwnerFleetInfoPage implements OnInit {
       console.log(this.Modelno);
     }
 
-  ngOnInit() {this.storage.ready().then(()=>{
+  ngOnInit() {
+    this.storage.ready().then(()=>{
     console.log("Storage ready passed");        
     this.storage.get('access_token').then((val)=>{        
       this.access_token = val;    
@@ -123,7 +124,7 @@ export class OwnerFleetInfoPage implements OnInit {
       this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
       this.retrieveVehicleSchedule(this.serialno);
       this.retrieveVehicleUtil(this.serialno,this.Modelno);
-}
+      }
     )})}    
     // this.retrieveVehicleInfo(this.SelectedVeh);
     // this.retrievePurchaseDate(this.vehicle.serial_no);

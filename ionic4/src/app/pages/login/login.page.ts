@@ -41,6 +41,39 @@ export class LoginPage implements OnInit {
     public appprov: AppService, public event: Events,public navCtrl: NavController) { }
 
   ngOnInit() {
+    // this.fb.getLoginStatus().then((res)=>{
+    //   console.log("FBgetLoginStatus: "+res.status);
+    //   if (res.status === 'connected'){
+    //     console.log("From FB login cache status 1: "+res.authResponse.accessToken);
+    //     var acT = res.authResponse.accessToken;
+    //     // console.log("From FB login cache status 2: "+res.accessToken);
+    //     console.log("From FB login cache status 3: "+res.authResponse.userID);
+    //     //Direct to cached location
+    //     // console.log("Variable aCT:" + acT);
+    //     this.access_token = res.authResponse.accessToken;
+    //     this.storage.set('access_token', this.access_token);
+    //     let navigationExtras: NavigationExtras = {
+    //       queryParams: {
+    //         token: this.access_token,
+    //     }};
+    //     console.log("Selected Role: "+ this.Role);
+    //     if (this.Role == 'Owner') {
+    //       this.roleValue = true;
+    //       this.event.publish('roleReceived', this.roleValue);
+    //       this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
+    //       // console.log("clicked" + "storage: " + this.storage);
+    //       // return;
+    //     } else {
+    //       this.roleValue = false;          
+    //       this.event.publish('roleReceived', this.roleValue);
+    //       console.log("show me "+this.Role + " storage: " + this.storage);
+    //       this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);          
+    //       // return;
+    //     }
+    //   }
+    // else{
+    //   console.log("No FB account cached to app");
+    // }})
   }
 
   showRole(){

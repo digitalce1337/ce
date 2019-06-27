@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-edit-job',
@@ -65,7 +66,7 @@ export class OwnerEditJobPage implements OnInit {
   public vehicle_ : string;
 
   constructor(public _translate: TranslateService, public appprov: AppService, public _FB: FormBuilder,
-    public modalCtrl: ModalController) { 
+    public modalCtrl: ModalController, public storage: Storage) { 
       // this.jid = navParams.get('jid');
       // this.access_token = navParams.get('access_token');
       this.VehicleTD = [];
@@ -87,15 +88,21 @@ export class OwnerEditJobPage implements OnInit {
     }
 
   ngOnInit() {
-    this._initializeTranslation();
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();      
+      })})
   }
+  //   this._initializeTranslation();
+  // }
 
   public changeLanguage(): void{
     this._translateLanguage();
   }
   
   private _translateLanguage() : void{
-    this._translate.use(this.language);
+    // this._translate.use(this.language);
     this._initializeTranslation();
   }
     

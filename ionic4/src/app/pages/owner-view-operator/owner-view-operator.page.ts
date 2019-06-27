@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { AppService } from 'src/app/services/app.service';
 import { Chart } from 'chart.js';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-owner-view-operator',
@@ -60,14 +61,23 @@ export class OwnerViewOperatorPage implements OnInit {
 
 
   constructor(public _translate: TranslateService, public modalCtrl: ModalController, public appprov: AppService,
-    public alertCtrl: AlertController) { }
+    public alertCtrl: AlertController, public storage: Storage) { }
 
   ngOnInit() {
-    this.getOperatorDetails(this.email);
-    this.getOperatorUtil(this.email);
-    this.getOperatorSchedule(this.email);
-    this._initializeTranslation();
-  }
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();      
+        this.getOperatorDetails(this.email);
+        this.getOperatorUtil(this.email);
+        this.getOperatorSchedule(this.email);        
+      })})
+      }
+  //   this.getOperatorDetails(this.email);
+  //   this.getOperatorUtil(this.email);
+  //   this.getOperatorSchedule(this.email);
+  //   this._initializeTranslation();
+  // }
 
   public changeLanguage(): void{
     this._translateLanguage();

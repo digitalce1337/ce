@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
 import { ModalController, PopoverController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-add-maintenance',
@@ -36,21 +37,30 @@ export class AddMaintenanceComponent implements OnInit {
   DescriptionField: any;
 
   constructor(public _translate: TranslateService, public appprov: AppService, public modalCtrl: ModalController, 
-    public popoverCtrl: PopoverController) { }
+    public popoverCtrl: PopoverController, public storage: Storage) { }
 
   ngOnInit() {
-    console.log('ionViewDidLoad AddMaintenancePage');
-    console.log("addMaintenance serial no: " + this.serial);
-    console.log("addMaintenance model no: " + this.model);
-    this._initializeTranslation();
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();
+        console.log('ionViewDidLoad AddMaintenancePage');
+        console.log("addMaintenance serial no: " + this.serial);
+        console.log("addMaintenance model no: " + this.model);                
+      })})
   }
+  //   console.log('ionViewDidLoad AddMaintenancePage');
+  //   console.log("addMaintenance serial no: " + this.serial);
+  //   console.log("addMaintenance model no: " + this.model);
+  //   this._initializeTranslation();
+  // }
 
   public changeLanguage(): void{
     this._translateLanguage();
   }
   
   private _translateLanguage() : void{
-    this._translate.use(this.language);
+    // this._translate.use(this.language);
     this._initializeTranslation();
   }
     

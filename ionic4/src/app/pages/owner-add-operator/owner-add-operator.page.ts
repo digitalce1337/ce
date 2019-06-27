@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -44,12 +45,20 @@ export class OwnerAddOperatorPage implements OnInit {
   selectedArray: any = [];
 
   constructor(public navCtrl: NavController, public _translate: TranslateService, public modalCtrl: ModalController,
-    public appprov: AppService, public loadingCtrl: LoadingController, public alertCtrl: AlertController) { }
+    public appprov: AppService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public storage:Storage) { }
 
   ngOnInit() {
-    this.getVehicleUrl();
-    this._initializeTranslation();
+    this.storage.ready().then(()=>{      
+      this.storage.get('access_token').then((val)=>{        
+        this.access_token = val;               
+        this._translateLanguage();
+        this.getVehicleUrl();            
+      })})
   }
+
+  //   this.getVehicleUrl();
+  //   this._initializeTranslation();
+  // }
   
   public changeLanguage(): void{
     this._translateLanguage();

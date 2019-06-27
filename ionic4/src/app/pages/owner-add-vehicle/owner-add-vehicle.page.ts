@@ -40,8 +40,8 @@ export class OwnerAddVehiclePage implements OnInit {
   constructor(public navCtrl: NavController, public appprov: AppService, private alertCtrl: AlertController,
     public _translate: TranslateService) { }
 
-  ngOnInit() {
-    this._initializeTranslation();
+  ngOnInit() {    
+    this._translateLanguage();
   }
 
   public changeLanguage(): void{
@@ -49,7 +49,7 @@ export class OwnerAddVehiclePage implements OnInit {
   }
    
   private _translateLanguage() : void{
-    this._translate.use(this.language);
+    // this._translate.use(this.language);
     this._initializeTranslation();
   }
     

@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { OwnerViewOperatorPage } from './owner-view-operator.page';
 import { NgCalendarModule } from 'ionic2-calendar';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 const routes: Routes = [
   {
@@ -21,7 +23,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     NgCalendarModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    IonicStorageModule
   ],
   declarations: [OwnerViewOperatorPage]
 })
