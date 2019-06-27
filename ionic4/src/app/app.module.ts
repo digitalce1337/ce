@@ -35,6 +35,7 @@ import { AddMaintenanceComponent } from './pages/add-maintenance/add-maintenance
 import { EditMaintenanceComponent } from './pages/edit-maintenance/edit-maintenance.component';
 import { OwnerViewOperatorPage } from './pages/owner-view-operator/owner-view-operator.page';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { OperatorCapSkillsPage } from './pages/operator-cap-skills/operator-cap-skills.page';
 
 export function HttpLoaderFactory(http: HttpClient){
   console.log("you pass here");
@@ -42,8 +43,8 @@ export function HttpLoaderFactory(http: HttpClient){
 }
 
 @NgModule({
-  declarations: [AppComponent, AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage],
-  entryComponents: [AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage],
+  declarations: [AppComponent, AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage, OperatorCapSkillsPage],
+  entryComponents: [AddMaintenanceComponent, EditMaintenanceComponent, OwnerViewOperatorPage, OperatorCapSkillsPage],
   imports: [
     CommonModule,
     BrowserModule,

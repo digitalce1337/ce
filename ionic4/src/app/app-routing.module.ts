@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'owner-fleet-info', loadChildren: './pages/owner-fleet-info/owner-fleet-info.module#OwnerFleetInfoPageModule' },
   { path: 'owner-view-operator', loadChildren: './pages/owner-view-operator/owner-view-operator.module#OwnerViewOperatorPageModule' },
   { path: 'profile-details', loadChildren: './pages/profile-details/profile-details.module#ProfileDetailsPageModule' },
+  { path: 'operator-job-info', loadChildren: './pages/operator-job-info/operator-job-info.module#OperatorJobInfoPageModule' },
+  { path: 'operator-cap-skills', loadChildren: './pages/operator-cap-skills/operator-cap-skills.module#OperatorCapSkillsPageModule' },
   // { path: '', redirectTo: 'owner/tabs/owner-home', pathMatch: 'full' },
   // { path: 'owner-tabs', loadChildren: './pages/owner-tabs/owner-tabs.module#OwnerTabsPageModule' },
   // { path: 'owner-home', loadChildren: './pages/owner-home/owner-home.module#OwnerHomePageModule' },
