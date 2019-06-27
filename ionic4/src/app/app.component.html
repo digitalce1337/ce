@@ -21,7 +21,7 @@
         </ion-menu-toggle>
 
         <!-- <ion-item *ngIf="Role" [(ngModel)]="Role"> -->
-        <ion-item>
+        <ion-item *ngIf="Role == true">
           <ion-label> Operator Mode </ion-label>
           <ion-icon slot="start" name="swap"></ion-icon>
           <ion-toggle ngDefaultControl [(ngModel)]="toggle" (ionChange)="toggleProfile()"></ion-toggle>
