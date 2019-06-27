@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-title>OperatorJobInfo</ion-title> -->
+    <ion-title>{{JobTitle}}</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/operator/tabs/operator-jobs"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  HARLOOOOOW
+  <ion-grid>
+    <ion-row justify-content:center>
+      <ion-col>
+        <!-- <img src = "assets/imgs/Komatsu.png" style="width:26em;height:26em"> -->
+        <img src="{{pathForImage(lastImage)}}" style="width:26em;height:26em"
+          onError="this.src='assets/imgs/addCamera.jpg';">
+        <!-- onError="{{pathForImage(image)}}" style="width:26em;height:26em"> -->
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="presentAS()">
+          <ion-icon name="camera"></ion-icon>{{ take_photo }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-select [(ngModel)]="faults" multiple="true" class="faultsSel" placeholder="Actions needed for machine">
+        <!-- <ion-select [(ngModel)]="faults" multiple="true" name="faultsSelected" placeholder="Actions needed for machine"> -->
+          <ion-select-option *ngFor="let fault of faultOpt">{{fault}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-textarea rows="5" maxLength="1000" placeholder="  Comments" [(ngModel)]="Desc"></ion-textarea>
+        <!-- <ion-textarea rows="5" maxLength="1000" placeholder="Description" [(ngModel)]="Desc"></ion-textarea> -->
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="UploadImg()">
+    {{ submit }}
+  </ion-button>
+</ion-footer>

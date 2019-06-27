@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OperatorJobsPage } from './operator-jobs.page';
+import { OperatorJobInfoPage } from './operator-job-info.page';
 import { IonicStorageModule } from '@ionic/storage';
 
 const routes: Routes = [
   {
     path: '',
-    component: OperatorJobsPage
+    component: OperatorJobInfoPage
   }
 ];
 
@@ -20,10 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes),
     IonicStorageModule
   ],
-  declarations: [OperatorJobsPage]
+  declarations: [OperatorJobInfoPage]
 })
-export class OperatorJobsPageModule {}
+export class OperatorJobInfoPageModule {}

@@ -34,6 +34,7 @@ import {RouterModule} from '@angular/router';
 import { AddMaintenanceComponent } from './pages/add-maintenance/add-maintenance.component';
 import { EditMaintenanceComponent } from './pages/edit-maintenance/edit-maintenance.component';
 import { OwnerViewOperatorPage } from './pages/owner-view-operator/owner-view-operator.page';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 export function HttpLoaderFactory(http: HttpClient){
   console.log("you pass here");
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient){
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AppService,
     ApiService,
+    WebView,
     File,
     Http,
     FileTransfer,
