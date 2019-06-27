@@ -41,6 +41,7 @@ export class OwnerAddVehiclePage implements OnInit {
     public _translate: TranslateService) { }
 
   ngOnInit() {    
+    this.getEmail();
     this._translateLanguage();
   }
 
