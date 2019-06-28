@@ -12,13 +12,13 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
-      <ion-col>
+    <!-- <ion-row> -->
+      <!-- <ion-col> -->
         <h3>{{ skill_sets }}&nbsp;
           <ion-icon name="create" (click)="showCap($event)"></ion-icon>
         </h3>
-      </ion-col>
-    </ion-row>
+      <!-- </ion-col> -->
+    <!-- </ion-row> -->
     <ion-row>
       <ion-col *ngFor="let veh of capabilities" (ionChange)="getCapabilities()">
         <img [src]=veh.vehicle_url style="width:6rem; height:6rem">

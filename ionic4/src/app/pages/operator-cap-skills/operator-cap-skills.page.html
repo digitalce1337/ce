@@ -10,12 +10,12 @@
       {{ skill_sets }}
     </ion-list-header>
     <ion-item *ngFor="let veh of vehicles">
-      <ion-avatar item-left>
-        <!--<img src ="assets/imgs/VolvoLogo.png" style="width:6rem; height:6rem" alt = "Compactor">-->
+      <ion-avatar slot="start">
         <img [src]=veh.vehicle_url style="width:6rem; height:6rem" alt="Compactor">
       </ion-avatar>
       <ion-label></ion-label>
-      <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>
+      <!-- <ion-checkbox [(ngModel)]="veh.checked" slot="end" checked="false" (click)="selectVehicle(veh)"></ion-checkbox> -->
+      <ion-checkbox [(ngModel)]="veh.checked" [checked]="false" slot="end" (click)="selectVehicle(veh)"></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>

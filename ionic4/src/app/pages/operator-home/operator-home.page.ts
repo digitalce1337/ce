@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { AlertController, PopoverController, Events } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Chart } from 'chart.js';
 import { TranslateService } from '@ngx-translate/core';
@@ -52,7 +52,12 @@ public skill_sets: string;
   }>;
   // constructor(public _translate: TranslateService) { }
   constructor(public _translate: TranslateService,public appprov: AppService, public alertCtrl: AlertController, 
-    public authService: AuthService, public storage : Storage, public popO: PopoverController) {}
+    public authService: AuthService, public storage : Storage, public popO: PopoverController, public event: Events) {
+      this.event.subscribe('capability', (cap) => {
+        console.log("capability: " + cap);
+      });
+      // this.getCapabilities();
+    }
   
   private _translateLanguage() : void{
     // this._translate.use(this.language);
@@ -77,8 +82,15 @@ public skill_sets: string;
         this.getCapabilities();
         this.getOperatorHomePageUtil();
       })
-    })
+    });
   }
+  IonViewWillEnter() {
+    this.getCapabilities();
+  }
+  ionViewDidEnter() {
+    this.getCapabilities();
+  }
+
   onViewTitleChanged(title){
     this.viewTitle = title;
   }
@@ -169,6 +181,7 @@ public skill_sets: string;
 
   getCapabilities(){
     this.capabilities = [];
+    console.log("inside getCapabilities");
     // this.appprov.getOpCapabilities(this.access_token.toString()).then((res:any) => {
     this.appprov.getOpCapabilities(this.access_token).then((res:any) => {
       let caps = JSON.stringify(res);
@@ -188,10 +201,12 @@ public skill_sets: string;
 
   public async showCap(){
     let popover = await this.popO.create({component: OperatorCapSkillsPage});
-    // console.log("showcap");
+    console.log("showcap to present");
+    // await popover.dismiss(() => this.getCapabilities());
     return await popover.present();
-    
+    console.log("showcap to dismiss");
     // popover.onDidDismiss(() => this.getCapabilities());
+    // popover.dismiss(() => this.getCapabilities());
   }
 
   getOperatorHomePageUtil(){
