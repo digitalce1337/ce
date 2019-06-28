@@ -108,6 +108,7 @@ export class OwnerAddJobPage implements OnInit {
     this.description =  this._translate.instant("addjob.description");
     this.operator_vehicle =  this._translate.instant("addjob.operator_vehicle");
     this.operator_name =  this._translate.instant("addjob.operator_name");
+    this.vehicle = this._translate.instant("addjob.vehicle");
     this.submit =  this._translate.instant("addjob.submit");
     this.add =  this._translate.instant("addjob.add");
     this.back =  this._translate.instant("addjob.back");  
