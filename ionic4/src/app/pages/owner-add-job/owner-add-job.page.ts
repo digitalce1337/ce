@@ -144,22 +144,27 @@ export class OwnerAddJobPage implements OnInit {
 
   manage(val:any):void{
     let result: any;
+    console.log("Manage Function:")
     console.log(val);
     // console.log(val.OpVehPay)
-    this.appprov.addJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName)
+    let rawValueDF = val.DateFrom.toString();
+    let rawValueDT = val.DateTo.toString();
+    let datefrom = rawValueDF.substring(0,10);
+    let dateto = rawValueDT.substring(0,10);
+    console.log("Display sending to addJob params:",this.access_token,val.PayOut,datefrom,dateto,val.Loc,val.Desc,val.ClientName)
+    this.appprov.addJob(this.access_token,val.PayOut,datefrom,dateto,val.Loc,val.Desc,val.ClientName)
+    // this.appprov.addJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName)
     .then(res => {
+      console.log("addJob results returns:", res)
       console.log(res);
+      let data = JSON.stringify(res);
+      data = JSON.parse(data);      
+      console.log("Data1:",data);
+      let item = data['jid'];
+      console.log("Item:",item);
+
       result = res;
-      //       let operatorjobs = this.form.get('technologies').value;
-//       this.operator_names = [];
-//       this.operator_vehicles = [];
-//       for (let i=0; i<operatorjobs.length; i++){
-//         //this.operator_names[i] = operatorjobs[i].name;
-//         let index = this.operators.indexOf(operatorjobs[i].name);
-//         let email = this.emails[0][index];
-//         this.operator_names[i] = email;
-//         this.operator_vehicles[i]  = operatorjobs[i].type;
-//       }  
+      console.log("Data1 result.jid", result.jid)
       let operatorjobs = val.OpVehPay;
       let names = [];
       let vehicles = [];
@@ -169,11 +174,13 @@ export class OwnerAddJobPage implements OnInit {
       }
       console.log('i am sending this when i am adding job');
       console.log(vehicles);
+      //Jid is empty for this line
       this.appprov.insertOperatorJob(this.access_token, result.jid,names, vehicles).then(res => {
         this.appprov.presentAlert(this.addjobmsgtitle, this.addjobmsg);
         // this.viewctrl.dismiss('1');
         this.modalCtrl.dismiss('1');
-        this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles);
+        this.appprov.addJobDetails(this.access_token,datefrom,dateto, result.jid,names, vehicles);
+        // this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles);
       },err => {
         console.log(err);
       })
