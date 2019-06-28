@@ -4,6 +4,7 @@ import { AppService } from 'src/app/services/app.service';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner-add-job',
@@ -59,7 +60,7 @@ export class OwnerAddJobPage implements OnInit {
   vehAvail: string[];
 
   constructor(public _translate: TranslateService,public _FB: FormBuilder, public appprov: AppService,
-    public modalCtrl: ModalController, public storage: Storage) { 
+    public modalCtrl: ModalController, public storage: Storage, public router: Router) { 
       // this.access_token = this.navParams.get('access_token');
       this.VehicleTD = [];
       this.OpTD = [];
@@ -155,8 +156,8 @@ export class OwnerAddJobPage implements OnInit {
     this.appprov.addJob(this.access_token,val.PayOut,datefrom,dateto,val.Loc,val.Desc,val.ClientName)
     // this.appprov.addJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName)
     .then(res => {
-      console.log("addJob results returns:", res)
-      console.log(res);
+      // console.log("addJob results returns:", res)
+      // console.log(res);
       let data = JSON.stringify(res);
       data = JSON.parse(data);      
       console.log("Data1:",data);
@@ -176,11 +177,10 @@ export class OwnerAddJobPage implements OnInit {
       console.log(vehicles);
       //Jid is empty for this line
       this.appprov.insertOperatorJob(this.access_token, result.jid,names, vehicles).then(res => {
-        this.appprov.presentAlert(this.addjobmsgtitle, this.addjobmsg);
-        // this.viewctrl.dismiss('1');
-        this.modalCtrl.dismiss('1');
         this.appprov.addJobDetails(this.access_token,datefrom,dateto, result.jid,names, vehicles);
-        // this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles);
+        this.appprov.presentAlert(this.addjobmsgtitle, this.addjobmsg);        
+        // this.modalCtrl.dismiss('1');        
+        this.router.navigateByUrl('owner/tabs/owner-jobs');        
       },err => {
         console.log(err);
       })

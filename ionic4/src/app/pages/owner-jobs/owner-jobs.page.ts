@@ -321,15 +321,14 @@ export class OwnerJobsPage implements OnInit {
 
   }
 
-  AddJob(){
-    // this.nav.push(AddjobPage, {'access_token':this.access_token});
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          token: this.access_token,
-      }
-    };
-    this.router.navigateByUrl('owner-add-job', navigationExtras);
-    // this.navCtrl.navigateForward('/owner-add-job')
+  AddJob(){    
+    this.router.navigateByUrl('owner-add-job');
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //       token: this.access_token,
+    //   }
+    // };
+    // this.navCtrl.navigateForward('/owner-add-job')    
   }
 
   viewJob(event, jid){
