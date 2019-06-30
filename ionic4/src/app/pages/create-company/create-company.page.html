@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>createCompany</ion-title>
+    <!-- <ion-title>createCompany</ion-title> -->
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-label>Enter details here, only enter upon first time load new user</ion-label>
+  <!-- <ion-label>Enter details here, only enter upon first time load new user</ion-label> -->
+  <ion-item>
+    <ion-label position="stacked">{{ company_name }}</ion-label>
+    <ion-input type="text" [(ngModel)]="companynameField"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">{{ company_address }}</ion-label>
+    <ion-input type="text" [(ngModel)]="companyaddField"></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item>
+    <ion-label position="stacked">{{ phone_no }} </ion-label>
+    <ion-input type="text" [(ngModel)]="phonenoField"></ion-input>
+  </ion-item>
+
+  <!-- <ion-item>
+  <ion-label position="stacked">{{ working_days }}</ion-label>
+  <ion-input type="number" [(ngModel)]="workingdaysField"></ion-input>
+</ion-item> -->
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="itemTappedAdd($event)">{{ continue }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

@@ -13,34 +13,34 @@
   <form [formGroup]="form" (ngSubmit)="manage(form.value)">
 
   <ion-item>
-      <ion-label stacked>{{ client }}</ion-label>
+      <ion-label position="stacked">{{ client }}</ion-label>
       <ion-input type="text" formControlName ='ClientName' value= {{Client_Name}}></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label stacked>{{ project_earning }}</ion-label>
+      <ion-label position="stacked">{{ project_earning }}</ion-label>
       <ion-input type="number" formControlName ='PayOut' value= {{Earning}}></ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label stacked>{{ location }}</ion-label>
+      <ion-label position="stacked">{{ location }}</ion-label>
       <ion-input type="text" formControlName ='Loc' value = {{locatio}}></ion-input>
   </ion-item>
  
   <ion-item>
-      <ion-label stacked>{{ date_from }}</ion-label>
+      <ion-label position="stacked">{{ date_from }}</ion-label>
       <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateFrom' [(ngModel)]="date_from_" max="2050-12-30" min="2018"></ion-datetime> -->
       <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateFrom' [(ngModel)]="date_from_"  max="2050-12-30" min="2018"></ion-datetime>
   </ion-item>
   <!-- [ngModelOptions]="{standalone: true}" -->
   <ion-item>
-      <ion-label stacked>{{ date_to }}</ion-label>
+      <ion-label position="stacked">{{ date_to }}</ion-label>
       <!-- <ion-datetime displayFormat="YYYY/MM/DD" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime> -->
       <ion-datetime displayFormat="DD/MM/YYYY" formControlName ='DateTo' [(ngModel)]="date_to_" max="2050-12-30" min="2018"></ion-datetime>
   </ion-item>
 
   <ion-item>
-      <ion-label stacked>{{ description }}</ion-label>
+      <ion-label position="stacked">{{ description }}</ion-label>
       <ion-input type="text" formControlName ='Desc' value={{description_}}></ion-input>
   </ion-item>
 
@@ -53,14 +53,14 @@
               <ion-icon name="close"></ion-icon>
             </span></ion-item-divider>
           <ion-item>
-            <ion-label stacked>{{ operator_name }}:</ion-label>
+            <ion-label position="stacked">{{ operator_name }}:</ion-label>
             <ion-select formControlName="Opname" (ionChange)="test($event)" placeholder={{operator_}}>
               <ion-select-option *ngFor="let op of OpTD[i+1]; let k = index" value="{{op.email}}">{{op.name}}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-              <ion-label stacked>{{ vehicle }}:</ion-label>
+              <ion-label position="stacked">{{ vehicle }}:</ion-label>
               <ion-select formControlName="Vehtype" placeholder={{vehicle_}}>
                   <ion-select-option *ngFor="let veh of VehicleTD[i+1]" value="{{veh.sno}}">{{veh.dissno}} - {{veh.vtype}}</ion-select-option>
               </ion-select>

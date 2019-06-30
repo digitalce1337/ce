@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>profileDetails</ion-title>
+    <!-- <ion-title>profileDetails</ion-title> -->
+    <ion-title>{{ title }}</ion-title>
     <!-- <ion-buttons slot="end">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons> -->
@@ -12,6 +13,50 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-grid *ngIf="Role" [(ngModel)]="Role">
+    <!-- <ion-label>Company Name:</ion-label> -->
+    <ion-label>{{ companyName }}:</ion-label>
+    <br>
+    <b>{{ Ucompany }}</b>
+  </ion-grid>
+
+  <br>
+
+  <ion-grid *ngIf="Role" [(ngModel)]="Role">
+    <!-- <ion-label>Company Address:</ion-label> -->
+    <ion-label>{{ companyAdd }}:</ion-label>
+    <br>
+    <b>{{ Ucompanyadd }}</b>
+  </ion-grid>
+  
+  <br>
+
+  <ion-grid>
+    <!-- <ion-label>Email:</ion-label> -->
+    <ion-label>{{ email }}:</ion-label>
+    <br>
+    <b>{{ Uemail }}</b>
+  </ion-grid>
+
+  <br>
+
+  <ion-grid>
+    <!-- <ion-label>Phone Number:</ion-label> -->
+    <ion-label>{{ phone_no }}:</ion-label>
+    <br>
+    <b>{{ Unum }}</b>
+  </ion-grid>
+
+  <br>
+
+  <ion-item>
+    Change Language:
+    <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder="Language">
+      <!-- <ion-select [(ngModel)]="language" (ionChange)="changeLanguage()" placeholder="{{language}}"> -->
+      <ion-select-option value="en">English</ion-select-option>
+      <ion-select-option value="kr">한국어</ion-select-option>
+    </ion-select>
+  </ion-item>
 
 </ion-content>

@@ -214,10 +214,6 @@
 	
 	"profile": {
 		"title": "Profile",
-		"welcome": "Welcome",
-		"forecast" : "Forecast of Events",
-        "fleet": "Fleet Status",
-		"jobstats": "Job Statistics",
 		"companyName": "Company Name",
 		"companyAdd": "Company Address",
 		"email": "Email",
