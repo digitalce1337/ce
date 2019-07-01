@@ -213,5 +213,15 @@
         "errormsg": "보고서를 작성하고 이미지를 첨부해 주세요.",
         "reportmsgtitle": "성공!",
         "reportmsg": "보고서가 성공적으로 추가되었습니다."
-    }
+    },
+	
+	"profile": {
+		"title": "프로필",
+		"companyName": "업체명",
+		"companyAdd": "업체 주소",
+		"email": "이메일",
+		"phone_no": "전화 번호",
+		"language": "언어"
+	
+	}
 }
