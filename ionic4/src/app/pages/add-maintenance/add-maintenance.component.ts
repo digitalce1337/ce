@@ -36,18 +36,19 @@ export class AddMaintenanceComponent implements OnInit {
   LocationField: any;
   DescriptionField: any;
 
-  constructor(public _translate: TranslateService, public appprov: AppService, public modalCtrl: ModalController, 
+  constructor(public _translate: TranslateService, public appprov: AppService, public modalCtrl: ModalController,
     public popoverCtrl: PopoverController, public storage: Storage) { }
 
   ngOnInit() {
-    this.storage.ready().then(()=>{      
-      this.storage.get('access_token').then((val)=>{        
-        this.access_token = val;               
+    this.storage.ready().then(() => {
+      this.storage.get('access_token').then((val) => {
+        this.access_token = val;
         this._translateLanguage();
         console.log('ionViewDidLoad AddMaintenancePage');
         console.log("addMaintenance serial no: " + this.serial);
-        console.log("addMaintenance model no: " + this.model);                
-      })})
+        console.log("addMaintenance model no: " + this.model);
+      })
+    });
   }
   //   console.log('ionViewDidLoad AddMaintenancePage');
   //   console.log("addMaintenance serial no: " + this.serial);
@@ -55,35 +56,35 @@ export class AddMaintenanceComponent implements OnInit {
   //   this._initializeTranslation();
   // }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-  
-  private _translateLanguage() : void{
-    // this._translate.use(this.language);
+
+  private _translateLanguage(): void {
+    this._translate.use(this.language);
     this._initializeTranslation();
   }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("add-maintenance.title");
-      this.start_date = this._translate.instant("add-maintenance.start_date");
-      this.end_date = this._translate.instant("add-maintenance.end_date");
-      this.location = this._translate.instant("add-maintenance.location");
-      this.description = this._translate.instant("add-maintenance.description");
-      this.add = this._translate.instant("add-maintenance.add");
-      this.cancel = this._translate.instant("add-maintenance.cancel");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("add-maintenance.title");
+    this.start_date = this._translate.instant("add-maintenance.start_date");
+    this.end_date = this._translate.instant("add-maintenance.end_date");
+    this.location = this._translate.instant("add-maintenance.location");
+    this.description = this._translate.instant("add-maintenance.description");
+    this.add = this._translate.instant("add-maintenance.add");
+    this.cancel = this._translate.instant("add-maintenance.cancel");
   }
-  
-  addMaintenance(){
-    let date_from = this.Fromdatetime.substring(0,10);
-    let date_to = this.Todatetime.substring(0,10);
+
+  addMaintenance() {
+    let date_from = this.Fromdatetime.substring(0, 10);
+    let date_to = this.Todatetime.substring(0, 10);
     let location = this.LocationField;
     let desc = this.DescriptionField;
     let serial_no = this.serial;
     let modelnum = this.model;
-    console.log("date from: "+ date_from + " date to: " + date_to);
+    console.log("date from: " + date_from + " date to: " + date_to);
     console.log("location: " + location + " desc: " + desc);
-    this.appprov.addMaintenance(this.access_token, serial_no, date_from, date_to, location, desc,modelnum).then((res) => {
+    this.appprov.addMaintenance(this.access_token, serial_no, date_from, date_to, location, desc, modelnum).then((res) => {
       console.log("appprov res: " + res);
       let data = JSON.stringify(res);
       console.log("appprov stringify: " + data);
@@ -95,7 +96,7 @@ export class AddMaintenanceComponent implements OnInit {
     this.close();
   }
 
-  close(){
+  close() {
     // this.viewctrl.dismiss();
     // this.modalCtrl.dismiss();
     this.popoverCtrl.dismiss();

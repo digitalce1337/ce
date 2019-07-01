@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>otpOperator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">{{ invitation_code }}</ion-label>
+    <ion-input type="text" [(ngModel)]="otp" (ionChange)="CheckOTP()"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{ invited_by }}: <b>{{Owner}}</b></ion-label>
+  </ion-item>
+  <br />
+
+  <ion-item>
+    <ion-label position="stacked">{{ phone_no }}</ion-label>
+    <ion-input type="text" [(ngModel)]="PhoneNo"></ion-input>
+  </ion-item>
+
+
+  <ion-list no-lines>
+    <ion-list-header>
+      {{ skill_sets }}
+    </ion-list-header>
+    <ion-item *ngFor="let veh of vehicles">
+      <ion-avatar item-left>
+        <img [src]=veh.vehicle_url style="width:6rem; height:6rem">
+      </ion-avatar>
+      <ion-label></ion-label>
+      <ion-checkbox [(ngModel)]="veh.checked" item-right check="false" (click)="selectVehicle(veh)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full"(click)="Submit($event)">{{ continue }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

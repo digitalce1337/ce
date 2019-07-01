@@ -266,7 +266,7 @@ export class LoginPage implements OnInit {
                 // this.navCtrl.navigateForward('/CreatecompanyPage', this.storage);
                 // this.nav.push(CreatecompanyPage, this.storage);
               } else {
-                this.router.navigateByUrl('OtpOperatorPage');
+                this.router.navigateByUrl('otp-operator');
                 // this.nav.push(OtpOperatorPage, this.storage);
               }
               return;
