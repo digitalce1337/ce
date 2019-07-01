@@ -70,7 +70,9 @@ export class OperatorJobInfoPage implements OnInit {
     this.storage.ready().then(() => {
       this.storage.get('access_token').then((val) => {
         this.access_token = val;
-        this._translateLanguage();
+        this._translateLanguage();        
+        this.FaultOfVType();
+        this.GetCurrentLoc();
       })
     });
   }
@@ -154,22 +156,22 @@ export class OperatorJobInfoPage implements OnInit {
       correctOrientation: true
     };
 
-    // this.camera.getPicture(options).then((imagePath) => {
-    //   if (this.plt.is('android') && type === this.camera.PictureSourceType.PHOTOLIBRARY) {
-    //     this.filepath.resolveNativePath(imagePath).then(filePath => {
-    //       let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //       let currName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-    //       this.copyFileToLocalDir(correctPath, currName, this.createFileName());
-    //     });
-    //   }
-    //   else {
-    //     var currName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-    //     var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-    //     this.copyFileToLocalDir(correctPath, currName, this.createFileName());
-    //   }
-    // }, (err) => {
-    //   console.log(err);
-    // })
+    this.camera.getPicture(options).then((imagePath) => {
+      if (this.plt.is('android') && type === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filepath.resolveNativePath(imagePath).then(filePath => {
+          let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+          let currName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+          this.copyFileToLocalDir(correctPath, currName, this.createFileName());
+        });
+      }
+      else {
+        var currName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        this.copyFileToLocalDir(correctPath, currName, this.createFileName());
+      }
+    }, (err) => {
+      console.log(err);
+    })
   }
 
   private createFileName() {
@@ -190,18 +192,26 @@ export class OperatorJobInfoPage implements OnInit {
   }
 
   public pathForImage(img) {
+    // console.log("Entering pathForImage check")
     if (img == null) return ''
     else {
       if (this.plt.is('android')) {
-        return this.file.dataDirectory + img;
+        console.log("Error here")
+        // return this.file.dataDirectory + img;
+        let IP = this.webview.convertFileSrc(this.file.dataDirectory + img);
+        console.log("Image path given:",IP);
+        return this.webview.convertFileSrc(this.file.dataDirectory + img);
+        
       }
       else {
-        // return normalizeUrl(this.file.dataDirectory + img);
+        //For IOS platform
+        console.log("Error should be from here??")
+        // return normalizeUrl(this.file.dataDirectory + img);                     
         return this.webview.convertFileSrc(this.file.dataDirectory + img);
       }
     }
   }
-
+  
   public UploadImg() {
     // this.showLoader();
     if (this.lastImage != null || this.Desc != null) {

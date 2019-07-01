@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { OperatorJobInfoPage } from './operator-job-info.page';
 import { IonicStorageModule } from '@ionic/storage';
+import { WebView } from '@ionic-native/ionic-webview/ngx'
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    IonicStorageModule
+    IonicStorageModule,
+    
   ],
   declarations: [OperatorJobInfoPage]
 })
