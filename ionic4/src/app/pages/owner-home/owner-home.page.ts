@@ -125,8 +125,7 @@ export class OwnerHomePage implements OnInit {
         console.log("Storage get passed");
         console.log("Value: " + val + " AT: " + this.access_token);
         this.access_token = val;
-        console.log("Set AT, check: " + this.access_token);
-        this._translateLanguage();
+        console.log("Set AT, check: " + this.access_token);        
         // this._initializeTranslation();       
         this.getEmailPay();
         this.getOwnerJoblist();
@@ -135,6 +134,7 @@ export class OwnerHomePage implements OnInit {
         this.getVehicleStatus('');
         this.getHomeFleetChart();
         this.getHomeOperatorChart();
+        this._translateLanguage();        
       })
     });
   }
@@ -145,13 +145,13 @@ export class OwnerHomePage implements OnInit {
 
   private _translateLanguage(): void {
     //  this._translate.use(this.language);
-    if (this.language === ('kr')) {
-      // this._translate.setDefaultLang(this.language);
-      this._translate.setDefaultLang('kr');
-    }
-    else {
-      this._translate.setDefaultLang('en');
-    }
+    // if (this.language === ('kr')) {
+    //   // this._translate.setDefaultLang(this.language);
+    //   this._translate.setDefaultLang('kr');
+    // }
+    // else {
+    //   this._translate.setDefaultLang('en');
+    // }
     this._translate.setDefaultLang(this.language);
     this._initializeTranslation();
   }

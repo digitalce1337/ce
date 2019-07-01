@@ -4,6 +4,7 @@ import { AlertController, LoadingController, Events, NavController } from '@ioni
 import { AppService } from 'src/app/services/app.service';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class LoginPage implements OnInit {
 
   constructor(public router: Router, public storage: Storage, public alertCtrl: AlertController,
     private fb: Facebook, public loadingCtrl: LoadingController, 
-    public appprov: AppService, public event: Events,public navCtrl: NavController) { }
+    public appprov: AppService, public event: Events,public navCtrl: NavController,private _translate: TranslateService) { }
 
   ngOnInit() {
     // this.fb.getLoginStatus().then((res)=>{
@@ -134,6 +135,7 @@ export class LoginPage implements OnInit {
   }
 
   loginWithFacebook1() {
+    this._translate.setDefaultLang('en');
     console.log("Check if role was cached: "+this.Role);
     if (this.Role == null || this.Role === undefined) {      
       this.roleAlert();

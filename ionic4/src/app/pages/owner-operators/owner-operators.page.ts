@@ -117,7 +117,7 @@ export class OwnerOperatorsPage implements OnInit {
       this.operatordetails_vehicles = data['operatordetails_vehicles'];
       this.operatordetails_busydate = data['operatordetails_role'];
       this.operators = [];
-      console.log("fist checkpoint");
+      console.log("first checkpoint");
       console.log(this.operatordetails_name.length);
       // for (let i = 0; i < this.operatordetails_profileurl.length; i++) {
       for (let i = 0; i < this.operatordetails_name.length; i++) {
