@@ -154,22 +154,22 @@ export class OperatorJobInfoPage implements OnInit {
       correctOrientation: true
     };
 
-    this.camera.getPicture(options).then((imagePath) => {
-      if (this.plt.is('android') && type === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filepath.resolveNativePath(imagePath).then(filePath => {
-          let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-          let currName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-          this.copyFileToLocalDir(correctPath, currName, this.createFileName());
-        });
-      }
-      else {
-        var currName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        this.copyFileToLocalDir(correctPath, currName, this.createFileName());
-      }
-    }, (err) => {
-      console.log(err);
-    })
+    // this.camera.getPicture(options).then((imagePath) => {
+    //   if (this.plt.is('android') && type === this.camera.PictureSourceType.PHOTOLIBRARY) {
+    //     this.filepath.resolveNativePath(imagePath).then(filePath => {
+    //       let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+    //       let currName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+    //       this.copyFileToLocalDir(correctPath, currName, this.createFileName());
+    //     });
+    //   }
+    //   else {
+    //     var currName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+    //     var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+    //     this.copyFileToLocalDir(correctPath, currName, this.createFileName());
+    //   }
+    // }, (err) => {
+    //   console.log(err);
+    // })
   }
 
   private createFileName() {

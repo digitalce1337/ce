@@ -118,14 +118,6 @@ export class OwnerJobsPage implements OnInit {
   }
       )})}
 
-  ionViewWillEnter(){
-    console.log("Calling of ionViewWillEnter for owner-jobs.page ts")
-    this.retrievePastJobs();
-    this.retrieveOngoingJobs();
-    this.retrieveUpcomingJobs();
-    this.retrieveCancelledJobs();
-  }
-
   public changeLanguage(): void{
     this._translateLanguage();
   }

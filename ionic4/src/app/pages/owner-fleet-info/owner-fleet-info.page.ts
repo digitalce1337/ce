@@ -35,9 +35,9 @@ export class OwnerFleetInfoPage implements OnInit {
   public total_no_job: string;
   public assigned: string;
 
-  date_day:string;
-  date_mth:string;
-  date_yr:string;
+  date_day: string;
+  date_mth: string;
+  date_yr: string;
 
   @ViewChild('barVehCanvas') barVehCanvas;
   barVehChart: any;
@@ -49,24 +49,24 @@ export class OwnerFleetInfoPage implements OnInit {
   viewTitle: string;
   selectedDay = new Date();
   calendar = {
-    mode:'month',
+    mode: 'month',
     currentDate: this.selectedDay
   }
 
   public serialno: string;
   public Modelno: string;
-  public pdate:string;
-  public Desc: string; 
-  public vtype:string;
-  public manu:string;
+  public pdate: string;
+  public Desc: string;
+  public vtype: string;
+  public manu: string;
   public img: string;
-  public machinehour:string = '';
-  public completed_count:string = '0';
-  public lastservice:string ='N/A';
-  public upcoming_count:string ='0';
-  public upcoming_date:string ='';
-  public upcoming_place:string ='';
-  
+  public machinehour: string = '';
+  public completed_count: string = '0';
+  public lastservice: string = 'N/A';
+  public upcoming_count: string = '0';
+  public upcoming_date: string = '';
+  public upcoming_place: string = '';
+
   // Vehdata = {
   //   modelno: '',
   //   serialno: '',
@@ -79,10 +79,10 @@ export class OwnerFleetInfoPage implements OnInit {
     purchase_date: '',
     machine_hour: '',
     completed_count: '0',
-    last_service:'N/A',
-    upcoming_count:'0',
-    upcoming_date:'',
-    upcoming_place:''
+    last_service: 'N/A',
+    upcoming_count: '0',
+    upcoming_date: '',
+    upcoming_place: ''
   }
 
   SelectedVeh: any;
@@ -97,95 +97,92 @@ export class OwnerFleetInfoPage implements OnInit {
 
   constructor(public _translate: TranslateService, public appprov: AppService, public popoverCtrl: PopoverController,
     public navCtrl: NavController, public router: Router, public activeRoute: ActivatedRoute,
-    public modalCtrl: ModalController,public storage: Storage) { 
-      
-      this.activeRoute.queryParams.subscribe(params => {
-        this.serialno = params["serialno"];
-        this.Modelno = params["Modelno"];
-        this.pdate = params["pdate"];
-        this.Desc = params["Desc"];
-        this.vtype = params["vtype"];
-        this.manu = params["manu"];
-        this.img = params["img"];
-        
-      });
-      console.log(this.Modelno);
-    }
+    public modalCtrl: ModalController, public storage: Storage) {
+
+    this.activeRoute.queryParams.subscribe(params => {
+      this.serialno = params["serialno"];
+      this.Modelno = params["Modelno"];
+      this.pdate = params["pdate"];
+      this.Desc = params["Desc"];
+      this.vtype = params["vtype"];
+      this.manu = params["manu"];
+      this.img = params["img"];
+
+    });
+    console.log(this.Modelno);
+  }
 
   ngOnInit() {
-    this.storage.ready().then(()=>{
-    console.log("Storage ready passed");        
-    this.storage.get('access_token').then((val)=>{        
-      this.access_token = val;    
-      this._translateLanguage();      
-      this.retrieveVehicleInfo();
-      this.retrieveMachineHour(this.serialno);
-      this.retrieveMaintenanceCompleted(this.serialno, this.todaydate);
-      this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
-      this.retrieveVehicleSchedule(this.serialno);
-      this.retrieveVehicleUtil(this.serialno,this.Modelno);
-      }
-    )})}    
-    // this.retrieveVehicleInfo(this.SelectedVeh);
-    // this.retrievePurchaseDate(this.vehicle.serial_no);
-    // this.retrieveMachineHour(this.vehicle.serial_no);
-    // this.retrieveMaintenanceCompleted(this.vehicle.serial_no, this.todaydate);
-    // this.retrieveMaintenanceUpcoming(this.vehicle.serial_no, this.todaydate);
-    // this.retrieveVehicleSchedule(this.vehicle.serial_no);
-    
-    // this._initializeTranslation();
+    this.storage.ready().then(() => {
+      console.log("Storage ready passed");
+      this.storage.get('access_token').then((val) => {
+        this.access_token = val;
+        this._translateLanguage();
+        this.retrieveVehicleInfo();
+        this.retrieveMachineHour(this.serialno);
+        this.retrieveMaintenanceCompleted(this.serialno, this.todaydate);
+        this.retrieveMaintenanceUpcoming(this.serialno, this.todaydate);
+        this.retrieveVehicleSchedule(this.serialno);
+        this.retrieveVehicleUtil(this.serialno, this.Modelno);
+      })
+    });
+  }
+  // this.retrieveVehicleInfo(this.SelectedVeh);
+  // this.retrievePurchaseDate(this.vehicle.serial_no);
+  // this.retrieveMachineHour(this.vehicle.serial_no);
+  // this.retrieveMaintenanceCompleted(this.vehicle.serial_no, this.todaydate);
+  // this.retrieveMaintenanceUpcoming(this.vehicle.serial_no, this.todaydate);
+  // this.retrieveVehicleSchedule(this.vehicle.serial_no);
+
+  // this._initializeTranslation();
   // }
 
-  public changeLanguage(): void{
+  public changeLanguage(): void {
     this._translateLanguage();
   }
-   
-  private _translateLanguage() : void{
-    if (this.language === ('kr'))
-    {      
-      this._translate.setDefaultLang('kr');          
+
+  private _translateLanguage(): void {
+    if (this.language === ('kr')) {
+      this._translate.setDefaultLang('kr');
     }
-    else 
-    {
-      this._translate.setDefaultLang('en');      
-    }            
+    else {
+      this._translate.setDefaultLang('en');
+    }
     this._initializeTranslation();
   }
   //   this._translate.use(this.language);
   //   this._initializeTranslation();
   // }
-    
-  private _initializeTranslation(): void{
-      this.title =  this._translate.instant("fleet-info.title");
-      this.serial_no =  this._translate.instant("fleet-info.serial_no");
-      this.purchase_date =  this._translate.instant("fleet-info.purchase_date");
-      this.remove_vehicle =  this._translate.instant("fleet-info.remove_vehicle");
-      this.machine_hour =  this._translate.instant("fleet-info.machine_hour");
-      this.maintenance =  this._translate.instant("fleet-info.maintenance");
-      this.completed =  this._translate.instant("fleet-info.completed");
-      this.last_service =  this._translate.instant("fleet-info.last_service");
-      this.upcomming =  this._translate.instant("fleet-info.upcomming");
-      this.employment =  this._translate.instant("fleet-info.employment");
-      this.utilization =  this._translate.instant("fleet-info.utilization");
-      this.month =  this._translate.instant("fleet-info.month");
-      this.year =  this._translate.instant("fleet-info.year");
-      this.deletemsgtitle =  this._translate.instant("fleet-info.deletemsgtitle");
-      this.deletemsg =  this._translate.instant("fleet-info.deletemsg");
-      this.total_job_count =  this._translate.instant("fleet-info.total_job_count");
-      this.total_no_job =  this._translate.instant("fleet-info.total_no_job");
-      this.assigned =  this._translate.instant("fleet-info.assigned");
+
+  private _initializeTranslation(): void {
+    this.title = this._translate.instant("fleet-info.title");
+    this.serial_no = this._translate.instant("fleet-info.serial_no");
+    this.purchase_date = this._translate.instant("fleet-info.purchase_date");
+    this.remove_vehicle = this._translate.instant("fleet-info.remove_vehicle");
+    this.machine_hour = this._translate.instant("fleet-info.machine_hour");
+    this.maintenance = this._translate.instant("fleet-info.maintenance");
+    this.completed = this._translate.instant("fleet-info.completed");
+    this.last_service = this._translate.instant("fleet-info.last_service");
+    this.upcomming = this._translate.instant("fleet-info.upcomming");
+    this.employment = this._translate.instant("fleet-info.employment");
+    this.utilization = this._translate.instant("fleet-info.utilization");
+    this.month = this._translate.instant("fleet-info.month");
+    this.year = this._translate.instant("fleet-info.year");
+    this.deletemsgtitle = this._translate.instant("fleet-info.deletemsgtitle");
+    this.deletemsg = this._translate.instant("fleet-info.deletemsg");
+    this.total_job_count = this._translate.instant("fleet-info.total_job_count");
+    this.total_no_job = this._translate.instant("fleet-info.total_no_job");
+    this.assigned = this._translate.instant("fleet-info.assigned");
   }
 
 
   // retrieveVehicleInfo(vehicle){
-  retrieveVehicleInfo(){
+  retrieveVehicleInfo() {
     this.vehicle.img = this.img;
     this.vehicle.model_no = this.Modelno;
-    this.vehicle.serial_no = this.serial_no;
+    this.vehicle.serial_no = this.serialno;
     console.log("retrieveVehInfo: " + this.vehicle.serial_no);
-    // this.vehicle.img = vehicle.img;
-    // this.vehicle.model_no = vehicle.Modelno;
-    // this.vehicle.serial_no = vehicle.serialno;
+
   }
 
   // retrievePurchaseDate(serial_no){
@@ -202,7 +199,7 @@ export class OwnerFleetInfoPage implements OnInit {
   //   });
   // }
 
-  retrieveMachineHour(serial_no){
+  retrieveMachineHour(serial_no) {
     this.appprov.retrieveMachineHour(serial_no, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -213,7 +210,7 @@ export class OwnerFleetInfoPage implements OnInit {
     });
   }
 
-  retrieveMaintenanceCompleted(serial_no, todaydate){
+  retrieveMaintenanceCompleted(serial_no, todaydate) {
     this.appprov.retrieveMaintenanceCompleted(serial_no, this.access_token, todaydate).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -221,13 +218,13 @@ export class OwnerFleetInfoPage implements OnInit {
       this.lastservice = data['lastservice'];
       // this.vehicle.completed_count = data['count'];
       // this.vehicle.last_service = data['lastservice'];
-      
-      }, err=>{
+
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveMaintenanceUpcoming(serial_no, todaydate){
+  retrieveMaintenanceUpcoming(serial_no, todaydate) {
     this.appprov.retrieveMaintenanceUpcoming(serial_no, this.access_token, todaydate).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
@@ -236,31 +233,31 @@ export class OwnerFleetInfoPage implements OnInit {
       // this.vehicle.upcoming_place = "@ "+ data['location'];
       this.upcoming_count = data['count'];
       this.upcoming_date = data['upcoming'];
-      this.upcoming_place = "@ "+ data['location'];
-      }, err=>{
+      this.upcoming_place = "@ " + data['location'];
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveVehicleSchedule(serial_no){
+  retrieveVehicleSchedule(serial_no) {
     this.appprov.retrieveVehicleSchedule(serial_no, this.access_token).then((res) => {
       console.log("retrieveVehicleSchedule: " + serial_no);
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       let job_desc = data['desc'];
-      console.log("job_desc: "+ job_desc);
+      console.log("job_desc: " + job_desc);
       let date_from = data['date_from'];
       let date_to = data['date_to'];
-      let job = {'job_desc':job_desc, 'job_datefrom':date_from, 'job_dateto':date_to};
+      let job = { 'job_desc': job_desc, 'job_datefrom': date_from, 'job_dateto': date_to };
       console.log(job)
       this.loadEvents(job);
-      }, err=>{
+    }, err => {
       console.log(err);
     });
   }
 
-  retrieveVehicleUtil(serial_no,model_no){
-    this.appprov.retrieveVehicleUtil(serial_no,model_no, this.access_token).then((res) => {
+  retrieveVehicleUtil(serial_no, model_no) {
+    this.appprov.retrieveVehicleUtil(serial_no, model_no, this.access_token).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       let chartData = data['chartData'];
@@ -271,44 +268,45 @@ export class OwnerFleetInfoPage implements OnInit {
       this.getJobStats(chartData);
       // this.getJobStats(vehicle_month, month_total);
       // sthis.getJobStats2(vehicle_year, year_total); //comment this sn 27
-      }, err=>{
+    }, err => {
       console.log(err);
     });
   }
 
-  loadEvents(job){
+  loadEvents(job) {
     this.eventSource = this.plotSchedule(job);
   }
 
-  onViewTitleChanged(title){
+  onViewTitleChanged(title) {
     this.viewTitle = title;
   }
 
-  onTimeSelected(ev){
+  onTimeSelected(ev) {
     console.log(ev);
   }
 
-  onEventSelected(event){
-      console.log(event);
+  onEventSelected(event) {
+    console.log(event);
 
   }
 
-  allmethods(serial_no){
+  allmethods(serial_no) {
     this.retrieveMaintenanceCompleted(serial_no, this.todaydate);
     this.retrieveMaintenanceUpcoming(serial_no, this.todaydate);
     this.retrieveVehicleSchedule(serial_no);
   }
-  
-  async AddMaintenance(){
+
+  async AddMaintenance() {
     const PopMod = await this.popoverCtrl.create({
-      component:AddMaintenanceComponent, 
+      component: AddMaintenanceComponent,
       // componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true, cssClass: 'popoverStyle'}
-      componentProps:{
-        serial:this.serialno,
+      componentProps: {
+        serial: this.serialno,
         model: this.Modelno,
-        showBackdrop: true, 
-        enableBackdropDismiss: true, 
-        cssClass: 'popoverStyle'}
+        showBackdrop: true,
+        enableBackdropDismiss: true,
+        cssClass: 'popoverStyle'
+      }
     });
     console.log("add maintenance: " + this.serialno);
     // PopMod.dismiss(() => this.allmethods(this.vehicle.serial_no));
@@ -320,29 +318,30 @@ export class OwnerFleetInfoPage implements OnInit {
     // PopMod.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 
-  async EditMaintenance(){
+  async EditMaintenance() {
     const Modal = await this.modalCtrl.create({
-      component:EditMaintenanceComponent, 
-      componentProps:{
-        serial:this.serialno,
-        showBackdrop: true, 
-        enableBackdropDismiss: true}
+      component: EditMaintenanceComponent,
+      componentProps: {
+        serial: this.serialno,
+        showBackdrop: true,
+        enableBackdropDismiss: true
+      }
     });
     // const Modal = await this.modalCtrl.create({
     //   component:OwnerEditMaintenancePage, 
     //   componentProps:{vehicle:this.vehicle,showBackdrop: true, enableBackdropDismiss: true}
     // });
-    
+
     Modal.dismiss(() => this.allmethods(this.serialno));
     // Modal.onDidDismiss(() => this.allmethods(this.serialno)));
-    
+
     return Modal.present();
     // await Modal.present();
     // Modal.dismiss(() => this.allmethods(this.serialno));
     // Modal.onDidDismiss(() => this.allmethods(this.vehicle.serial_no));
   }
 
-  plotEvents(event:{id:number,title:string,startTime:Date,endTime:Date,allDay:boolean}){
+  plotEvents(event: { id: number, title: string, startTime: Date, endTime: Date, allDay: boolean }) {
     let eventdata = event;
 
     eventdata.startTime = new Date(event.startTime);
@@ -353,16 +352,16 @@ export class OwnerFleetInfoPage implements OnInit {
     this.eventSource = events;
   }
 
-  plotSchedule(jobs){
+  plotSchedule(jobs) {
     var job = [];
     var dates_from = jobs.job_datefrom;
-    console.log("plotSchedule: " + dates_from + " type: "+ typeof dates_from);
+    console.log("plotSchedule: " + dates_from + " type: " + typeof dates_from);
     var dates_to = jobs.job_dateto;
     var jids = jobs.job_desc;
     var today = new Date()
-    for (let i=0; i<dates_from.length; i++){
-      var start_day = new Date(Date.UTC(dates_from[i].substring(0,4), dates_from[i].substring(5,7)-1, parseInt(dates_from[i].substring(8,10), 10)));
-      var end_day = new Date(Date.UTC(dates_to[i].substring(0,4), dates_to[i].substring(5,7)-1, parseInt(dates_to[i].substring(8,10),10)+1));
+    for (let i = 0; i < dates_from.length; i++) {
+      var start_day = new Date(Date.UTC(dates_from[i].substring(0, 4), dates_from[i].substring(5, 7) - 1, parseInt(dates_from[i].substring(8, 10), 10)));
+      var end_day = new Date(Date.UTC(dates_to[i].substring(0, 4), dates_to[i].substring(5, 7) - 1, parseInt(dates_to[i].substring(8, 10), 10) + 1));
       console.log("pushing job");
       job.push({
         title: jids[i],
@@ -374,65 +373,65 @@ export class OwnerFleetInfoPage implements OnInit {
     return job;
   }
 
-  getJobStats(chartData){
-  // getJobStats(vehicle_month, month_total){
-    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  getJobStats(chartData) {
+    // getJobStats(vehicle_month, month_total){
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var today = new Date();
     var month = today.getUTCMonth();
     var labels_month = [];
     var month_range = 4;
     var chart_DataPack = chartData;
     console.log("chartdata: " + chart_DataPack);
-    var dataPack1 = ['7','14','14','4','22','20','15'];
-    for(let i=0; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 - i)%12]);
+    var dataPack1 = ['7', '14', '14', '4', '22', '20', '15'];
+    for (let i = 0; i < month_range; i++) {
+      labels_month.push(months[(month + 12 - i) % 12]);
     }
     labels_month.reverse();
-    for(let i=1; i<month_range; i++)
-    {
-      labels_month.push(months[(month+12 + i)%12]);
+    for (let i = 1; i < month_range; i++) {
+      labels_month.push(months[(month + 12 + i) % 12]);
     }
     this.barVehChart = new Chart(this.barVehCanvas.nativeElement, {
       type: 'bar',
-      data:{
+      data: {
         labels: labels_month,
         datasets: [{
           label: '%',
           data: chart_DataPack,
           backgroundColor: "rgba(0, 110,255, 0.2)",
-          borderWidth:1
+          borderWidth: 1
         }]
       },
-      options:{
+      options: {
         scales: {
           xAxes: [{
-            gridLines: {display:false},          
+            gridLines: { display: false },
           }],
           yAxes: [{
-            ticks:{
-            min: 0,
-            max: 100,
-            // gridLines: {display:false}, 
-            callback: function(value){return value+ "%"}
-          },
-        scaleLabel:{
-          display:true,
-          // labelString: "Days"
-        }
+            ticks: {
+              min: 0,
+              max: 100,
+              // gridLines: {display:false}, 
+              callback: function (value) { return value + "%" }
+            },
+            scaleLabel: {
+              display: true,
+              // labelString: "Days"
+            }
           }],
         },
-        legend: {display:false}
+        legend: { display: false }
       }
     })
   }
-  deleteVehicle(serial_no, model_no){
+  deleteVehicle(serial_no, model_no) {
     this.appprov.deleteVehicle(this.access_token, serial_no, model_no).then((res) => {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       console.log("vehicle deleted");
-      this.navCtrl.pop();
-      }, err=>{
+      console.log("success deleting");
+      // this.navCtrl.pop();
+      this.navCtrl.navigateBack(['owner/tabs/owner-fleets']);
+    }, err => {
       console.log(err);
     });
   }

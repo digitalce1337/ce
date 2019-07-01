@@ -94,15 +94,16 @@ export class OwnerJobInfoPage implements OnInit {
   
 
   ngOnInit() {
-    this.storage.ready().then(()=>{      
-      this.storage.get('access_token').then((val)=>{        
-        this.access_token = val;               
-        this._translateLanguage();        
+    this.storage.ready().then(() => {
+      this.storage.get('access_token').then((val) => {
+        this.access_token = val;
+        this._translateLanguage();
         this.retrieveJobDetails(this.jid);
         this.retrieveJobOperators(this.jid);
         this.getJobCards(this.jid, '3');
         // this._initializeTranslation();
-          })})
+      })
+    })
   }
 
   public changeLanguage(): void{
