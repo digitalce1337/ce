@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'profile-details', loadChildren: './pages/profile-details/profile-details.module#ProfileDetailsPageModule' },
   { path: 'operator-job-info', loadChildren: './pages/operator-job-info/operator-job-info.module#OperatorJobInfoPageModule' },
   { path: 'operator-cap-skills', loadChildren: './pages/operator-cap-skills/operator-cap-skills.module#OperatorCapSkillsPageModule' },
+  { path: 'otp-operator', loadChildren: './pages/otp-operator/otp-operator.module#OtpOperatorPageModule' },
   // { path: '', redirectTo: 'owner/tabs/owner-home', pathMatch: 'full' },
   // { path: 'owner-tabs', loadChildren: './pages/owner-tabs/owner-tabs.module#OwnerTabsPageModule' },
   // { path: 'owner-home', loadChildren: './pages/owner-home/owner-home.module#OwnerHomePageModule' },
