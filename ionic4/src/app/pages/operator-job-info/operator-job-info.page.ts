@@ -348,7 +348,8 @@ export class OperatorJobInfoPage implements OnInit {
       console.log('report added sucessfully!');
       // this.loading.dismiss();
       this.dismissLoader();
-      this.navCtrl.pop();
+      // this.navCtrl.pop();
+      this.navCtrl.navigateBack(['operator/tabs/operator-jobs']);
     }, err => {
       console.log(err);
     })
