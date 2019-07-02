@@ -42,51 +42,11 @@ export class LoginPage implements OnInit {
     public appprov: AppService, public event: Events,public navCtrl: NavController,private _translate: TranslateService) { }
 
   ngOnInit() {
-    // this.fb.getLoginStatus().then((res)=>{
-    //   console.log("FBgetLoginStatus: "+res.status);
-    //   if (res.status === 'connected'){
-    //     console.log("From FB login cache status 1: "+res.authResponse.accessToken);
-    //     var acT = res.authResponse.accessToken;
-    //     // console.log("From FB login cache status 2: "+res.accessToken);
-    //     console.log("From FB login cache status 3: "+res.authResponse.userID);
-    //     //Direct to cached location
-    //     // console.log("Variable aCT:" + acT);
-    //     this.access_token = res.authResponse.accessToken;
-    //     this.storage.set('access_token', this.access_token);
-    //     let navigationExtras: NavigationExtras = {
-    //       queryParams: {
-    //         token: this.access_token,
-    //     }};
-    //     console.log("Selected Role: "+ this.Role);
-    //     if (this.Role == 'Owner') {
-    //       this.roleValue = true;
-    //       this.event.publish('roleReceived', this.roleValue);
-    //       this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
-    //       // console.log("clicked" + "storage: " + this.storage);
-    //       // return;
-    //     } else {
-    //       this.roleValue = false;          
-    //       this.event.publish('roleReceived', this.roleValue);
-    //       console.log("show me "+this.Role + " storage: " + this.storage);
-    //       this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);          
-    //       // return;
-    //     }
-    //   }
-    // else{
-    //   console.log("No FB account cached to app");
-    // }})
   }
 
   showRole(){
     console.log("Button selected: "+this.Role);
   }
-
-  // role(value) {
-  //   this.Role = value;
-  //   console.log("role is: " + ""+value);
-  //   console.log("role is: " + ""+this.Role);
-  //   console.log("role is: " + String(value));
-  // }
 
   testLogin(){
     console.log("Clicked on Login");
@@ -111,7 +71,6 @@ export class LoginPage implements OnInit {
     setTimeout(()=>{
       this.loading.dismiss();
     },2000);
-  //   await this.loading.dismiss();
   }
 
 
@@ -130,163 +89,156 @@ export class LoginPage implements OnInit {
       subHeader: this.rolemsg,
       buttons: ['OK']
     });
-    // }).then(alert => alert.present());
     await alert.present();
   }
 
   loginWithFacebook1() {
-    this._translate.setDefaultLang('en');
-    console.log("Check if role was cached: "+this.Role);
+    // this._translate.setDefaultLang('en');
+    console.log("Check if cached exists : "+this.Role);
     if (this.Role == null || this.Role === undefined) {      
       this.roleAlert();
-      console.log("Display Role: "+ this.Role);
+      console.log("Display undefined Role: "+ this.Role);
       return;
     }
-    console.log("Display Role: "+ this.Role);
+    console.log("Specified Role equals: "+ this.Role);
     console.log("Starting FBloginStatus");
     //using cache, access straight to the page. Check for the access_token whether belongs to owner/ operator
     //Direct to correct place
     this.fb.getLoginStatus().then((res)=>{
-      console.log("FBgetLoginStatus: "+res.status);
+      console.log("Connected display FBgetLoginStatus: "+res.status);
+
       if (res.status === 'connected'){
         console.log("From FB login cache status 1: "+res.authResponse.accessToken);
-        var acT = res.authResponse.accessToken;
-        // console.log("From FB login cache status 2: "+res.accessToken);
-        console.log("From FB login cache status 3: "+res.authResponse.userID);
-        //Direct to cached location
-        // console.log("Variable aCT:" + acT);
         this.access_token = res.authResponse.accessToken;
         this.storage.set('access_token', this.access_token);
         let navigationExtras: NavigationExtras = {
           queryParams: {
             token: this.access_token,
         }};
+        //checkExistingUser(access_token) -> if true allow pass, else use fb login
         console.log("Selected Role: "+ this.Role);
         if (this.Role == 'Owner') {
           this.roleValue = true;
           this.event.publish('roleReceived', this.roleValue);
-          this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);          
-          // console.log("clicked" + "storage: " + this.storage);
-          // return;
+          this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);                    
         } else {
           this.roleValue = false;          
           this.event.publish('roleReceived', this.roleValue);
-          console.log("show me "+this.Role + " storage: " + this.storage);
-          this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);          
-          // return;
+          // console.log("show me "+this.Role + " storage: " + this.storage);
+          this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);                    
         }
-      }
-        else
-        {
-            console.log("Going to else: "+res.status);
-      //     }
-      // })
-        
-    // if role
-    console.log("Going to showLoader: Checkpoint 0");
-    this.showLoader();
-    //Need to include check login status here, use auth credentials if exist
-    this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
-      console.log("Going to dismiss: Checkpoint 1");
-      this.dismissLoader();
-      // this.loading.dismiss();
-      if (res.status === 'connected') {
-        // this.showAlert(res.authResponse.userID + ": " + res.authResponse.accessToken);
-        console.log("Dismiss passed: Checkpoint 2")
-        this.access_token = res.authResponse.accessToken;
-        const userID = res.authResponse.userID;
-        console.log("Retrieved access_token from authRes: "+this.access_token);
-        console.log("Retrieved userID from authRes: "+ userID);
+      }      
+        else{           
+          //No fblogin status
+          console.log("Start showLoader: Checkpoint 0");
+          this.showLoader();
+          //Need to include check login status here, use auth credentials if exist
+          this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
+            console.log("Start dismissLoader: Checkpoint 1");
+            this.dismissLoader();
+            // this.loading.dismiss();
+            if (res.status === 'connected') {              
+              console.log("FB connected passed: Checkpoint 2")
+              this.access_token = res.authResponse.accessToken;              
+              console.log("Retrieved access_token from FB authRes: "+this.access_token);        
+              console.log("USER was connected to Facebook")      
+              this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
+                profile => {
+                  const email = profile.email;
+                  // Get profile picture from url
+                  // let profile_url = profile['picture']['data']['url'];
+                  // Set profile_url as empty default
+                  const profile_url = 'assets/imgs/blank_profile.png';
+                  const name = profile.name;
 
-        this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
-          profile => {
-            const email = profile.email;
-            // Get profile picture from url
-            // let profile_url = profile['picture']['data']['url'];
-            // Set profile_url as empty default
-            const profile_url = 'assets/imgs/blank_profile.png';
-            const name = profile.name;
+                  if (email != null && email !== '') {
+                    this.dismissLoader();
+                    // this.loading.dismiss();
+                    console.log('User is logged in either by new access_token or revisit user');
+                    this.appprov.checkExistingUser(email).then((res) => {
+                      let checkUser = JSON.stringify(res);
+                      checkUser = JSON.parse(checkUser);
+                      checkUser = checkUser['result'].toString();
+                      console.log("Result from checkUser:",checkUser);
 
-            if (email != null && email !== '') {
-              this.dismissLoader();
-              // this.loading.dismiss();
-              console.log('User is logged in either by new access_token or revisit user');
-              this.appprov.checkExistingUser(email).then((res) => {
-                let checkUser = JSON.stringify(res);
-                checkUser = JSON.parse(checkUser);
-                checkUser = checkUser['result'].toString();
-                console.log(checkUser);
+                      if (checkUser === 'false') {
+                        this.appprov.updateAccessToken(email, this.access_token, profile_url).then((res) => {
+                          let update = JSON.stringify(res);
+                          update = JSON.parse(update);
+                          console.log(update);
+                          console.log("Going to set access_token into storage: "+this.access_token);
+                          this.storage.set('access_token', this.access_token);
+                          let navigationExtras: NavigationExtras = {
+                            queryParams: {
+                                token: this.access_token
+                            }
+                          };
+                          if (this.Role == 'Owner') {
+                            this.roleValue = true;
+                            this.event.publish('roleReceived', this.roleValue);                            
+                            this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);                                                        
+                          } else {
+                            this.roleValue = false;
+                            this.event.publish('roleReceived', this.roleValue);                            
+                            this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);                                                        
+                          }
+                        }, err => { console.log(err); });
+                      } 
+                      else {
+                        console.log("New user need to handle... checkUser != false")
+                        this.dismissLoader();
+                        // this.loading.dismiss();
+                        this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
+                          let adduser = JSON.stringify(res);
+                          adduser = JSON.parse(adduser);                          
 
-                if (checkUser === 'false') {
-                  this.appprov.updateAccessToken(email, this.access_token, profile_url).then((res) => {
-                    let update = JSON.stringify(res);
-                    update = JSON.parse(update);
-                    console.log(update);
-                    console.log("Going to set access_token into storage: "+this.access_token);
-                    this.storage.set('access_token', this.access_token);
-                    let navigationExtras: NavigationExtras = {
-                      queryParams: {
-                          token: this.access_token
+                          console.log("Going to set access_token into storage: "+this.access_token);
+                          this.storage.set('access_token', this.access_token);
+                        this.isLoggedIn = true;
+                        if (this.Role === 'Owner') {
+                          this.router.navigateByUrl('create-company');
+                          // this.navCtrl.navigateForward('/CreatecompanyPage', this.storage);
+                          // this.nav.push(CreatecompanyPage, this.storage);
+                        } else {
+                          this.router.navigateByUrl('otp-operator');
+                          // this.nav.push(OtpOperatorPage, this.storage);
+                        }
+
+
+                        }, err => { console.log(err); });
                       }
-                    };
-                    if (this.Role == 'Owner') {
-                      this.roleValue = true;
-                      this.event.publish('roleReceived', this.roleValue);
-                      // this.nav.setRoot(TabsPage);
-                      this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);
-                      // this.router.navigateByUrl('owner/tabs/owner-home', navigationExtras);
-                      console.log("clicked" + "storage: " + this.storage);
-                      return;
-                    } else {
-                      this.roleValue = false;
-                      this.event.publish('roleReceived', this.roleValue);
-                      // this.nav.setRoot(OperatorstabsPage, this.storage);
-                      console.log("show me "+this.Role + " storage: " + this.storage);
-                      this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);
-                      // this.router.navigateByUrl('operator/tabs/operator-home',navigationExtras);
-                      return;
-                    }
-                  }, err => { console.log(err); });
-                } else {
-                  this.dismissLoader();
-                  // this.loading.dismiss();
-                  this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
-                    let adduser = JSON.stringify(res);
-                    adduser = JSON.parse(adduser);
-                    // console.log(adduser['result']);
-                  }, err => { console.log(err); });
-                }
-              }, err => {
-                console.log(err);
-              });
-              console.log("Going to set access_token into storage: "+this.access_token);
-              this.storage.set('access_token', this.access_token);
-              this.isLoggedIn = true;
+                    }, err => {
+                      console.log(err);
+                    });
 
-              if (this.Role === 'Owner') {
-                this.router.navigateByUrl('create-company');
-                // this.navCtrl.navigateForward('/CreatecompanyPage', this.storage);
-                // this.nav.push(CreatecompanyPage, this.storage);
-              } else {
-                this.router.navigateByUrl('otp-operator');
-                // this.nav.push(OtpOperatorPage, this.storage);
-              }
-              return;
+                    //Everything else
+                    // console.log("Going to set access_token into storage: "+this.access_token);
+                    // this.storage.set('access_token', this.access_token);
+                    // this.isLoggedIn = true;
+                    // if (this.Role === 'Owner') {
+                    //   this.router.navigateByUrl('create-company');
+                    //   // this.navCtrl.navigateForward('/CreatecompanyPage', this.storage);
+                    //   // this.nav.push(CreatecompanyPage, this.storage);
+                    // } else {
+                    //   this.router.navigateByUrl('otp-operator');
+                    //   // this.nav.push(OtpOperatorPage, this.storage);
+                    // }
+                    // return;
+                  }
+                }
+              );
+            } else {
+              this.isLoggedIn = false;
+              this.showAlert(res.status);
             }
-          }
-        );
-      } else {
-        this.isLoggedIn = false;
-        this.showAlert(res.status);
-      }
-    }).catch(e => {
-      console.log('Error logging into Facebook', e);
-      console.log('Display value for isLoggedIn', this.isLoggedIn);
-    });
-    this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
-    this.dismissLoader();
-    // this.loading.dismiss();
-  }}
+          }).catch(e => {
+            console.log('Error logging into Facebook', e);
+            console.log('Display value for isLoggedIn', this.isLoggedIn);
+          });
+          this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
+          this.dismissLoader();
+          // this.loading.dismiss();
+        }}
 
   //remove to avoid being in loop
     )}}
