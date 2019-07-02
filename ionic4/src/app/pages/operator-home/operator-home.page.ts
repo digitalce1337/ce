@@ -87,9 +87,9 @@ public skill_sets: string;
   IonViewWillEnter() {
     this.getCapabilities();
   }
-  ionViewDidEnter() {
-    this.getCapabilities();
-  }
+  // ionViewDidEnter() {
+  //   this.getCapabilities();
+  // }
 
   onViewTitleChanged(title){
     this.viewTitle = title;
