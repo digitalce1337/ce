@@ -28,25 +28,21 @@
       </ion-col>
       <ion-col>
         <!-- <ion-button color="secondary" (click)=completeJob();>Complete</ion-button> -->
-        <ion-button color="secondary" [disabled]="buttonDisabled" (click)=completeJob(); *ngIf="editShow">{{ complete_job }}</ion-button>
+        <ion-button color="primary" [disabled]="buttonDisabled" (click)=completeJob(); *ngIf="editShow">{{ complete_job }}</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-7>
-        <!-- Date From - Date To -->
         {{date_from}} - {{date_to}}
       </ion-col>
       <ion-col col-5>
-        <!-- $ &nbsp;Random amount -->
         $ &nbsp;{{payout}}
       </ion-col>
     </ion-row>
     <ion-row>
-      <!-- Location -->
       {{location}}
     </ion-row>
     <ion-row>
-      <!-- Description -->
       {{description}}
     </ion-row>
   </ion-grid>
@@ -74,6 +70,7 @@
 
   <br>
   <h3>{{ reports }}</h3>
+
   <ion-item>
     <ion-label></ion-label>
     <ion-label>{{ view_reports }}</ion-label>
@@ -84,6 +81,7 @@
       <ion-select-option value="1">{{ all }}</ion-select-option>
     </ion-select>
   </ion-item>
+
   <ion-card *ngFor="let report of ReportCards">
     <ion-card-content>
       {{report.report_operator_name}}<br>

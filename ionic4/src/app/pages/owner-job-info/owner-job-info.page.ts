@@ -228,12 +228,13 @@ export class OwnerJobInfoPage implements OnInit {
       this.completed = data['completed'];
       if (this.completed == '1'){
         this.buttonDisabled = true;
-        this.buttonColor = 'secondary';
+        this.buttonColor = 'success';
         this.editShow = false;      
       }
+      //cancelled
       else if(this.completed =='2') {
         this.buttonDisabled = true;
-        this.buttonColor = 'secondary';
+        this.buttonColor = 'medium';
         this.editShow = false;
       }
       else{
@@ -263,6 +264,8 @@ export class OwnerJobInfoPage implements OnInit {
       let data = JSON.stringify(res);
       data = JSON.parse(data);
       console.log("Job completed");
+      console.log("going back to jobs management page");
+      this.navCtrl.navigateBack(['owner/tabs/owner-jobs']);
 
     }, err => {
       console.log(err);
@@ -305,6 +308,8 @@ export class OwnerJobInfoPage implements OnInit {
         let data = JSON.stringify(res);
         data = JSON.parse(data);
         console.log("Deleted rows from fullJobDetails");
+        console.log("going back to jobs management page");
+        this.navCtrl.navigateBack(['owner/tabs/owner-jobs']);
       }, err => {
         console.log(err);
       })
@@ -339,6 +344,7 @@ export class OwnerJobInfoPage implements OnInit {
     })
     await alert.present()
   }
+  
   onSelectChange(selectedValue: any) {
     // console.log('Selected val: ', selectedValue.value);        
     let item = this.duration;

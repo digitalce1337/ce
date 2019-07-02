@@ -106,7 +106,8 @@ export class EditMaintenanceComponent implements OnInit {
   deleteMaintenance(date_from, date_to, location, desc){
     this.appprov.deleteMaintenance(this.access_token, this.serial_no, date_from, date_to, location, desc).then((res) => {
       let data = JSON.stringify(res);
-      data = JSON.parse(data);
+      // data = JSON.parse(data);
+      console.log("data delete maintenance: " + data);
       console.log("record deleted");
       this.retrieveMaintenance(this.serial_no);
       }, err=>{
@@ -117,7 +118,8 @@ export class EditMaintenanceComponent implements OnInit {
     console.log("edit showing");
     // this.appprov.deleteMaintenance(this.access_token, this.serial_no, date_from, date_to, location, desc).then((res) => {
     //   let data = JSON.stringify(res);
-    //   data = JSON.parse(data);
+    //   // data = JSON.parse(data);
+    //   console.log("data edit maintenance: " + data);
     //   console.log("record deleted");
     //   this.retrieveMaintenance(this.serial_no);
     //   }, err=>{

@@ -45,6 +45,14 @@ export class OwnerFleetPage implements OnInit {
     this.getFleetin();
   }
 
+  // ionViewWillEnter() {
+  //   this.getFleetin();
+  // }
+
+  ionViewDidEnter() {
+    this.getFleetin();
+  }
+
   public changeLanguage(): void{
     this._translateLanguage();
   }

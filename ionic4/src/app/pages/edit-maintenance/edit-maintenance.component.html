@@ -2,33 +2,33 @@
   edit-maintenance works!
 </p> -->
 <ion-header>
-    <ion-toolbar>
-      <ion-title>{{ title }} </ion-title>
-      <ion-buttons slot="start">
-          <ion-button (click)="close()">
-            <ion-icon name="arrow-back"></ion-icon>
-          </ion-button>
-      </ion-buttons>
+  <ion-toolbar>
+    <ion-title>{{ title }} </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
-      
+
 </ion-header>
 
 <ion-content>
   <ion-list>
     <!-- hello -->
-    <ion-item-sliding  *ngFor="let maintenance of maintenances">
+    <ion-item-sliding *ngFor="let maintenance of maintenances">
       <ion-item>
         <ion-label> Location: {{ maintenance.location }} </ion-label>
         <!-- <h4> Location: {{ maintenance.location }} </h4> -->
-        &nbsp; &nbsp; 
+        &nbsp; &nbsp;
         <br>
         <p>{{ maintenance.date_from }} - {{maintenance.date_to }}</p>
       </ion-item>
 
       <ion-item-options side="start">
-
         <!-- <ion-button (click)="deleteMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="danger">{{ delete }}</ion-button> -->
         <ion-item-option (click)="deleteMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="danger">
+          <ion-icon name="trash"></ion-icon>
           {{ delete }}
         </ion-item-option>
 
@@ -36,7 +36,8 @@
       <ion-item-options side="end">
 
         <!-- <ion-button (click)="deleteMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="danger">{{ delete }}</ion-button> -->
-        <ion-item-option (click)="editMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="success">
+        <ion-item-option (click)="editMaintenance(maintenance.date_from, maintenance.date_to, maintenance.location, maintenance.desc)" color="tertiary">
+          <ion-icon name="create"></ion-icon>
           EDIT
         </ion-item-option>
 
