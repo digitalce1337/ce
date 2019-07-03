@@ -1,7 +1,4 @@
-page-jobs {
-    .md,
-    .ios,
-    .wp {
+.md, .ios, .wp {
         page-jobs {
             ion-header {
                 height: 200px;
@@ -66,7 +63,5 @@ page-jobs {
         .deleteIcon:before{
             font-size: 30px !important;
         }
-    }
-    
     }
     

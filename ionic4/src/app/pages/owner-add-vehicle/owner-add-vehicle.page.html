@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding [class]="outer-content">
+<ion-content [class]="outer-content">
 
   <form (ngsubmit)="AddVehicle()">
     <ion-card>
@@ -52,7 +52,7 @@
         {{ manufacturer }} : {{ SelManu }}
       </ion-card-header>
       <ion-card-content>
-        <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()">
+        <ion-segment [(ngModel)]="SelManu" name="manufacturer" (ionChange)="showOthrManu()" scrollable>
           <ion-segment-button value="Volvo">
               <ion-img src="assets/imgs/VolvoLogo.png" class="center_volvo_logo"></ion-img>
           </ion-segment-button>
@@ -62,12 +62,14 @@
           <ion-segment-button value="Doosan">
               <ion-img src="assets/imgs/Doosan.png" class="center_doosan_logo"></ion-img>
           </ion-segment-button>
+          
           <ion-segment-button value="Komatsu">
               <ion-img src="assets/imgs/Komatsu.png" class="center_komatsu_logo"></ion-img>
           </ion-segment-button>
           <ion-segment-button value="Others">
               Others
           </ion-segment-button>
+          
         </ion-segment>
         <ion-input type="text" placeholder="Manufacturer" *ngIf="ManuTB" [(ngModel)]="OthrManu" name="OthrManuVal"></ion-input>
       </ion-card-content>
