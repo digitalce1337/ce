@@ -229,6 +229,7 @@ export class OperatorJobInfoPage implements OnInit {
 
       this.appprov.UploadReportImage(targetPath, options);
       this.InsertReport();
+      this.navCtrl.navigateBack(['operator/tabs/operator-jobs']);
     } else {
       this.appprov.presentAlert(this.errormsgtitle, this.errormsg);
     }
