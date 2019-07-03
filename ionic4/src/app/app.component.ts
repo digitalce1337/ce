@@ -49,29 +49,31 @@ export class AppComponent {
     private fb: Facebook,
     public storage: Storage
   ) {
-    // this.initializeApp();
-    // // this.toggle = false;
-    // this.event.subscribe('roleReceived', (value) => {
-    //   // console.log("roleReceived: " + value);
-    //   this.Role = value;
-    // });
-  }
-  ngOnInit(){
     this.initializeApp();
     // this.toggle = false;
     this.event.subscribe('roleReceived', (value) => {
       // console.log("roleReceived: " + value);
       this.Role = value;
-    });    
+    });
   }
+  // ngOnInit(){
+  //   this.initializeApp();
+  //   // this.toggle = false;
+  //   this.event.subscribe('roleReceived', (value) => {
+  //     // console.log("roleReceived: " + value);
+  //     this.Role = value;
+  //   });    
+  // }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.languageService.setInitialAppLanguage();
+      console.log("app.components get called here");
       this.authService.checkAuthentication().then((res) => {
         console.log('res: '+ res);
         if(res == ''){
+          console.log("app.components return results from authService");
           // this.router.initialNavigation('/LoginPage');
           this.router.navigateByUrl('login');
         }

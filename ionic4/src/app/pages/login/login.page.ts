@@ -59,11 +59,14 @@ export class LoginPage implements OnInit {
             // this.dismissLoader();
             if (data['result'] == "1") {
               //nagivate to owner
-              this.navCtrl.navigateForward(['owner/tabs/owner-home']);
-              // this.router.navigateByUrl('owner/tabs/owner-home');     
+              this.roleValue = true;
+              this.event.publish('roleReceived', this.roleValue);                          
+              this.navCtrl.navigateForward(['owner/tabs/owner-home']);              
                   }
             else if (data['result'] == "0") {
               //navigate to operator
+              this.roleValue = false;          
+              this.event.publish('roleReceived', this.roleValue);              
               this.navCtrl.navigateForward(['operator/tabs/operator-home']);
               // this.router.navigateByUrl('operator/tabs/operator-home');
             }
