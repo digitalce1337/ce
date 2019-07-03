@@ -1,67 +1,67 @@
-.md, .ios, .wp {
-        page-jobs {
-            ion-header {
-                height: 200px;
-            }
-        }
-    }
+// .md, .ios, .wp {
+//         page-jobs {
+//             ion-header {
+//                 height: 200px;
+//             }
+//         }
+//     }
     
-    .FloatButton{
-        left: 0px;
-        top:50px;
-        z-index: 1000;
-    }
+//     .FloatButton{
+//         left: 0px;
+//         top:50px;
+//         z-index: 1000;
+//     }
     
-    ion-avatar,
-    ion-avatar > img{
-        border-radius:50%;
-        height:12rem;
-        width:12rem;
-    }
+//     ion-avatar,
+//     ion-avatar > img{
+//         border-radius:50%;
+//         height:12rem;
+//         width:12rem;
+//     }
     
-    .item ion-thumbnail{
-        min-width: 5rem;
-        max-width: 5rem;
-        min-height: 5rem;
-        img {
-            max-width: 5rem;
-            min-width: 5rem;
-        }
-    }
+//     .item ion-thumbnail{
+//         min-width: 5rem;
+//         max-width: 5rem;
+//         min-height: 5rem;
+//         img {
+//             max-width: 5rem;
+//             min-width: 5rem;
+//         }
+//     }
     
-    .ios, .md{
-        page-home{
-            ion-card-header{
-                font-weight: bold;
-            }
-        }
-    }
+//     .ios, .md{
+//         page-home{
+//             ion-card-header{
+//                 font-weight: bold;
+//             }
+//         }
+//     }
     
-    // ion-list.event-detail-container.list.list-md{
-    //     display:none;
-    // }
+//     // ion-list.event-detail-container.list.list-md{
+//     //     display:none;
+//     // }
     
-    small{
-        font-size: 65%;
-    }
+//     small{
+//         font-size: 65%;
+//     }
     
-    .click-block{
-        position:initial;
-    }
+//     .click-block{
+//         position:initial;
+//     }
     
-    .bottomRow{
-        margin-bottom: -40px;
-    }
+//     .bottomRow{
+//         margin-bottom: -40px;
+//     }
     
-    .block{
-        position:relative;
-        .deleteIcon{
-            position: absolute !important;
-            color: #ffffff !important;
-            margin-left: 80% !important;
-        }
-        .deleteIcon:before{
-            font-size: 30px !important;
-        }
-    }
+//     .block{
+//         position:relative;
+//         .deleteIcon{
+//             position: absolute !important;
+//             color: #ffffff !important;
+//             margin-left: 80% !important;
+//         }
+//         .deleteIcon:before{
+//             font-size: 30px !important;
+//         }
+//     }
     
