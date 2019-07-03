@@ -430,7 +430,7 @@ export class OwnerFleetInfoPage implements OnInit {
       console.log("vehicle deleted");
       console.log("success deleting");
       // this.navCtrl.pop();
-      this.navCtrl.navigateBack(['owner/tabs/owner-fleets']);
+      this.navCtrl.navigateBack(['owner/tabs/owner-fleet']);
     }, err => {
       console.log(err);
     });

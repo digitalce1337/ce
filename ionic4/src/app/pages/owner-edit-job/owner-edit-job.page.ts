@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/services/app.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
 
@@ -67,7 +67,7 @@ export class OwnerEditJobPage implements OnInit {
   public vehicle_ : string;
 
   constructor(public _translate: TranslateService, public appprov: AppService, public _FB: FormBuilder,
-    public modalCtrl: ModalController,public activeRoute:ActivatedRoute, public storage: Storage) { 
+    public modalCtrl: ModalController,public activeRoute:ActivatedRoute, public storage: Storage, public navCtrl: NavController) { 
       this.activeRoute.queryParams.subscribe(params => { 
         // console.log("Results: "+ params+ " OR: "+ params["TakeJid"]);
         console.log("Results: "+ params["TakeJid"]);
@@ -186,7 +186,12 @@ export class OwnerEditJobPage implements OnInit {
     let result: any;
     console.log(val);
     // console.log(val.OpVehPay)
-    this.appprov.updateJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName, this.jid)
+    let rawValueDF = val.DateFrom.toString();
+    let rawValueDT = val.DateTo.toString();
+    let datefrom = rawValueDF.substring(0,10);
+    let dateto = rawValueDT.substring(0,10);
+    // this.appprov.updateJob(this.access_token,val.PayOut,val.DateFrom.toString(),val.DateTo.toString(),val.Loc,val.Desc,val.ClientName, this.jid)
+    this.appprov.updateJob(this.access_token,val.PayOut,datefrom,dateto,val.Loc,val.Desc,val.ClientName, this.jid)
     .then(res => {
       console.log(res);
       result = res;
@@ -197,13 +202,16 @@ export class OwnerEditJobPage implements OnInit {
         names[i] = operatorjobs[i].Opname;
         vehicles[i] = operatorjobs[i].Vehtype;
       }
+
       // this.appprov.aple(this.access_token,result.jid).then(res=>{
       this.appprov.deleteJob(this.access_token,result.jid).then(res=>{      
         console.log('Delete Success:'+res);
       //   this.appprov.presentAlert('Success!', 'Job Has been successfully updated!');
         // this.viewctrl.dismiss('1');
       }, err=>{console.log('Delete Failed error:'+err)})
-      this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles).then(res=>{        
+
+      // this.appprov.addJobDetails(this.access_token,val.DateFrom.toString(),val.DateTo.toString(), result.jid,names, vehicles).then(res=>{        
+      this.appprov.addJobDetails(this.access_token,datefrom,dateto, result.jid,names, vehicles).then(res=>{        
         console.log('Add Success:'+res);
       }, err=>{console.log('Add Failed error:'+err)})
       // add deletefullJobDetails with catch error
@@ -217,6 +225,7 @@ export class OwnerEditJobPage implements OnInit {
         this.appprov.presentAlert('Success!', 'Job has been successfully updated!');
         // this.viewctrl.dismiss('1');
         this.modalCtrl.dismiss('1');
+        this.navCtrl.navigateBack(['owner-job-info']);
       },err => {
         console.log(err);
       })
@@ -282,6 +291,10 @@ export class OwnerEditJobPage implements OnInit {
   // getVehicles(email:string){
   getVehicles(){
     this.VehicleTD[this.counter] = [];
+    this.date_from_= this.date_from_.substring(0,10);
+    this.date_to_= this.date_to_.substring(0,10);
+    console.log("getVehicles date from: " + this.date_from_);
+    console.log("getVehicles date to: " + this.date_to_);
     console.log("Prior to calling server, show me values:",this.access_token,this.date_from_,this.date_to_);
     this.appprov.getOperatorVehicles(this.access_token,this.date_from_,this.date_to_).then((res) => {
       console.log('1');

@@ -174,13 +174,14 @@ export class OwnerAddVehiclePage implements OnInit {
 
 
   popBack() {
-    // if(this.buttonOpt == true) {
-    //   // this.nav.setRoot(FleetsPage);
-    //   this.navCtrl.navigateRoot('/FleetsPage')
-    // }
-    // else {
-    //   return;
-    // }
-    this.navCtrl.navigateBack('/owner/tabs/owner-fleet');
+    if(this.buttonOpt == true) {
+      // this.nav.setRoot(FleetsPage);
+      // this.navCtrl.navigateRoot('/FleetsPage')
+      this.navCtrl.navigateBack(['owner/tabs/owner-fleet']);                                                                                                                                                                                                                                                                                                                                                                                  
+    }
+    else {
+      return;
+    }
+    // this.navCtrl.navigateBack('/owner/tabs/owner-fleet');
   }
 }
