@@ -61,7 +61,7 @@ export class AddMaintenanceComponent implements OnInit {
   }
 
   private _translateLanguage(): void {
-    this._translate.use(this.language);
+    // this._translate.use(this.language);
     this._initializeTranslation();
   }
 
