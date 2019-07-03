@@ -72,33 +72,17 @@ export class AppComponent {
     });
   }
 
-  // checkRole_() {
-  //   // console.log("roleReceived: " + this.Role);
-
-  //   // if(this.Role == true) {
-  //     // this.toggleProfile();
-  //   // }
-  //   // else {
-  //   //   return;
-  //   // }
-  // }
-
   toggleProfile(){
     // this.event.publish('toggleValue',this.toggle);
     // console.log("this.toggle value: " + this.toggle);
     // console.log("roleReceived: " + this.Role);
 
     if(this.toggle == true){
-      // this.nav.setRoot(OperatorstabsPage);
       this.navCtrl.navigateForward(['operator/tabs/operator-home']);
-      // this.navCtrl.navigateForward(['operator/tabs/operator-home'], navToggle);
-
       this.menu.close();
     }
     else{
-      // this.nav.setRoot(TabsPage);
       this.navCtrl.navigateForward(['owner/tabs/owner-home']);
-      // this.navCtrl.navigateForward(['owner/tabs/owner-home'], navToggle);
       this.menu.close();
     }
   }
@@ -114,4 +98,9 @@ export class AppComponent {
     // this.nav.setRoot(page.pageName, {toggled: this.toggleButton});
     this.navCtrl.navigateForward(page);
   }
+
+  Logout() {
+    
+  }
+
 }
