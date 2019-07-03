@@ -495,6 +495,18 @@ updateOwnerRole(access_token, role) {
     });
 }
 
+checkExistingUserFBCookie(access_token) {
+  console.log('Checking existing user');
+  return new Promise(resolve => {
+    this.http.get(this.api.apiKey + 'checkExistingUserFBCookie?access_token=' + access_token).subscribe((res) => {
+      resolve(res);
+      console.log('Check FBCookie done:',res);      
+    }, err => {
+      console.log(err);
+    });
+  });
+}
+
 checkExistingUser(email) {
   console.log('Checking existing user');
   return new Promise(resolve => {

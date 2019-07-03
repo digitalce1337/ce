@@ -8,13 +8,15 @@ import { Router, NavigationExtras } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core'
 import { LanguageService } from './services/language.service';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-
+  public fbApi : string = '2249231348693264';
   public appPages = [
     // {
     //   title: 'Home',
@@ -43,16 +45,25 @@ export class AppComponent {
     private _translate : TranslateService,
     private languageService: LanguageService,
     public menu: MenuController,
-    public event: Events
+    public event: Events,
+    private fb: Facebook,
+    public storage: Storage
   ) {
+    // this.initializeApp();
+    // // this.toggle = false;
+    // this.event.subscribe('roleReceived', (value) => {
+    //   // console.log("roleReceived: " + value);
+    //   this.Role = value;
+    // });
+  }
+  ngOnInit(){
     this.initializeApp();
     // this.toggle = false;
     this.event.subscribe('roleReceived', (value) => {
       // console.log("roleReceived: " + value);
       this.Role = value;
-    });
+    });    
   }
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -100,7 +111,9 @@ export class AppComponent {
   }
 
   Logout() {
-    
+    this.storage.set('access_token', '');
+    this.router.navigateByUrl('login');
+    this.menu.close();      
   }
 
 }
