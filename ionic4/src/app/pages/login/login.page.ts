@@ -156,8 +156,8 @@ export class LoginPage implements OnInit {
   }
 
   loginWithFacebook1() {
-    this.fb.logout().then(res => {
-      this.deleteFBCookie("fblo_" + this.fbApi);  
+    // this.fb.logout().then(res => {
+    //   this.deleteFBCookie("fblo_" + this.fbApi);  
 
     // this._translate.setDefaultLang('en');
     console.log("Check if cached exists : "+this.Role);
@@ -355,7 +355,7 @@ export class LoginPage implements OnInit {
         }}
 
   //remove to avoid being in loop
-    )}
+    // )}
   )}
 }
     
