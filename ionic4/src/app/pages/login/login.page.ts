@@ -174,6 +174,10 @@ export class LoginPage implements OnInit {
       console.log("Connected display FBgetLoginStatus: "+res.status);
 
       if (res.status === 'connected'){
+        //add logout
+        this.fb.logout().then(res => {
+          this.deleteFBCookie("fblo_" + this.fbApi);  
+        });
         console.log("From FB login cache status 1: "+res.authResponse.accessToken);
         this.access_token = res.authResponse.accessToken;
         this.storage.set('access_token', this.access_token);
@@ -192,73 +196,6 @@ export class LoginPage implements OnInit {
           this.event.publish('roleReceived', this.roleValue);              
           this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);                    
         }
-        
-        // this.appprov.getEmail(this.access_token).then((res) => {
-        //   let checkUserCookie = JSON.stringify(res);
-        //   checkUserCookie = JSON.parse(checkUserCookie);
-        //   checkUserCookie = checkUserCookie['email'].toString();
-        //   console.log("Result from checkUser:",checkUserCookie);
-        //   console.log("Selected Role: "+ this.Role);
-        //   if (checkUserCookie == 'false') {
-        //     if (this.Role == 'Owner') {
-        //       this.roleValue = true;
-        //       this.event.publish('roleReceived', this.roleValue);
-        //       this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);                    
-        //     } else {
-        //       this.roleValue = false;          
-        //       this.event.publish('roleReceived', this.roleValue);              
-        //       this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);                    
-        //     }
-        //   }
-        //   else {
-        //     console.log("Need to deleteFB cookie access")
-        //     this.fb.logout().then(res => {
-        //       this.deleteFBCookie("fblo_" + this.fbApi);  
-        //     // });
-        //     this.showLoader();
-        //     this.fb.login(['public_profile', 'user_friends', 'email']).then(res => {
-        //       this.dismissLoader();
-        //       console.log("FB login success after deleteFB cookie")
-        //       console.log("Start dismissLoader: Checkpoint 1");
-              
-        //       // this.loading.dismiss();     
-        //     console.log("Deleted fb cookie access");
-        //     this.access_token = res.authResponse.accessToken;
-        //     this.fb.api('/me?fields=id,name,email,picture,first_name,last_name,gender,location,locale,work,languages,birthday,relationship_status,hometown', []).then(
-        //       profile => {
-        //         const email = profile.email;                
-        //         const profile_url = 'assets/imgs/blank_profile.png';
-        //         const name = profile.name;
-        //         console.log("New user need to handle... checkUser != false")
-        //         this.dismissLoader();                        
-        //         this.appprov.addUser(email, this.access_token, name, profile_url, this.Role).then((res) => {
-        //           let adduser = JSON.stringify(res);
-        //           adduser = JSON.parse(adduser);                          
-        //           console.log("Going to set access_token into storage: "+this.access_token);
-        //           this.storage.set('access_token', this.access_token);
-        //           this.isLoggedIn = true;
-        //           if (this.Role === 'Owner') {
-        //             this.router.navigateByUrl('create-company');                          
-        //           } else {
-        //             this.router.navigateByUrl('otp-operator');                        
-        //           }
-        //         }, err => { console.log(err); });
-        //         }, err => { console.log(err); });
-        //       },err => { console.log(err); });
-        //       });
-        //       }
-        //     }, err => { console.log(err); });        
-        // console.log("Selected Role: "+ this.Role);
-        // if (this.Role == 'Owner') {
-        //   this.roleValue = true;
-        //   this.event.publish('roleReceived', this.roleValue);
-        //   this.navCtrl.navigateForward(['owner/tabs/owner-home'], navigationExtras);                    
-        // } else {
-        //   this.roleValue = false;          
-        //   this.event.publish('roleReceived', this.roleValue);
-        //   // console.log("show me "+this.Role + " storage: " + this.storage);
-        //   this.navCtrl.navigateForward(['operator/tabs/operator-home'], navigationExtras);                    
-        // }
       }      
       //Unknown facebook login status
         else{           
